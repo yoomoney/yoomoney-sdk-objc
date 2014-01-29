@@ -4,22 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>ymeprsdk-ios-release.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
-		</dict>
-		<key>ymeprsdk-ios.xcscheme</key>
+		<key>ymcpssdk-ios.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>ymeprsdk-os-release.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
-		</dict>
-		<key>ymeprsdk-os.xcscheme</key>
+		<key>ymcpssdk-os.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>

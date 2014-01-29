@@ -8,6 +8,20 @@
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "43C6B1E618987E78001BA093"
+               BuildableName = "ym-epr-sdk-iosTests.xctest"
+               BlueprintName = "ym-epr-sdk-iosTests"
+               ReferencedContainer = "container:YandexMoneySDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
             buildForRunning = "YES"
             buildForProfiling = "YES"
             buildForArchiving = "YES"
@@ -15,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "43C6B1D818987E78001BA093"
-               BuildableName = "libymeprsdk-ios.a"
-               BlueprintName = "ymeprsdk-ios"
-               ReferencedContainer = "container:YandexMoneySDK.xcodeproj">
+               BuildableName = "libymcpssdk-ios.a"
+               BlueprintName = "ymcpssdk-ios"
+               ReferencedContainer = "container:cps-sdk.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
