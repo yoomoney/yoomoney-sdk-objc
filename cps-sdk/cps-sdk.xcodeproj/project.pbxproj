@@ -44,16 +44,6 @@
 		43C6B242189881F5001BA093 /* YMASession.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B221189881F5001BA093 /* YMASession.m */; };
 		6034997818994C510033835D /* YMAConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 6034997618994C510033835D /* YMAConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6034997918994C510033835D /* YMAConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6034997718994C510033835D /* YMAConstants.m */; };
-		60349989189953FB0033835D /* YMABaseRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C6B20B189881F5001BA093 /* YMABaseRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6034998A189953FB0033835D /* YMAExternalPaymentRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C6B20D189881F5001BA093 /* YMAExternalPaymentRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6034998B189953FB0033835D /* YMAProcessExternalPaymentRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C6B20F189881F5001BA093 /* YMAProcessExternalPaymentRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6034998C189953FB0033835D /* YMABaseResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C6B212189881F5001BA093 /* YMABaseResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6034998D189953FB0033835D /* YMAExternalPaymentResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C6B214189881F5001BA093 /* YMAExternalPaymentResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6034998E189953FB0033835D /* YMAProcessExternalPaymentResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C6B216189881F5001BA093 /* YMAProcessExternalPaymentResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6034998F189953FB0033835D /* YMAAsc.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C6B218189881F5001BA093 /* YMAAsc.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		60349990189953FB0033835D /* YMAMoneySource.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C6B21E189881F5001BA093 /* YMAMoneySource.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		60349991189953FB0033835D /* YMASession.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C6B220189881F5001BA093 /* YMASession.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		60349992189953FB0033835D /* YMAConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 6034997618994C510033835D /* YMAConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -235,23 +225,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		60349988189953E90033835D /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				60349989189953FB0033835D /* YMABaseRequest.h in Headers */,
-				6034998A189953FB0033835D /* YMAExternalPaymentRequest.h in Headers */,
-				6034998B189953FB0033835D /* YMAProcessExternalPaymentRequest.h in Headers */,
-				6034998C189953FB0033835D /* YMABaseResponse.h in Headers */,
-				6034998D189953FB0033835D /* YMAExternalPaymentResponse.h in Headers */,
-				6034998E189953FB0033835D /* YMAProcessExternalPaymentResponse.h in Headers */,
-				6034998F189953FB0033835D /* YMAAsc.h in Headers */,
-				60349990189953FB0033835D /* YMAMoneySource.h in Headers */,
-				60349992189953FB0033835D /* YMAConstants.h in Headers */,
-				60349991189953FB0033835D /* YMASession.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -280,7 +253,6 @@
 				43C6B1D518987E78001BA093 /* Sources */,
 				43C6B1D618987E78001BA093 /* Frameworks */,
 				43C6B1D718987E78001BA093 /* CopyFiles */,
-				60349988189953E90033835D /* Headers */,
 			);
 			buildRules = (
 			);
@@ -494,7 +466,9 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
+				PRIVATE_HEADERS_FOLDER_PATH = "include/$(PRODUCT_NAME)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PRODUCT_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
@@ -514,7 +488,9 @@
 				GCC_PREFIX_HEADER = "SupportingFiles/ymcpssdk-ios-Prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
+				PRIVATE_HEADERS_FOLDER_PATH = "include/$(PRODUCT_NAME)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PRODUCT_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				VALIDATE_PRODUCT = YES;
