@@ -18,7 +18,7 @@
     Token
  */
 
-typedef void (^YMInstanceHandler)(NSString *instanceId, NSError *error);
+typedef void (^YMAInstanceHandler)(NSString *instanceId, NSError *error);
 
 /**
  @abstract Completion block used by several methods of YMASession.
@@ -31,15 +31,13 @@ typedef void (^YMInstanceHandler)(NSString *instanceId, NSError *error);
     Error information or nil.
  */
 
-typedef void (^YMHandler)(NSError *error);
+typedef void (^YMAHandler)(NSError *error);
 
 @interface YMASession : NSObject
 
 @property(nonatomic, copy) NSString *instanceId;
 
-+ (instancetype)sharedManager;
-
-- (void)authorizeWithClientId:(NSString *)clientId completion:(YMInstanceHandler)block;
+- (void)authorizeWithClientId:(NSString *)clientId completion:(YMAInstanceHandler)block;
 
 - (void)performRequest:(YMABaseRequest *)request completion:(YMARequestHandler)block;
 

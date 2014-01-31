@@ -35,20 +35,6 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
 
 @implementation YMASession
 
-#pragma mark -
-#pragma mark *** Singleton methods ***
-#pragma mark -
-
-+ (id)sharedManager {
-    static YMASession *sharedMyManager = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedMyManager = [[self alloc] init];
-    });
-
-    return sharedMyManager;
-}
-
 - (id)init {
     self = [super init];
 
@@ -64,7 +50,7 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
 #pragma mark *** Public methods ***
 #pragma mark -
 
-- (void)authorizeWithClientId:(NSString *)clientId completion:(YMInstanceHandler)block {
+- (void)authorizeWithClientId:(NSString *)clientId completion:(YMAInstanceHandler)block {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:clientId forKey:kParameterClientId];
 
@@ -91,18 +77,15 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
         if (statusCode == YMAStatusCodeOkHTTP) {
 
             NSString *status = [responseModel objectForKey:kParameterStatus];
-
-            if (![status isEqual:kValueParameterStatusSuccess]) {
-
-                block(nil, unknownError);
+            
+            if ([status isEqual:kValueParameterStatusSuccess]) {
+                
+                self.instanceId = [responseModel objectForKey:@"instance_id"];
+                
+                block(self.instanceId, self.instanceId ? nil : unknownError);
+                
                 return;
             }
-
-            self.instanceId = [responseModel objectForKey:@"instance_id"];
-
-            block(self.instanceId, self.instanceId ? nil : unknownError);
-
-            return;
         }
 
         NSString *errorKey = [responseModel objectForKey:@"error"];
