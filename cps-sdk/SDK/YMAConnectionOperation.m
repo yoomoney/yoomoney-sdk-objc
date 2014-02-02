@@ -78,8 +78,9 @@
 
 - (void)start {
     if (![NSThread isMainThread]) {
-        [self performSelectorOnMainThread:@selector(start)
-                               withObject:nil waitUntilDone:NO];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self start];
+        });
         return;
     }
 

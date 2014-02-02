@@ -79,7 +79,8 @@ static NSString *const kParameterNextRetry = @"next_retry";
 }
 
 - (void)parseJSONModel:(id)responseModel {
-
+    NSString *reason = [NSString stringWithFormat:@"%@ must be ovverriden", NSStringFromSelector(_cmd)];
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 }
 
 @end
