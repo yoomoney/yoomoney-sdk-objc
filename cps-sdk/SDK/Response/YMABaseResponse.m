@@ -6,6 +6,7 @@
 //
 
 #import "YMABaseResponse.h"
+#import "YMAConstants.h"
 
 static NSInteger const kResponseParseErrorCode = 2503;
 static NSString *const kResponseStatusKeyRefused = @"refused";
@@ -56,10 +57,12 @@ static NSString *const kParameterNextRetry = @"next_retry";
         NSString *statusKey = [responseModel objectForKey:kParameterStatus];
 
         if ([statusKey isEqual:kResponseStatusKeyRefused]) {
+            NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"response" : self}];
+
             NSString *errorKey = [responseModel objectForKey:kParameterError];
             _status = YMAResponseStatusRefused;
 
-            self.handler(self, [NSError errorWithDomain:errorKey code:0 userInfo:nil]);
+            self.handler(self, errorKey ? [NSError errorWithDomain:errorKey code:0 userInfo:@{@"response" : self}] : unknownError);
             return;
         }
 
