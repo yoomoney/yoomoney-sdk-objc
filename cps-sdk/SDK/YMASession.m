@@ -15,7 +15,7 @@ typedef enum {
     YMAStatusCodeInternalServerErrorHTTP = 500
 } YMAConnectHTTPStatusCodes;
 
-static NSString *const kInstanceUrl = @"https://money.yandex.ru/api/instance-id";
+static NSString *const kInstanceUrl = @"https://baku.yandex.ru/api/instance-id";
 
 static NSString *const kParameterInstanceId = @"instance_id";
 static NSString *const kParameterClientId = @"client_id";
@@ -67,7 +67,7 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
 
         id responseModel = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
 
-        NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:parameters];
+        NSError *unknownError = [NSError errorWithDomain:@"technicalError" code:0 userInfo:parameters];
 
         if (error || !responseModel) {
             block(nil, (error) ? error : unknownError);
@@ -95,7 +95,7 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
 }
 
 - (void)performRequest:(YMABaseRequest *)request completion:(YMARequestHandler)block {
-    NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"request" : request}];
+    NSError *unknownError = [NSError errorWithDomain:@"technicalError" code:0 userInfo:@{@"request" : request}];
 
     if (!request)
         block(request, nil, unknownError);
@@ -112,7 +112,7 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
         }
 
         NSInteger statusCode = ((NSHTTPURLResponse *) urlResponse).statusCode;
-        NSError *technicalError = [NSError errorWithDomain:kErrorKeyUnknown code:statusCode userInfo:@{@"request" : urlRequest, @"response" : urlResponse}];
+        NSError *technicalError = [NSError errorWithDomain:@"technicalError" code:statusCode userInfo:@{@"request" : urlRequest, @"response" : urlResponse}];
 
         switch (statusCode) {
             case YMAStatusCodeOkHTTP:
