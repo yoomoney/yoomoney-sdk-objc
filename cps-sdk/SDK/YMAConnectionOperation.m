@@ -117,7 +117,7 @@
         [self canceled];
         return nil;
     }
-
+   
     if (!response)
         return request;
 
@@ -156,7 +156,7 @@
     if ([self isCancelled]) {
         [self canceled];
         return;
-    }
+    }   
 
     self.handler(self.request, self.response, self.data, nil);
 

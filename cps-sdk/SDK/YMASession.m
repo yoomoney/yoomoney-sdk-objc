@@ -51,7 +51,7 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
 #pragma mark -
 
 - (void)authorizeWithClientId:(NSString *)clientId completion:(YMAInstanceHandler)block {
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObject:clientId forKey:kParameterClientId];
 
     //TODO use EPR API urls
