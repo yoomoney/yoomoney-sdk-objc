@@ -9,6 +9,7 @@
 #import "YMASession.h"
 #import "YMAAsc.h"
 #import "YMAMoneySource.h"
+#import "YMAPaymentRequestInfo.h"
 #import "YMAConstants.h"
 #import "YMABaseRequest.h"
 #import "YMABaseResponse.h"

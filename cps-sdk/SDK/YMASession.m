@@ -23,7 +23,9 @@ static NSString *const kParameterStatus = @"status";
 static NSString *const kValueParameterStatusSuccess = @"success";
 static NSString *const kHeaderWWWAuthenticate = @"WWW-Authenticate";
 static NSString *const kHeaderContentType = @"Content-Type";
+static NSString *const kHeaderUserAgent = @"User-Agent";
 static NSString *const kMethodPost = @"POST";
+static NSString *const kValueUserAgentDefault = @"Yandex.Money.SDK/iOS";
 static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlencoded;charset=UTF-8";
 
 @interface YMASession ()
@@ -142,6 +144,7 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
     connection.shouldHandleCookies = NO;
     connection.isNeedFollowRedirects = NO;
     [connection addValue:kValueContentTypeDefault forHeader:kHeaderContentType];
+    [connection addValue:kValueUserAgentDefault forHeader:kHeaderUserAgent];
 
     [connection addPostParams:parameters];
 

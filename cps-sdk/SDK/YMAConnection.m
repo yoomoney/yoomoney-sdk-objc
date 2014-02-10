@@ -68,9 +68,18 @@ static NSString *const kHeaderContentLength = @"Content-Length";
             paramValue = [value stringValue];
         else
             paramValue = value;
-
-        NSString *encodedValue = [paramValue stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        NSString *encodedKey = [key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        NSString *encodedValue = (NSString *) CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
+                                                                                       (CFStringRef)paramValue,
+                                                                                       NULL,
+                                                                                       (CFStringRef)@";/?:@&=+$,",
+                                                                                      kCFStringEncodingUTF8));
+        
+        NSString *encodedKey = (NSString *) CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
+                                                                                                      (CFStringRef)key,
+                                                                                                      NULL,
+                                                                                                      (CFStringRef)@";/?:@&=+$,",
+                                                                                                      kCFStringEncodingUTF8));
         [bodyParams addObject:[NSString stringWithFormat:@"%@=%@", encodedKey, encodedValue]];
     }
 
