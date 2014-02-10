@@ -13,4 +13,4 @@ NSString *const kP2PPaymentParameterIdentifierType = @"identifier_type";
 NSString *const kP2PPaymentParameterAmount = @"amount";
 NSString *const kP2PPaymentParameterAmountDue = @"amount_due";
 
-//NSString *const kErrorKeyUnknown = @"technicalError";
+NSString *const kErrorKeyUnknown = @"technicalError";

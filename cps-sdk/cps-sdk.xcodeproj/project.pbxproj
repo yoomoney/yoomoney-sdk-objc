@@ -56,6 +56,7 @@
 		60B4F315189A90EB00522230 /* YMAConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 6034997618994C510033835D /* YMAConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		60B4F31D189ABA0D00522230 /* ymcpssdk.h in Headers */ = {isa = PBXBuildFile; fileRef = 60B4F31C189ABA0D00522230 /* ymcpssdk.h */; };
 		60B4F31E189ABA0D00522230 /* ymcpssdk.h in Headers */ = {isa = PBXBuildFile; fileRef = 60B4F31C189ABA0D00522230 /* ymcpssdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		60EEF90E18A9114500F72177 /* YMAConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6034997718994C510033835D /* YMAConstants.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -359,6 +360,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60EEF90E18A9114500F72177 /* YMAConstants.m in Sources */,
 				43C6B233189881F5001BA093 /* YMAProcessExternalPaymentResponse.m in Sources */,
 				43C6B23C189881F5001BA093 /* YMAConnectionOperation.m in Sources */,
 				43C6B239189881F5001BA093 /* YMAConnection.m in Sources */,
@@ -510,6 +512,7 @@
 				PUBLIC_HEADERS_FOLDER_PATH = "/include/$(PRODUCT_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = Debug;
 		};
@@ -538,6 +541,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = Release;
 		};

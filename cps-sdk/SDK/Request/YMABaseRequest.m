@@ -17,7 +17,7 @@
     }];
 
     if (!operation) {
-        handler(self, nil, [NSError errorWithDomain:@"technicalError" code:0 userInfo:nil]);
+        handler(self, nil, [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:nil]);
         return;
     }
 

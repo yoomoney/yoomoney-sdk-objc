@@ -13,4 +13,8 @@ extern NSString *const kP2PPaymentParameterIdentifierType;
 extern NSString *const kP2PPaymentParameterAmount;
 extern NSString *const kP2PPaymentParameterAmountDue;
 
-//extern NSString *const kErrorKeyUnknown;
+extern NSString *const kErrorKeyUnknown;
+
+
+
+
