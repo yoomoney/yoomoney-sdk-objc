@@ -59,6 +59,8 @@
 		60EEF90E18A9114500F72177 /* YMAConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6034997718994C510033835D /* YMAConstants.m */; };
 		60EEF91118A92D5900F72177 /* YMAPaymentRequestInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 60EEF90F18A92D5900F72177 /* YMAPaymentRequestInfo.h */; };
 		60EEF91218A92D5900F72177 /* YMAPaymentRequestInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EEF91018A92D5900F72177 /* YMAPaymentRequestInfo.m */; };
+		60EEF91518AA3ED700F72177 /* YMAPaymentRequestInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 60EEF90F18A92D5900F72177 /* YMAPaymentRequestInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		60EEF91F18AA59C300F72177 /* YMAPaymentRequestInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 60EEF91018A92D5900F72177 /* YMAPaymentRequestInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -262,6 +264,7 @@
 				60B4F313189A90EB00522230 /* YMAMoneySource.h in Headers */,
 				60B4F314189A90EB00522230 /* YMASession.h in Headers */,
 				60B4F31E189ABA0D00522230 /* ymcpssdk.h in Headers */,
+				60EEF91518AA3ED700F72177 /* YMAPaymentRequestInfo.h in Headers */,
 				60B4F315189A90EB00522230 /* YMAConstants.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -368,6 +371,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60EEF91F18AA59C300F72177 /* YMAPaymentRequestInfo.m in Sources */,
 				60EEF90E18A9114500F72177 /* YMAConstants.m in Sources */,
 				43C6B233189881F5001BA093 /* YMAProcessExternalPaymentResponse.m in Sources */,
 				43C6B23C189881F5001BA093 /* YMAConnectionOperation.m in Sources */,

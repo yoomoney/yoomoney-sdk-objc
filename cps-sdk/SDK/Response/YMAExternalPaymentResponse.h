@@ -6,8 +6,10 @@
 #import <Foundation/Foundation.h>
 #import "YMABaseResponse.h"
 
+@class YMAPaymentRequestInfo;
+
 @interface YMAExternalPaymentResponse : YMABaseResponse
 
-@property(nonatomic, copy, readonly) NSString *requestId;
+@property(nonatomic, copy, readonly) YMAPaymentRequestInfo *paymentRequestInfo;
 
 @end

@@ -9,7 +9,6 @@
 @class YMAAsc;
 @class YMAMoneySource;
 
-
 @interface YMAProcessExternalPaymentResponse : YMABaseResponse
 
 @property(nonatomic, strong, readonly) YMAAsc *asc;

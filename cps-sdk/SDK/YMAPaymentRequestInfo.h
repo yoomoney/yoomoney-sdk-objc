@@ -10,4 +10,10 @@
 
 @interface YMAPaymentRequestInfo : NSObject
 
++ (instancetype)paymentRequestInfoWithId:(NSString *)requestId amount:(NSString *)amount andTitle:(NSString *)title;
+
+@property(nonatomic, copy, readonly) NSString *requestId;
+@property(nonatomic, copy, readonly) NSString *amount;
+@property(nonatomic, copy, readonly) NSString *title;
+
 @end
