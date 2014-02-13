@@ -99,11 +99,13 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
 - (void)performRequest:(YMABaseRequest *)request completion:(YMARequestHandler)block {
     NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"request" : request}];
 
-    if (!request)
+    if (!request || !self.instanceId) {
         block(request, nil, unknownError);
-
+        return;
+    }
+        
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:request.parameters];
-
+   
     [parameters setObject:self.instanceId forKey:kParameterInstanceId];
 
     [self performRequestWithParameters:parameters useUrl:request.requestUrl andCompletionHandler:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
