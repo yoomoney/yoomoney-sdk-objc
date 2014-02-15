@@ -8,7 +8,7 @@
 
 static NSString *const kParameterRequestId = @"request_id";
 static NSString *const kParameterContractAmount = @"contract_amount";
-static NSString *const kParametertTitle = @"title";
+static NSString *const kParameterTitle = @"title";
 
 @implementation YMAExternalPaymentResponse
 
@@ -19,7 +19,7 @@ static NSString *const kParametertTitle = @"title";
 - (void)parseJSONModel:(id)responseModel {
     NSString *requestId = [responseModel objectForKey:kParameterRequestId];
     NSString *contractAmount = [[responseModel objectForKey:kParameterContractAmount] stringValue];
-    NSString *title = [responseModel objectForKey:kParametertTitle];
+    NSString *title = [responseModel objectForKey:kParameterTitle];
     
     _paymentRequestInfo = [YMAPaymentRequestInfo paymentRequestInfoWithId:requestId amount:contractAmount andTitle:title];
 }
