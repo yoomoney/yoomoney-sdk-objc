@@ -70,13 +70,13 @@ static NSString *const kHeaderContentLength = @"Content-Length";
             paramValue = value;
         
         NSString *encodedValue = (NSString *) CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
-                                                                                       (CFStringRef)paramValue,
+                                                                                       (__bridge CFStringRef)paramValue,
                                                                                        NULL,
                                                                                        (CFStringRef)@";/?:@&=+$,",
                                                                                       kCFStringEncodingUTF8));
         
         NSString *encodedKey = (NSString *) CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
-                                                                                                      (CFStringRef)key,
+                                                                                                      (__bridge CFStringRef)key,
                                                                                                       NULL,
                                                                                                       (CFStringRef)@";/?:@&=+$,",
                                                                                                       kCFStringEncodingUTF8));
