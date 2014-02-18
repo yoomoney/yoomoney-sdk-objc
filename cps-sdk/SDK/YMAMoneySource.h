@@ -8,24 +8,24 @@
 /// Values for YMAMoneySourceType
 typedef enum {
     /// Unknown money source
-    YMAMoneySourceUnknown,
+            YMAMoneySourceUnknown,
     /// Credit card
-    YMAMoneySourcePaymentCard
+            YMAMoneySourcePaymentCard
 } YMAMoneySourceType;
 
 /// Values for YMAPaymentCardType
 /// Credit card type
 typedef enum {
     /// Unknown credit card
-    YMAPaymentCardUnknown,
+            YMAPaymentCardUnknown,
     /// VISA
-    YMAPaymentCardTypeVISA,
+            YMAPaymentCardTypeVISA,
     /// MasterCard
-    YMAPaymentCardTypeMasterCard,
+            YMAPaymentCardTypeMasterCard,
     /// American Express
-    YMAPaymentCardTypeAmericanExpress,
+            YMAPaymentCardTypeAmericanExpress,
     /// JCB
-    YMAPaymentCardTypeJCB
+            YMAPaymentCardTypeJCB
 } YMAPaymentCardType;
 
 ///
