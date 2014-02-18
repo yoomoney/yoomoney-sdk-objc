@@ -14,9 +14,8 @@
 // p2p parameter name. Identifier the transfer recipient.
 extern NSString *const kP2PPaymentParameterTo;
 
-// p2p parameter name. Type identifier the transfer recipient. Optional.
-// Default value - account number in the Yandex.Money.
-extern NSString *const kP2PPaymentParameterIdentifierType;
+// p2p parameter name. Comments for payment, displayed to the recipient.
+extern NSString *const kP2PPaymentParameterMessage;
 
 // p2p parameter name. Amount to be deducted from a credit card.
 extern NSString *const kP2PPaymentParameterAmount;
