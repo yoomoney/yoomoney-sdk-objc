@@ -14,7 +14,8 @@
 ///
 @interface YMAProcessExternalPaymentRequest : YMABaseRequest
 
-/// Constructor. Returns a YMAProcessExternalPaymentRequest with the specified requestId, successUri, failUri and requestToken.
+/// Constructor. Returns a YMAProcessExternalPaymentRequest with the specified requestId,
+/// successUri, failUri and requestToken.
 /// @param requestId - ID of the current payment request.
 /// @param successUri - Return address of the page if successful payment authorization by credit card.
 /// @param failUri - Return address of the page with the refusal to authorize payment by credit card.
