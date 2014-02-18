@@ -80,7 +80,7 @@ static NSString *const kParameterCsc = @"csc";
 }
 
 - (NSOperation *)buildResponseOperationWithData:(NSData *)data andCompletionHandler:(YMAResponseHandler)handler {
-    return [[YMAProcessExternalPaymentResponse alloc] initWithData:data andCompletionHandler:handler];
+    return [[YMAProcessExternalPaymentResponse alloc] initWithData:data andCompletion:handler];
 }
 
 @end

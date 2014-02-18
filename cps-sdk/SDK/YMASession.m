@@ -120,7 +120,7 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
 
         switch (statusCode) {
             case YMAStatusCodeOkHTTP:
-                [request buildResponseWithData:responseData queue:self.responseQueue andCompletionHandler:block];
+                [request buildResponseWithData:responseData queue:self.responseQueue andCompletion:block];
                 break;
             case YMAStatusCodeInsufficientScopeHTTP:
             case YMAStatusCodeInvalidTokenHTTP:

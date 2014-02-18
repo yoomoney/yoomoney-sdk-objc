@@ -11,13 +11,13 @@
 
 @implementation YMABaseRequest
 
-- (void)buildResponseWithData:(NSData *)data queue:(NSOperationQueue *)queue andCompletionHandler:(YMARequestHandler)handler {
+- (void)buildResponseWithData:(NSData *)data queue:(NSOperationQueue *)queue andCompletion:(YMARequestHandler)block {
     NSOperation *operation = [self buildResponseOperationWithData:data andCompletionHandler:^(YMABaseResponse *response, NSError *error) {
-        handler(self, response, error);
+        block(self, response, error);
     }];
 
     if (!operation) {
-        handler(self, nil, [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:nil]);
+        block(self, nil, [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:nil]);
         return;
     }
 

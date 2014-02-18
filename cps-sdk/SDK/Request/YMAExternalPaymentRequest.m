@@ -49,7 +49,7 @@ static NSString *const kParameterPatternId = @"pattern_id";
 }
 
 - (NSOperation *)buildResponseOperationWithData:(NSData *)data andCompletionHandler:(YMAResponseHandler)handler {
-    return [[YMAExternalPaymentResponse alloc] initWithData:data andCompletionHandler:handler];
+    return [[YMAExternalPaymentResponse alloc] initWithData:data andCompletion:handler];
 }
 
 @end

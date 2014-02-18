@@ -9,9 +9,19 @@
 @class YMAAsc;
 @class YMAMoneySource;
 
+///
+/// Process payment response. This class contains info about redirect to authorization page (asc)
+/// and info about the money source (moneySource).
+///
 @interface YMAProcessExternalPaymentResponse : YMABaseResponse
 
+/// Info about redirect to authorization page.
+/// The property is not equal nil for status = YMAResponseStatusExtAuthRequired.
 @property(nonatomic, strong, readonly) YMAAsc *asc;
+/// Info about the money source (Information about the credit card).
+/// The property is not equal nil if:
+/// - was set the request parameter requestToken = YES;
+/// - payment completed successfully (status = YMAResponseStatusSuccess).
 @property(nonatomic, strong, readonly) YMAMoneySource *moneySource;
 
 @end

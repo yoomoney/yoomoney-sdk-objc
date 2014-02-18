@@ -6,39 +6,30 @@
 #import <Foundation/Foundation.h>
 #import "YMABaseRequest.h"
 
-/**
- @abstract Completion block
-
- @discussion
-
- @param err
-    Error information or nil.
-
- @param token
-    Token
- */
-
+/// Completion of block is used to get the ID of an installed copy of the application.
+/// @param instanceId - ID of an installed copy of the application.
 typedef void (^YMAInstanceHandler)(NSString *instanceId, NSError *error);
 
-/**
- @abstract Completion block used by several methods of YMASession.
-
- @discussion
- A block with this signature is called by several of methods of YMASession to signal whether or not the method finished execution successful.
- On success err is nil, otherwise it contains information about the error which occurred.
-
- @param err
-    Error information or nil.
- */
-
+/// Completion block used by several methods of YMASession.
+/// @param error - Error information or nil.
 typedef void (^YMAHandler)(NSError *error);
 
+///
+/// Session object to access Yandex.Money.
+///
 @interface YMASession : NSObject
 
+/// ID of an installed copy of the application. Used when you perform requests as parameter.
 @property(nonatomic, copy) NSString *instanceId;
 
+/// Register your application using clientId and obtaining instanceId.
+/// @param clientId - application Identifier.
+/// @param block - completion of block is used to get the ID of an installed copy of the application.
 - (void)authorizeWithClientId:(NSString *)clientId completion:(YMAInstanceHandler)block;
 
+/// Perform some request and obtaining response in block.
+/// @param request - request inherited from YMABaseRequest.
+/// @param block - completion of block is used to get the response.
 - (void)performRequest:(YMABaseRequest *)request completion:(YMARequestHandler)block;
 
 @end
