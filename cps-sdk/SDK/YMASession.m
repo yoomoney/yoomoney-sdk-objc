@@ -7,13 +7,13 @@
 #import "YMAConnection.h"
 #import "YMAConstants.h"
 
-typedef enum {
+typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
     YMAStatusCodeOkHTTP = 200,
     YMAStatusCodeInvalidRequestHTTP = 400,
     YMAStatusCodeInvalidTokenHTTP = 401,
     YMAStatusCodeInsufficientScopeHTTP = 403,
     YMAStatusCodeInternalServerErrorHTTP = 500
-} YMAConnectHTTPStatusCodes;
+};
 
 static NSString *const kInstanceUrl = @"https://polo.yandex.ru/api/instance-id";
 

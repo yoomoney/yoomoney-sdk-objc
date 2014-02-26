@@ -6,16 +6,16 @@
 #import <Foundation/Foundation.h>
 
 /// Values for YMAMoneySourceType
-typedef enum {
+typedef NS_ENUM(NSInteger, YMAMoneySourceType) {
     /// Unknown money source
             YMAMoneySourceUnknown,
     /// Credit card
             YMAMoneySourcePaymentCard
-} YMAMoneySourceType;
+};
 
 /// Values for YMAPaymentCardType
 /// Credit card type
-typedef enum {
+typedef NS_ENUM(NSInteger, YMAPaymentCardType) {
     /// Unknown credit card
             YMAPaymentCardUnknown,
     /// VISA
@@ -26,7 +26,7 @@ typedef enum {
             YMAPaymentCardTypeAmericanExpress,
     /// JCB
             YMAPaymentCardTypeJCB
-} YMAPaymentCardType;
+};
 
 ///
 /// This class contains info about the money source (type, cardType, panFragment, moneySourceToken).
