@@ -6,7 +6,7 @@
 #import "YMAProcessExternalPaymentRequest.h"
 #import "YMAProcessExternalPaymentResponse.h"
 
-static NSString *const kUrlProcessExternalPayment = @"https://baku.yandex.ru/api/process-external-payment";
+static NSString *const kUrlProcessExternalPayment = @"https://polo.yandex.ru/api/process-external-payment";
 
 static NSString *const kParameterRequestId = @"request_id";
 static NSString *const kParameterSuccessUri = @"ext_auth_success_uri";

@@ -15,7 +15,7 @@ typedef enum {
     YMAStatusCodeInternalServerErrorHTTP = 500
 } YMAConnectHTTPStatusCodes;
 
-static NSString *const kInstanceUrl = @"https://baku.yandex.ru/api/instance-id";
+static NSString *const kInstanceUrl = @"https://polo.yandex.ru/api/instance-id";
 
 static NSString *const kParameterInstanceId = @"instance_id";
 static NSString *const kParameterClientId = @"client_id";

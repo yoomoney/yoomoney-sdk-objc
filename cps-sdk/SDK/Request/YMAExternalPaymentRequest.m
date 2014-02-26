@@ -6,7 +6,7 @@
 #import "YMAExternalPaymentRequest.h"
 #import "YMAExternalPaymentResponse.h"
 
-static NSString *const kUrlExternalPayment = @"https://baku.yandex.ru/api/request-external-payment";
+static NSString *const kUrlExternalPayment = @"https://polo.yandex.ru/api/request-external-payment";
 static NSString *const kParameterPatternId = @"pattern_id";
 
 @interface YMAExternalPaymentRequest ()
