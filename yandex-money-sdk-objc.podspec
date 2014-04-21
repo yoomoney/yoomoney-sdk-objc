@@ -5,11 +5,11 @@
 # To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
 #
 Pod::Spec.new do |s|
-  s.name             = "yandex-money-sdk-objc"
+  s.name             = "YandexMoneySDKObjc"
   s.version          = "0.1.0"
-  s.summary          = "A short description of yandex-money-sdk-objc."
+  s.summary          = "A short description of YandexMoneySDKObjc."
   s.description      = <<-DESC
-                       An optional longer description of yandex-money-sdk-objc
+                       An optional longer description of YandexMoneySDKObjc
 
                        * Markdown format.
                        * Don't worry about the indent, we strip it!
