@@ -6,13 +6,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "YMAConnectionOperation.h"
+
+typedef void (^YMAConnectionHandler)(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error);
 
 @interface YMAConnection : NSObject
 
-@property(nonatomic, assign) BOOL isNeedFollowRedirects;
 @property(nonatomic, copy) NSString *requestMethod;
-@property(nonatomic, assign) BOOL shouldHandleCookies;
 
 + (instancetype)connectionWithUrl:(NSURL *)url;
 
@@ -20,9 +19,6 @@
 
 - (void)sendAsynchronousWithQueue:(NSOperationQueue *)queue
                 completionHandler:(YMAConnectionHandler)handler;
-
-+ (void)sendAsynchronousRequest:(NSURLRequest *)request needFollowRedirects:(BOOL)isNeedFollowRedirects withQueue:(NSOperationQueue *)queue
-              completionHandler:(YMAConnectionHandler)handler;
 
 - (void)addValue:(NSString *)value forHeader:(NSString *)header;
 

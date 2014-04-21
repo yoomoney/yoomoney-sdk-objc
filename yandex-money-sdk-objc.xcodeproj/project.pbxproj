@@ -33,9 +33,6 @@
 		43C6B237189881F5001BA093 /* YMAConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C6B21A189881F5001BA093 /* YMAConnection.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		43C6B238189881F5001BA093 /* YMAConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B21B189881F5001BA093 /* YMAConnection.m */; };
 		43C6B239189881F5001BA093 /* YMAConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B21B189881F5001BA093 /* YMAConnection.m */; };
-		43C6B23A189881F5001BA093 /* YMAConnectionOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C6B21C189881F5001BA093 /* YMAConnectionOperation.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		43C6B23B189881F5001BA093 /* YMAConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B21D189881F5001BA093 /* YMAConnectionOperation.m */; };
-		43C6B23C189881F5001BA093 /* YMAConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B21D189881F5001BA093 /* YMAConnectionOperation.m */; };
 		43C6B23D189881F5001BA093 /* YMAMoneySource.h in Headers */ = {isa = PBXBuildFile; fileRef = 43C6B21E189881F5001BA093 /* YMAMoneySource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43C6B23E189881F5001BA093 /* YMAMoneySource.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B21F189881F5001BA093 /* YMAMoneySource.m */; };
 		43C6B23F189881F5001BA093 /* YMAMoneySource.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C6B21F189881F5001BA093 /* YMAMoneySource.m */; };
@@ -97,8 +94,6 @@
 		43C6B219189881F5001BA093 /* YMAAsc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMAAsc.m; path = SDK/YMAAsc.m; sourceTree = "<group>"; };
 		43C6B21A189881F5001BA093 /* YMAConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMAConnection.h; path = SDK/YMAConnection.h; sourceTree = "<group>"; };
 		43C6B21B189881F5001BA093 /* YMAConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMAConnection.m; path = SDK/YMAConnection.m; sourceTree = "<group>"; };
-		43C6B21C189881F5001BA093 /* YMAConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMAConnectionOperation.h; path = SDK/YMAConnectionOperation.h; sourceTree = "<group>"; };
-		43C6B21D189881F5001BA093 /* YMAConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMAConnectionOperation.m; path = SDK/YMAConnectionOperation.m; sourceTree = "<group>"; };
 		43C6B21E189881F5001BA093 /* YMAMoneySource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMAMoneySource.h; path = SDK/YMAMoneySource.h; sourceTree = "<group>"; };
 		43C6B21F189881F5001BA093 /* YMAMoneySource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMAMoneySource.m; path = SDK/YMAMoneySource.m; sourceTree = "<group>"; };
 		43C6B220189881F5001BA093 /* YMASession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMASession.h; path = SDK/YMASession.h; sourceTree = "<group>"; };
@@ -188,8 +183,6 @@
 				6034997718994C510033835D /* YMAConstants.m */,
 				43C6B21A189881F5001BA093 /* YMAConnection.h */,
 				43C6B21B189881F5001BA093 /* YMAConnection.m */,
-				43C6B21C189881F5001BA093 /* YMAConnectionOperation.h */,
-				43C6B21D189881F5001BA093 /* YMAConnectionOperation.m */,
 				60B4F31C189ABA0D00522230 /* ymcpssdk.h */,
 				60EEF90F18A92D5900F72177 /* YMAPaymentRequestInfo.h */,
 				60EEF91018A92D5900F72177 /* YMAPaymentRequestInfo.m */,
@@ -244,7 +237,6 @@
 				43C6B222189881F5001BA093 /* YMABaseRequest.h in Headers */,
 				6034997818994C510033835D /* YMAConstants.h in Headers */,
 				43C6B22B189881F5001BA093 /* YMABaseResponse.h in Headers */,
-				43C6B23A189881F5001BA093 /* YMAConnectionOperation.h in Headers */,
 				43C6B237189881F5001BA093 /* YMAConnection.h in Headers */,
 				43C6B20818988093001BA093 /* ymcpssdk-os-Prefix.pch in Headers */,
 			);
@@ -317,7 +309,7 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Yandex.Money;
 			};
-			buildConfigurationList = 43C6B1A118987C4D001BA093 /* Build configuration list for PBXProject "cps-sdk" */;
+			buildConfigurationList = 43C6B1A118987C4D001BA093 /* Build configuration list for PBXProject "yandex-money-sdk-objc" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -353,7 +345,6 @@
 			files = (
 				43C6B232189881F5001BA093 /* YMAProcessExternalPaymentResponse.m in Sources */,
 				6034997918994C510033835D /* YMAConstants.m in Sources */,
-				43C6B23B189881F5001BA093 /* YMAConnectionOperation.m in Sources */,
 				43C6B238189881F5001BA093 /* YMAConnection.m in Sources */,
 				43C6B223189881F5001BA093 /* YMABaseRequest.m in Sources */,
 				43C6B22F189881F5001BA093 /* YMAExternalPaymentResponse.m in Sources */,
@@ -374,7 +365,6 @@
 				60EEF91F18AA59C300F72177 /* YMAPaymentRequestInfo.m in Sources */,
 				60EEF90E18A9114500F72177 /* YMAConstants.m in Sources */,
 				43C6B233189881F5001BA093 /* YMAProcessExternalPaymentResponse.m in Sources */,
-				43C6B23C189881F5001BA093 /* YMAConnectionOperation.m in Sources */,
 				43C6B239189881F5001BA093 /* YMAConnection.m in Sources */,
 				43C6B224189881F5001BA093 /* YMABaseRequest.m in Sources */,
 				43C6B230189881F5001BA093 /* YMAExternalPaymentResponse.m in Sources */,
@@ -560,7 +550,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		43C6B1A118987C4D001BA093 /* Build configuration list for PBXProject "cps-sdk" */ = {
+		43C6B1A118987C4D001BA093 /* Build configuration list for PBXProject "yandex-money-sdk-objc" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				43C6B1CD18987C4D001BA093 /* Debug */,

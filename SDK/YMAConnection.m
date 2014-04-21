@@ -20,11 +20,11 @@ static NSString *const kHeaderContentLength = @"Content-Length";
 
 - (id)initWithUrl:(NSURL *)url {
     self = [super init];
-
+    
     if (self) {
         _request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kRequestTimeoutIntervalDefault];
     }
-
+    
     return self;
 }
 
@@ -33,21 +33,13 @@ static NSString *const kHeaderContentLength = @"Content-Length";
 }
 
 - (void)sendAsynchronousWithQueue:(NSOperationQueue *)queue completionHandler:(YMAConnectionHandler)handler {
-
+    
     [self.request addValue:[NSString stringWithFormat:@"%lu", (unsigned long) [self.request.HTTPBody length]] forHTTPHeaderField:kHeaderContentLength];
-
-    NSOperation *operation = [[YMAConnectionOperation alloc] initWithRequest:self.request needFollowRedirects:self.isNeedFollowRedirects andCompletionHandler:handler];
-
-    [queue addOperation:operation];
+    
+    [NSURLConnection sendAsynchronousRequest:self.request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        handler(self.request, response, data, connectionError);
+    }];
 }
-
-+ (void)sendAsynchronousRequest:(NSURLRequest *)request needFollowRedirects:(BOOL)isNeedFollowRedirects withQueue:(NSOperationQueue *)queue
-              completionHandler:(YMAConnectionHandler)handler; {
-    NSOperation *operation = [[YMAConnectionOperation alloc] initWithRequest:request needFollowRedirects:isNeedFollowRedirects andCompletionHandler:handler];
-
-    [queue addOperation:operation];
-}
-
 
 - (void)addValue:(NSString *)value forHeader:(NSString *)header {
     [self.request addValue:value forHTTPHeaderField:header];
@@ -56,24 +48,24 @@ static NSString *const kHeaderContentLength = @"Content-Length";
 - (void)addPostParams:(NSDictionary *)postParams {
     if (!postParams)
         return;
-
+    
     NSMutableArray *bodyParams = [[NSMutableArray alloc] init];
-
+    
     for (NSString *key in postParams.allKeys) {
-
+        
         id value = [postParams objectForKey:key];
         NSString *paramValue = nil;
-
+        
         if ([value isKindOfClass:[NSNumber class]])
             paramValue = [value stringValue];
         else
             paramValue = value;
         
         NSString *encodedValue = (NSString *) CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
-                                                                                       (__bridge CFStringRef)paramValue,
-                                                                                       NULL,
-                                                                                       (CFStringRef)@";/?:@&=+$,",
-                                                                                      kCFStringEncodingUTF8));
+                                                                                                        (__bridge CFStringRef)paramValue,
+                                                                                                        NULL,
+                                                                                                        (CFStringRef)@";/?:@&=+$,",
+                                                                                                        kCFStringEncodingUTF8));
         
         NSString *encodedKey = (NSString *) CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
                                                                                                       (__bridge CFStringRef)key,
@@ -82,7 +74,7 @@ static NSString *const kHeaderContentLength = @"Content-Length";
                                                                                                       kCFStringEncodingUTF8));
         [bodyParams addObject:[NSString stringWithFormat:@"%@=%@", encodedKey, encodedValue]];
     }
-
+    
     NSString *bodyString = [bodyParams componentsJoinedByString:@"&"];
     self.request.HTTPBody = [bodyString dataUsingEncoding:NSUTF8StringEncoding];
 }
@@ -101,14 +93,6 @@ static NSString *const kHeaderContentLength = @"Content-Length";
 
 - (NSString *)requestMethod {
     return self.request.HTTPMethod;
-}
-
-- (void)setShouldHandleCookies:(BOOL)shouldHandleCookies {
-    self.request.HTTPShouldHandleCookies = shouldHandleCookies;
-}
-
-- (BOOL)shouldHandleCookies {
-    return self.request.HTTPShouldHandleCookies;
 }
 
 @end

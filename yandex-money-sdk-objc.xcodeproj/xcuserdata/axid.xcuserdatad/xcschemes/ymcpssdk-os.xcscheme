@@ -17,7 +17,7 @@
                BlueprintIdentifier = "43C6B1A618987C4D001BA093"
                BuildableName = "ymcpssdk-os.framework"
                BlueprintName = "ymcpssdk-os"
-               ReferencedContainer = "container:cps-sdk.xcodeproj">
+               ReferencedContainer = "container:yandex-money-sdk-objc.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
