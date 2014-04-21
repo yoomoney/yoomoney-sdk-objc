@@ -1,0 +1,7 @@
+pod "yandex-money-sdk-objc", :path => "../"
+
+target "Demo" do
+end
+
+target "DemoTests" do
+end
