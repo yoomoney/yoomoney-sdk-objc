@@ -143,8 +143,6 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
 - (void)performRequestWithParameters:(NSDictionary *)parameters useUrl:(NSURL *)url andCompletionHandler:(YMAConnectionHandler)handler {
     YMAConnection *connection = [[YMAConnection alloc] initWithUrl:url];
     connection.requestMethod = kMethodPost;
-    connection.shouldHandleCookies = NO;
-    connection.isNeedFollowRedirects = NO;
     [connection addValue:kValueContentTypeDefault forHeader:kHeaderContentType];
     [connection addValue:kValueUserAgentDefault forHeader:kHeaderUserAgent];
 
