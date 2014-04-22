@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import <ymcpssdk.h>
 
 @interface ViewController ()
 
@@ -19,7 +20,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     
     self.view.backgroundColor = [UIColor lightGrayColor];
     
@@ -29,12 +29,6 @@
     [self.view addSubview:self.doPaymentButton];
     
     [self.doPaymentButton addTarget:self action:@selector(doTestPayment) forControlEvents:UIControlEventTouchUpInside];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)doTestPayment {
