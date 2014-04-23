@@ -2,7 +2,7 @@
 //  YMAPaymentRequestInfo.h
 //  cps-sdk
 //
-//  Created by mertvetcov on 10.02.14.
+//  Created by Alexander Mertvetsov on 10.02.14.
 //  Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 

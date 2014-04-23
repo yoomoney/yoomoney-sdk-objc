@@ -1,7 +1,7 @@
 //
 //  YMAConnection.h
 //
-//  Created by Александр Мертвецов on 31.10.13.
+//  Created by Alexander Mertvetsov on 31.10.13.
 //  Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 

@@ -1,5 +1,5 @@
 //
-// Created by Александр Мертвецов on 28.01.14.
+// Created by Alexander Mertvetsov on 28.01.14.
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
@@ -38,7 +38,6 @@ static NSString *const kParameterPatternId = @"pattern_id";
 #pragma mark -
 
 - (NSURL *)requestUrl {
-    //TODO use EPR API urls
     return [NSURL URLWithString:kUrlExternalPayment];
 }
 
