@@ -14,7 +14,7 @@ static NSString *const kSuccessUrl = @"yandexmoneyapp://oauth/authorize/success"
 static NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
 
 //Use you application identifier
-static NSString *const kClientId = @"CBEB4423912F449333AB2328338FAD7CA84AAD8C2E513954AE83EA77A27EB062";
+static NSString *const kClientId = @"YOU_CLIENT_ID";
 
 @interface ViewController () {
     NSMutableDictionary *_instanceIdQuery;
