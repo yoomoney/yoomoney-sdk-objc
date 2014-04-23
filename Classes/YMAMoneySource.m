@@ -1,5 +1,5 @@
 //
-// Created by Александр Мертвецов on 29.01.14.
+// Created by Alexander Mertvetsov on 29.01.14.
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 

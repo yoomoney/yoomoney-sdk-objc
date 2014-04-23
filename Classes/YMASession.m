@@ -1,5 +1,5 @@
 //
-// Created by mertvetcov on 27.01.14.
+// Created by Alexander Mertvetsov on 27.01.14.
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
@@ -56,7 +56,6 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObject:clientId forKey:kParameterClientId];
 
-    //TODO use EPR API urls
     NSURL *url = [NSURL URLWithString:kInstanceUrl];
 
     [self performRequestWithParameters:parameters useUrl:url andCompletionHandler:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
