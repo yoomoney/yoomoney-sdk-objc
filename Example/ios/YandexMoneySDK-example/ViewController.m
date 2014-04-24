@@ -90,9 +90,9 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
 
 - (void)doTestPayment {
     
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setObject:(id) kSecClassGenericPassword forKey:(id) kSecClass];
-    SecItemDelete((CFDictionaryRef) dict);
+//    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+//    [dict setObject:(id) kSecClassGenericPassword forKey:(id) kSecClass];
+//    SecItemDelete((CFDictionaryRef) dict);
     
     NSDictionary *paymentParams = @{@"amount" : self.amountTextField.text, @"phone-number" : self.phoneNumberTextField.text};
     
