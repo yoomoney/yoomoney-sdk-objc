@@ -19,10 +19,6 @@ it simply add the following line to your Podfile:
 
     pod "YandexMoneySDKObjc"
 
-## Author
-
-Alexander Mertvetsov, amertvetsov@yandex.ru
-
 ## License
 
 YandexMoneySDKObjc is available under the MIT license. See the LICENSE file for more info.
