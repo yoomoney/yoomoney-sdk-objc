@@ -13,6 +13,8 @@ NSString *const kHeaderUserAgent = @"User-Agent";
 NSString *const kMethodPost = @"POST";
 NSString *const kValueContentTypeDefault = @"application/x-www-form-urlencoded;charset=UTF-8";
 
+static NSString *const kValueUserAgentDefault = @"Yandex.Money.SDK/iOS";
+
 @implementation YMABaseSession
 
 - (id)init {
@@ -26,9 +28,19 @@ NSString *const kValueContentTypeDefault = @"application/x-www-form-urlencoded;c
     return self;
 }
 
+
 - (void)performRequestWithToken:(NSString *)token parameters:(NSDictionary *)parameters url:(NSURL *)url andCompletionHandler:(YMAConnectionHandler)handler {
-    NSString *reason = [NSString stringWithFormat:@"%@ must be ovverriden", NSStringFromSelector(_cmd)];
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
+    YMAConnection *connection = [[YMAConnection alloc] initWithUrl:url];
+    connection.requestMethod = kMethodPost;
+    [connection addValue:kValueContentTypeDefault forHeader:kHeaderContentType];
+    [connection addValue:kValueUserAgentDefault forHeader:kHeaderUserAgent];
+
+    if (token)
+        [connection addValue:[NSString stringWithFormat:kValueHeaderAuthorizationFormat, token] forHeader:kHeaderAuthorization];
+
+    [connection addPostParams:parameters];
+
+    [connection sendAsynchronousWithQueue:_requestQueue completionHandler:handler];
 }
 
 @end

@@ -12,7 +12,6 @@ static NSString *const kParameterInstanceId = @"instance_id";
 static NSString *const kParameterClientId = @"client_id";
 static NSString *const kParameterStatus = @"status";
 static NSString *const kValueParameterStatusSuccess = @"success";
-static NSString *const kValueUserAgentDefault = @"Yandex.Money.SDK/iOS";
 
 @implementation YMACpsSession
 
@@ -121,20 +120,6 @@ static NSString *const kValueUserAgentDefault = @"Yandex.Money.SDK/iOS";
 #pragma mark -
 #pragma mark *** Overridden methods ***
 #pragma mark -
-
-- (void)performRequestWithToken:(NSString *)token parameters:(NSDictionary *)parameters url:(NSURL *)url andCompletionHandler:(YMAConnectionHandler)handler {
-    YMAConnection *connection = [[YMAConnection alloc] initWithUrl:url];
-    connection.requestMethod = kMethodPost;
-    [connection addValue:kValueContentTypeDefault forHeader:kHeaderContentType];
-    [connection addValue:kValueUserAgentDefault forHeader:kHeaderUserAgent];
-
-    if (token)
-        [connection addValue:[NSString stringWithFormat:kValueHeaderAuthorizationFormat, token] forHeader:kHeaderAuthorization];
-
-    [connection addPostParams:parameters];
-
-    [connection sendAsynchronousWithQueue:_requestQueue completionHandler:handler];
-}
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self, @{@"instanceId" : self.instanceId}];

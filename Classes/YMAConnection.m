@@ -6,6 +6,7 @@
 //
 
 #import "YMAConnection.h"
+#import "YMAUtils.h"
 
 static NSInteger const kRequestTimeoutIntervalDefault = 60;
 static NSString *const kHeaderContentLength = @"Content-Length";
@@ -61,17 +62,9 @@ static NSString *const kHeaderContentLength = @"Content-Length";
         else
             paramValue = value;
         
-        NSString *encodedValue = (NSString *) CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
-                                                                                                        (__bridge CFStringRef)paramValue,
-                                                                                                        NULL,
-                                                                                                        (CFStringRef)@";/?:@&=+$,",
-                                                                                                        kCFStringEncodingUTF8));
-        
-        NSString *encodedKey = (NSString *) CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
-                                                                                                      (__bridge CFStringRef)key,
-                                                                                                      NULL,
-                                                                                                      (CFStringRef)@";/?:@&=+$,",
-                                                                                                      kCFStringEncodingUTF8));
+        NSString *encodedValue = [YMAUtils addPercentEscapesForString:paramValue];
+        NSString *encodedKey = [YMAUtils addPercentEscapesForString:key];
+
         [bodyParams addObject:[NSString stringWithFormat:@"%@=%@", encodedKey, encodedValue]];
     }
     
