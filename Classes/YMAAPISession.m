@@ -12,8 +12,6 @@ NSString* const kAuthorizeUrl = @"oauth/authorize";
 NSString* const kTokenUrl = @"oauth/token";
 NSString* const kParameterClientId = @"client_id";
 NSString* const kParameterResponseType = @"response_type";
-NSString* const kParameterRedirectUri = @"redirect_uri";
-NSString* const kParameterScope = @"scope";
 NSString* const kValueParameterResponseType = @"code";
 
 @implementation YMAAPISession
