@@ -1,14 +1,13 @@
 //
-//  YMABaseResponse.m
+//  YMABasePaymentProcessResponse.m
 //
 //  Created by Alexander Mertvetsov on 01.11.13.
 //  Copyright (c) 2013 Yandex.Money. All rights reserved.
 //
 
-#import "YMABaseResponse.h"
+#import "YMABasePaymentProcessResponse.h"
 #import "YMAConstants.h"
 
-static NSInteger const kResponseParseErrorCode = 2503;
 static NSString *const kResponseStatusKeyRefused = @"refused";
 static NSString *const kResponseStatusKeyInProgress = @"in_progress";
 static NSString *const kResponseStatusKeyExtAuthRequired = @"ext_auth_required";
@@ -16,21 +15,12 @@ static NSString *const kParameterStatus = @"status";
 static NSString *const kParameterError = @"error";
 static NSString *const kParameterNextRetry = @"next_retry";
 
-@interface YMABaseResponse ()
-
-@property(nonatomic, copy) YMAResponseHandler handler;
-@property(nonatomic, retain) NSData *data;
-
-@end
-
-@implementation YMABaseResponse
+@implementation YMABasePaymentProcessResponse
 
 - (id)initWithData:(NSData *)data andCompletion:(YMAResponseHandler)block {
-    self = [self init];
+    self = [super init];
 
     if (self) {
-        _data = data;
-        _handler = [block copy];
         _nextRetry = 0;
     }
 

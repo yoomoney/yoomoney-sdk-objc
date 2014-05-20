@@ -4,14 +4,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "YMABaseResponse.h"
+#import "YMABasePaymentProcessResponse.h"
 
 @class YMAPaymentRequestInfo;
 
 ///
 /// Payment response. This class contains payment info (paymentRequestInfo)
 ///
-@interface YMAExternalPaymentResponse : YMABaseResponse
+@interface YMAExternalPaymentResponse : YMABasePaymentProcessResponse
 
 /// Info about the current payment request.
 /// The property is not equal to zero for status = YMAResponseStatusInProgress.

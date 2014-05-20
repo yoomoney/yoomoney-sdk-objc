@@ -6,13 +6,13 @@
 //
 
 #import "YMABaseRequest.h"
-#import "YMABaseResponse.h"
+#import "YMABasePaymentProcessResponse.h"
 #import "YMAConstants.h"
 
 @implementation YMABaseRequest
 
 - (void)buildResponseWithData:(NSData *)data queue:(NSOperationQueue *)queue andCompletion:(YMARequestHandler)block {
-    NSOperation *operation = [self buildResponseOperationWithData:data andCompletionHandler:^(YMABaseResponse *response, NSError *error) {
+    NSOperation *operation = [self buildResponseOperationWithData:data andCompletionHandler:^(YMABasePaymentProcessResponse *response, NSError *error) {
         block(self, response, error);
     }];
 

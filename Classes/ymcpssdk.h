@@ -14,7 +14,7 @@
 #import "YMAPaymentRequestInfo.h"
 #import "YMAConstants.h"
 #import "YMABaseRequest.h"
-#import "YMABaseResponse.h"
+#import "YMABasePaymentProcessResponse.h"
 #import "YMAExternalPaymentRequest.h"
 #import "YMAProcessExternalPaymentRequest.h"
 #import "YMAExternalPaymentResponse.h"

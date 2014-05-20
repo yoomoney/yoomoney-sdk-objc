@@ -1,13 +1,12 @@
 //
-//  YMABaseResponse.h
+//  YMABasePaymentProcessResponse.h
 //
 //  Created by Alexander Mertvetsov on 01.11.13.
 //  Copyright (c) 2013 Yandex.Money. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-
-@class YMABaseResponse;
+#import "YMABaseResponse.h"
 
 /// Values for YMAResponseStatus
 /// Status of process payment
@@ -27,17 +26,10 @@ typedef NS_ENUM(NSInteger, YMAResponseStatus) {
             YMAResponseStatusExtAuthRequired
 };
 
-typedef void (^YMAResponseHandler)(YMABaseResponse *response, NSError *error);
-
 ///
 /// Abstract class of response. This class contains common info about the response (status, nextRetry).
 ///
-@interface YMABaseResponse : NSOperation
-
-/// Constructor. Returns a YMABaseResponse with the specified data and completion of block.
-/// @param data -
-/// @param block -
-- (id)initWithData:(NSData *)data andCompletion:(YMAResponseHandler)block;
+@interface YMABasePaymentProcessResponse : YMABaseResponse
 
 /// Status of process payment.
 @property(nonatomic, assign, readonly) YMAResponseStatus status;
