@@ -4,16 +4,7 @@
 //
 
 #import "YMACpsSession.h"
-#import "YMAConnection.h"
 #import "YMAConstants.h"
-
-typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
-    YMAStatusCodeOkHTTP = 200,
-    YMAStatusCodeInvalidRequestHTTP = 400,
-    YMAStatusCodeInvalidTokenHTTP = 401,
-    YMAStatusCodeInsufficientScopeHTTP = 403,
-    YMAStatusCodeInternalServerErrorHTTP = 500
-};
 
 static NSString *const kInstanceUrl = @"https://money.yandex.ru/api/instance-id";
 
@@ -21,50 +12,21 @@ static NSString *const kParameterInstanceId = @"instance_id";
 static NSString *const kParameterClientId = @"client_id";
 static NSString *const kParameterStatus = @"status";
 static NSString *const kValueParameterStatusSuccess = @"success";
-static NSString *const kHeaderWWWAuthenticate = @"WWW-Authenticate";
-static NSString *const kHeaderContentType = @"Content-Type";
-static NSString *const kHeaderUserAgent = @"User-Agent";
-static NSString *const kMethodPost = @"POST";
 static NSString *const kValueUserAgentDefault = @"Yandex.Money.SDK/iOS";
-static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlencoded;charset=UTF-8";
-
-@interface YMACpsSession ()
-
-@property(nonatomic, strong) NSString *userAgent;
-@property(nonatomic, strong) NSOperationQueue *requestQueue;
-@property(nonatomic, strong) NSOperationQueue *responseQueue;
-
-@end
 
 @implementation YMACpsSession
-
-- (id)init {
-    self = [super init];
-
-    if (self) {
-        _requestQueue = [[NSOperationQueue alloc] init];
-        _responseQueue = [[NSOperationQueue alloc] init];
-    }
-
-    return self;
-}
 
 #pragma mark -
 #pragma mark *** Public methods ***
 #pragma mark -
 
-- (void)authorizeWithClientId:(NSString *)clientId completion:(YMAInstanceHandler)block {
+- (void)authorizeWithClientId:(NSString *)clientId token:(NSString *)token completion:(YMAInstanceHandler)block {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObject:clientId forKey:kParameterClientId];
 
     NSURL *url = [NSURL URLWithString:kInstanceUrl];
 
-    [self performRequestWithToken:nil parameters:parameters url:url andCompletionHandler:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
-
-    }];
-
-
-    [self performRequestWithParameters:parameters useUrl:url andCompletionHandler:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
+    [self performRequestWithToken:token parameters:parameters url:url andCompletionHandler:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
         if (error) {
             block(nil, error);
             return;
@@ -84,13 +46,13 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
         if (statusCode == YMAStatusCodeOkHTTP) {
 
             NSString *status = [responseModel objectForKey:kParameterStatus];
-            
+
             if ([status isEqual:kValueParameterStatusSuccess]) {
-                
+
                 self.instanceId = [responseModel objectForKey:@"instance_id"];
-                
+
                 block(self.instanceId, self.instanceId ? nil : unknownError);
-                
+
                 return;
             }
         }
@@ -101,16 +63,16 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
     }];
 }
 
-- (void)performRequest:(YMABaseRequest *)request completion:(YMARequestHandler)block {
+- (void)performRequest:(YMABaseRequest *)request token:(NSString *)token completion:(YMARequestHandler)block {
     NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"request" : request}];
 
     if (!request || !self.instanceId) {
         block(request, nil, unknownError);
         return;
     }
-        
+
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:request.parameters];
-   
+
     [parameters setObject:self.instanceId forKey:kParameterInstanceId];
 
 
@@ -125,7 +87,7 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
 
         switch (statusCode) {
             case YMAStatusCodeOkHTTP:
-                [request buildResponseWithData:responseData queue:self.responseQueue andCompletion:block];
+                [request buildResponseWithData:responseData queue:_responseQueue andCompletion:block];
                 break;
             case YMAStatusCodeInsufficientScopeHTTP:
             case YMAStatusCodeInvalidTokenHTTP:
@@ -144,17 +106,6 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
 #pragma mark -
 #pragma mark *** Private methods ***
 #pragma mark -
-
-//- (void)performRequestWithParameters:(NSDictionary *)parameters useUrl:(NSURL *)url andCompletionHandler:(YMAConnectionHandler)handler {
-//    YMAConnection *connection = [[YMAConnection alloc] initWithUrl:url];
-//    connection.requestMethod = kMethodPost;
-//    [connection addValue:kValueContentTypeDefault forHeader:kHeaderContentType];
-//    [connection addValue:kValueUserAgentDefault forHeader:kHeaderUserAgent];
-//
-//    [connection addPostParams:parameters];
-//
-//    [connection sendAsynchronousWithQueue:self.requestQueue completionHandler:handler];
-//}
 
 - (NSString *)valueOfHeader:(NSString *)headerName forResponse:(NSURLResponse *)response {
     NSDictionary *headers = [((NSHTTPURLResponse *) response) allHeaderFields];
@@ -182,7 +133,7 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
 
     [connection addPostParams:parameters];
 
-    [connection sendAsynchronousWithQueue:self.requestQueue completionHandler:handler];
+    [connection sendAsynchronousWithQueue:_requestQueue completionHandler:handler];
 }
 
 - (NSString *)description {

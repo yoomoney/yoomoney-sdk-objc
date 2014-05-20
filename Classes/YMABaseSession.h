@@ -16,8 +16,24 @@ typedef void (^YMAHandler)(NSError *error);
 
 extern NSString* const kValueHeaderAuthorizationFormat;
 extern NSString* const kHeaderAuthorization;
+extern NSString *const kHeaderWWWAuthenticate;
+extern NSString *const kHeaderContentType;
+extern NSString *const kHeaderUserAgent;
+extern NSString *const kMethodPost;
+extern NSString *const kValueContentTypeDefault;
 
-@interface YMABaseSession : NSObject
+typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
+    YMAStatusCodeOkHTTP = 200,
+    YMAStatusCodeInvalidRequestHTTP = 400,
+    YMAStatusCodeInvalidTokenHTTP = 401,
+    YMAStatusCodeInsufficientScopeHTTP = 403,
+    YMAStatusCodeInternalServerErrorHTTP = 500
+};
+
+@interface YMABaseSession : NSObject {
+    NSOperationQueue *_requestQueue;
+    NSOperationQueue *_responseQueue;
+}
 
 - (void)performRequestWithToken:(NSString *)token parameters:(NSDictionary *)parameters url:(NSURL *)url andCompletionHandler:(YMAConnectionHandler)handler;
 
