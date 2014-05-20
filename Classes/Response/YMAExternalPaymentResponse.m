@@ -17,6 +17,8 @@ static NSString *const kParameterTitle = @"title";
 #pragma mark -
 
 - (void)parseJSONModel:(id)responseModel {
+    [super parseJSONModel:responseModel];
+
     NSString *requestId = [responseModel objectForKey:kParameterRequestId];
     NSString *contractAmount = [[responseModel objectForKey:kParameterContractAmount] stringValue];
     NSString *title = [responseModel objectForKey:kParameterTitle];

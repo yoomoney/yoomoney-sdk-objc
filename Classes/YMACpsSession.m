@@ -3,7 +3,7 @@
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
-#import "YMASession.h"
+#import "YMACpsSession.h"
 #import "YMAConnection.h"
 #import "YMAConstants.h"
 
@@ -28,14 +28,15 @@ static NSString *const kMethodPost = @"POST";
 static NSString *const kValueUserAgentDefault = @"Yandex.Money.SDK/iOS";
 static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlencoded;charset=UTF-8";
 
-@interface YMASession ()
+@interface YMACpsSession ()
 
+@property(nonatomic, strong) NSString *userAgent;
 @property(nonatomic, strong) NSOperationQueue *requestQueue;
 @property(nonatomic, strong) NSOperationQueue *responseQueue;
 
 @end
 
-@implementation YMASession
+@implementation YMACpsSession
 
 - (id)init {
     self = [super init];
@@ -57,6 +58,11 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
     [parameters setObject:clientId forKey:kParameterClientId];
 
     NSURL *url = [NSURL URLWithString:kInstanceUrl];
+
+    [self performRequestWithToken:nil parameters:parameters url:url andCompletionHandler:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
+
+    }];
+
 
     [self performRequestWithParameters:parameters useUrl:url andCompletionHandler:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
         if (error) {
@@ -107,8 +113,8 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
    
     [parameters setObject:self.instanceId forKey:kParameterInstanceId];
 
-    [self performRequestWithParameters:parameters useUrl:request.requestUrl andCompletionHandler:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
 
+    [self performRequestWithToken:nil parameters:parameters url:request.requestUrl andCompletionHandler:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
         if (error) {
             block(request, nil, error);
             return;
@@ -139,16 +145,16 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
 #pragma mark *** Private methods ***
 #pragma mark -
 
-- (void)performRequestWithParameters:(NSDictionary *)parameters useUrl:(NSURL *)url andCompletionHandler:(YMAConnectionHandler)handler {
-    YMAConnection *connection = [[YMAConnection alloc] initWithUrl:url];
-    connection.requestMethod = kMethodPost;
-    [connection addValue:kValueContentTypeDefault forHeader:kHeaderContentType];
-    [connection addValue:kValueUserAgentDefault forHeader:kHeaderUserAgent];
-
-    [connection addPostParams:parameters];
-
-    [connection sendAsynchronousWithQueue:self.requestQueue completionHandler:handler];
-}
+//- (void)performRequestWithParameters:(NSDictionary *)parameters useUrl:(NSURL *)url andCompletionHandler:(YMAConnectionHandler)handler {
+//    YMAConnection *connection = [[YMAConnection alloc] initWithUrl:url];
+//    connection.requestMethod = kMethodPost;
+//    [connection addValue:kValueContentTypeDefault forHeader:kHeaderContentType];
+//    [connection addValue:kValueUserAgentDefault forHeader:kHeaderUserAgent];
+//
+//    [connection addPostParams:parameters];
+//
+//    [connection sendAsynchronousWithQueue:self.requestQueue completionHandler:handler];
+//}
 
 - (NSString *)valueOfHeader:(NSString *)headerName forResponse:(NSURLResponse *)response {
     NSDictionary *headers = [((NSHTTPURLResponse *) response) allHeaderFields];
@@ -164,6 +170,20 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
 #pragma mark -
 #pragma mark *** Overridden methods ***
 #pragma mark -
+
+- (void)performRequestWithToken:(NSString *)token parameters:(NSDictionary *)parameters url:(NSURL *)url andCompletionHandler:(YMAConnectionHandler)handler {
+    YMAConnection *connection = [[YMAConnection alloc] initWithUrl:url];
+    connection.requestMethod = kMethodPost;
+    [connection addValue:kValueContentTypeDefault forHeader:kHeaderContentType];
+    [connection addValue:kValueUserAgentDefault forHeader:kHeaderUserAgent];
+
+    if (token)
+        [connection addValue:[NSString stringWithFormat:kValueHeaderAuthorizationFormat, token] forHeader:kHeaderAuthorization];
+
+    [connection addPostParams:parameters];
+
+    [connection sendAsynchronousWithQueue:self.requestQueue completionHandler:handler];
+}
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self, @{@"instanceId" : self.instanceId}];

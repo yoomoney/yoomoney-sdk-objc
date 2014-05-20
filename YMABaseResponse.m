@@ -9,7 +9,6 @@ static NSInteger const kResponseParseErrorCode = 2503;
 
 @interface YMABaseResponse ()
 
-@property(nonatomic, copy) YMAResponseHandler handler;
 @property(nonatomic, retain) NSData *data;
 
 @end
@@ -32,23 +31,21 @@ static NSInteger const kResponseParseErrorCode = 2503;
 #pragma mark -
 
 - (void)main {
-
     NSError *error;
 
     @try {
-
         id responseModel = [NSJSONSerialization JSONObjectWithData:_data options:(NSJSONReadingOptions) kNilOptions error:&error];
 
         if (error) {
-            self.handler(self, error);
+            _handler(self, error);
             return;
         }
 
         [self parseJSONModel:responseModel];
-        self.handler(self, nil);
+        _handler(self, nil);
     }
     @catch (NSException *exception) {
-        self.handler(self, [NSError errorWithDomain:exception.name code:kResponseParseErrorCode userInfo:exception.userInfo]);
+        _handler(self, [NSError errorWithDomain:exception.name code:kResponseParseErrorCode userInfo:exception.userInfo]);
     }
 }
 

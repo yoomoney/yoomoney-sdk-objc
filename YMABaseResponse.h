@@ -9,7 +9,13 @@
 
 typedef void (^YMAResponseHandler)(YMABaseResponse *response, NSError *error);
 
-@interface YMABaseResponse : NSOperation
+///
+/// Abstract class of response. This class contains common info about the response (status, nextRetry).
+///
+@interface YMABaseResponse : NSOperation {
+@protected
+    YMAResponseHandler _handler;
+}
 
 /// Constructor. Returns a YMABasePaymentProcessResponse with the specified data and completion of block.
 /// @param data -

@@ -37,4 +37,6 @@ typedef NS_ENUM(NSInteger, YMAResponseStatus) {
 /// The property is not equal to zero for status = YMAResponseStatusInProgress.
 @property(nonatomic, assign, readonly) NSUInteger nextRetry;
 
+- (void)parseJSONModel:(id)responseModel;
+
 @end

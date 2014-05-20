@@ -50,6 +50,8 @@ static NSString *const kPaymentCardTypeJCB = @"JCB";
 #pragma mark -
 
 - (void)parseJSONModel:(id)responseModel {
+    [super parseJSONModel:responseModel];
+
     NSString *acsUrl = [responseModel objectForKey:kParameterAcsUrl];
 
     if (acsUrl) {

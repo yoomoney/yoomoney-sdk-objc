@@ -5,19 +5,13 @@
 
 #import <Foundation/Foundation.h>
 #import "YMABaseRequest.h"
+#import "YMABaseSession.h"
 
-/// Completion of block is used to get the ID of an installed copy of the application.
-/// @param instanceId - ID of an installed copy of the application.
-typedef void (^YMAInstanceHandler)(NSString *instanceId, NSError *error);
-
-/// Completion block used by several methods of YMASession.
-/// @param error - Error information or nil.
-typedef void (^YMAHandler)(NSError *error);
 
 ///
 /// Session object to access Yandex.Money.
 ///
-@interface YMASession : NSObject
+@interface YMACpsSession : YMABaseSession
 
 /// ID of an installed copy of the application. Used when you perform requests as parameter.
 @property(nonatomic, copy) NSString *instanceId;
@@ -31,5 +25,6 @@ typedef void (^YMAHandler)(NSError *error);
 /// @param request - request inherited from YMABaseRequest.
 /// @param block - completion of block is used to get the response.
 - (void)performRequest:(YMABaseRequest *)request completion:(YMARequestHandler)block;
+
 
 @end

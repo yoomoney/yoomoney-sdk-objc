@@ -17,7 +17,7 @@ static NSString *const kParameterNextRetry = @"next_retry";
 
 @implementation YMABasePaymentProcessResponse
 
-- (id)initWithData:(NSData *)data andCompletion:(YMAResponseHandler)block {
+- (id)init {
     self = [super init];
 
     if (self) {
@@ -31,49 +31,25 @@ static NSString *const kParameterNextRetry = @"next_retry";
 #pragma mark *** NSOperation ***
 #pragma mark -
 
-- (void)main {
-
-    NSError *error;
-
-    @try {
-
-        id responseModel = [NSJSONSerialization JSONObjectWithData:_data options:(NSJSONReadingOptions) kNilOptions error:&error];
-
-        if (error) {
-            self.handler(self, error);
-            return;
-        }
-
-        NSString *statusKey = [responseModel objectForKey:kParameterStatus];
-
-        if ([statusKey isEqual:kResponseStatusKeyRefused]) {
-            NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"response" : self}];
-
-            NSString *errorKey = [responseModel objectForKey:kParameterError];
-            _status = YMAResponseStatusRefused;
-
-            self.handler(self, errorKey ? [NSError errorWithDomain:errorKey code:0 userInfo:@{@"response" : self}] : unknownError);
-            return;
-        }
-
-        if ([statusKey isEqual:kResponseStatusKeyInProgress]) {
-            NSString *nextRetryString = [responseModel objectForKey:kParameterNextRetry];
-            _nextRetry = (NSUInteger) [nextRetryString integerValue];
-            _status = YMAResponseStatusInProgress;
-        } else
-            _status = [statusKey isEqual:kResponseStatusKeyExtAuthRequired] ? YMAResponseStatusExtAuthRequired : YMAResponseStatusSuccess;
-
-        [self parseJSONModel:responseModel];
-        self.handler(self, nil);
-    }
-    @catch (NSException *exception) {
-        self.handler(self, [NSError errorWithDomain:exception.name code:kResponseParseErrorCode userInfo:exception.userInfo]);
-    }
-}
-
 - (void)parseJSONModel:(id)responseModel {
-    NSString *reason = [NSString stringWithFormat:@"%@ must be ovverriden", NSStringFromSelector(_cmd)];
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
+    NSString *statusKey = [responseModel objectForKey:kParameterStatus];
+
+    if ([statusKey isEqual:kResponseStatusKeyRefused]) {
+        NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"response" : self}];
+
+        NSString *errorKey = [responseModel objectForKey:kParameterError];
+        _status = YMAResponseStatusRefused;
+
+        _handler(self, errorKey ? [NSError errorWithDomain:errorKey code:0 userInfo:@{@"response" : self}] : unknownError);
+        return;
+    }
+
+    if ([statusKey isEqual:kResponseStatusKeyInProgress]) {
+        NSString *nextRetryString = [responseModel objectForKey:kParameterNextRetry];
+        _nextRetry = (NSUInteger) [nextRetryString integerValue];
+        _status = YMAResponseStatusInProgress;
+    } else
+        _status = [statusKey isEqual:kResponseStatusKeyExtAuthRequired] ? YMAResponseStatusExtAuthRequired : YMAResponseStatusSuccess;
 }
 
 @end
