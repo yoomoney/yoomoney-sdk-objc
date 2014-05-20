@@ -26,7 +26,7 @@ static NSString *const kParameterNextRetry = @"next_retry";
 @implementation YMABaseResponse
 
 - (id)initWithData:(NSData *)data andCompletion:(YMAResponseHandler)block {
-    self = [self init];
+    self = [super init];
 
     if (self) {
         _data = data;
