@@ -5,8 +5,9 @@
 
 #import "YMACpsSession.h"
 #import "YMAConstants.h"
+#import "YMAHostsProvider.h"
 
-static NSString *const kInstanceUrl = @"https://money.yandex.ru/api/instance-id";
+static NSString *const kInstanceUrl = @"api/instance-id";
 
 static NSString *const kParameterInstanceId = @"instance_id";
 static NSString *const kParameterClientId = @"client_id";
@@ -23,7 +24,7 @@ static NSString *const kValueParameterStatusSuccess = @"success";
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObject:clientId forKey:kParameterClientId];
 
-    NSURL *url = [NSURL URLWithString:kInstanceUrl];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, kInstanceUrl]];
 
     [self performRequestWithToken:token parameters:parameters url:url andCompletionHandler:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
         if (error) {

@@ -38,16 +38,20 @@
 		608F7592192B912000F45D7F /* YMABaseResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 608F758F192B912000F45D7F /* YMABaseResponse.h */; };
 		608F7599192B916600F45D7F /* YMABaseResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 608F7598192B916600F45D7F /* YMABaseResponse.m */; };
 		608F759A192B916600F45D7F /* YMABaseResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 608F7598192B916600F45D7F /* YMABaseResponse.m */; };
+		8BFF21244B6772E785D51CB1 /* YMAHostsProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2AC3DB74FF9E507A51F3 /* YMAHostsProvider.h */; };
 		8BFF21D9644AA982E427E245 /* YMAAPISession.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF2B5D4A589E5C180D6B2B /* YMAAPISession.m */; };
 		8BFF2242C4DC8558FC65D479 /* YMAUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF211BC6138F1E16BF1BED /* YMAUtils.h */; };
 		8BFF22AFFED104BB66B1BC1F /* YMAUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF2F82EE12AC8EA9A77D4E /* YMAUtils.m */; };
 		8BFF23564159228ED33BAAB9 /* YMAAPISession.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF2B5D4A589E5C180D6B2B /* YMAAPISession.m */; };
 		8BFF2435FD854F722A92FDB0 /* YMAUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF211BC6138F1E16BF1BED /* YMAUtils.h */; };
 		8BFF249992A8DB7A1E693934 /* YMABaseSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2E6CD4060300AADD7F0E /* YMABaseSession.h */; };
+		8BFF28E0C458F1C779BFD7F4 /* YMAHostsProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2AC3DB74FF9E507A51F3 /* YMAHostsProvider.h */; };
 		8BFF28FB8C95858D514CAD3A /* YMABaseSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF28A12B37CD1CB6CCF148 /* YMABaseSession.m */; };
+		8BFF2938521FDF4C7DCBC653 /* YMAHostsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF2E7A681EE978480A5112 /* YMAHostsProvider.m */; };
 		8BFF2991EED15B604934A603 /* YMABaseSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2E6CD4060300AADD7F0E /* YMABaseSession.h */; };
 		8BFF2AC8AB0280E3EB751D94 /* YMAUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF2F82EE12AC8EA9A77D4E /* YMAUtils.m */; };
 		8BFF2CFDFFD95CB2450C64B3 /* YMAAPISession.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF293904B8F1396C4DC49A /* YMAAPISession.h */; };
+		8BFF2E45A71319E84C1B608C /* YMAHostsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF2E7A681EE978480A5112 /* YMAHostsProvider.m */; };
 		8BFF2EDDE39420B8098048E0 /* YMABaseSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF28A12B37CD1CB6CCF148 /* YMABaseSession.m */; };
 		8BFF2F02A1CE7D4B3A93774A /* YMAAPISession.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF293904B8F1396C4DC49A /* YMAAPISession.h */; };
 /* End PBXBuildFile section */
@@ -100,8 +104,10 @@
 		8BFF211BC6138F1E16BF1BED /* YMAUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAUtils.h; sourceTree = "<group>"; };
 		8BFF28A12B37CD1CB6CCF148 /* YMABaseSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMABaseSession.m; sourceTree = "<group>"; };
 		8BFF293904B8F1396C4DC49A /* YMAAPISession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAAPISession.h; sourceTree = "<group>"; };
+		8BFF2AC3DB74FF9E507A51F3 /* YMAHostsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAHostsProvider.h; sourceTree = "<group>"; };
 		8BFF2B5D4A589E5C180D6B2B /* YMAAPISession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAAPISession.m; sourceTree = "<group>"; };
 		8BFF2E6CD4060300AADD7F0E /* YMABaseSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMABaseSession.h; sourceTree = "<group>"; };
+		8BFF2E7A681EE978480A5112 /* YMAHostsProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAHostsProvider.m; sourceTree = "<group>"; };
 		8BFF2F82EE12AC8EA9A77D4E /* YMAUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAUtils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -192,6 +198,8 @@
 				8BFF293904B8F1396C4DC49A /* YMAAPISession.h */,
 				8BFF2F82EE12AC8EA9A77D4E /* YMAUtils.m */,
 				8BFF211BC6138F1E16BF1BED /* YMAUtils.h */,
+				8BFF2E7A681EE978480A5112 /* YMAHostsProvider.m */,
+				8BFF2AC3DB74FF9E507A51F3 /* YMAHostsProvider.h */,
 			);
 			name = SDK;
 			path = Classes;
@@ -252,6 +260,7 @@
 				8BFF249992A8DB7A1E693934 /* YMABaseSession.h in Headers */,
 				8BFF2CFDFFD95CB2450C64B3 /* YMAAPISession.h in Headers */,
 				8BFF2242C4DC8558FC65D479 /* YMAUtils.h in Headers */,
+				8BFF21244B6772E785D51CB1 /* YMAHostsProvider.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +272,7 @@
 				8BFF2991EED15B604934A603 /* YMABaseSession.h in Headers */,
 				8BFF2F02A1CE7D4B3A93774A /* YMAAPISession.h in Headers */,
 				8BFF2435FD854F722A92FDB0 /* YMAUtils.h in Headers */,
+				8BFF28E0C458F1C779BFD7F4 /* YMAHostsProvider.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +374,7 @@
 				8BFF28FB8C95858D514CAD3A /* YMABaseSession.m in Sources */,
 				8BFF21D9644AA982E427E245 /* YMAAPISession.m in Sources */,
 				8BFF2AC8AB0280E3EB751D94 /* YMAUtils.m in Sources */,
+				8BFF2938521FDF4C7DCBC653 /* YMAHostsProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,6 +386,7 @@
 				608F759A192B916600F45D7F /* YMABaseResponse.m in Sources */,
 				8BFF23564159228ED33BAAB9 /* YMAAPISession.m in Sources */,
 				8BFF22AFFED104BB66B1BC1F /* YMAUtils.m in Sources */,
+				8BFF2E45A71319E84C1B608C /* YMAHostsProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
