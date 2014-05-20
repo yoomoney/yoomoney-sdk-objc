@@ -7,8 +7,8 @@
 #import "YMAConnection.h"
 
 /// Completion of block is used to get the ID of an installed copy of the application.
-/// @param instanceId - ID of an installed copy of the application.
-typedef void (^YMAInstanceHandler)(NSString *instanceId, NSError *error);
+/// @param Id - ID of an installed copy of the application.
+typedef void (^YMAIdHandler)(NSString *Id, NSError *error);
 
 /// Completion block used by several methods of YMACpsSession.
 /// @param error - Error information or nil.

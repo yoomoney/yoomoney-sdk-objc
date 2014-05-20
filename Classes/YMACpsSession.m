@@ -20,7 +20,7 @@ static NSString *const kValueParameterStatusSuccess = @"success";
 #pragma mark *** Public methods ***
 #pragma mark -
 
-- (void)authorizeWithClientId:(NSString *)clientId token:(NSString *)token completion:(YMAInstanceHandler)block {
+- (void)authorizeWithClientId:(NSString *)clientId token:(NSString *)token completion:(YMAIdHandler)block {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObject:clientId forKey:kParameterClientId];
 
@@ -36,7 +36,7 @@ static NSString *const kValueParameterStatusSuccess = @"success";
 
         id responseModel = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
 
-        NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:parameters];
+        NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"response" : response, @"request" : request}];
 
         if (error || !responseModel) {
             block(nil, (error) ? error : unknownError);

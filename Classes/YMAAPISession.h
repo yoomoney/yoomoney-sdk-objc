@@ -9,14 +9,16 @@
 //extern NSString* const kAuthorizeUrl;
 //extern NSString* const kParameterClientId;
 //extern NSString* const kParameterResponseType;
-//extern NSString* const kParameterRedirectUri;
-//extern NSString* const kParameterScope;
+extern NSString* const kParameterRedirectUri;
+extern NSString* const kParameterScope;
 //extern NSString* const kValueParameterResponseType;
 
 @interface YMAAPISession : YMABaseSession
 
-- (NSURLRequest *)authorizationRequestWithClientId:(NSString *)clientId redirectUrl:(NSString *)redirectUrl andScope:(NSString *)scope;
+- (NSURLRequest *)authorizationRequestWithClientId:(NSString *)clientId andAdditionalParams:(NSDictionary *)params;
 
+- (BOOL)isRequest:(NSURLRequest *)request toRedirectUrl:(NSString *)redirectUrl authorizationInfo:(NSMutableDictionary *)authInfo error:(NSError *)error;
 
+- (void)receiveTokenWithCode:(NSString *)code clientId:(NSString *)clientId andAdditionalParams:(NSDictionary *)params completion:(YMAIdHandler)block;
 
 @end

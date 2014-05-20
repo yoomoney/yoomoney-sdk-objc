@@ -7,7 +7,6 @@
 #import "YMABaseRequest.h"
 #import "YMABaseSession.h"
 
-
 ///
 /// Session object to access Yandex.Money.
 ///
@@ -19,7 +18,7 @@
 /// Register your application using clientId and obtaining instanceId.
 /// @param clientId - application Identifier.
 /// @param block - completion of block is used to get the ID of an installed copy of the application.
-- (void)authorizeWithClientId:(NSString *)clientId token:(NSString *)token completion:(YMAInstanceHandler)block;
+- (void)authorizeWithClientId:(NSString *)clientId token:(NSString *)token completion:(YMAIdHandler)block;
 
 /// Perform some request and obtaining response in block.
 /// @param request - request inherited from YMABaseRequest.
