@@ -10,7 +10,7 @@
 
 #import "YMAExternalPaymentSession.h"
 #import "YMAAsc.h"
-#import "YMACardSource.h"
+#import "YMACard.h"
 #import "YMAExternalPaymentInfo.h"
 #import "YMAConstants.h"
 #import "YMABaseRequest.h"

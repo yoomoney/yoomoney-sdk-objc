@@ -3,16 +3,16 @@
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
-#import "YMAMoneySource.h"
+#import "YMAMoneySourceGroup.h"
 
 
-@implementation YMAMoneySource
+@implementation YMAMoneySourceGroup
 
-- (id)initWithSourceType:(YMAMoneySourceType)type {
+- (id)initWithAllowed:(BOOL)allowed {
     self = [super init];
 
     if (self) {
-        _type = type;
+        _isAllowed = allowed;
     }
 
     return self;
@@ -25,7 +25,7 @@
 - (NSString *)description {
     return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self,
                                       @{
-                                              @"type" : [NSNumber numberWithInt:self.type]
+                                              @"isAllowed" : (self.isAllowed) ? @"YES" : @"NO"
                                       }];
 }
 

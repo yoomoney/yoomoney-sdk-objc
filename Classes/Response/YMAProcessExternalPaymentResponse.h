@@ -8,6 +8,7 @@
 
 @class YMAAsc;
 @class YMAMoneySource;
+@class YMACard;
 
 ///
 /// Process payment response. This class contains info about redirect to authorization page (asc)

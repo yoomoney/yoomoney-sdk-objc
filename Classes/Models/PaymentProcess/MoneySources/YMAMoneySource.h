@@ -17,9 +17,8 @@ typedef NS_ENUM(NSInteger, YMAMoneySourceType) {
 
 @interface YMAMoneySource : NSObject
 
-- (id)initWithSourceType:(YMAMoneySourceType)type allowed:(BOOL)allowed;
+- (id)initWithSourceType:(YMAMoneySourceType)type;
 
 @property(nonatomic, assign, readonly) YMAMoneySourceType type;
-@property(nonatomic, assign, readonly) BOOL isAllowed;
 
 @end

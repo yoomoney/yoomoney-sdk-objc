@@ -5,25 +5,27 @@
 
 #import "YMAMoneySources.h"
 #import "YMAWalletSource.h"
-#import "YMACardSource.h"
+#import "YMACard.h"
+#import "YMACardsSource.h"
 
 
 @implementation YMAMoneySources
 
-- (id)initWithWallet:(YMAWalletSource *)walletSource cards:(NSArray *)cards andDefaultCard:(YMACardSource *)defaultCard {
+- (id)initWithWallet:(YMAWalletSource *)walletSource cardsAllowed:(BOOL)cardsAllowed cards:(NSArray *)cards andDefaultCard:(YMACard *)defaultCard {
     self = [super init];
 
     if (self) {
         _wallet = walletSource;
         _cards = cards;
         _defaultCard = defaultCard;
+        _isCardsAllowed = cardsAllowed;
     }
 
     return self;
 }
 
-+ (instancetype)moneySourcesWithWallet:(YMAWalletSource *)walletSource cards:(NSArray *)cards andDefaultCard:(YMACardSource *)defaultCard {
-    return [[YMAMoneySources alloc] initWithWallet:walletSource cards:cards andDefaultCard:defaultCard];
++ (instancetype)moneySourcesWithWallet:(YMAWalletSource *)walletSource cardsAllowed:(BOOL)cardsAllowed cards:(NSArray *)cards andDefaultCard:(YMACard *)defaultCard {
+    return [[YMAMoneySources alloc] initWithWallet:walletSource cardsAllowed:(BOOL)cardsAllowed cards:cards andDefaultCard:defaultCard];
 }
 
 #pragma mark -

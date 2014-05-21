@@ -3,7 +3,7 @@
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
-#import "YMACardSource.h"
+#import "YMACard.h"
 #import "YMAMoneySource.h"
 
 static NSString *const kPaymentCardTypeVISA = @"VISA";
@@ -11,27 +11,26 @@ static NSString *const kPaymentCardTypeMasterCard = @"MasterCard";
 static NSString *const kPaymentCardTypeAmericanExpress = @"AmericanExpress";
 static NSString *const kPaymentCardTypeJCB = @"JCB";
 
-@implementation YMACardSource
+@implementation YMACard
 
-- (id)initWithCardType:(YMAPaymentCardType)cardType panFragment:(NSString *)panFragment moneySourceToken:(NSString *)moneySourceToken cscRequired:(BOOL)cscRequired allowed:(BOOL)allowed {
-    self = [super initWithSourceType:YMAMoneySourcePaymentCard allowed:allowed];
+- (id)initWithCardType:(YMAPaymentCardType)cardType panFragment:(NSString *)panFragment moneySourceToken:(NSString *)moneySourceToken {
+    self = [super initWithSourceType:YMAMoneySourcePaymentCard];
 
     if (self) {
         _cardType = cardType;
         _panFragment = [panFragment copy];
         _moneySourceToken = [moneySourceToken copy];
-        _isCscRequired = cscRequired;
     }
 
     return self;
 }
 
 + (instancetype)cardSourceWithCardType:(YMAPaymentCardType)cardType panFragment:(NSString *)panFragment moneySourceToken:(NSString *)moneySourceToken cscRequired:(BOOL)cscRequired allowed:(BOOL)allowed {
-    return [[YMACardSource alloc] initWithCardType:cardType panFragment:panFragment moneySourceToken:moneySourceToken cscRequired:cscRequired allowed:allowed];
+    return [[YMACard alloc] initWithCardType:cardType panFragment:panFragment moneySourceToken:moneySourceToken];
 }
 
 + (instancetype)moneySourceWithType:(YMAMoneySourceType)type cardType:(YMAPaymentCardType)cardType panFragment:(NSString *)panFragment moneySourceToken:(NSString *)moneySourceToken {
-    return [[YMACardSource alloc] initWithCardType:cardType panFragment:panFragment moneySourceToken:moneySourceToken cscRequired:NO allowed:YES];
+    return [[YMACard alloc] initWithCardType:cardType panFragment:panFragment moneySourceToken:moneySourceToken];
 }
 
 + (YMAPaymentCardType)paymentCardTypeByString:(NSString *)string {
@@ -57,12 +56,9 @@ static NSString *const kPaymentCardTypeJCB = @"JCB";
 - (NSString *)description {
     return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self,
                                       @{
-                                              @"type" : [NSNumber numberWithInt:self.type],
                                               @"cardType" : [NSNumber numberWithInt:self.cardType],
                                               @"panFragment" : self.panFragment,
-                                              @"moneySourceToken" : self.moneySourceToken,
-                                              @"isCscRequired" : (self.isCscRequired) ? @"YES" : @"NO",
-                                              @"isAllowed" : (self.isAllowed) ? @"YES" : @"NO"
+                                              @"moneySourceToken" : self.moneySourceToken
                                       }];
 }
 
