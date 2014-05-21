@@ -4,7 +4,6 @@
 //
 
 #import "YMACpsSession.h"
-#import "YMAConstants.h"
 #import "YMAHostsProvider.h"
 
 static NSString *const kInstanceUrl = @"api/instance-id";
@@ -20,7 +19,7 @@ static NSString *const kValueParameterStatusSuccess = @"success";
 #pragma mark *** Public methods ***
 #pragma mark -
 
-- (void)authorizeWithClientId:(NSString *)clientId token:(NSString *)token completion:(YMAIdHandler)block {
+- (void)instanceWithClientId:(NSString *)clientId token:(NSString *)token completion:(YMAIdHandler)block {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObject:clientId forKey:kParameterClientId];
 
@@ -75,47 +74,14 @@ static NSString *const kValueParameterStatusSuccess = @"success";
 
     [parameters setObject:self.instanceId forKey:kParameterInstanceId];
 
-
-    [self performRequestWithToken:nil parameters:parameters url:request.requestUrl andCompletionHandler:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
+    [self performRequestWithToken:token parameters:parameters url:request.requestUrl andCompletionHandler:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
         if (error) {
             block(request, nil, error);
             return;
         }
 
-        NSInteger statusCode = ((NSHTTPURLResponse *) urlResponse).statusCode;
-        NSError *technicalError = [NSError errorWithDomain:kErrorKeyUnknown code:statusCode userInfo:@{@"request" : urlRequest, @"response" : urlResponse}];
-
-        switch (statusCode) {
-            case YMAStatusCodeOkHTTP:
-                [request buildResponseWithData:responseData queue:_responseQueue andCompletion:block];
-                break;
-            case YMAStatusCodeInsufficientScopeHTTP:
-            case YMAStatusCodeInvalidTokenHTTP:
-                block(request, nil, [NSError errorWithDomain:[self valueOfHeader:kHeaderWWWAuthenticate forResponse:urlResponse] code:statusCode userInfo:@{@"request" : urlRequest, @"response" : urlResponse}]);
-                break;
-            case YMAStatusCodeInvalidRequestHTTP:
-                block(request, nil, technicalError);
-                break;
-            default:
-                block(request, nil, unknownError);
-                break;
-        }
+        [request buildResponseWithData:responseData queue:_responseQueue andCompletion:block];
     }];
-}
-
-#pragma mark -
-#pragma mark *** Private methods ***
-#pragma mark -
-
-- (NSString *)valueOfHeader:(NSString *)headerName forResponse:(NSURLResponse *)response {
-    NSDictionary *headers = [((NSHTTPURLResponse *) response) allHeaderFields];
-
-    for (NSString *header in headers.allKeys) {
-        if ([header caseInsensitiveCompare:headerName] == NSOrderedSame)
-            return [headers objectForKey:header];
-    }
-
-    return nil;
 }
 
 #pragma mark -

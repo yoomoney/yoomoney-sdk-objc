@@ -5,6 +5,7 @@
 
 #import "YMABaseSession.h"
 
+
 NSString* const kValueHeaderAuthorizationFormat = @"Bearer %@";
 NSString* const kHeaderAuthorization = @"Authorization";
 NSString *const kHeaderWWWAuthenticate = @"WWW-Authenticate";
@@ -41,6 +42,42 @@ static NSString *const kValueUserAgentDefault = @"Yandex.Money.SDK/iOS";
     [connection addPostParams:parameters];
 
     [connection sendAsynchronousWithQueue:_requestQueue completionHandler:handler];
+}
+
+- (void)performAndProcessRequestWithToken:(NSString *)token parameters:(NSDictionary *)parameters url:(NSURL *)url andCompletionHandler:(YMAConnectionHandler)handler {
+    [self performRequestWithToken:<#(NSString *)token#> parameters:<#(NSDictionary *)parameters#> url:<#(NSURL *)url#> andCompletionHandler:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
+        if (error) {
+            handler(urlRequest, urlResponse, responseData, error);
+            return;
+        }
+
+        NSInteger statusCode = ((NSHTTPURLResponse *) urlResponse).statusCode;
+        NSError *technicalError = [NSError errorWithDomain:kErrorKeyUnknown code:statusCode userInfo:@{@"request" : urlRequest, @"response" : urlResponse}];
+
+        switch (statusCode) {
+            case YMAStatusCodeOkHTTP:
+                handler(urlRequest, urlResponse, responseData, nil);
+                break;
+            case YMAStatusCodeInsufficientScopeHTTP:
+            case YMAStatusCodeInvalidTokenHTTP:
+                handler(urlRequest, urlResponse, responseData, [NSError errorWithDomain:[self valueOfHeader:kHeaderWWWAuthenticate forResponse:urlResponse] code:statusCode userInfo:@{@"request" : urlRequest, @"response" : urlResponse}]);
+                break;
+            default:
+                handler(urlRequest, urlResponse, responseData, technicalError);
+                break;
+        }
+    }];
+}
+
+- (NSString *)valueOfHeader:(NSString *)headerName forResponse:(NSURLResponse *)response {
+    NSDictionary *headers = [((NSHTTPURLResponse *) response) allHeaderFields];
+
+    for (NSString *header in headers.allKeys) {
+        if ([header caseInsensitiveCompare:headerName] == NSOrderedSame)
+            return [headers objectForKey:header];
+    }
+
+    return nil;
 }
 
 @end

@@ -18,7 +18,7 @@
 /// Register your application using clientId and obtaining instanceId.
 /// @param clientId - application Identifier.
 /// @param block - completion of block is used to get the ID of an installed copy of the application.
-- (void)authorizeWithClientId:(NSString *)clientId token:(NSString *)token completion:(YMAIdHandler)block;
+- (void)instanceWithClientId:(NSString *)clientId token:(NSString *)token completion:(YMAIdHandler)block;
 
 /// Perform some request and obtaining response in block.
 /// @param request - request inherited from YMABaseRequest.

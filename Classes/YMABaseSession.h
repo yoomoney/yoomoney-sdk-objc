@@ -5,6 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import "YMAConnection.h"
+#import "YMAConstants.h"
 
 /// Completion of block is used to get the ID of an installed copy of the application.
 /// @param Id - ID of an installed copy of the application.
@@ -36,5 +37,9 @@ typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
 }
 
 - (void)performRequestWithToken:(NSString *)token parameters:(NSDictionary *)parameters url:(NSURL *)url andCompletionHandler:(YMAConnectionHandler)handler;
+
+- (void)performAndProcessRequestWithToken:(NSString *)token parameters:(NSDictionary *)parameters url:(NSURL *)url andCompletionHandler:(YMAConnectionHandler)handler;
+
+- (NSString *)valueOfHeader:(NSString *)headerName forResponse:(NSURLResponse *)response;
 
 @end

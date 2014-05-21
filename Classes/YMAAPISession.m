@@ -6,13 +6,14 @@
 #import "YMAAPISession.h"
 #import "YMAUtils.h"
 #import "YMAHostsProvider.h"
-#import "YMAConstants.h"
+#import "YMABaseRequest.h"
 
-NSString* const kAuthorizeUrl = @"oauth/authorize";
-NSString* const kTokenUrl = @"oauth/token";
-NSString* const kParameterClientId = @"client_id";
-NSString* const kParameterResponseType = @"response_type";
-NSString* const kValueParameterResponseType = @"code";
+static NSString* const kAuthorizeUrl = @"oauth/authorize";
+static NSString* const kTokenUrl = @"oauth/token";
+static NSString* const kRevokeUrl = @"api/revoke";
+static NSString* const kParameterClientId = @"client_id";
+static NSString* const kParameterResponseType = @"response_type";
+static NSString* const kValueParameterResponseType = @"code";
 
 @implementation YMAAPISession
 
@@ -134,6 +135,40 @@ NSString* const kValueParameterResponseType = @"code";
         NSString* errorKey = [responseModel objectForKey:@"error"];
         
         (errorKey) ? block(nil, [NSError errorWithDomain:NSLocalizedString(errorKey, errorKey) code:statusCode userInfo:nil]) : block(nil, unknownError);
+    }];
+}
+
+- (void)revokeToken:(NSString *)token completion:(YMAHandler)block {
+    NSString* urlString = [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, kRevokeUrl];
+    NSURL* url = [NSURL URLWithString:urlString];
+
+    [self performRequestWithToken:token parameters:nil url:url andCompletionHandler:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
+        if (error) {
+            block(error);
+            return;
+        }
+
+        block(nil);
+    }];
+}
+
+- (void)performRequest:(YMABaseRequest *)request token:(NSString *)token completion:(YMARequestHandler)block {
+    NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"request" : request}];
+
+    if (!request) {
+        block(request, nil, unknownError);
+        return;
+    }
+
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:request.parameters];
+
+    [self performRequestWithToken:token parameters:parameters url:request.requestUrl andCompletionHandler:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
+        if (error) {
+            block(request, nil, error);
+            return;
+        }
+
+        [request buildResponseWithData:responseData queue:_responseQueue andCompletion:block];
     }];
 }
 
