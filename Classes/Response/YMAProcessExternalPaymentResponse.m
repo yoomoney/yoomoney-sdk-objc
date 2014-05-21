@@ -19,32 +19,7 @@ static NSString *const kParameterInvoceId = @"invoice_id";
 
 static NSString *const kMoneySourceTypePaymentCard = @"payment-card";
 
-static NSString *const kPaymentCardTypeVISA = @"VISA";
-static NSString *const kPaymentCardTypeMasterCard = @"MasterCard";
-static NSString *const kPaymentCardTypeAmericanExpress = @"AmericanExpress";
-static NSString *const kPaymentCardTypeJCB = @"JCB";
-
 @implementation YMAProcessExternalPaymentResponse
-
-#pragma mark -
-#pragma mark *** Private methods ***
-#pragma mark -
-
-- (YMAPaymentCardType)paymentCardTypeByString:(NSString *)string {
-    if ([string isEqual:kPaymentCardTypeVISA])
-        return YMAPaymentCardTypeVISA;
-
-    if ([string isEqual:kPaymentCardTypeMasterCard])
-        return YMAPaymentCardTypeMasterCard;
-
-    if ([string isEqual:kPaymentCardTypeAmericanExpress])
-        return YMAPaymentCardTypeAmericanExpress;
-
-    if ([string isEqual:kPaymentCardTypeJCB])
-        return YMAPaymentCardTypeJCB;
-
-    return YMAPaymentCardUnknown;
-}
 
 #pragma mark -
 #pragma mark *** Overridden methods ***
@@ -67,12 +42,12 @@ static NSString *const kPaymentCardTypeJCB = @"JCB";
 
         if ([type isEqual:kMoneySourceTypePaymentCard]) {
             NSString *paymentCardTypeString = [moneySource objectForKey:kParameterPaymentCardType];
-            YMAPaymentCardType paymentCardType = [self paymentCardTypeByString:paymentCardTypeString];
+            YMAPaymentCardType paymentCardType = [YMACardSource paymentCardTypeByString:paymentCardTypeString];
 
             NSString *panFragment = [moneySource objectForKey:kParameterPanFragment];
             NSString *moneySourceToken = [moneySource objectForKey:kParameterMoneySourceToken];
 
-            _moneySource = [YMACardSource moneySourceWithCardType:paymentCardType panFragment:panFragment moneySourceToken:moneySourceToken];
+            _moneySource = [YMACardSource cardSourceWithCardType:paymentCardType panFragment:panFragment moneySourceToken:moneySourceToken];
 
         } else
             _moneySource = [[YMAMoneySource alloc] initWithSourceType:YMAMoneySourceUnknown allowed:NO];

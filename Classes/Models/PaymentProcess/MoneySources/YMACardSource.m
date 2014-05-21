@@ -6,6 +6,11 @@
 #import "YMACardSource.h"
 #import "YMAMoneySource.h"
 
+static NSString *const kPaymentCardTypeVISA = @"VISA";
+static NSString *const kPaymentCardTypeMasterCard = @"MasterCard";
+static NSString *const kPaymentCardTypeAmericanExpress = @"AmericanExpress";
+static NSString *const kPaymentCardTypeJCB = @"JCB";
+
 @implementation YMACardSource
 
 - (id)initWithCardType:(YMAPaymentCardType)cardType panFragment:(NSString *)panFragment moneySourceToken:(NSString *)moneySourceToken cscRequired:(BOOL)cscRequired allowed:(BOOL)allowed {
@@ -21,12 +26,28 @@
     return self;
 }
 
-+ (instancetype)moneySourceWithCardType:(YMAPaymentCardType)cardType panFragment:(NSString *)panFragment moneySourceToken:(NSString *)moneySourceToken cscRequired:(BOOL)cscRequired allowed:(BOOL)allowed {
++ (instancetype)cardSourceWithCardType:(YMAPaymentCardType)cardType panFragment:(NSString *)panFragment moneySourceToken:(NSString *)moneySourceToken cscRequired:(BOOL)cscRequired allowed:(BOOL)allowed {
     return [[YMACardSource alloc] initWithCardType:cardType panFragment:panFragment moneySourceToken:moneySourceToken cscRequired:cscRequired allowed:allowed];
 }
 
 + (instancetype)moneySourceWithType:(YMAMoneySourceType)type cardType:(YMAPaymentCardType)cardType panFragment:(NSString *)panFragment moneySourceToken:(NSString *)moneySourceToken {
     return [[YMACardSource alloc] initWithCardType:cardType panFragment:panFragment moneySourceToken:moneySourceToken cscRequired:NO allowed:YES];
+}
+
++ (YMAPaymentCardType)paymentCardTypeByString:(NSString *)string {
+    if ([string isEqual:kPaymentCardTypeVISA])
+        return YMAPaymentCardTypeVISA;
+
+    if ([string isEqual:kPaymentCardTypeMasterCard])
+        return YMAPaymentCardTypeMasterCard;
+
+    if ([string isEqual:kPaymentCardTypeAmericanExpress])
+        return YMAPaymentCardTypeAmericanExpress;
+
+    if ([string isEqual:kPaymentCardTypeJCB])
+        return YMAPaymentCardTypeJCB;
+
+    return YMAPaymentCardUnknown;
 }
 
 #pragma mark -

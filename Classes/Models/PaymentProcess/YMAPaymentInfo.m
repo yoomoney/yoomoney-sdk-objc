@@ -9,7 +9,7 @@
 
 @implementation YMAPaymentInfo
 
-- (id)initWithMoneySources:(YMAMoneySources *)moneySources requestId:(NSString *)requestId contractAmount:(NSString *)contractAmount balance:(NSString *)balance recipientAccountStatus:(YMAAccountStatus)recipientAccountStatus recipientAccountType:(YMAAccountType)recipientAccountType protectionCode:(NSString *)protectionCode accountUnblockUri:(NSString *)accountUnblockUri extActionUri:(NSString *)extActionUri {
+- (id)initWithMoneySources:(YMAMoneySources *)moneySources requestId:(NSString *)requestId contractAmount:(NSString *)contractAmount balance:(NSString *)balance recipientAccountStatus:(YMAAccountStatus)recipientAccountStatus recipientAccountType:(YMAAccountType)recipientAccountType protectionCode:(NSString *)protectionCode extActionUri:(NSString *)extActionUri {
     self = [super init];
 
     if (self) {
@@ -20,15 +20,14 @@
         _recipientAccountStatus = recipientAccountStatus;
         _recipientAccountType = recipientAccountType;
         _protectionCode = [protectionCode copy];
-        _accountUnblockUri = [accountUnblockUri copy];
         _extActionUri = [extActionUri copy];
     }
 
     return self;
 }
 
-+ (instancetype)paymentRequestInfoWithMoneySources:(YMAMoneySources *)moneySources requestId:(NSString *)requestId contractAmount:(NSString *)contractAmount balance:(NSString *)balance recipientAccountStatus:(YMAAccountStatus)recipientAccountStatus recipientAccountType:(YMAAccountType)recipientAccountType protectionCode:(NSString *)protectionCode accountUnblockUri:(NSString *)accountUnblockUri extActionUri:(NSString *)extActionUri {
-    return [[YMAPaymentInfo alloc] initWithMoneySources:moneySources requestId:requestId contractAmount:contractAmount balance:balance recipientAccountStatus:recipientAccountStatus recipientAccountType:recipientAccountType protectionCode:protectionCode accountUnblockUri:accountUnblockUri extActionUri:extActionUri];
++ (instancetype)paymentInfoWithMoneySources:(YMAMoneySources *)moneySources requestId:(NSString *)requestId contractAmount:(NSString *)contractAmount balance:(NSString *)balance recipientAccountStatus:(YMAAccountStatus)recipientAccountStatus recipientAccountType:(YMAAccountType)recipientAccountType protectionCode:(NSString *)protectionCode extActionUri:(NSString *)extActionUri {
+    return [[YMAPaymentInfo alloc] initWithMoneySources:moneySources requestId:requestId contractAmount:contractAmount balance:balance recipientAccountStatus:recipientAccountStatus recipientAccountType:recipientAccountType protectionCode:protectionCode extActionUri:extActionUri];
 }
 
 #pragma mark -
@@ -45,7 +44,6 @@
                                               @"recipientAccountStatus" : [NSNumber numberWithInteger:self.recipientAccountStatus],
                                               @"recipientAccountType" : [NSNumber numberWithInteger:self.recipientAccountType],
                                               @"protectionCode" : self.protectionCode,
-                                              @"accountUnblockUri" : self.accountUnblockUri,
                                               @"extActionUri" : self.extActionUri
                                       }];
 }

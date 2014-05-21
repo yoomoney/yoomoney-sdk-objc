@@ -8,14 +8,16 @@
 #import "YMABasePaymentProcessResponse.h"
 #import "YMAConstants.h"
 
-static NSString *const kResponseStatusKeyRefused = @"refused";
-static NSString *const kResponseStatusKeyInProgress = @"in_progress";
-static NSString *const kResponseStatusKeyExtAuthRequired = @"ext_auth_required";
-static NSString *const kResponseStatusHoldForPickup = @"hold_for_pickup";
-static NSString *const kResponseStatusSuccess = @"success";
+static NSString *const kKeyResponseStatusRefused = @"refused";
+static NSString *const kKeyResponseStatusInProgress = @"in_progress";
+static NSString *const kKeyResponseStatusExtAuthRequired = @"ext_auth_required";
+static NSString *const kKeyResponseStatusHoldForPickup = @"hold_for_pickup";
+static NSString *const kKeyResponseStatusSuccess = @"success";
+
 static NSString *const kParameterStatus = @"status";
 static NSString *const kParameterError = @"error";
 static NSString *const kParameterNextRetry = @"next_retry";
+static NSString *const kParameterAccountUnblockUri = @"account_unblock_uri";
 
 @implementation YMABasePaymentProcessResponse
 
@@ -35,8 +37,9 @@ static NSString *const kParameterNextRetry = @"next_retry";
 
 - (void)parseJSONModel:(id)responseModel {
     NSString *statusKey = [responseModel objectForKey:kParameterStatus];
+    _accountUnblockUri = [responseModel objectForKey:kParameterAccountUnblockUri];
 
-    if ([statusKey isEqual:kResponseStatusKeyRefused]) {
+    if ([statusKey isEqual:kKeyResponseStatusRefused]) {
         NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"response" : self}];
 
         NSString *errorKey = [responseModel objectForKey:kParameterError];
@@ -46,15 +49,15 @@ static NSString *const kParameterNextRetry = @"next_retry";
         return;
     }
 
-    if ([statusKey isEqual:kResponseStatusKeyInProgress]) {
+    if ([statusKey isEqual:kKeyResponseStatusInProgress]) {
         NSString *nextRetryString = [responseModel objectForKey:kParameterNextRetry];
         _nextRetry = (NSUInteger) [nextRetryString integerValue];
         _status = YMAResponseStatusInProgress;
-    } else if ([statusKey isEqual:kResponseStatusHoldForPickup])
+    } else if ([statusKey isEqual:kKeyResponseStatusHoldForPickup])
         _status = YMAResponseStatusHoldForPickup;
-    else if ([statusKey isEqual:kResponseStatusKeyExtAuthRequired])
+    else if ([statusKey isEqual:kKeyResponseStatusExtAuthRequired])
         _status = YMAResponseStatusExtAuthRequired;
-    else if ([statusKey isEqual:kResponseStatusSuccess])
+    else if ([statusKey isEqual:kKeyResponseStatusSuccess])
         _status = YMAResponseStatusSuccess;
     else
         _status = YMAResponseStatusUnknown;

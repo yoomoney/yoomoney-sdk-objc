@@ -22,7 +22,7 @@
     return self;
 }
 
-- (instancetype)moneySourcesWithWallet:(YMAWalletSource *)walletSource cards:(NSArray *)cards andDefaultCard:(YMACardSource *)defaultCard {
++ (instancetype)moneySourcesWithWallet:(YMAWalletSource *)walletSource cards:(NSArray *)cards andDefaultCard:(YMACardSource *)defaultCard {
     return [[YMAMoneySources alloc] initWithWallet:walletSource cards:cards andDefaultCard:defaultCard];
 }
 

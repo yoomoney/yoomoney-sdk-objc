@@ -8,12 +8,14 @@
 @class YMAMoneySources;
 
 typedef NS_ENUM(NSInteger, YMAAccountStatus) {
+    YMAAccountStatusUnknown,
     YMAAccountStatusAnonymous,
     YMAAccountStatusNamed,
     YMAAccountStatusIdentified
 };
 
 typedef NS_ENUM(NSInteger, YMAAccountType) {
+    YMAAccountTypeUnknown,
     YMAAccountTypePersonal,
     YMAAccountTypeProfessional
 };
@@ -27,9 +29,8 @@ typedef NS_ENUM(NSInteger, YMAAccountType) {
 @property(nonatomic, assign, readonly) YMAAccountStatus recipientAccountStatus;
 @property(nonatomic, assign, readonly) YMAAccountType recipientAccountType;
 @property(nonatomic, copy, readonly) NSString *protectionCode;
-@property(nonatomic, copy, readonly) NSString *accountUnblockUri;
 @property(nonatomic, copy, readonly) NSString *extActionUri;
 
-+ (instancetype)paymentRequestInfoWithMoneySources:(YMAMoneySources *)moneySources requestId:(NSString *)requestId contractAmount:(NSString *)contractAmount balance:(NSString *)balance recipientAccountStatus:(YMAAccountStatus)recipientAccountStatus recipientAccountType:(YMAAccountType)recipientAccountType protectionCode:(NSString *)protectionCode accountUnblockUri:(NSString *)accountUnblockUri extActionUri:(NSString *)extActionUri;
++ (instancetype)paymentInfoWithMoneySources:(YMAMoneySources *)moneySources requestId:(NSString *)requestId contractAmount:(NSString *)contractAmount balance:(NSString *)balance recipientAccountStatus:(YMAAccountStatus)recipientAccountStatus recipientAccountType:(YMAAccountType)recipientAccountType protectionCode:(NSString *)protectionCode extActionUri:(NSString *)extActionUri;
 
 @end

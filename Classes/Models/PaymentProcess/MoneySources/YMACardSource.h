@@ -33,8 +33,10 @@ typedef NS_ENUM(NSInteger, YMAPaymentCardType) {
 /// @param cardType - The type of the credit card.
 /// @param panFragment - PAN truncation.
 /// @param moneySourceToken - Token for repeating payments.
-+ (instancetype)moneySourceWithCardType:(YMAPaymentCardType)cardType panFragment:(NSString *)panFragment moneySourceToken:(NSString *)moneySourceToken;
-+ (instancetype)moneySourceWithCardType:(YMAPaymentCardType)cardType panFragment:(NSString *)panFragment moneySourceToken:(NSString *)moneySourceToken cscRequired:(BOOL)cscRequired allowed:(BOOL)allowed;
++ (instancetype)cardSourceWithCardType:(YMAPaymentCardType)cardType panFragment:(NSString *)panFragment moneySourceToken:(NSString *)moneySourceToken;
++ (instancetype)cardSourceWithCardType:(YMAPaymentCardType)cardType panFragment:(NSString *)panFragment moneySourceToken:(NSString *)moneySourceToken cscRequired:(BOOL)cscRequired allowed:(BOOL)allowed;
+
++ (YMAPaymentCardType)paymentCardTypeByString:(NSString *)string;
 
 @property(nonatomic, assign, readonly) YMAPaymentCardType cardType;
 @property(nonatomic, copy, readonly) NSString *panFragment;

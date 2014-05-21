@@ -11,7 +11,7 @@
 
 @interface YMAMoneySources : NSObject
 
-- (instancetype)moneySourcesWithWallet:(YMAWalletSource *)walletSource cards:(NSArray *)cards andDefaultCard:(YMACardSource *)defaultCard;
++ (instancetype)moneySourcesWithWallet:(YMAWalletSource *)walletSource cards:(NSArray *)cards andDefaultCard:(YMACardSource *)defaultCard;
 
 @property(nonatomic, strong, readonly) YMAWalletSource *wallet;
 @property(nonatomic, strong, readonly) YMACardSource *defaultCard;
