@@ -1,23 +1,23 @@
 //
-// Created by Alexander Mertvetsov on 28.01.14.
+// Created by mertvetcov on 21.05.14.
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
-#import "YMAExternalPaymentRequest.h"
-#import "YMAExternalPaymentResponse.h"
+#import "YMAPaymentRequest.h"
 #import "YMAHostsProvider.h"
+#import "YMAPaymentResponse.h"
 
-static NSString *const kUrlExternalPayment = @"api/request-external-payment";
+static NSString *const kUrlPayment = @"api/request-payment";
 static NSString *const kParameterPatternId = @"pattern_id";
 
-@interface YMAExternalPaymentRequest ()
+@interface YMAPaymentRequest ()
 
 @property(nonatomic, copy) NSString *patternId;
 @property(nonatomic, strong) NSDictionary *paymentParams;
 
 @end
 
-@implementation YMAExternalPaymentRequest
+@implementation YMAPaymentRequest
 
 - (id)initWithPatternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams {
     self = [super init];
@@ -30,8 +30,8 @@ static NSString *const kParameterPatternId = @"pattern_id";
     return self;
 }
 
-+ (instancetype)externalPaymentWithPatternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams {
-    return [[YMAExternalPaymentRequest alloc] initWithPatternId:patternId andPaymentParams:paymentParams];
++ (instancetype)paymentWithPatternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams {
+    return [[YMAPaymentRequest alloc] initWithPatternId:patternId andPaymentParams:paymentParams];
 }
 
 #pragma mark -
@@ -39,7 +39,7 @@ static NSString *const kParameterPatternId = @"pattern_id";
 #pragma mark -
 
 - (NSURL *)requestUrl {
-    NSString *urlString = [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, kUrlExternalPayment];
+    NSString *urlString = [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, kUrlPayment];
     return [NSURL URLWithString:urlString];
 }
 
@@ -50,7 +50,7 @@ static NSString *const kParameterPatternId = @"pattern_id";
 }
 
 - (NSOperation *)buildResponseOperationWithData:(NSData *)data andCompletionHandler:(YMAResponseHandler)handler {
-    return [[YMAExternalPaymentResponse alloc] initWithData:data andCompletion:handler];
+    return [[YMAPaymentResponse alloc] initWithData:data andCompletion:handler];
 }
 
 @end

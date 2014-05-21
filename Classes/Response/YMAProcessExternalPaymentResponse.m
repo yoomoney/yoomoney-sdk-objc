@@ -5,6 +5,7 @@
 
 #import "YMAProcessExternalPaymentResponse.h"
 #import "YMAAsc.h"
+#import "YMACardSource.h"
 #import "YMAMoneySource.h"
 
 static NSString *const kParameterAcsUrl = @"acs_uri";
@@ -71,10 +72,10 @@ static NSString *const kPaymentCardTypeJCB = @"JCB";
             NSString *panFragment = [moneySource objectForKey:kParameterPanFragment];
             NSString *moneySourceToken = [moneySource objectForKey:kParameterMoneySourceToken];
 
-            _moneySource = [YMAMoneySource moneySourceWithType:YMAMoneySourcePaymentCard cardType:paymentCardType panFragment:panFragment moneySourceToken:moneySourceToken];
+            _moneySource = [YMACardSource moneySourceWithCardType:paymentCardType panFragment:panFragment moneySourceToken:moneySourceToken];
 
         } else
-            _moneySource = [YMAMoneySource moneySourceWithType:YMAMoneySourceUnknown cardType:YMAPaymentCardUnknown panFragment:nil moneySourceToken:nil];
+            _moneySource = [[YMAMoneySource alloc] initWithSourceType:YMAMoneySourceUnknown allowed:NO];
     }
     
     _invoiceId = [responseModel objectForKey:kParameterInvoceId];

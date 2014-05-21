@@ -4,7 +4,7 @@
 //
 
 #import "YMAExternalPaymentResponse.h"
-#import "YMAPaymentRequestInfo.h"
+#import "YMAExternalPaymentInfo.h"
 
 static NSString *const kParameterRequestId = @"request_id";
 static NSString *const kParameterContractAmount = @"contract_amount";
@@ -23,7 +23,7 @@ static NSString *const kParameterTitle = @"title";
     NSString *contractAmount = [[responseModel objectForKey:kParameterContractAmount] stringValue];
     NSString *title = [responseModel objectForKey:kParameterTitle];
     
-    _paymentRequestInfo = [YMAPaymentRequestInfo paymentRequestInfoWithId:requestId amount:contractAmount andTitle:title];
+    _paymentRequestInfo = [YMAExternalPaymentInfo paymentRequestInfoWithId:requestId amount:contractAmount andTitle:title];
 }
 
 - (NSString *)description {

@@ -7,7 +7,7 @@
 #import "YMABaseRequest.h"
 
 ///
-/// Payment request. First phase of payment is required to obtain payment info (YMAPaymentRequestInfo)
+/// Payment request. First phase of payment is required to obtain payment info (YMAExternalPaymentInfo)
 /// using patternId and paymentParams.
 ///
 @interface YMAExternalPaymentRequest : YMABaseRequest

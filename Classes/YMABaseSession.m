@@ -29,7 +29,6 @@ static NSString *const kValueUserAgentDefault = @"Yandex.Money.SDK/iOS";
     return self;
 }
 
-
 - (void)performRequestWithToken:(NSString *)token parameters:(NSDictionary *)parameters url:(NSURL *)url andCompletionHandler:(YMAConnectionHandler)handler {
     YMAConnection *connection = [[YMAConnection alloc] initWithUrl:url];
     connection.requestMethod = kMethodPost;
@@ -45,7 +44,7 @@ static NSString *const kValueUserAgentDefault = @"Yandex.Money.SDK/iOS";
 }
 
 - (void)performAndProcessRequestWithToken:(NSString *)token parameters:(NSDictionary *)parameters url:(NSURL *)url andCompletionHandler:(YMAConnectionHandler)handler {
-    [self performRequestWithToken:<#(NSString *)token#> parameters:<#(NSDictionary *)parameters#> url:<#(NSURL *)url#> andCompletionHandler:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
+    [self performRequestWithToken:token parameters:parameters url:url andCompletionHandler:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
         if (error) {
             handler(urlRequest, urlResponse, responseData, error);
             return;

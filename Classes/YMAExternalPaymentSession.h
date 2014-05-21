@@ -10,7 +10,7 @@
 ///
 /// Session object to access Yandex.Money.
 ///
-@interface YMACpsSession : YMABaseSession
+@interface YMAExternalPaymentSession : YMABaseSession
 
 /// ID of an installed copy of the application. Used when you perform requests as parameter.
 @property(nonatomic, copy) NSString *instanceId;

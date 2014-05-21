@@ -8,10 +8,10 @@
 //
 // All-in-one import for the Yandex.Money CPS iOS SDK
 
-#import "YMACpsSession.h"
+#import "YMAExternalPaymentSession.h"
 #import "YMAAsc.h"
-#import "YMAMoneySource.h"
-#import "YMAPaymentRequestInfo.h"
+#import "YMACardSource.h"
+#import "YMAExternalPaymentInfo.h"
 #import "YMAConstants.h"
 #import "YMABaseRequest.h"
 #import "YMABasePaymentProcessResponse.h"

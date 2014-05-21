@@ -11,6 +11,8 @@
 static NSString *const kResponseStatusKeyRefused = @"refused";
 static NSString *const kResponseStatusKeyInProgress = @"in_progress";
 static NSString *const kResponseStatusKeyExtAuthRequired = @"ext_auth_required";
+static NSString *const kResponseStatusHoldForPickup = @"hold_for_pickup";
+static NSString *const kResponseStatusSuccess = @"success";
 static NSString *const kParameterStatus = @"status";
 static NSString *const kParameterError = @"error";
 static NSString *const kParameterNextRetry = @"next_retry";
@@ -48,8 +50,14 @@ static NSString *const kParameterNextRetry = @"next_retry";
         NSString *nextRetryString = [responseModel objectForKey:kParameterNextRetry];
         _nextRetry = (NSUInteger) [nextRetryString integerValue];
         _status = YMAResponseStatusInProgress;
-    } else
-        _status = [statusKey isEqual:kResponseStatusKeyExtAuthRequired] ? YMAResponseStatusExtAuthRequired : YMAResponseStatusSuccess;
+    } else if ([statusKey isEqual:kResponseStatusHoldForPickup])
+        _status = YMAResponseStatusHoldForPickup;
+    else if ([statusKey isEqual:kResponseStatusKeyExtAuthRequired])
+        _status = YMAResponseStatusExtAuthRequired;
+    else if ([statusKey isEqual:kResponseStatusSuccess])
+        _status = YMAResponseStatusSuccess;
+    else
+        _status = YMAResponseStatusUnknown;
 }
 
 @end

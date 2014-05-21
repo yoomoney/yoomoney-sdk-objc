@@ -1,14 +1,14 @@
 //
-//  YMAPaymentRequestInfo.m
+//  YMAExternalPaymentInfo.m
 //  cps-sdk
 //
 //  Created by Alexander Mertvetsov on 10.02.14.
 //  Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
-#import "YMAPaymentRequestInfo.h"
+#import "YMAExternalPaymentInfo.h"
 
-@implementation YMAPaymentRequestInfo
+@implementation YMAExternalPaymentInfo
 
 - (id)initPaymentRequestInfoWithId:(NSString *)requestId amount:(NSString *)amount andTitle:(NSString *)title {
     self = [super init];
@@ -23,7 +23,7 @@
 }
 
 + (instancetype)paymentRequestInfoWithId:(NSString *)requestId amount:(NSString *)amount andTitle:(NSString *)title {
-    return [[YMAPaymentRequestInfo alloc] initPaymentRequestInfoWithId:requestId amount:amount andTitle:title];
+    return [[YMAExternalPaymentInfo alloc] initPaymentRequestInfoWithId:requestId amount:amount andTitle:title];
 }
 
 #pragma mark -

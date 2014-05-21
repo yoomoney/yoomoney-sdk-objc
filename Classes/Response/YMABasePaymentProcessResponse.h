@@ -11,6 +11,8 @@
 /// Values for YMAResponseStatus
 /// Status of process payment
 typedef NS_ENUM(NSInteger, YMAResponseStatus) {
+            YMAResponseStatusUnknown,
+
     /// Payment processing completed successfully
             YMAResponseStatusSuccess,
     /// The refusal of the payment.
@@ -23,7 +25,9 @@ typedef NS_ENUM(NSInteger, YMAResponseStatus) {
             YMAResponseStatusInProgress,
     /// To complete the processing of payment requires additional authorization
     /// (you should open the WebView and send the client to uri + params specified in YMAAsc)
-            YMAResponseStatusExtAuthRequired
+            YMAResponseStatusExtAuthRequired,
+
+            YMAResponseStatusHoldForPickup
 };
 
 ///

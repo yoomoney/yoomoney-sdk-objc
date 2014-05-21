@@ -11,7 +11,7 @@
 /// @param Id - ID of an installed copy of the application.
 typedef void (^YMAIdHandler)(NSString *Id, NSError *error);
 
-/// Completion block used by several methods of YMACpsSession.
+/// Completion block used by several methods of YMAExternalPaymentSession.
 /// @param error - Error information or nil.
 typedef void (^YMAHandler)(NSError *error);
 

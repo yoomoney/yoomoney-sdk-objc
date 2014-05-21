@@ -3,7 +3,7 @@
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
-#import "YMACpsSession.h"
+#import "YMAExternalPaymentSession.h"
 #import "YMAHostsProvider.h"
 
 static NSString *const kInstanceUrl = @"api/instance-id";
@@ -13,7 +13,7 @@ static NSString *const kParameterClientId = @"client_id";
 static NSString *const kParameterStatus = @"status";
 static NSString *const kValueParameterStatusSuccess = @"success";
 
-@implementation YMACpsSession
+@implementation YMAExternalPaymentSession
 
 #pragma mark -
 #pragma mark *** Public methods ***
