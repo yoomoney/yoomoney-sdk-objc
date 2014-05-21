@@ -5,10 +5,9 @@
 
 #import <Foundation/Foundation.h>
 
+@interface YMAWalletSourceGroup : NSObject
 
-@interface YMAMoneySourceGroup : NSObject
-
-- (id)initWithAllowed:(BOOL)allowed;
++ (instancetype)walletMoneySourceWithAllowed:(BOOL)allowed;
 
 @property(nonatomic, assign, readonly) BOOL isAllowed;
 

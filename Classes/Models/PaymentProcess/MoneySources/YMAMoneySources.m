@@ -4,28 +4,25 @@
 //
 
 #import "YMAMoneySources.h"
-#import "YMAWalletSource.h"
-#import "YMACard.h"
-#import "YMACardsSource.h"
+#import "YMAWalletSourceGroup.h"
+#import "YMACardsSourceGroup.h"
 
 
 @implementation YMAMoneySources
 
-- (id)initWithWallet:(YMAWalletSource *)walletSource cardsAllowed:(BOOL)cardsAllowed cards:(NSArray *)cards andDefaultCard:(YMACard *)defaultCard {
+- (id)initWithWallet:(YMAWalletSourceGroup *)walletSource cardsSource:(YMACardsSourceGroup *)cards {
     self = [super init];
 
     if (self) {
         _wallet = walletSource;
         _cards = cards;
-        _defaultCard = defaultCard;
-        _isCardsAllowed = cardsAllowed;
     }
 
     return self;
 }
 
-+ (instancetype)moneySourcesWithWallet:(YMAWalletSource *)walletSource cardsAllowed:(BOOL)cardsAllowed cards:(NSArray *)cards andDefaultCard:(YMACard *)defaultCard {
-    return [[YMAMoneySources alloc] initWithWallet:walletSource cardsAllowed:(BOOL)cardsAllowed cards:cards andDefaultCard:defaultCard];
++ (instancetype)moneySourcesWithWallet:(YMAWalletSourceGroup *)walletSource cardsSource:(YMACardsSourceGroup *)cards {
+    return [[YMAMoneySources alloc] initWithWallet:walletSource cardsSource:cards];
 }
 
 #pragma mark -
@@ -36,7 +33,6 @@
     return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self,
                                       @{
                                               @"wallet" : self.wallet.description,
-                                              @"defaultCard" : self.defaultCard.description,
                                               @"cards" : self.cards.description
                                       }];
 }

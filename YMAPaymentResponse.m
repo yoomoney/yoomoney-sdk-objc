@@ -6,8 +6,9 @@
 #import "YMAPaymentResponse.h"
 #import "YMAPaymentInfo.h"
 #import "YMAMoneySources.h"
-#import "YMAWalletSource.h"
-#import "YMACard.h"
+#import "YMAWalletSourceGroup.h"
+#import "YMAMoneySource.h"
+#import "YMACardsSourceGroup.h"
 
 static NSString *const kParameterRequestId = @"request_id";
 static NSString *const kParameterMoneySource = @"money_source";
@@ -60,57 +61,48 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
     if (!moneySourcesModel)
         return nil;
 
-    YMAWalletSource *wallet = nil;
+    YMAWalletSourceGroup *walletSourceGroup = nil;
 
     id walletModel = [moneySourcesModel objectForKey:kParameterMoneySourceWallet];
 
     if (walletModel) {
         BOOL walletAllowed = [[walletModel objectForKey:kParameterMoneySourceAllowed] boolValue];
-        wallet = [YMAWalletSource walletMoneySourceWithAllowed:walletAllowed];
+        walletSourceGroup = [YMAWalletSourceGroup walletMoneySourceWithAllowed:walletAllowed];
     }
 
-
-
-//    id defaultCardModel = [moneySourcesModel objectForKey:kParameterMoneySourceCard];
-//
-//    if (defaultCardModel) {
-//        BOOL defaultCardAllowed = [[defaultCardModel objectForKey:kParameterMoneySourceAllowed] boolValue];
-//        BOOL defaultCardCscRequired = [[defaultCardModel objectForKey:kParameterMoneySourceCscRequired] boolValue];
-//        NSString *defaultCardId = [defaultCardModel objectForKey:kParameterMoneySourceId];
-//        NSString *defaultCardPanFragment = [defaultCardModel objectForKey:kParameterMoneySourcePanFragment];
-//        NSString *defaultCardTypeString = [defaultCardModel objectForKey:kParameterMoneySourceType];
-//        YMAPaymentCardType defaultCardType = [YMACard paymentCardTypeByString:defaultCardTypeString];
-//        defaultCard = [YMACard cardSourceWithCardType:defaultCardType panFragment:defaultCardPanFragment moneySourceToken:defaultCardId cscRequired:defaultCardCscRequired allowed:defaultCardAllowed];
-//    }
-
+    YMACardsSourceGroup *cardsSourceGroup = nil;
 
     id cardsModel = [moneySourcesModel objectForKey:kParameterMoneySourceCards];
 
     if (!cardsModel)
-        return [YMAMoneySources moneySourcesWithWallet:wallet cardsAllowed:YES cards:nil andDefaultCard:nil];
+        return [YMAMoneySources moneySourcesWithWallet:walletSourceGroup cardsSource:cardsSourceGroup];
 
-    NSMutableArray *cards = [NSMutableArray array];
+    NSMutableArray *cards = nil;
+    YMAMoneySource *defaultCard = nil;
 
     BOOL cardsAllowed = [[cardsModel objectForKey:kParameterMoneySourceAllowed] boolValue];
     BOOL isCscRequired = [[cardsModel objectForKey:kParameterMoneySourceCscRequired] boolValue];
 
     NSArray *cardsModelItems = [cardsModel objectForKey:kParameterMoneySourceItems];
 
-    if (!cardsModelItems)
-        return [YMAMoneySources moneySourcesWithWallet:wallet cardsAllowed:cardsAllowed cards:nil andDefaultCard:nil];;
+    if (cardsModelItems) {
+        cards = [NSMutableArray array];
 
-    for (id cardModel in cardsModelItems) {
-        NSString *cardId = [cardModel objectForKey:kParameterMoneySourceId];
-        NSString *panFragment = [cardModel objectForKey:kParameterMoneySourcePanFragment];
-        NSString *cardTypeString = [cardModel objectForKey:kParameterMoneySourceType];
-        YMAPaymentCardType cardType = [YMACard paymentCardTypeByString:cardTypeString];
-        YMACard *card = [YMACard cardSourceWithCardType:cardType panFragment:panFragment moneySourceToken:cardId cscRequired:isCscRequired allowed:cardsAllowed];
-        [cards addObject:card];
+        for (id cardModel in cardsModelItems) {
+            NSString *cardId = [cardModel objectForKey:kParameterMoneySourceId];
+            NSString *panFragment = [cardModel objectForKey:kParameterMoneySourcePanFragment];
+            NSString *cardTypeString = [cardModel objectForKey:kParameterMoneySourceType];
+            YMAPaymentCardType cardType = [YMAMoneySource paymentCardTypeByString:cardTypeString];
+            YMAMoneySource *card = [YMAMoneySource moneySourceWithType:YMAMoneySourcePaymentCard cardType:cardType panFragment:panFragment moneySourceToken:cardId];
+            [cards addObject:card];
+        }
+
+        defaultCard = cards.count ? cards[0] : nil;
     }
 
-    YMACard *defaultCard = cards.count ? cards[0] : nil;
+    cardsSourceGroup = [YMACardsSourceGroup cardsSourceWithCards:cards defaultCard:defaultCard cscRequired:isCscRequired allowed:cardsAllowed];
 
-    return [YMAMoneySources moneySourcesWithWallet:wallet cardsAllowed:cardsAllowed cards:cards andDefaultCard:defaultCard];
+    return [YMAMoneySources moneySourcesWithWallet:walletSourceGroup cardsSource:cardsSourceGroup];
 }
 
 

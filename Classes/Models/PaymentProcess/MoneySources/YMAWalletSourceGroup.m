@@ -3,10 +3,9 @@
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
-#import "YMAMoneySourceGroup.h"
+#import "YMAWalletSourceGroup.h"
 
-
-@implementation YMAMoneySourceGroup
+@implementation YMAWalletSourceGroup
 
 - (id)initWithAllowed:(BOOL)allowed {
     self = [super init];
@@ -16,6 +15,10 @@
     }
 
     return self;
+}
+
++ (instancetype)walletMoneySourceWithAllowed:(BOOL)allowed {
+    return [[YMAWalletSourceGroup alloc] initWithAllowed:allowed];
 }
 
 #pragma mark -

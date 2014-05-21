@@ -5,16 +5,16 @@
 
 #import <Foundation/Foundation.h>
 
-@class YMAWalletSource;
-@class YMACard;
-@class YMACardsSource;
+@class YMAWalletSourceGroup;
+@class YMAMoneySource;
+@class YMACardsSourceGroup;
 
 
 @interface YMAMoneySources : NSObject
 
-+ (instancetype)moneySourcesWithWallet:(YMAWalletSource *)walletSource cardsSource:(YMACardsSource *)cards;
++ (instancetype)moneySourcesWithWallet:(YMAWalletSourceGroup *)walletSource cardsSource:(YMACardsSourceGroup *)cards;
 
-@property(nonatomic, strong, readonly) YMAWalletSource *wallet;
-@property(nonatomic, strong, readonly) YMACardsSource *cards;
+@property(nonatomic, strong, readonly) YMAWalletSourceGroup *wallet;
+@property(nonatomic, strong, readonly) YMACardsSourceGroup *cards;
 
 @end
