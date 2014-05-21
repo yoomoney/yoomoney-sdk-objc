@@ -8,7 +8,6 @@
 
 @class YMAPaymentInfo;
 
-
 @interface YMAPaymentResponse : YMABasePaymentProcessResponse
 
 @property(nonatomic, strong, readonly) YMAPaymentInfo *paymentInfo;

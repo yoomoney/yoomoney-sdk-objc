@@ -4,21 +4,23 @@
 //
 
 #import "YMAWalletSourceGroup.h"
+#import "YMAMoneySource.h"
 
 @implementation YMAWalletSourceGroup
 
-- (id)initWithAllowed:(BOOL)allowed {
+- (id)initWithMoneySource:(YMAMoneySource *)moneySource  allowed:(BOOL)allowed {
     self = [super init];
 
     if (self) {
         _isAllowed = allowed;
+        _moneySource = moneySource;
     }
 
     return self;
 }
 
 + (instancetype)walletMoneySourceWithAllowed:(BOOL)allowed {
-    return [[YMAWalletSourceGroup alloc] initWithAllowed:allowed];
+    return [[YMAWalletSourceGroup alloc] initWithMoneySource:[YMAMoneySource moneySourceWithType:YMAMoneySourceWallet cardType:YMAPaymentCardUnknown panFragment:nil moneySourceToken:nil] allowed:allowed];
 }
 
 #pragma mark -
