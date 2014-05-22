@@ -60,7 +60,8 @@ static NSString *const kParameterDigitalGoodsSecret = @"secret";
     NSString *creditAmount = [[responseModel objectForKey:kParameterCreditAmount] stringValue];
     NSString *payeeUid = [responseModel objectForKey:kParameterPayeeUid];
     NSString *payee = [responseModel objectForKey:kParameterPayee];
-    NSString *holdForPickupLink = [responseModel objectForKey:kParameterHoldForPickupLink];
+    NSString *holdForPickupLinkString = [responseModel objectForKey:kParameterHoldForPickupLink];
+    NSURL *holdForPickupLink = [NSURL URLWithString:holdForPickupLinkString];
 
     NSString *acsUrl = [responseModel objectForKey:kParameterAcsUri];
     YMAAsc *asc = nil;

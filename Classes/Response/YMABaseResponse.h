@@ -22,4 +22,6 @@ typedef void (^YMAResponseHandler)(YMABaseResponse *response, NSError *error);
 /// @param block -
 - (id)initWithData:(NSData *)data andCompletion:(YMAResponseHandler)block;
 
+- (void)parseJSONModel:(id)responseModel;
+
 @end

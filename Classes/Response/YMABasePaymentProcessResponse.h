@@ -43,6 +43,4 @@ typedef NS_ENUM(NSInteger, YMAResponseStatus) {
 
 @property(nonatomic, assign, readonly) NSString *accountUnblockUri;
 
-- (void)parseJSONModel:(id)responseModel;
-
 @end

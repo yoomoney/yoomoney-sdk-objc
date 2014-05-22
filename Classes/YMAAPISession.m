@@ -8,8 +8,8 @@
 #import "YMAHostsProvider.h"
 #import "YMABaseRequest.h"
 
-static NSString* const kAuthorizeUrl = @"oauth/authorize";
-static NSString* const kTokenUrl = @"oauth/token";
+NSString* const kAuthorizeUrl = @"oauth/authorize";
+NSString* const kTokenUrl = @"oauth/token";
 static NSString* const kRevokeUrl = @"api/revoke";
 static NSString* const kParameterClientId = @"client_id";
 static NSString* const kParameterResponseType = @"response_type";
@@ -17,7 +17,7 @@ static NSString* const kValueParameterResponseType = @"code";
 
 @implementation YMAAPISession
 
-- (NSURLRequest *)authorizationRequestWithClientId:(NSString *)clientId andAdditionalParams:(NSDictionary *)params {
+- (NSURLRequest *)authorizationRequestWithUrl:(NSString *)relativeUrlString clientId:(NSString *)clientId andAdditionalParams:(NSDictionary *)params {
     NSMutableString* post = [NSMutableString stringWithCapacity:0];
 
     NSString *clientIdParamKey = [YMAUtils addPercentEscapesForString:kParameterClientId];
@@ -38,7 +38,7 @@ static NSString* const kValueParameterResponseType = @"code";
         [post appendString:[NSString stringWithFormat:@"%@=%@&", paramKey, paramValue]];
     }
     
-    NSString* urlString = [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].spMoneyUrl, kAuthorizeUrl];
+    NSString* urlString = [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].spMoneyUrl, relativeUrlString];
     NSURL* url = [NSURL URLWithString:urlString];
 
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -91,13 +91,13 @@ static NSString* const kValueParameterResponseType = @"code";
         return NO;
 }
 
-- (void)receiveTokenWithCode:(NSString *)code clientId:(NSString *)clientId andAdditionalParams:(NSDictionary *)params completion:(YMAIdHandler)block {
+- (void)receiveTokenWithWithUrl:(NSString *)relativeUrlString code:(NSString *)code clientId:(NSString *)clientId andAdditionalParams:(NSDictionary *)params completion:(YMAIdHandler)block {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:code forKey:kValueParameterResponseType];
     [parameters setObject:clientId forKey:kParameterClientId];
     [parameters addEntriesFromDictionary:params];
 
-    NSString* urlString = [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].spMoneyUrl, kTokenUrl];
+    NSString* urlString = [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].spMoneyUrl, relativeUrlString];
     NSURL* url = [NSURL URLWithString:urlString];
 
     [self performRequestWithToken:nil parameters:parameters url:url andCompletionHandler:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {

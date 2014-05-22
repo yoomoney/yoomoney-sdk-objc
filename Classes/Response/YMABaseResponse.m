@@ -4,6 +4,7 @@
 //
 
 #import "YMABaseResponse.h"
+#import "YMAConstants.h"
 
 static NSInteger const kResponseParseErrorCode = 2503;
 
@@ -50,8 +51,12 @@ static NSInteger const kResponseParseErrorCode = 2503;
 }
 
 - (void)parseJSONModel:(id)responseModel {
-    NSString *reason = [NSString stringWithFormat:@"%@ must be ovverriden", NSStringFromSelector(_cmd)];
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
+    NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"response" : self}];
+
+    if (!responseModel) {
+        _handler(self, unknownError);
+        return;
+    }
 }
 
 @end

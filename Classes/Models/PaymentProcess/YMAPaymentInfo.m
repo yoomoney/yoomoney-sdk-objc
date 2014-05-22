@@ -9,7 +9,7 @@
 
 @implementation YMAPaymentInfo
 
-- (id)initWithMoneySources:(YMAMoneySources *)moneySources requestId:(NSString *)requestId contractAmount:(NSString *)contractAmount balance:(NSString *)balance recipientAccountStatus:(YMAAccountStatus)recipientAccountStatus recipientAccountType:(YMAAccountType)recipientAccountType protectionCode:(NSString *)protectionCode extActionUri:(NSString *)extActionUri {
+- (id)initWithMoneySources:(YMAMoneySources *)moneySources requestId:(NSString *)requestId contractAmount:(NSString *)contractAmount balance:(NSString *)balance recipientAccountStatus:(YMAAccountStatus)recipientAccountStatus recipientAccountType:(YMAAccountType)recipientAccountType protectionCode:(NSString *)protectionCode extActionUri:(NSURL *)extActionUri {
     self = [super init];
 
     if (self) {
@@ -20,13 +20,13 @@
         _recipientAccountStatus = recipientAccountStatus;
         _recipientAccountType = recipientAccountType;
         _protectionCode = [protectionCode copy];
-        _extActionUri = [extActionUri copy];
+        _extActionUri = extActionUri;
     }
 
     return self;
 }
 
-+ (instancetype)paymentInfoWithMoneySources:(YMAMoneySources *)moneySources requestId:(NSString *)requestId contractAmount:(NSString *)contractAmount balance:(NSString *)balance recipientAccountStatus:(YMAAccountStatus)recipientAccountStatus recipientAccountType:(YMAAccountType)recipientAccountType protectionCode:(NSString *)protectionCode extActionUri:(NSString *)extActionUri {
++ (instancetype)paymentInfoWithMoneySources:(YMAMoneySources *)moneySources requestId:(NSString *)requestId contractAmount:(NSString *)contractAmount balance:(NSString *)balance recipientAccountStatus:(YMAAccountStatus)recipientAccountStatus recipientAccountType:(YMAAccountType)recipientAccountType protectionCode:(NSString *)protectionCode extActionUri:(NSURL *)extActionUri {
     return [[YMAPaymentInfo alloc] initWithMoneySources:moneySources requestId:requestId contractAmount:contractAmount balance:balance recipientAccountStatus:recipientAccountStatus recipientAccountType:recipientAccountType protectionCode:protectionCode extActionUri:extActionUri];
 }
 
@@ -44,7 +44,7 @@
                                               @"recipientAccountStatus" : [NSNumber numberWithInteger:self.recipientAccountStatus],
                                               @"recipientAccountType" : [NSNumber numberWithInteger:self.recipientAccountType],
                                               @"protectionCode" : self.protectionCode,
-                                              @"extActionUri" : self.extActionUri
+                                              @"extActionUri" : self.extActionUri.description
                                       }];
 }
 

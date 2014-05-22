@@ -28,34 +28,7 @@ static NSString *const kParameterMoneySourceType = @"type";
 static NSString *const kParameterMoneySourceAllowed = @"allowed";
 static NSString *const kParameterMoneySourceCscRequired = @"csc_required";
 
-static NSString *const kKeyAccountStatusAnonymous = @"anonymous";
-static NSString *const kKeyAccountStatusNamed = @"named";
-static NSString *const kKeyAccountStatusIdentified = @"identified";
-
-static NSString *const kKeyAccountTypePersonal = @"personal";
-static NSString *const kKeyAccountTypeProfessional = @"professional";
-
 @implementation YMAPaymentResponse
-
-+ (YMAAccountStatus)accountStatusByString:(NSString *)accountStatusString {
-    if ([accountStatusString isEqual:kKeyAccountStatusAnonymous])
-        return YMAAccountStatusAnonymous;
-    else if ([accountStatusString isEqual:kKeyAccountStatusIdentified])
-        return YMAAccountStatusIdentified;
-    else if ([accountStatusString isEqual:kKeyAccountStatusNamed])
-        return YMAAccountStatusNamed;
-
-    return YMAAccountStatusUnknown;
-}
-
-+ (YMAAccountType)accountTypeByString:(NSString *)accountTypeString {
-    if ([accountTypeString isEqual:kKeyAccountTypePersonal])
-        return YMAAccountTypePersonal;
-    else if ([accountTypeString isEqual:kKeyAccountTypeProfessional])
-        return YMAAccountTypeProfessional;
-
-    return YMAAccountTypeUnknown;
-}
 
 + (YMAMoneySources *)moneySourcesFromModel:(id)moneySourcesModel {
     if (!moneySourcesModel)
@@ -75,7 +48,7 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
     id cardsModel = [moneySourcesModel objectForKey:kParameterMoneySourceCards];
 
     if (!cardsModel)
-        return [YMAMoneySources moneySourcesWithWallet:walletSourceGroup cardsSource:cardsSourceGroup];
+        return [YMAMoneySources moneySourcesWithWallet:walletSourceGroup cardsSource:nil];
 
     NSMutableArray *cards = nil;
     YMAMoneySource *defaultCard = nil;
@@ -120,13 +93,14 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
     NSString *balance = [[responseModel objectForKey:kParameterBalance] stringValue];
 
     NSString *accountStatusString = [responseModel objectForKey:kParameterRecipientAccountStatus];
-    YMAAccountStatus accountStatus = [YMAPaymentResponse accountStatusByString:accountStatusString];
+    YMAAccountStatus accountStatus = [YMAAccountInfo accountStatusByString:accountStatusString];
 
     NSString *accountTypeString = [responseModel objectForKey:kParameterRecipientAccountType];
-    YMAAccountType accountType = [YMAPaymentResponse accountTypeByString:accountTypeString];
+    YMAAccountType accountType = [YMAAccountInfo accountTypeByString:accountTypeString];
 
     NSString *protectionCode = [responseModel objectForKey:kParameterProtectionCode];
-    NSString *extActionUri = [responseModel objectForKey:kParameterExtActionUri];
+    NSString *extActionUriString = [responseModel objectForKey:kParameterExtActionUri];
+    NSURL *extActionUri = [NSURL URLWithString:extActionUriString];
 
     id moneySourcesModel = [responseModel objectForKey:kParameterMoneySource];
     YMAMoneySources *moneySources = [YMAPaymentResponse moneySourcesFromModel:moneySourcesModel];
