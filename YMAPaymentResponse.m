@@ -93,6 +93,8 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
             NSString *panFragment = [cardModel objectForKey:kParameterMoneySourcePanFragment];
             NSString *cardTypeString = [cardModel objectForKey:kParameterMoneySourceType];
             YMAPaymentCardType cardType = [YMAMoneySource paymentCardTypeByString:cardTypeString];
+            cardsAllowed = [[cardModel objectForKey:kParameterMoneySourceAllowed] boolValue];
+            isCscRequired = [[cardModel objectForKey:kParameterMoneySourceCscRequired] boolValue];
             YMAMoneySource *card = [YMAMoneySource moneySourceWithType:YMAMoneySourcePaymentCard cardType:cardType panFragment:panFragment moneySourceToken:cardId];
             [cards addObject:card];
         }

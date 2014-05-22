@@ -6,6 +6,10 @@
 #import <Foundation/Foundation.h>
 #import "YMABasePaymentProcessResponse.h"
 
+@class YMAPaymentResultInfo;
+
 @interface YMAProcessPaymentResponse : YMABasePaymentProcessResponse
+
+@property(nonatomic, strong, readonly) YMAPaymentResultInfo *paymentResultInfo;
 
 @end
