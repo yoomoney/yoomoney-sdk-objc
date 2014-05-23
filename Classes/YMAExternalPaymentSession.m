@@ -72,7 +72,7 @@ static NSString *const kValueParameterStatusSuccess = @"success";
     }
 
     if ([request conformsToProtocol:@protocol(YMAParametersPosting)]) {
-        YMABaseRequest<YMAParametersPosting> *paramsRequest = (YMABaseRequest<YMAParametersPosting> *) request;
+        YMABaseRequest <YMAParametersPosting> *paramsRequest = (YMABaseRequest <YMAParametersPosting> *) request;
         NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:paramsRequest.parameters];
 
         [parameters setObject:self.instanceId forKey:kParameterInstanceId];

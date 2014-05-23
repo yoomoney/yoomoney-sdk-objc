@@ -5,9 +5,6 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol YMADataPosting <NSObject>
 
-/// Request data.
-@property(nonatomic, strong, readonly) NSData *data;
-
+@interface YMAOperationHistoryResponse : NSObject
 @end

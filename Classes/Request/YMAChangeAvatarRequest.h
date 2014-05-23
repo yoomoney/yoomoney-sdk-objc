@@ -1,5 +1,5 @@
 //
-// Created by Александр Мертвецов on 23.05.14.
+// Created by Alexander Mertvetsov on 23.05.14.
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
@@ -7,7 +7,7 @@
 #import "YMABaseRequest.h"
 #import "YMADataPosting.h"
 
-@interface YMAChangeAvatarRequest : YMABaseRequest<YMADataPosting>
+@interface YMAChangeAvatarRequest : YMABaseRequest <YMADataPosting>
 
 + (instancetype)changeAvatarWithImageData:(NSData *)imageData;
 

@@ -69,7 +69,7 @@ static NSString *const kParameterCsc = @"csc";
 
     if (!self.moneySourceToken) {
         if (self.requestToken)
-            [dictionary setObject:@"true"forKey:kParameterRequestToken];
+            [dictionary setObject:@"true" forKey:kParameterRequestToken];
 
         return dictionary;
     }

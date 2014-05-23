@@ -1,10 +1,9 @@
 //
-// Created by mertvetcov on 20.05.14.
+// Created by Alexander Mertvetsov on 20.05.14.
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
 #import "YMABaseResponse.h"
-#import "YMAConstants.h"
 
 static NSInteger const kResponseParseErrorCode = 2503;
 

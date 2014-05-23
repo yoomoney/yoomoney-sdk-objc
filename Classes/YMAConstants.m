@@ -15,5 +15,5 @@ NSString *const kP2PPaymentParameterAmountDue = @"amount_due";
 
 NSString *const kErrorKeyUnknown = @"technicalError";
 
-NSString* const kParameterRedirectUri = @"redirect_uri";
-NSString* const kParameterScope = @"scope";
+NSString *const kParameterRedirectUri = @"redirect_uri";
+NSString *const kParameterScope = @"scope";

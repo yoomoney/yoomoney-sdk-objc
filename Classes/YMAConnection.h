@@ -15,6 +15,8 @@ typedef void (^YMAConnectionHandler)(NSURLRequest *request, NSURLResponse *respo
 
 + (instancetype)connectionWithUrl:(NSURL *)url;
 
++ (NSString *)addPercentEscapesForString:(NSString *)string;
+
 - (id)initWithUrl:(NSURL *)url;
 
 - (void)sendAsynchronousWithQueue:(NSOperationQueue *)queue

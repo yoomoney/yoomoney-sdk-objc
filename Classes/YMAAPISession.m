@@ -1,22 +1,21 @@
 //
-// Created by mertvetcov on 20.05.14.
+// Created by Alexander Mertvetsov on 20.05.14.
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
 #import "YMAAPISession.h"
-#import "YMAUtils.h"
 #import "YMAHostsProvider.h"
 #import "YMAParametersPosting.h"
 #import "YMADataPosting.h"
 
-static NSString* const kUrlAuthorize = @"oauth/authorize";
-static NSString* const kUrlToken = @"oauth/token";
-static NSString* const kUrlRevoke = @"api/revoke";
-static NSString* const kParameterClientId = @"client_id";
+static NSString *const kUrlAuthorize = @"oauth/authorize";
+static NSString *const kUrlToken = @"oauth/token";
+static NSString *const kUrlRevoke = @"api/revoke";
+static NSString *const kParameterClientId = @"client_id";
 
 
-NSString* const kParameterResponseType = @"response_type";
-NSString* const kValueParameterResponseType = @"code";
+NSString *const kParameterResponseType = @"response_type";
+NSString *const kValueParameterResponseType = @"code";
 
 @implementation YMAAPISession
 
@@ -25,28 +24,28 @@ NSString* const kValueParameterResponseType = @"code";
 }
 
 - (NSURLRequest *)authorizationRequestWithUrl:(NSString *)relativeUrlString clientId:(NSString *)clientId andAdditionalParams:(NSDictionary *)params {
-    NSMutableString* post = [NSMutableString stringWithCapacity:0];
+    NSMutableString *post = [NSMutableString stringWithCapacity:0];
 
-    NSString *clientIdParamKey = [YMAUtils addPercentEscapesForString:kParameterClientId];
-    NSString *clientIdParamValue = [YMAUtils addPercentEscapesForString:clientId];
+    NSString *clientIdParamKey = [YMAConnection addPercentEscapesForString:kParameterClientId];
+    NSString *clientIdParamValue = [YMAConnection addPercentEscapesForString:clientId];
 
     [post appendString:[NSString stringWithFormat:@"%@=%@&", clientIdParamKey, clientIdParamValue]];
 
     for (NSString *key in params.allKeys) {
-        
-        NSString *paramKey = [YMAUtils addPercentEscapesForString:key];
-        NSString *paramValue = [YMAUtils addPercentEscapesForString:[params objectForKey:key]];
-        
+
+        NSString *paramKey = [YMAConnection addPercentEscapesForString:key];
+        NSString *paramValue = [YMAConnection addPercentEscapesForString:[params objectForKey:key]];
+
         [post appendString:[NSString stringWithFormat:@"%@=%@&", paramKey, paramValue]];
     }
-    
-    NSString* urlString = [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].spMoneyUrl, relativeUrlString];
-    NSURL* url = [NSURL URLWithString:urlString];
+
+    NSString *urlString = [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].spMoneyUrl, relativeUrlString];
+    NSURL *url = [NSURL URLWithString:urlString];
 
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
     [request setHTTPMethod:kMethodPost];
-    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[postData length]] forHTTPHeaderField:@"Content-Length"];
+    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long) [postData length]] forHTTPHeaderField:@"Content-Length"];
     [request setValue:kValueContentTypeDefault forHTTPHeaderField:kHeaderContentType];
     [request setValue:_userAgent forHTTPHeaderField:kHeaderUserAgent];
     [request setHTTPBody:postData];
@@ -103,8 +102,8 @@ NSString* const kValueParameterResponseType = @"code";
     [parameters setObject:clientId forKey:kParameterClientId];
     [parameters addEntriesFromDictionary:params];
 
-    NSString* urlString = [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].spMoneyUrl, relativeUrlString];
-    NSURL* url = [NSURL URLWithString:urlString];
+    NSString *urlString = [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].spMoneyUrl, relativeUrlString];
+    NSURL *url = [NSURL URLWithString:urlString];
 
     [self performRequestWithToken:nil parameters:parameters url:url completion:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
 
@@ -143,8 +142,8 @@ NSString* const kValueParameterResponseType = @"code";
 }
 
 - (void)revokeToken:(NSString *)token completion:(YMAHandler)block {
-    NSString* urlString = [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, kUrlRevoke];
-    NSURL* url = [NSURL URLWithString:urlString];
+    NSString *urlString = [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, kUrlRevoke];
+    NSURL *url = [NSURL URLWithString:urlString];
 
     [self performAndProcessRequestWithToken:token parameters:nil url:url completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
         if (error) {
@@ -165,7 +164,7 @@ NSString* const kValueParameterResponseType = @"code";
     }
 
     if ([request conformsToProtocol:@protocol(YMAParametersPosting)]) {
-        YMABaseRequest<YMAParametersPosting> *paramsRequest = (YMABaseRequest<YMAParametersPosting> *) request;
+        YMABaseRequest <YMAParametersPosting> *paramsRequest = (YMABaseRequest <YMAParametersPosting> *) request;
 
         [self performAndProcessRequestWithToken:token parameters:paramsRequest.parameters url:request.requestUrl completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
             if (error) {
@@ -176,7 +175,7 @@ NSString* const kValueParameterResponseType = @"code";
             [request buildResponseWithData:responseData queue:_responseQueue andCompletion:block];
         }];
     } else if ([request conformsToProtocol:@protocol(YMADataPosting)]) {
-        YMABaseRequest<YMADataPosting> *dataRequest = (YMABaseRequest<YMADataPosting> *) request;
+        YMABaseRequest <YMADataPosting> *dataRequest = (YMABaseRequest <YMADataPosting> *) request;
 
         [self performAndProcessRequestWithToken:token data:dataRequest.data url:dataRequest.requestUrl completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
             if (error) {

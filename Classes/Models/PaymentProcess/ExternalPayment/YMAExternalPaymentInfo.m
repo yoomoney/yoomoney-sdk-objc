@@ -12,13 +12,13 @@
 
 - (id)initPaymentRequestInfoWithId:(NSString *)requestId amount:(NSString *)amount andTitle:(NSString *)title {
     self = [super init];
-    
+
     if (self) {
         _requestId = [requestId copy];
         _amount = [amount copy];
         _title = [title copy];
     }
-    
+
     return self;
 }
 
@@ -32,11 +32,11 @@
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self,
-            @{
-              @"requestId" : self.requestId,
-              @"amount" : self.amount,
-              @"title" : self.title
-              }];
+                                      @{
+                                              @"requestId" : self.requestId,
+                                              @"amount" : self.amount,
+                                              @"title" : self.title
+                                      }];
 }
 
 @end

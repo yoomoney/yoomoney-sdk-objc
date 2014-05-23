@@ -24,7 +24,7 @@ static NSString *const kParameterTitle = @"title";
     NSString *requestId = [responseModel objectForKey:kParameterRequestId];
     NSString *contractAmount = [[responseModel objectForKey:kParameterContractAmount] stringValue];
     NSString *title = [responseModel objectForKey:kParameterTitle];
-    
+
     _paymentRequestInfo = [YMAExternalPaymentInfo paymentRequestInfoWithId:requestId amount:contractAmount andTitle:title];
 }
 

@@ -1,5 +1,5 @@
 //
-// Created by mertvetcov on 20.05.14.
+// Created by Alexander Mertvetsov on 20.05.14.
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
@@ -7,8 +7,8 @@
 #import "YMABaseSession.h"
 #import "YMABaseRequest.h"
 
-extern NSString* const kParameterResponseType;
-extern NSString* const kValueParameterResponseType;
+extern NSString *const kParameterResponseType;
+extern NSString *const kValueParameterResponseType;
 
 @interface YMAAPISession : YMABaseSession
 
