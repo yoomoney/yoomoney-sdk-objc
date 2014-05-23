@@ -5,6 +5,28 @@
 
 #import <Foundation/Foundation.h>
 
+/// Values for YMAResponseStatus
+/// Status of process payment
+typedef NS_ENUM(NSInteger, YMAResponseStatus) {
+    YMAResponseStatusUnknown,
+
+    /// Payment processing completed successfully
+            YMAResponseStatusSuccess,
+    /// The refusal of the payment.
+    /// The reason of failure is returned in the error.
+    /// This is the end state of the payment.
+            YMAResponseStatusRefused,
+    /// Payment processing is not yet complete.
+    /// The application should retry the request with the same parameters
+    /// later time specified in the nextRetry property.
+            YMAResponseStatusInProgress,
+    /// To complete the processing of payment requires additional authorization
+    /// (you should open the WebView and send the client to uri + params specified in YMAAsc)
+            YMAResponseStatusExtAuthRequired,
+
+    YMAResponseStatusHoldForPickup
+};
+
 @class YMABaseResponse;
 
 typedef void (^YMAResponseHandler)(YMABaseResponse *response, NSError *error);
@@ -12,16 +34,13 @@ typedef void (^YMAResponseHandler)(YMABaseResponse *response, NSError *error);
 ///
 /// Abstract class of response. This class contains common info about the response (status, nextRetry).
 ///
-@interface YMABaseResponse : NSOperation {
-@protected
-    YMAResponseHandler _handler;
-}
+@interface YMABaseResponse : NSOperation
 
 /// Constructor. Returns a YMABasePaymentProcessResponse with the specified data and completion of block.
 /// @param data -
 /// @param block -
 - (id)initWithData:(NSData *)data andCompletion:(YMAResponseHandler)block;
 
-- (void)parseJSONModel:(id)responseModel;
+- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error;
 
 @end

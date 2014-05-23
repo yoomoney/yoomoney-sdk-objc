@@ -15,7 +15,7 @@ static NSString *const kParameterType = @"type";
 static NSString *const kParameterPaymentCardType = @"payment_card_type";
 static NSString *const kParameterPanFragment = @"pan_fragment";
 static NSString *const kParameterMoneySourceToken = @"money_source_token";
-static NSString *const kParameterInvoceId = @"invoice_id";
+static NSString *const kParameterInvoiceId = @"invoice_id";
 
 static NSString *const kMoneySourceTypePaymentCard = @"payment-card";
 
@@ -25,8 +25,10 @@ static NSString *const kMoneySourceTypePaymentCard = @"payment-card";
 #pragma mark *** Overridden methods ***
 #pragma mark -
 
-- (void)parseJSONModel:(id)responseModel {
-    [super parseJSONModel:responseModel];
+- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error {
+    [super parseJSONModel:responseModel error:error];
+
+    if (error && *error) return;
 
     NSString *acsUrl = [responseModel objectForKey:kParameterAcsUrl];
 
@@ -53,7 +55,7 @@ static NSString *const kMoneySourceTypePaymentCard = @"payment-card";
             _moneySource = [YMAMoneySource moneySourceWithType:YMAMoneySourceUnknown cardType:YMAPaymentCardUnknown panFragment:nil moneySourceToken:nil];
     }
     
-    _invoiceId = [responseModel objectForKey:kParameterInvoceId];
+    _invoiceId = [responseModel objectForKey:kParameterInvoiceId];
 }
 
 - (NSString *)description {

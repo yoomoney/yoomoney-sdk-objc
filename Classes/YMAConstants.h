@@ -27,6 +27,7 @@ extern NSString *const kP2PPaymentParameterAmountDue;
 extern NSString *const kErrorKeyUnknown;
 
 extern NSString* const kParameterRedirectUri;
+
 extern NSString* const kParameterScope;
 
 

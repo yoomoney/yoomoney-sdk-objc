@@ -50,8 +50,10 @@ static NSString *const kParameterDigitalGoodsSecret = @"secret";
 #pragma mark *** Overridden methods ***
 #pragma mark -
 
-- (void)parseJSONModel:(id)responseModel {
-    [super parseJSONModel:responseModel];
+- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error {
+    [super parseJSONModel:responseModel error:error];
+
+    if (error && *error) return;
 
     NSString *paymentId = [responseModel objectForKey:kParameterPaymentId];
     NSString *balance = [[responseModel objectForKey:kParameterBalance] stringValue];

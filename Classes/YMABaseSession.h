@@ -15,13 +15,11 @@ typedef void (^YMAIdHandler)(NSString *Id, NSError *error);
 /// @param error - Error information or nil.
 typedef void (^YMAHandler)(NSError *error);
 
-extern NSString* const kValueHeaderAuthorizationFormat;
-extern NSString* const kHeaderAuthorization;
-extern NSString *const kHeaderWWWAuthenticate;
 extern NSString *const kHeaderContentType;
 extern NSString *const kHeaderUserAgent;
 extern NSString *const kMethodPost;
 extern NSString *const kValueContentTypeDefault;
+extern NSString *const kValueUserAgentDefault;
 
 typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
     YMAStatusCodeOkHTTP = 200,
@@ -32,14 +30,22 @@ typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
 };
 
 @interface YMABaseSession : NSObject {
+@protected
     NSOperationQueue *_requestQueue;
     NSOperationQueue *_responseQueue;
+    NSString *_userAgent;
 }
 
-- (void)performRequestWithToken:(NSString *)token parameters:(NSDictionary *)parameters url:(NSURL *)url andCompletionHandler:(YMAConnectionHandler)handler;
+- (id)initWithUserAgent:(NSString *)userAgent;
 
-- (void)performAndProcessRequestWithToken:(NSString *)token parameters:(NSDictionary *)parameters url:(NSURL *)url andCompletionHandler:(YMAConnectionHandler)handler;
+- (void)performRequestWithToken:(NSString *)token parameters:(NSDictionary *)parameters url:(NSURL *)url completion:(YMAConnectionHandler)block;
+
+- (void)performAndProcessRequestWithToken:(NSString *)token parameters:(NSDictionary *)parameters url:(NSURL *)url completion:(YMAConnectionHandler)block;
+
+- (void)performAndProcessRequestWithToken:(NSString *)token data:(NSData *)data url:(NSURL *)url completion:(YMAConnectionHandler)block;
 
 - (NSString *)valueOfHeader:(NSString *)headerName forResponse:(NSURLResponse *)response;
+
+@property(nonatomic, copy) NSString *language;
 
 @end

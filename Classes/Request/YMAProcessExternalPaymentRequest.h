@@ -5,6 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import "YMABaseRequest.h"
+#import "YMAParametersPosting.h"
 
 ///
 /// Process payment request. Second phase of payment.
@@ -12,7 +13,7 @@
 /// until the emergence of the final status of payment (YMAResponseStatusSuccess).
 /// If the processing of the payment is still not complete method will be responsible status - YMAResponseStatusInProgress;
 ///
-@interface YMAProcessExternalPaymentRequest : YMABaseRequest
+@interface YMAProcessExternalPaymentRequest : YMABaseRequest<YMAParametersPosting>
 
 /// Constructor. Returns a YMAProcessExternalPaymentRequest with the specified requestId,
 /// successUri, failUri and requestToken.

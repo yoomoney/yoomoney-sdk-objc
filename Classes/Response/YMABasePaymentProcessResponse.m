@@ -35,7 +35,7 @@ static NSString *const kParameterAccountUnblockUri = @"account_unblock_uri";
 #pragma mark *** NSOperation ***
 #pragma mark -
 
-- (void)parseJSONModel:(id)responseModel {
+- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error {
     NSString *statusKey = [responseModel objectForKey:kParameterStatus];
     _accountUnblockUri = [responseModel objectForKey:kParameterAccountUnblockUri];
 
@@ -43,7 +43,11 @@ static NSString *const kParameterAccountUnblockUri = @"account_unblock_uri";
         NSString *errorKey = [responseModel objectForKey:kParameterError];
         _status = YMAResponseStatusRefused;
 
-        _handler(self, errorKey ? [NSError errorWithDomain:errorKey code:0 userInfo:@{@"response" : self}] : [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"response" : self}]);
+        if (!error) return;
+
+        NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"response" : self}];
+        *error = errorKey ? [NSError errorWithDomain:errorKey code:0 userInfo:@{@"response" : self}] : unknownError;
+
         return;
     }
 

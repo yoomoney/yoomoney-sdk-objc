@@ -5,9 +5,10 @@
 
 #import <Foundation/Foundation.h>
 #import "YMABaseRequest.h"
+#import "YMAParametersPosting.h"
 
 
-@interface YMAPaymentRequest : YMABaseRequest
+@interface YMAPaymentRequest : YMABaseRequest<YMAParametersPosting>
 
 + (instancetype)paymentWithPatternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams;
 

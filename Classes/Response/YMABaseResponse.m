@@ -10,7 +10,8 @@ static NSInteger const kResponseParseErrorCode = 2503;
 
 @interface YMABaseResponse ()
 
-@property(nonatomic, retain) NSData *data;
+@property(nonatomic, strong) NSData *data;
+@property(nonatomic, copy) YMAResponseHandler block;
 
 @end
 
@@ -21,7 +22,7 @@ static NSInteger const kResponseParseErrorCode = 2503;
 
     if (self) {
         _data = data;
-        _handler = [block copy];
+        _block = [block copy];
     }
 
     return self;
@@ -38,25 +39,27 @@ static NSInteger const kResponseParseErrorCode = 2503;
         id responseModel = [NSJSONSerialization JSONObjectWithData:_data options:(NSJSONReadingOptions) kNilOptions error:&error];
 
         if (error) {
-            _handler(self, error);
+            _block(self, error);
             return;
         }
 
-        [self parseJSONModel:responseModel];
-        _handler(self, nil);
+        [self parseJSONModel:responseModel error:&error];
+        _block(self, error);
     }
     @catch (NSException *exception) {
-        _handler(self, [NSError errorWithDomain:exception.name code:kResponseParseErrorCode userInfo:exception.userInfo]);
+        _block(self, [NSError errorWithDomain:exception.name code:kResponseParseErrorCode userInfo:exception.userInfo]);
     }
 }
 
-- (void)parseJSONModel:(id)responseModel {
-    NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"response" : self}];
+- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error {
+    NSString *reason = [NSString stringWithFormat:@"%@ must be ovverriden", NSStringFromSelector(_cmd)];
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 
-    if (!responseModel) {
-        _handler(self, unknownError);
-        return;
-    }
+//    if (!responseModel) {
+//        NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"response" : self}];
+//        _handler(self, unknownError);
+//        return;
+//    }
 }
 
 @end

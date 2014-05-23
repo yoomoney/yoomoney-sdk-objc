@@ -23,8 +23,6 @@ typedef void (^YMARequestHandler)(YMABaseRequest *request, YMABasePaymentProcess
 
 /// Request url
 @property(nonatomic, strong, readonly) NSURL *requestUrl;
-/// Request parameters.
-@property(nonatomic, strong, readonly) NSDictionary *parameters;
 
 /// Method is used for parse response data.
 /// @param data - response data.

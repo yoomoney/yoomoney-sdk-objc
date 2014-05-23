@@ -85,8 +85,10 @@ static NSString *const kParameterMoneySourceCscRequired = @"csc_required";
 #pragma mark *** Overridden methods ***
 #pragma mark -
 
-- (void)parseJSONModel:(id)responseModel {
-    [super parseJSONModel:responseModel];
+- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error {
+    [super parseJSONModel:responseModel error:error];
+
+    if (error && *error) return;
 
     NSString *requestId = [responseModel objectForKey:kParameterRequestId];
     NSString *contractAmount = [[responseModel objectForKey:kParameterContractAmount] stringValue];

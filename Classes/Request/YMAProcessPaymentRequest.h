@@ -5,10 +5,11 @@
 
 #import <Foundation/Foundation.h>
 #import "YMABaseRequest.h"
+#import "YMAParametersPosting.h"
 
 @class YMAMoneySource;
 
-@interface YMAProcessPaymentRequest : YMABaseRequest
+@interface YMAProcessPaymentRequest : YMABaseRequest<YMAParametersPosting>
 
 - (instancetype)processPaymentRequestId:(NSString *)requestId moneySource:(YMAMoneySource *)moneySource csc:(NSString *)csc successUri:(NSString *)successUri failUri:(NSString *)failUri;
 

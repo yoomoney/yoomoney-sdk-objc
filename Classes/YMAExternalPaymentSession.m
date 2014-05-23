@@ -5,6 +5,7 @@
 
 #import "YMAExternalPaymentSession.h"
 #import "YMAHostsProvider.h"
+#import "YMAParametersPosting.h"
 
 static NSString *const kInstanceUrl = @"api/instance-id";
 
@@ -25,7 +26,7 @@ static NSString *const kValueParameterStatusSuccess = @"success";
 
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, kInstanceUrl]];
 
-    [self performRequestWithToken:token parameters:parameters url:url andCompletionHandler:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
+    [self performRequestWithToken:token parameters:parameters url:url completion:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
         if (error) {
             block(nil, error);
             return;
@@ -70,18 +71,21 @@ static NSString *const kValueParameterStatusSuccess = @"success";
         return;
     }
 
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:request.parameters];
+    if ([request conformsToProtocol:@protocol(YMAParametersPosting)]) {
+        YMABaseRequest<YMAParametersPosting> *paramsRequest = (YMABaseRequest<YMAParametersPosting> *) request;
+        NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:paramsRequest.parameters];
 
-    [parameters setObject:self.instanceId forKey:kParameterInstanceId];
+        [parameters setObject:self.instanceId forKey:kParameterInstanceId];
 
-    [self performRequestWithToken:token parameters:parameters url:request.requestUrl andCompletionHandler:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
-        if (error) {
-            block(request, nil, error);
-            return;
-        }
+        [self performAndProcessRequestWithToken:token parameters:parameters url:request.requestUrl completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
+            if (error) {
+                block(request, nil, error);
+                return;
+            }
 
-        [request buildResponseWithData:responseData queue:_responseQueue andCompletion:block];
-    }];
+            [request buildResponseWithData:responseData queue:_responseQueue andCompletion:block];
+        }];
+    }
 }
 
 #pragma mark -

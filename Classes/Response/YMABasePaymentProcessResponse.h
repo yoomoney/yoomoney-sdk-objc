@@ -8,28 +8,6 @@
 #import <Foundation/Foundation.h>
 #import "YMABaseResponse.h"
 
-/// Values for YMAResponseStatus
-/// Status of process payment
-typedef NS_ENUM(NSInteger, YMAResponseStatus) {
-            YMAResponseStatusUnknown,
-
-    /// Payment processing completed successfully
-            YMAResponseStatusSuccess,
-    /// The refusal of the payment.
-    /// The reason of failure is returned in the error.
-    /// This is the end state of the payment.
-            YMAResponseStatusRefused,
-    /// Payment processing is not yet complete.
-    /// The application should retry the request with the same parameters
-    /// later time specified in the nextRetry property.
-            YMAResponseStatusInProgress,
-    /// To complete the processing of payment requires additional authorization
-    /// (you should open the WebView and send the client to uri + params specified in YMAAsc)
-            YMAResponseStatusExtAuthRequired,
-
-            YMAResponseStatusHoldForPickup
-};
-
 ///
 /// Abstract class of response. This class contains common info about the response (status, nextRetry).
 ///

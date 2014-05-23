@@ -38,9 +38,7 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
 #pragma mark *** Overridden methods ***
 #pragma mark -
 
-- (void)parseJSONModel:(id)responseModel {
-    [super parseJSONModel:responseModel];
-
+- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error {
     NSString *account = [responseModel objectForKey:kParameterAccount];
     NSString *balance = [[responseModel objectForKey:kParameterBalance] stringValue];
     NSString *currency = [responseModel objectForKey:kParameterCurrency];
