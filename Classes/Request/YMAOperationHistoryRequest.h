@@ -4,8 +4,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "YMABaseRequest.h"
 
+typedef NS_ENUM(NSUInteger, YMAHistoryOperationFilter) {
+    YMAHistoryOperationFilterUnknown = 0,
+    YMAHistoryOperationFilterDeposition = 1 << 0,
+    YMAHistoryOperationFilterPayment = 1 << 1
+};
 
-@interface YMAOperationHistoryRequest : NSObject
+@interface YMAOperationHistoryRequest : YMABaseRequest <YMAParametersPosting>
+
++ (instancetype)operationHistoryWithFilter:(YMAHistoryOperationFilter)filter label:(NSString *)label from:(NSDate *)from till:(NSDate *)till startRecord:(NSString *)startRecord records:(NSUInteger)records details:(BOOL)details;
 
 @end

@@ -59,7 +59,7 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
 
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"YYYY-MM-DDThh:mm:ss.fZZZZZ"];
-        [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/Moscow"]];
+        //[formatter setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/Moscow"]];
         NSDate *timeStamp = [formatter dateFromString:timeStampString];
 
         avatar = [YMAAvatar avatarWithUrl:avatarUrl timeStamp:timeStamp];

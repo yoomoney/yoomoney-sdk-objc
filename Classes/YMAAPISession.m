@@ -5,8 +5,6 @@
 
 #import "YMAAPISession.h"
 #import "YMAHostsProvider.h"
-#import "YMAParametersPosting.h"
-#import "YMADataPosting.h"
 
 static NSString *const kUrlAuthorize = @"oauth/authorize";
 static NSString *const kUrlToken = @"oauth/token";

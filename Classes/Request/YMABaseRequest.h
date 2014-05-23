@@ -10,6 +10,20 @@
 @class YMABaseRequest;
 @class YMABaseResponse;
 
+@protocol YMADataPosting <NSObject>
+
+/// Request data.
+@property(nonatomic, strong, readonly) NSData *data;
+
+@end
+
+@protocol YMAParametersPosting <NSObject>
+
+/// Request parameters.
+@property(nonatomic, strong, readonly) NSDictionary *parameters;
+
+@end
+
 /// Completion of block is used to get the response.
 /// @param request - request inherited from abstract class YMABaseRequest.
 /// @param response - response inherited from abstract class YMABasePaymentProcessResponse.

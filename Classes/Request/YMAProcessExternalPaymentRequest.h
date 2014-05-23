@@ -5,7 +5,6 @@
 
 #import <Foundation/Foundation.h>
 #import "YMABaseRequest.h"
-#import "YMAParametersPosting.h"
 
 ///
 /// Process payment request. Second phase of payment.
