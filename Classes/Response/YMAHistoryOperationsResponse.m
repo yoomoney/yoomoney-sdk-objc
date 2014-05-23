@@ -3,7 +3,7 @@
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
-#import "YMAOperationHistoryResponse.h"
+#import "YMAHistoryOperationsResponse.h"
 #import "YMAConstants.h"
 #import "YMAHistoryOperation.h"
 
@@ -22,7 +22,7 @@ static NSString *const kParameterOperationLabel = @"label";
 static NSString *const kParameterOperationFavourite = @"favourite";
 static NSString *const kParameterOperationType = @"type";
 
-@implementation YMAOperationHistoryResponse
+@implementation YMAHistoryOperationsResponse
 
 + (YMAHistoryOperation *)historyOperationByModel:(id)historyOperationModel {
     NSString *operationId = [historyOperationModel objectForKey:kParameterOperationOperationId];
@@ -81,7 +81,7 @@ static NSString *const kParameterOperationType = @"type";
     NSMutableArray *historyOperations = [NSMutableArray array];
 
     for (id historyOperationModel in operationsModel) {
-        YMAHistoryOperation *operation = [YMAOperationHistoryResponse historyOperationByModel:historyOperationModel];
+        YMAHistoryOperation *operation = [YMAHistoryOperationsResponse historyOperationByModel:historyOperationModel];
         [historyOperations addObject:operation];
     }
 

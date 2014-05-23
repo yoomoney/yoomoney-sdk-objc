@@ -12,7 +12,7 @@ typedef NS_ENUM(NSUInteger, YMAHistoryOperationFilter) {
     YMAHistoryOperationFilterPayment = 1 << 1
 };
 
-@interface YMAOperationHistoryRequest : YMABaseRequest <YMAParametersPosting>
+@interface YMAHistoryOperationsRequest : YMABaseRequest <YMAParametersPosting>
 
 + (instancetype)operationHistoryWithFilter:(YMAHistoryOperationFilter)filter label:(NSString *)label from:(NSDate *)from till:(NSDate *)till startRecord:(NSString *)startRecord records:(NSUInteger)records details:(BOOL)details;
 

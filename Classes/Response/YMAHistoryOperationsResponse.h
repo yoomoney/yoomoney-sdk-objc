@@ -6,7 +6,7 @@
 #import <Foundation/Foundation.h>
 #import "YMABaseResponse.h"
 
-@interface YMAOperationHistoryResponse : YMABaseResponse
+@interface YMAHistoryOperationsResponse : YMABaseResponse
 
 @property(nonatomic, copy, readonly) NSString *nextRecord;
 @property(nonatomic, strong, readonly) NSArray *operations;

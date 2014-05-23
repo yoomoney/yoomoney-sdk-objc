@@ -3,9 +3,9 @@
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
-#import "YMAOperationHistoryRequest.h"
+#import "YMAHistoryOperationsRequest.h"
 #import "YMAHostsProvider.h"
-#import "YMAOperationHistoryResponse.h"
+#import "YMAHistoryOperationsResponse.h"
 
 static NSString *const kParameterType = @"type";
 static NSString *const kKeyTypePayment = @"payment";
@@ -19,7 +19,7 @@ static NSString *const kParameterDetails = @"details";
 
 static NSString *const kUrlHistoryOperation = @"api/operation-history";
 
-@interface YMAOperationHistoryRequest ()
+@interface YMAHistoryOperationsRequest ()
 
 @property(nonatomic, assign) YMAHistoryOperationFilter filter;
 @property(nonatomic, copy) NSString *label;
@@ -30,7 +30,7 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
 @property(nonatomic, assign) BOOL details;
 @end
 
-@implementation YMAOperationHistoryRequest
+@implementation YMAHistoryOperationsRequest
 
 - (id)initWithFilter:(YMAHistoryOperationFilter)filter label:(NSString *)label from:(NSDate *)from till:(NSDate *)till startRecord:(NSString *)startRecord records:(NSUInteger)records details:(BOOL)details {
     self = [super self];
@@ -49,7 +49,7 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
 }
 
 + (instancetype)operationHistoryWithFilter:(YMAHistoryOperationFilter)filter label:(NSString *)label from:(NSDate *)from till:(NSDate *)till startRecord:(NSString *)startRecord records:(NSUInteger)records details:(BOOL)details; {
-    return [[YMAOperationHistoryRequest alloc] initWithType:filter label:label from:from till:till startRecord:startRecord records:records details:details];
+    return [[YMAHistoryOperationsRequest alloc] initWithType:filter label:label from:from till:till startRecord:startRecord records:records details:details];
 }
 
 #pragma mark -
@@ -90,7 +90,7 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
 }
 
 - (NSOperation *)buildResponseOperationWithData:(NSData *)data andCompletionHandler:(YMAResponseHandler)handler {
-    return [[YMAOperationHistoryResponse alloc] initWithData:data andCompletion:handler];
+    return [[YMAHistoryOperationsResponse alloc] initWithData:data andCompletion:handler];
 }
 
 @end
