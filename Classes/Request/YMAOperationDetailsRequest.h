@@ -4,7 +4,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "YMABaseRequest.h"
 
 
-@interface YMAOperationDetailsRequest : NSObject
+@interface YMAOperationDetailsRequest : YMABaseRequest <YMAParametersPosting>
+
++ (instancetype)operationDetailsWithRepeatInfoByOperationId:(NSString *)operationId;
+
++ (instancetype)operationDetailsWithOperationId:(NSString *)operationId;
+
++ (instancetype)operationDetailsWithFavouriteId:(NSString *)favouriteId;
+
 @end

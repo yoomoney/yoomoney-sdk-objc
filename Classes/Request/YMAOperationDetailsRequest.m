@@ -4,9 +4,69 @@
 //
 
 #import "YMAOperationDetailsRequest.h"
+#import "YMAHostsProvider.h"
+#import "YMAOperationDetailsResponse.h"
 
+static NSString *const kParameterOperationId = @"operation_id";
+static NSString *const kParameterFavouriteId = @"favourite_id";
+static NSString *const kParameterRequestRepeatInfo = @"request_repeat_info";
 
-@implementation YMAOperationDetailsRequest {
+static NSString *const kUrlOperationDetails = @"api/operation-details";
 
+@interface YMAOperationDetailsRequest ()
+
+@property(nonatomic, copy) NSString *operationId;
+@property(nonatomic, copy) NSString *favouriteId;
+@property(nonatomic, assign) BOOL requestRepeatInfo;
+
+@end
+
+@implementation YMAOperationDetailsRequest
+
+- (id)initWithOperationId:(NSString *)operationId favouriteId:(NSString *)favouriteId requestRepeatInfo:(BOOL)requestRepeatInfo {
+    self = [super init];
+
+    if (self) {
+        _operationId = [operationId copy];
+        _favouriteId = [favouriteId copy];
+        _requestRepeatInfo = requestRepeatInfo;
+    }
+
+    return self;
 }
+
++ (instancetype)operationDetailsWithRepeatInfoByOperationId:(NSString *)operationId {
+    return [[YMAOperationDetailsRequest alloc] initWithOperationId:operationId favouriteId:nil requestRepeatInfo:YES];
+}
+
++ (instancetype)operationDetailsWithOperationId:(NSString *)operationId {
+    return [[YMAOperationDetailsRequest alloc] initWithOperationId:operationId favouriteId:nil requestRepeatInfo:NO];
+}
+
++ (instancetype)operationDetailsWithFavouriteId:(NSString *)favouriteId {
+    return [[YMAOperationDetailsRequest alloc] initWithOperationId:nil favouriteId:favouriteId requestRepeatInfo:YES];
+}
+
+#pragma mark -
+#pragma mark *** Overridden methods ***
+#pragma mark -
+
+- (NSURL *)requestUrl {
+    NSString *urlString = [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, kUrlOperationDetails];
+    return [NSURL URLWithString:urlString];
+}
+
+- (NSDictionary *)parameters {
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    [dictionary setObject:self.operationId forKey:kParameterOperationId];
+    [dictionary setObject:self.favouriteId forKey:kParameterFavouriteId];
+    [dictionary setObject:self.requestRepeatInfo ? @"true" : @"false" forKey:kParameterRequestRepeatInfo];
+
+    return dictionary;
+}
+
+- (NSOperation *)buildResponseOperationWithData:(NSData *)data andCompletionHandler:(YMAResponseHandler)handler {
+    return [[YMAOperationDetailsResponse alloc] initWithData:data andCompletion:handler];
+}
+
 @end

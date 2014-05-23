@@ -49,7 +49,7 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
 }
 
 + (instancetype)operationHistoryWithFilter:(YMAHistoryOperationFilter)filter label:(NSString *)label from:(NSDate *)from till:(NSDate *)till startRecord:(NSString *)startRecord records:(NSUInteger)records details:(BOOL)details; {
-    return [[YMAHistoryOperationsRequest alloc] initWithType:filter label:label from:from till:till startRecord:startRecord records:records details:details];
+    return [[YMAHistoryOperationsRequest alloc] initWithFilter:filter label:label from:from till:till startRecord:startRecord records:records details:details];
 }
 
 #pragma mark -
@@ -68,9 +68,9 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
 
     NSMutableString *typeString = [NSMutableString stringWithCapacity:0];
 
-    if (self.type & YMAHistoryOperationTypePayment)
+    if (self.filter & YMAHistoryOperationFilterPayment)
         [typeString appendString:kKeyTypePayment];
-    else if (self.type & YMAHistoryOperationTypeDeposition)
+    else if (self.filter & YMAHistoryOperationFilterDeposition)
         [typeString appendString:kKeyTypeDeposition];
 
     [dictionary setObject:typeString forKey:kParameterType];
