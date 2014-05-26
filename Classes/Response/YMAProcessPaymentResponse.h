@@ -7,8 +7,11 @@
 #import "YMABasePaymentProcessResponse.h"
 
 @class YMAPaymentResultInfo;
+@class YMADigitalGoods;
 
 @interface YMAProcessPaymentResponse : YMABasePaymentProcessResponse
+
++ (YMADigitalGoods *)digitalGoodsByModel:(id)digitalGoodsModel;
 
 @property(nonatomic, strong, readonly) YMAPaymentResultInfo *paymentResultInfo;
 

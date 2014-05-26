@@ -45,6 +45,18 @@ static NSString *const kParameterDigitalGoodsSecret = @"secret";
     return goods;
 }
 
++ (YMADigitalGoods *)digitalGoodsByModel:(id)digitalGoodsModel {
+   if (!digitalGoodsModel)
+       return nil;
+
+    NSArray *articleModel = [digitalGoodsModel objectForKey:kParameterDigitalGoodsArticle];
+    NSArray *article = [YMAProcessPaymentResponse goodsByModel:articleModel];
+
+    NSArray *bonusModel = [digitalGoodsModel objectForKey:kParameterDigitalGoodsBonus];
+    NSArray *bonus = [YMAProcessPaymentResponse goodsByModel:bonusModel];
+
+    return [YMADigitalGoods digitalGoodsWithArticle:article bonus:bonus];
+}
 
 #pragma mark -
 #pragma mark *** Overridden methods ***
@@ -74,17 +86,7 @@ static NSString *const kParameterDigitalGoodsSecret = @"secret";
     }
 
     id digitalGoodsModel = [responseModel objectForKey:kParameterDigitalGoods];
-    YMADigitalGoods *digitalGoods = nil;
-
-    if (digitalGoodsModel) {
-        NSArray *articleModel = [digitalGoodsModel objectForKey:kParameterDigitalGoodsArticle];
-        NSArray *article = [YMAProcessPaymentResponse goodsByModel:articleModel];
-
-        NSArray *bonusModel = [digitalGoodsModel objectForKey:kParameterDigitalGoodsBonus];
-        NSArray *bonus = [YMAProcessPaymentResponse goodsByModel:bonusModel];
-
-        digitalGoods = [YMADigitalGoods digitalGoodsWithArticle:article bonus:bonus];
-    }
+    YMADigitalGoods *digitalGoods = [YMAProcessPaymentResponse digitalGoodsByModel:digitalGoodsModel];
 
     _paymentResultInfo = [YMAPaymentResultInfo paymentResultWithPaymentId:paymentId balance:balance invoiceId:invoiceId payer:payer payee:payee creditAmount:creditAmount payeeUid:payeeUid holdForPickupLink:holdForPickupLink asc:asc digitalGoods:digitalGoods];
 }

@@ -6,9 +6,11 @@
 #import <Foundation/Foundation.h>
 #import "YMABaseResponse.h"
 
+@class YMAOperationDetails;
+
 
 @interface YMAOperationDetailsResponse : YMABaseResponse
 
-
+@property(nonatomic, strong, readonly) YMAOperationDetails *operationDetails;
 
 @end
