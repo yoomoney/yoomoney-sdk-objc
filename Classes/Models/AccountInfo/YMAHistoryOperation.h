@@ -29,6 +29,8 @@ typedef NS_ENUM(NSInteger, YMAHistoryOperationType) {
 
 @interface YMAHistoryOperation : NSObject
 
+- (id)initWithOperationId:(NSString *)operationId status:(YMAHistoryOperationStatus)status datetime:(NSDate *)datetime title:(NSString *)title patternId:(NSString *)patternId direction:(YMAHistoryOperationDirection)direction amount:(NSString *)amount label:(NSString *)label favourite:(BOOL)favourite type:(YMAHistoryOperationType)type;
+
 + (instancetype)historyOperationWithOperationId:(NSString *)operationId status:(YMAHistoryOperationStatus)status datetime:(NSDate *)datetime title:(NSString *)title patternId:(NSString *)patternId direction:(YMAHistoryOperationDirection)direction amount:(NSString *)amount label:(NSString *)label favourite:(BOOL)favourite type:(YMAHistoryOperationType)type;
 
 + (YMAHistoryOperationStatus)historyOperationStatusByString:(NSString *)historyOperationStatusString;

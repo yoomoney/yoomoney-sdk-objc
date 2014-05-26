@@ -6,7 +6,8 @@
 #import "YMAOperationDetailsResponse.h"
 
 
-@implementation YMAOperationDetailsResponse {
+@implementation YMAOperationDetailsResponse
 
-}
+
+
 @end

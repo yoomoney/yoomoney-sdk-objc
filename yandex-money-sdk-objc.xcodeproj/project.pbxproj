@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DE7925D16032BD0AB5F8291 /* YMAOperationDetails.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DE794A649279376C6AB9585 /* YMAOperationDetails.h */; };
+		2DE7992C873452AA3FC5DC43 /* YMAOperationDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE79556322AA7E70F71D29B /* YMAOperationDetails.m */; };
+		2DE79A3FE58C4A31226E800F /* YMAOperationDetails.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DE794A649279376C6AB9585 /* YMAOperationDetails.h */; };
+		2DE79C582CC9E728011BC5E4 /* YMAOperationDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE79556322AA7E70F71D29B /* YMAOperationDetails.m */; };
 		4399F2D8192EDCAC00CB1B49 /* YMAChangeAvatarResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 4399F2D4192EDCAC00CB1B49 /* YMAChangeAvatarResponse.h */; };
 		4399F2D9192EDCAC00CB1B49 /* YMAChangeAvatarResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4399F2D5192EDCAC00CB1B49 /* YMAChangeAvatarResponse.m */; };
 		4399F2DA192EDCAC00CB1B49 /* YMAHistoryOperationsResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 4399F2D6192EDCAC00CB1B49 /* YMAHistoryOperationsResponse.h */; };
@@ -137,6 +141,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2DE794A649279376C6AB9585 /* YMAOperationDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAOperationDetails.h; sourceTree = "<group>"; };
+		2DE79556322AA7E70F71D29B /* YMAOperationDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAOperationDetails.m; sourceTree = "<group>"; };
 		4399F2D4192EDCAC00CB1B49 /* YMAChangeAvatarResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMAChangeAvatarResponse.h; path = Classes/Response/YMAChangeAvatarResponse.h; sourceTree = SOURCE_ROOT; };
 		4399F2D5192EDCAC00CB1B49 /* YMAChangeAvatarResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMAChangeAvatarResponse.m; path = Classes/Response/YMAChangeAvatarResponse.m; sourceTree = SOURCE_ROOT; };
 		4399F2D6192EDCAC00CB1B49 /* YMAHistoryOperationsResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMAHistoryOperationsResponse.h; path = Classes/Response/YMAHistoryOperationsResponse.h; sourceTree = SOURCE_ROOT; };
@@ -345,6 +351,8 @@
 				8BFF2738ADE37FD40EA71164 /* YMABalanceDetails.h */,
 				8BFF2DC406E943E144ECC1F7 /* YMAHistoryOperation.m */,
 				8BFF2A1255EDB62A48BF615D /* YMAHistoryOperation.h */,
+				2DE79556322AA7E70F71D29B /* YMAOperationDetails.m */,
+				2DE794A649279376C6AB9585 /* YMAOperationDetails.h */,
 			);
 			path = AccountInfo;
 			sourceTree = "<group>";
@@ -527,6 +535,7 @@
 				8BFF258289DD4BB81B669DC9 /* YMAHistoryOperation.h in Headers */,
 				8BFF2BECBE8D4EFAEB8BE8CD /* YMAOperationDetailsRequest.h in Headers */,
 				8BFF2ABB534BF6BBC842441F /* YMAOperationDetailsResponse.h in Headers */,
+				2DE79A3FE58C4A31226E800F /* YMAOperationDetails.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,6 +560,7 @@
 				8BFF2216D7DBD045A30025ED /* YMAHistoryOperation.h in Headers */,
 				8BFF26CB0804A80950772D7C /* YMAOperationDetailsRequest.h in Headers */,
 				8BFF25750A38972CF24BCD5D /* YMAOperationDetailsResponse.h in Headers */,
+				2DE7925D16032BD0AB5F8291 /* YMAOperationDetails.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -675,6 +685,7 @@
 				8BFF2C805AA9D608E394FBF3 /* YMAHistoryOperation.m in Sources */,
 				8BFF25C52416BA97138809DF /* YMAOperationDetailsRequest.m in Sources */,
 				8BFF21F7815E685639D053FD /* YMAOperationDetailsResponse.m in Sources */,
+				2DE7992C873452AA3FC5DC43 /* YMAOperationDetails.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -699,6 +710,7 @@
 				8BFF2648FBBBDAC003AA5D51 /* YMAHistoryOperation.m in Sources */,
 				8BFF25580586CC7D56BE9E30 /* YMAOperationDetailsRequest.m in Sources */,
 				8BFF2FB187B8B50BD366D10E /* YMAOperationDetailsResponse.m in Sources */,
+				2DE79C582CC9E728011BC5E4 /* YMAOperationDetails.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
