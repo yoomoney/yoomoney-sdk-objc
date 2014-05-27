@@ -37,6 +37,8 @@ static NSInteger const kResponseParseErrorCode = 2503;
     @try {
         id responseModel = [NSJSONSerialization JSONObjectWithData:_data options:(NSJSONReadingOptions) kNilOptions error:&error];
 
+        NSLog(@"--------------------- Response data: %@", [[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding]);
+
         if (error) {
             _block(self, error);
             return;

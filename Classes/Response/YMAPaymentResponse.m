@@ -88,8 +88,6 @@ static NSString *const kParameterMoneySourceCscRequired = @"csc_required";
 - (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error {
     [super parseJSONModel:responseModel error:error];
 
-    if (error && *error) return;
-
     NSString *requestId = [responseModel objectForKey:kParameterRequestId];
     NSString *contractAmount = [[responseModel objectForKey:kParameterContractAmount] stringValue];
     NSString *balance = [[responseModel objectForKey:kParameterBalance] stringValue];

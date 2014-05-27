@@ -69,8 +69,8 @@ static NSString *const kParameterDigitalGoods = @"digital_goods";
 
     YMAHistoryOperation *historyOperation = [YMAHistoryOperation historyOperationWithOperationId:operationId status:status datetime:dateTime title:title patternId:patternId direction:direction amount:amount label:label favourite:favourite type:type];
 
-    if (![historyOperationModel objectForKey:kParameterDetails])
-        return historyOperation;
+//    if (![historyOperationModel objectForKey:kParameterDetails])
+//        return historyOperation;
 
     NSString *amountDue = [[historyOperationModel objectForKey:kParameterAmountDue] stringValue];
     NSString *fee = [[historyOperationModel objectForKey:kParameterFee] stringValue];

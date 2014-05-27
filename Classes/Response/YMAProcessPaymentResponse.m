@@ -65,8 +65,6 @@ static NSString *const kParameterDigitalGoodsSecret = @"secret";
 - (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error {
     [super parseJSONModel:responseModel error:error];
 
-    if (error && *error) return;
-
     NSString *paymentId = [responseModel objectForKey:kParameterPaymentId];
     NSString *balance = [[responseModel objectForKey:kParameterBalance] stringValue];
     NSString *invoiceId = [responseModel objectForKey:kParameterInvoiceId];

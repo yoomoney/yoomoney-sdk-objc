@@ -27,8 +27,6 @@ static NSString *const kMoneySourceTypePaymentCard = @"payment-card";
 - (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error {
     [super parseJSONModel:responseModel error:error];
 
-    if (error && *error) return;
-
     NSString *acsUrl = [responseModel objectForKey:kParameterAcsUrl];
 
     if (acsUrl) {

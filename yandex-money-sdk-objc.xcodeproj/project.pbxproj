@@ -50,20 +50,25 @@
 		8BFF205B91D768277A380345 /* YMAExternalPaymentRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF27D40E844ABDA08CD23C /* YMAExternalPaymentRequest.h */; };
 		8BFF2080FCB88745F9E5C483 /* YMAAccountInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF205EC8608008B2A3D5E4 /* YMAAccountInfo.h */; };
 		8BFF2083CC00FB3AA0B35BBE /* YMAAccountInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF29406293FEA3A5090E81 /* YMAAccountInfo.m */; };
+		8BFF20D14CA478FD893911FE /* YMAIncomingTransferRejectRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF24D4EF5A7B7847B80D1A /* YMAIncomingTransferRejectRequest.m */; };
 		8BFF21244B6772E785D51CB1 /* YMAHostsProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2AC3DB74FF9E507A51F3 /* YMAHostsProvider.h */; };
+		8BFF21682E2D0F2E617F77F7 /* YMAIncomingTransferRejectResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF2C8A1E05DE650F9F29C7 /* YMAIncomingTransferRejectResponse.m */; };
 		8BFF2197D39288FBDE147810 /* YMAGoods.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF2255429905AC752DB520 /* YMAGoods.m */; };
 		8BFF219F8C698239CD821CE4 /* YMAMoneySource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF2C7A1FD664BF6CEF70D0 /* YMAMoneySource.m */; };
 		8BFF21D9644AA982E427E245 /* YMAAPISession.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF2B5D4A589E5C180D6B2B /* YMAAPISession.m */; };
 		8BFF21E6FE6BED325824CB11 /* YMAMoneySource.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2147199C0B51AC8ADAE4 /* YMAMoneySource.h */; };
 		8BFF21F7815E685639D053FD /* YMAOperationDetailsResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF252947D95AE8C4521E81 /* YMAOperationDetailsResponse.m */; };
 		8BFF2216D7DBD045A30025ED /* YMAHistoryOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2A1255EDB62A48BF615D /* YMAHistoryOperation.h */; };
+		8BFF221741E24DFD63831B85 /* YMAIncomingTransferAcceptResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF2EA4DCED7ED9DBE181A1 /* YMAIncomingTransferAcceptResponse.m */; };
 		8BFF2243E7E501D0272B28AC /* YMACardsSourceGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF27308D5D7F3F6BDFD94C /* YMACardsSourceGroup.m */; };
 		8BFF224F639B8F8C8903D731 /* YMAMoneySources.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF2C1961C4D2869E191D58 /* YMAMoneySources.m */; };
 		8BFF22965BEA4A20BFFDA36A /* YMAMoneySources.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF2C1961C4D2869E191D58 /* YMAMoneySources.m */; };
 		8BFF2297B7149E7162AB9B60 /* YMAPaymentResultInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF211BFE1D637546E70B8D /* YMAPaymentResultInfo.m */; };
 		8BFF22D244DA8824D9FF86AE /* YMADigitalGoods.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF2E3D8D565E4FB3D836B7 /* YMADigitalGoods.m */; };
+		8BFF22EE68A8AD3881B936C8 /* YMAIncomingTransferAcceptRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF26737EEA7F272685A522 /* YMAIncomingTransferAcceptRequest.m */; };
 		8BFF23564159228ED33BAAB9 /* YMAAPISession.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF2B5D4A589E5C180D6B2B /* YMAAPISession.m */; };
 		8BFF239E9F8240AB02E4758C /* YMAExternalPaymentResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2A1B4124FDF065D762D2 /* YMAExternalPaymentResponse.h */; };
+		8BFF23C5BE81C3AB82244AA7 /* YMAIncomingTransferAcceptRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF211276DDCE6D2B921131 /* YMAIncomingTransferAcceptRequest.h */; };
 		8BFF23D548D765F4EC1D1290 /* YMAWalletSourceGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF260DCBDCE8B93B526B91 /* YMAWalletSourceGroup.m */; };
 		8BFF23DF0E4A8F0E7FD34923 /* YMAPaymentInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF22C79FB7D29467E25BE4 /* YMAPaymentInfo.m */; };
 		8BFF247D4DDE9F8AAC66D889 /* YMAAsc.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF2E05AB79E8DA5846E199 /* YMAAsc.m */; };
@@ -71,36 +76,45 @@
 		8BFF249992A8DB7A1E693934 /* YMABaseSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2E6CD4060300AADD7F0E /* YMABaseSession.h */; };
 		8BFF24B67DD429E97D359BDE /* YMADigitalGoods.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2B770BDF473D870BF6C0 /* YMADigitalGoods.h */; };
 		8BFF250B9F588B19CC870BEC /* YMAAccountInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF29406293FEA3A5090E81 /* YMAAccountInfo.m */; };
+		8BFF252FDAAE33491A971393 /* YMAIncomingTransferAcceptRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF211276DDCE6D2B921131 /* YMAIncomingTransferAcceptRequest.h */; };
 		8BFF2536F16EFF977B67EF75 /* YMAExternalPaymentInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF24147E42C30AF6A216D7 /* YMAExternalPaymentInfo.m */; };
 		8BFF25580586CC7D56BE9E30 /* YMAOperationDetailsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF291A2889577E5FBF6727 /* YMAOperationDetailsRequest.m */; };
 		8BFF25750A38972CF24BCD5D /* YMAOperationDetailsResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2AFBFA8940409B606723 /* YMAOperationDetailsResponse.h */; };
 		8BFF258289DD4BB81B669DC9 /* YMAHistoryOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2A1255EDB62A48BF615D /* YMAHistoryOperation.h */; };
+		8BFF2594B6F8526016591981 /* YMAIncomingTransferRejectResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2D6C6F10D515D64F51FB /* YMAIncomingTransferRejectResponse.h */; };
 		8BFF25C52416BA97138809DF /* YMAOperationDetailsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF291A2889577E5FBF6727 /* YMAOperationDetailsRequest.m */; };
 		8BFF25FC21C0552EEC9C8E98 /* YMAAvatar.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF251C997D83C7C909A548 /* YMAAvatar.h */; };
 		8BFF2648FBBBDAC003AA5D51 /* YMAHistoryOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF2DC406E943E144ECC1F7 /* YMAHistoryOperation.m */; };
 		8BFF268EF28F4CF57FAA5CAB /* YMAPaymentResultInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2B9E8D49F1420DF0DC6B /* YMAPaymentResultInfo.h */; };
 		8BFF26BCA47DA2C2B590ED7C /* YMAProcessExternalPaymentRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2FB63A4098F9B45021FF /* YMAProcessExternalPaymentRequest.h */; };
 		8BFF26CB0804A80950772D7C /* YMAOperationDetailsRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2EB8DE014054BC28F1AA /* YMAOperationDetailsRequest.h */; };
+		8BFF272C331693DA402A77EA /* YMAIncomingTransferRejectRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2B2F211281B135D90447 /* YMAIncomingTransferRejectRequest.h */; };
 		8BFF274EC4922816816E4DFD /* YMABalanceDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF20FC566A3854252E808A /* YMABalanceDetails.m */; };
 		8BFF2761CFF43F1956D1930D /* YMABasePaymentProcessResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2F8ACD2D1C417C860336 /* YMABasePaymentProcessResponse.h */; };
 		8BFF2769D043B9D00C3E5F06 /* YMAPaymentResultInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF211BFE1D637546E70B8D /* YMAPaymentResultInfo.m */; };
 		8BFF27E19256A440670F7BF8 /* YMACardsSourceGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2B78CE66CA13661549AC /* YMACardsSourceGroup.h */; };
 		8BFF281696C2DE99B014C8BF /* YMAGoods.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2C2E972359A9A4899BEE /* YMAGoods.h */; };
+		8BFF2846428033239E70E70A /* YMAIncomingTransferAcceptResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF2EA4DCED7ED9DBE181A1 /* YMAIncomingTransferAcceptResponse.m */; };
 		8BFF284AC046C40FC69E084C /* YMAPaymentInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF285F0C2C0D320C081AFE /* YMAPaymentInfo.h */; };
 		8BFF28B8C1329527D18C0290 /* YMAAvatar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF220B53BA9A164CAA13A3 /* YMAAvatar.m */; };
 		8BFF28E0C458F1C779BFD7F4 /* YMAHostsProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2AC3DB74FF9E507A51F3 /* YMAHostsProvider.h */; };
 		8BFF28FB8C95858D514CAD3A /* YMABaseSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF28A12B37CD1CB6CCF148 /* YMABaseSession.m */; };
+		8BFF292CD5F48117C3ECDFCA /* YMAIncomingTransferAcceptRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF26737EEA7F272685A522 /* YMAIncomingTransferAcceptRequest.m */; };
 		8BFF2938521FDF4C7DCBC653 /* YMAHostsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF2E7A681EE978480A5112 /* YMAHostsProvider.m */; };
 		8BFF2942BEF6F7C531F6DDD6 /* YMAProcessExternalPaymentResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2392162339352AEF8560 /* YMAProcessExternalPaymentResponse.h */; };
 		8BFF298452D4D8603263DE55 /* YMABalanceDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF20FC566A3854252E808A /* YMABalanceDetails.m */; };
 		8BFF2991EED15B604934A603 /* YMABaseSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2E6CD4060300AADD7F0E /* YMABaseSession.h */; };
 		8BFF29C71AE9FBFB696DB118 /* YMADigitalGoods.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2B770BDF473D870BF6C0 /* YMADigitalGoods.h */; };
+		8BFF2A10B3747E4C7BE0878D /* YMAIncomingTransferRejectResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF2C8A1E05DE650F9F29C7 /* YMAIncomingTransferRejectResponse.m */; };
 		8BFF2A126C243F76990569C4 /* YMACardsSourceGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2B78CE66CA13661549AC /* YMACardsSourceGroup.h */; };
 		8BFF2ABB534BF6BBC842441F /* YMAOperationDetailsResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2AFBFA8940409B606723 /* YMAOperationDetailsResponse.h */; };
+		8BFF2AF696A688EA5682143B /* YMAIncomingTransferRejectRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2B2F211281B135D90447 /* YMAIncomingTransferRejectRequest.h */; };
 		8BFF2B0DA8EFC41A039544C5 /* YMAAccountInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF205EC8608008B2A3D5E4 /* YMAAccountInfo.h */; };
+		8BFF2B0E54FDB50368CC7472 /* YMAIncomingTransferRejectResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2D6C6F10D515D64F51FB /* YMAIncomingTransferRejectResponse.h */; };
 		8BFF2B2E7EFEA51A07F2E303 /* YMAAvatar.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF251C997D83C7C909A548 /* YMAAvatar.h */; };
 		8BFF2B422EB74970E5D01C10 /* YMACardsSourceGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF27308D5D7F3F6BDFD94C /* YMACardsSourceGroup.m */; };
 		8BFF2BECBE8D4EFAEB8BE8CD /* YMAOperationDetailsRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2EB8DE014054BC28F1AA /* YMAOperationDetailsRequest.h */; };
+		8BFF2C12779FA0E2682EF58F /* YMAIncomingTransferAcceptResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2E5439B0C0E844F99B4A /* YMAIncomingTransferAcceptResponse.h */; };
 		8BFF2C805AA9D608E394FBF3 /* YMAHistoryOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF2DC406E943E144ECC1F7 /* YMAHistoryOperation.m */; };
 		8BFF2CB2D4827478E6A5E1E7 /* YMAPaymentInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF22C79FB7D29467E25BE4 /* YMAPaymentInfo.m */; };
 		8BFF2CFDFFD95CB2450C64B3 /* YMAAPISession.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF293904B8F1396C4DC49A /* YMAAPISession.h */; };
@@ -108,6 +122,7 @@
 		8BFF2D1637DBBD163931335B /* YMAMoneySources.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2F991CE1638D7065AC80 /* YMAMoneySources.h */; };
 		8BFF2D43F8055F17E5596E92 /* YMAWalletSourceGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF260DCBDCE8B93B526B91 /* YMAWalletSourceGroup.m */; };
 		8BFF2D943A62B2268F2C9A7E /* YMAPaymentResultInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2B9E8D49F1420DF0DC6B /* YMAPaymentResultInfo.h */; };
+		8BFF2DC37254F1205A7946DB /* YMAIncomingTransferRejectRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF24D4EF5A7B7847B80D1A /* YMAIncomingTransferRejectRequest.m */; };
 		8BFF2E1B73746D312F4019F1 /* YMAExternalPaymentResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF2651BB40614B08F0EA81 /* YMAExternalPaymentResponse.m */; };
 		8BFF2E35B7AA1B1075CFFB77 /* YMAAsc.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF26C28CA55AB0B45EAF2E /* YMAAsc.h */; };
 		8BFF2E45A71319E84C1B608C /* YMAHostsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF2E7A681EE978480A5112 /* YMAHostsProvider.m */; };
@@ -116,6 +131,7 @@
 		8BFF2EDDE39420B8098048E0 /* YMABaseSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF28A12B37CD1CB6CCF148 /* YMABaseSession.m */; };
 		8BFF2EEF2B19DF3E76F4CF8C /* YMAExternalPaymentRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF2355AFDBC4EE55694230 /* YMAExternalPaymentRequest.m */; };
 		8BFF2EF7F1949278CFBFC9E5 /* YMAAvatar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF220B53BA9A164CAA13A3 /* YMAAvatar.m */; };
+		8BFF2EFC24E0222713C09614 /* YMAIncomingTransferAcceptResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF2E5439B0C0E844F99B4A /* YMAIncomingTransferAcceptResponse.h */; };
 		8BFF2EFEE61A2901D474EE8D /* YMAGoods.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF2255429905AC752DB520 /* YMAGoods.m */; };
 		8BFF2F02A1CE7D4B3A93774A /* YMAAPISession.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF293904B8F1396C4DC49A /* YMAAPISession.h */; };
 		8BFF2F02C3E5BFDE49A4067E /* YMAWalletSourceGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF26B74AADF64E399C5FB0 /* YMAWalletSourceGroup.h */; };
@@ -182,6 +198,7 @@
 		8BFF205EC8608008B2A3D5E4 /* YMAAccountInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAAccountInfo.h; sourceTree = "<group>"; };
 		8BFF2064E4C8C49AE00740BB /* YMAProcessExternalPaymentRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMAProcessExternalPaymentRequest.m; path = Classes/Request/YMAProcessExternalPaymentRequest.m; sourceTree = SOURCE_ROOT; };
 		8BFF20FC566A3854252E808A /* YMABalanceDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMABalanceDetails.m; sourceTree = "<group>"; };
+		8BFF211276DDCE6D2B921131 /* YMAIncomingTransferAcceptRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAIncomingTransferAcceptRequest.h; sourceTree = SOURCE_ROOT; };
 		8BFF211BFE1D637546E70B8D /* YMAPaymentResultInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAPaymentResultInfo.m; sourceTree = "<group>"; };
 		8BFF2147199C0B51AC8ADAE4 /* YMAMoneySource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAMoneySource.h; sourceTree = "<group>"; };
 		8BFF220B53BA9A164CAA13A3 /* YMAAvatar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAAvatar.m; sourceTree = "<group>"; };
@@ -191,10 +208,12 @@
 		8BFF2355AFDBC4EE55694230 /* YMAExternalPaymentRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMAExternalPaymentRequest.m; path = Classes/Request/YMAExternalPaymentRequest.m; sourceTree = SOURCE_ROOT; };
 		8BFF2392162339352AEF8560 /* YMAProcessExternalPaymentResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMAProcessExternalPaymentResponse.h; path = Classes/Response/YMAProcessExternalPaymentResponse.h; sourceTree = SOURCE_ROOT; };
 		8BFF24147E42C30AF6A216D7 /* YMAExternalPaymentInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAExternalPaymentInfo.m; sourceTree = "<group>"; };
+		8BFF24D4EF5A7B7847B80D1A /* YMAIncomingTransferRejectRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAIncomingTransferRejectRequest.m; sourceTree = SOURCE_ROOT; };
 		8BFF251C997D83C7C909A548 /* YMAAvatar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAAvatar.h; sourceTree = "<group>"; };
 		8BFF252947D95AE8C4521E81 /* YMAOperationDetailsResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMAOperationDetailsResponse.m; path = Classes/Response/YMAOperationDetailsResponse.m; sourceTree = SOURCE_ROOT; };
 		8BFF260DCBDCE8B93B526B91 /* YMAWalletSourceGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAWalletSourceGroup.m; sourceTree = "<group>"; };
 		8BFF2651BB40614B08F0EA81 /* YMAExternalPaymentResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMAExternalPaymentResponse.m; path = Classes/Response/YMAExternalPaymentResponse.m; sourceTree = SOURCE_ROOT; };
+		8BFF26737EEA7F272685A522 /* YMAIncomingTransferAcceptRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAIncomingTransferAcceptRequest.m; sourceTree = SOURCE_ROOT; };
 		8BFF26B74AADF64E399C5FB0 /* YMAWalletSourceGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAWalletSourceGroup.h; sourceTree = "<group>"; };
 		8BFF26C28CA55AB0B45EAF2E /* YMAAsc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAAsc.h; sourceTree = "<group>"; };
 		8BFF27308D5D7F3F6BDFD94C /* YMACardsSourceGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMACardsSourceGroup.m; sourceTree = "<group>"; };
@@ -211,6 +230,7 @@
 		8BFF2A5D8B81F1BFE8FB9295 /* YMAExternalPaymentInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAExternalPaymentInfo.h; sourceTree = "<group>"; };
 		8BFF2AC3DB74FF9E507A51F3 /* YMAHostsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAHostsProvider.h; sourceTree = "<group>"; };
 		8BFF2AFBFA8940409B606723 /* YMAOperationDetailsResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMAOperationDetailsResponse.h; path = Classes/Response/YMAOperationDetailsResponse.h; sourceTree = SOURCE_ROOT; };
+		8BFF2B2F211281B135D90447 /* YMAIncomingTransferRejectRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAIncomingTransferRejectRequest.h; sourceTree = SOURCE_ROOT; };
 		8BFF2B5D4A589E5C180D6B2B /* YMAAPISession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAAPISession.m; sourceTree = "<group>"; };
 		8BFF2B770BDF473D870BF6C0 /* YMADigitalGoods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMADigitalGoods.h; sourceTree = "<group>"; };
 		8BFF2B78CE66CA13661549AC /* YMACardsSourceGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMACardsSourceGroup.h; sourceTree = "<group>"; };
@@ -218,11 +238,15 @@
 		8BFF2C1961C4D2869E191D58 /* YMAMoneySources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAMoneySources.m; sourceTree = "<group>"; };
 		8BFF2C2E972359A9A4899BEE /* YMAGoods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAGoods.h; sourceTree = "<group>"; };
 		8BFF2C7A1FD664BF6CEF70D0 /* YMAMoneySource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAMoneySource.m; sourceTree = "<group>"; };
+		8BFF2C8A1E05DE650F9F29C7 /* YMAIncomingTransferRejectResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAIncomingTransferRejectResponse.m; sourceTree = SOURCE_ROOT; };
+		8BFF2D6C6F10D515D64F51FB /* YMAIncomingTransferRejectResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAIncomingTransferRejectResponse.h; sourceTree = SOURCE_ROOT; };
 		8BFF2DC406E943E144ECC1F7 /* YMAHistoryOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAHistoryOperation.m; sourceTree = "<group>"; };
 		8BFF2E05AB79E8DA5846E199 /* YMAAsc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAAsc.m; sourceTree = "<group>"; };
 		8BFF2E3D8D565E4FB3D836B7 /* YMADigitalGoods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMADigitalGoods.m; sourceTree = "<group>"; };
+		8BFF2E5439B0C0E844F99B4A /* YMAIncomingTransferAcceptResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAIncomingTransferAcceptResponse.h; sourceTree = SOURCE_ROOT; };
 		8BFF2E6CD4060300AADD7F0E /* YMABaseSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMABaseSession.h; sourceTree = "<group>"; };
 		8BFF2E7A681EE978480A5112 /* YMAHostsProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAHostsProvider.m; sourceTree = "<group>"; };
+		8BFF2EA4DCED7ED9DBE181A1 /* YMAIncomingTransferAcceptResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAIncomingTransferAcceptResponse.m; sourceTree = SOURCE_ROOT; };
 		8BFF2EB8DE014054BC28F1AA /* YMAOperationDetailsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMAOperationDetailsRequest.h; path = Classes/Request/YMAOperationDetailsRequest.h; sourceTree = SOURCE_ROOT; };
 		8BFF2F8ACD2D1C417C860336 /* YMABasePaymentProcessResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMABasePaymentProcessResponse.h; path = Classes/Response/YMABasePaymentProcessResponse.h; sourceTree = SOURCE_ROOT; };
 		8BFF2F991CE1638D7065AC80 /* YMAMoneySources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAMoneySources.h; sourceTree = "<group>"; };
@@ -413,6 +437,10 @@
 				608F75AC192E582600F45D7F /* YMAPaymentRequest.m */,
 				608F75AD192E582600F45D7F /* YMAProcessPaymentRequest.h */,
 				608F75AE192E582600F45D7F /* YMAProcessPaymentRequest.m */,
+				8BFF26737EEA7F272685A522 /* YMAIncomingTransferAcceptRequest.m */,
+				8BFF211276DDCE6D2B921131 /* YMAIncomingTransferAcceptRequest.h */,
+				8BFF24D4EF5A7B7847B80D1A /* YMAIncomingTransferRejectRequest.m */,
+				8BFF2B2F211281B135D90447 /* YMAIncomingTransferRejectRequest.h */,
 			);
 			name = PaymentProcess;
 			sourceTree = "<group>";
@@ -483,6 +511,10 @@
 				608F759E192E57D100F45D7F /* YMAProcessPaymentResponse.m */,
 				8BFF29EBE381114C54416F67 /* YMABasePaymentProcessResponse.m */,
 				8BFF2F8ACD2D1C417C860336 /* YMABasePaymentProcessResponse.h */,
+				8BFF2EA4DCED7ED9DBE181A1 /* YMAIncomingTransferAcceptResponse.m */,
+				8BFF2E5439B0C0E844F99B4A /* YMAIncomingTransferAcceptResponse.h */,
+				8BFF2C8A1E05DE650F9F29C7 /* YMAIncomingTransferRejectResponse.m */,
+				8BFF2D6C6F10D515D64F51FB /* YMAIncomingTransferRejectResponse.h */,
 			);
 			name = PaymentProcess;
 			sourceTree = "<group>";
@@ -536,6 +568,10 @@
 				8BFF2BECBE8D4EFAEB8BE8CD /* YMAOperationDetailsRequest.h in Headers */,
 				8BFF2ABB534BF6BBC842441F /* YMAOperationDetailsResponse.h in Headers */,
 				2DE79A3FE58C4A31226E800F /* YMAOperationDetails.h in Headers */,
+				8BFF23C5BE81C3AB82244AA7 /* YMAIncomingTransferAcceptRequest.h in Headers */,
+				8BFF2C12779FA0E2682EF58F /* YMAIncomingTransferAcceptResponse.h in Headers */,
+				8BFF2AF696A688EA5682143B /* YMAIncomingTransferRejectRequest.h in Headers */,
+				8BFF2594B6F8526016591981 /* YMAIncomingTransferRejectResponse.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,6 +597,10 @@
 				8BFF26CB0804A80950772D7C /* YMAOperationDetailsRequest.h in Headers */,
 				8BFF25750A38972CF24BCD5D /* YMAOperationDetailsResponse.h in Headers */,
 				2DE7925D16032BD0AB5F8291 /* YMAOperationDetails.h in Headers */,
+				8BFF252FDAAE33491A971393 /* YMAIncomingTransferAcceptRequest.h in Headers */,
+				8BFF2EFC24E0222713C09614 /* YMAIncomingTransferAcceptResponse.h in Headers */,
+				8BFF272C331693DA402A77EA /* YMAIncomingTransferRejectRequest.h in Headers */,
+				8BFF2B0E54FDB50368CC7472 /* YMAIncomingTransferRejectResponse.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -686,6 +726,10 @@
 				8BFF25C52416BA97138809DF /* YMAOperationDetailsRequest.m in Sources */,
 				8BFF21F7815E685639D053FD /* YMAOperationDetailsResponse.m in Sources */,
 				2DE7992C873452AA3FC5DC43 /* YMAOperationDetails.m in Sources */,
+				8BFF292CD5F48117C3ECDFCA /* YMAIncomingTransferAcceptRequest.m in Sources */,
+				8BFF2846428033239E70E70A /* YMAIncomingTransferAcceptResponse.m in Sources */,
+				8BFF20D14CA478FD893911FE /* YMAIncomingTransferRejectRequest.m in Sources */,
+				8BFF2A10B3747E4C7BE0878D /* YMAIncomingTransferRejectResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -711,6 +755,10 @@
 				8BFF25580586CC7D56BE9E30 /* YMAOperationDetailsRequest.m in Sources */,
 				8BFF2FB187B8B50BD366D10E /* YMAOperationDetailsResponse.m in Sources */,
 				2DE79C582CC9E728011BC5E4 /* YMAOperationDetails.m in Sources */,
+				8BFF22EE68A8AD3881B936C8 /* YMAIncomingTransferAcceptRequest.m in Sources */,
+				8BFF221741E24DFD63831B85 /* YMAIncomingTransferAcceptResponse.m in Sources */,
+				8BFF2DC37254F1205A7946DB /* YMAIncomingTransferRejectRequest.m in Sources */,
+				8BFF21682E2D0F2E617F77F7 /* YMAIncomingTransferRejectResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
