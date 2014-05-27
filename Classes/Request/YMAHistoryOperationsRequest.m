@@ -5,7 +5,6 @@
 
 #import "YMAHistoryOperationsRequest.h"
 #import "YMAHostsProvider.h"
-#import "YMAHistoryOperationsResponse.h"
 
 static NSString *const kParameterType = @"type";
 static NSString *const kKeyTypePayment = @"payment";
@@ -63,7 +62,7 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
 
 - (NSDictionary *)parameters {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"YYYY-MM-DDThh:mm:ss.fZZZZZ"];
+    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"];
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
 
     NSMutableString *typeString = [NSMutableString stringWithCapacity:0];
@@ -73,18 +72,18 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
     else if (self.filter & YMAHistoryOperationFilterDeposition)
         [typeString appendString:kKeyTypeDeposition];
 
-    [dictionary setObject:typeString forKey:kParameterType];
-    [dictionary setObject:self.label forKey:kParameterLabel];
+    [dictionary setValue:typeString.length ? typeString : nil forKey:kParameterType];
+    [dictionary setValue:self.label forKey:kParameterLabel];
 
     NSString *fromString = [formatter stringFromDate:self.from];
-    [dictionary setObject:fromString forKey:kParameterFrom];
+    [dictionary setValue:fromString forKey:kParameterFrom];
 
     NSString *tillString = [formatter stringFromDate:self.till];
-    [dictionary setObject:tillString forKey:kParameterTill];
+    [dictionary setValue:tillString forKey:kParameterTill];
 
-    [dictionary setObject:self.startRecord forKey:kParameterStartRecord];
-    [dictionary setObject:[NSString stringWithFormat:@"%lu", self.records] forKey:kParameterRecords];
-    [dictionary setObject:self.details ? @"true" : @"false" forKey:kParameterDetails];
+    [dictionary setValue:self.startRecord forKey:kParameterStartRecord];
+    [dictionary setValue:[NSString stringWithFormat:@"%lu", (unsigned long)self.records] forKey:kParameterRecords];
+    [dictionary setValue:self.details ? @"true" : @"false" forKey:kParameterDetails];
 
     return dictionary;
 }

@@ -8,7 +8,6 @@
 
 @class YMAOperationDetails;
 
-
 @interface YMAOperationDetailsResponse : YMABaseResponse
 
 @property(nonatomic, strong, readonly) YMAOperationDetails *operationDetails;

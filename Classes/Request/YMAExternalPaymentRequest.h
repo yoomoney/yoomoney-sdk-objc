@@ -5,6 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import "YMABaseRequest.h"
+#import "YMAExternalPaymentResponse.h"
 
 ///
 /// Payment request. First phase of payment is required to obtain payment info (YMAExternalPaymentInfo)

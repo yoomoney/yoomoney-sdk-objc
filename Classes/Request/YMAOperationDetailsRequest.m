@@ -5,7 +5,6 @@
 
 #import "YMAOperationDetailsRequest.h"
 #import "YMAHostsProvider.h"
-#import "YMAOperationDetailsResponse.h"
 
 static NSString *const kParameterOperationId = @"operation_id";
 static NSString *const kParameterFavouriteId = @"favourite_id";
@@ -58,9 +57,9 @@ static NSString *const kUrlOperationDetails = @"api/operation-details";
 
 - (NSDictionary *)parameters {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setObject:self.operationId forKey:kParameterOperationId];
-    [dictionary setObject:self.favouriteId forKey:kParameterFavouriteId];
-    [dictionary setObject:self.requestRepeatInfo ? @"true" : @"false" forKey:kParameterRequestRepeatInfo];
+    [dictionary setValue:self.operationId forKey:kParameterOperationId];
+    [dictionary setValue:self.favouriteId forKey:kParameterFavouriteId];
+    [dictionary setValue:self.requestRepeatInfo ? @"true" : @"false" forKey:kParameterRequestRepeatInfo];
 
     return dictionary;
 }

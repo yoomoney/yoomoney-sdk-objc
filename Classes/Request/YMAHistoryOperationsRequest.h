@@ -5,6 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import "YMABaseRequest.h"
+#import "YMAHistoryOperationsResponse.h"
 
 typedef NS_ENUM(NSUInteger, YMAHistoryOperationFilter) {
     YMAHistoryOperationFilterUnknown = 0,

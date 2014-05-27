@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 //
-// All-in-one import for the Yandex.Money CPS iOS SDK
+// All-in-one import for the Yandex.Money External Payment SDK
 
 #import "YMAExternalPaymentSession.h"
 #import "YMAAsc.h"
@@ -14,9 +14,7 @@
 #import "YMAExternalPaymentInfo.h"
 #import "YMAConstants.h"
 #import "YMABaseRequest.h"
-#import "YMABasePaymentProcessResponse.h"
 #import "YMAExternalPaymentRequest.h"
 #import "YMAProcessExternalPaymentRequest.h"
-#import "YMAExternalPaymentResponse.h"
-#import "YMAProcessExternalPaymentResponse.h"
+
 

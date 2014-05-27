@@ -4,7 +4,6 @@
 //
 
 #import "YMAExternalPaymentRequest.h"
-#import "YMAExternalPaymentResponse.h"
 #import "YMAHostsProvider.h"
 
 static NSString *const kUrlExternalPayment = @"api/request-external-payment";

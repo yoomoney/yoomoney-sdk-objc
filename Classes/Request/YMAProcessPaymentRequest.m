@@ -6,7 +6,6 @@
 #import "YMAProcessPaymentRequest.h"
 #import "YMAMoneySource.h"
 #import "YMAHostsProvider.h"
-#import "YMAProcessPaymentResponse.h"
 
 static NSString *const kParameterRequestId = @"request_id";
 static NSString *const kParameterMoneySource = @"money_source";
@@ -59,15 +58,15 @@ static NSString *const kUrlProcessPayment = @"api/process-payment";
 
 - (NSDictionary *)parameters {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setObject:self.requestId forKey:kParameterRequestId];
-    [dictionary setObject:self.csc forKey:kParameterCsc];
-    [dictionary setObject:self.successUri forKey:kParameterExtAuthSuccessUri];
-    [dictionary setObject:self.failUri forKey:kParameterExtAuthFailUri];
+    [dictionary setValue:self.requestId forKey:kParameterRequestId];
+    [dictionary setValue:self.csc forKey:kParameterCsc];
+    [dictionary setValue:self.successUri forKey:kParameterExtAuthSuccessUri];
+    [dictionary setValue:self.failUri forKey:kParameterExtAuthFailUri];
 
     if (self.moneySource.type == YMAMoneySourceWallet)
-        [dictionary setObject:@"wallet" forKey:kParameterMoneySource];
+        [dictionary setValue:@"wallet" forKey:kParameterMoneySource];
     else if (self.moneySource.type == YMAMoneySourcePaymentCard)
-        [dictionary setObject:[NSString stringWithFormat:@"card_%@", self.moneySource.moneySourceToken] forKey:kParameterMoneySource];
+        [dictionary setValue:[NSString stringWithFormat:@"card_%@", self.moneySource.moneySourceToken] forKey:kParameterMoneySource];
 
     return dictionary;
 }

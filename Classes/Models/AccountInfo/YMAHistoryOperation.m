@@ -78,6 +78,7 @@ static NSString *const kKeyHistoryOperationTypeIncomingTransferProtected = @"inc
     return YMAHistoryOperationTypeUnknown;
 }
 
+
 #pragma mark -
 #pragma mark *** Overridden methods ***
 #pragma mark -

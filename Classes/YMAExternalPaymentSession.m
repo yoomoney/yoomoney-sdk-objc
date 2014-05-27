@@ -5,7 +5,6 @@
 
 #import "YMAExternalPaymentSession.h"
 #import "YMAHostsProvider.h"
-#import "YMAParametersPosting.h"
 
 static NSString *const kInstanceUrl = @"api/instance-id";
 

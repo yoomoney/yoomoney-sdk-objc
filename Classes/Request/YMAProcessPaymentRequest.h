@@ -5,6 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import "YMABaseRequest.h"
+#import "YMAProcessPaymentResponse.h"
 
 @class YMAMoneySource;
 

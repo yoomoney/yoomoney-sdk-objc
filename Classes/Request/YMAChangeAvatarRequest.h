@@ -5,6 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import "YMABaseRequest.h"
+#import "YMAChangeAvatarResponse.h"
 
 @interface YMAChangeAvatarRequest : YMABaseRequest <YMADataPosting>
 

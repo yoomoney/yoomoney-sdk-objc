@@ -56,12 +56,9 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
         NSString *avatarUrlString = [avatarModel objectForKey:kParameterAvatarUrl];
         NSURL *avatarUrl = [NSURL URLWithString:avatarUrlString];
         NSString *timeStampString = [avatarModel objectForKey:kParameterAvatarTs];
-
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"YYYY-MM-DDThh:mm:ss.fZZZZZ"];
-        //[formatter setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/Moscow"]];
+        [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"];
         NSDate *timeStamp = [formatter dateFromString:timeStampString];
-
         avatar = [YMAAvatar avatarWithUrl:avatarUrl timeStamp:timeStamp];
     }
 

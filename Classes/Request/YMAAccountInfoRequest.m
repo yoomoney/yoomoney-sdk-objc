@@ -5,7 +5,6 @@
 
 #import "YMAAccountInfoRequest.h"
 #import "YMAHostsProvider.h"
-#import "YMAAccountInfoResponse.h"
 
 static NSString *const kUrlAccountInfo = @"api/account-info";
 

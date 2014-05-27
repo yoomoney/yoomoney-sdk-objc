@@ -4,7 +4,6 @@
 //
 
 #import "YMAProcessExternalPaymentRequest.h"
-#import "YMAProcessExternalPaymentResponse.h"
 #import "YMAHostsProvider.h"
 
 static NSString *const kUrlProcessExternalPayment = @"api/process-external-payment";
@@ -63,19 +62,19 @@ static NSString *const kParameterCsc = @"csc";
 
 - (NSDictionary *)parameters {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setObject:self.requestId forKey:kParameterRequestId];
-    [dictionary setObject:self.successUri forKey:kParameterSuccessUri];
-    [dictionary setObject:self.failUri forKey:kParameterFailUri];
+    [dictionary setValue:self.requestId forKey:kParameterRequestId];
+    [dictionary setValue:self.successUri forKey:kParameterSuccessUri];
+    [dictionary setValue:self.failUri forKey:kParameterFailUri];
 
     if (!self.moneySourceToken) {
         if (self.requestToken)
-            [dictionary setObject:@"true" forKey:kParameterRequestToken];
+            [dictionary setValue:@"true" forKey:kParameterRequestToken];
 
         return dictionary;
     }
 
-    [dictionary setObject:self.moneySourceToken forKeyedSubscript:kParameterMoneySourceToken];
-    [dictionary setObject:self.csc forKeyedSubscript:kParameterCsc];
+    [dictionary setValue:self.moneySourceToken forKey:kParameterMoneySourceToken];
+    [dictionary setValue:self.csc forKey:kParameterCsc];
 
     return dictionary;
 }

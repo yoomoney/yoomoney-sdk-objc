@@ -51,7 +51,7 @@ NSString *const kValueParameterResponseType = @"code";
     return request;
 }
 
-- (BOOL)isRequest:(NSURLRequest *)request redirectToUrl:(NSString *)redirectUrl authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo error:(NSError * __autoreleasing *)error {
+- (BOOL)isRequest:(NSURLRequest *)request toRedirectUrl:(NSString *)redirectUrl authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo error:(NSError * __autoreleasing *)error {
     NSURL *requestUrl = request.URL;
 
     if (!requestUrl)

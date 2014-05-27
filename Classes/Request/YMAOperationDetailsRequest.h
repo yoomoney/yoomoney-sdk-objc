@@ -5,7 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import "YMABaseRequest.h"
-
+#import "YMAOperationDetailsResponse.h"
 
 @interface YMAOperationDetailsRequest : YMABaseRequest <YMAParametersPosting>
 

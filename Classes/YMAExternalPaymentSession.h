@@ -3,7 +3,6 @@
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "YMABaseRequest.h"
 #import "YMABaseSession.h"
 

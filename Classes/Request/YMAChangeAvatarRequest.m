@@ -5,7 +5,6 @@
 
 #import "YMAChangeAvatarRequest.h"
 #import "YMAHostsProvider.h"
-#import "YMAChangeAvatarResponse.h"
 
 static NSString *const kUrlAvatar = @"api/avatar-set";
 
