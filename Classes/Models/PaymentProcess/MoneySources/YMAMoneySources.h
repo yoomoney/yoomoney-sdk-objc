@@ -4,11 +4,9 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@class YMAWalletSourceGroup;
-@class YMAMoneySource;
-@class YMACardsSourceGroup;
-
+#import "YMAWalletSourceGroup.h"
+#import "YMAMoneySource.h"
+#import "YMACardsSourceGroup.h"
 
 @interface YMAMoneySources : NSObject
 

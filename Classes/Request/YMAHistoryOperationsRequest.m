@@ -46,7 +46,7 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
     return self;
 }
 
-+ (instancetype)operationHistoryWithFilter:(YMAHistoryOperationFilter)filter label:(NSString *)label from:(NSDate *)from till:(NSDate *)till startRecord:(NSString *)startRecord records:(NSUInteger)records details:(BOOL)details; {
++ (instancetype)operationHistoryWithFilter:(YMAHistoryOperationFilter)filter label:(NSString *)label from:(NSDate *)from till:(NSDate *)till startRecord:(NSString *)startRecord records:(NSUInteger)records {
     return [[YMAHistoryOperationsRequest alloc] initWithFilter:filter label:label from:from till:till startRecord:startRecord records:records];
 }
 

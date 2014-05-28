@@ -42,7 +42,7 @@ static NSString *const kUrlProcessPayment = @"api/process-payment";
     return self;
 }
 
-- (instancetype)processPaymentRequestId:(NSString *)requestId moneySource:(YMAMoneySource *)moneySource csc:(NSString *)csc successUri:(NSString *)successUri failUri:(NSString *)failUri {
++ (instancetype)processPaymentRequestId:(NSString *)requestId moneySource:(YMAMoneySource *)moneySource csc:(NSString *)csc successUri:(NSString *)successUri failUri:(NSString *)failUri {
     return [[YMAProcessPaymentRequest alloc] initWithRequestId:requestId moneySource:moneySource csc:csc successUri:successUri failUri:failUri];
 }
 

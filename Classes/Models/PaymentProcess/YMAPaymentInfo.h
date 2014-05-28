@@ -5,8 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import "YMAAccountInfo.h"
-
-@class YMAMoneySources;
+#import "YMAMoneySources.h"
 
 @interface YMAPaymentInfo : NSObject
 
