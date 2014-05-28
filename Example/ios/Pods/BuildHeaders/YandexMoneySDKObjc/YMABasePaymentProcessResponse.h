@@ -1,0 +1,1 @@
+../../YandexMoneySDKObjc/Classes/Response/YMABasePaymentProcessResponse.h

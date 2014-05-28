@@ -1,0 +1,1 @@
+../../YandexMoneySDKObjc/Classes/YMABaseSession.h

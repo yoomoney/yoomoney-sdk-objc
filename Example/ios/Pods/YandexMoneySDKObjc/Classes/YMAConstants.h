@@ -2,7 +2,7 @@
 //  YMAConstants.h
 //  YandexMoneySDK
 //
-//  Created by mertvetcov on 29.01.14.
+//  Created by Alexander Mertvetsov on 29.01.14.
 //  Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 //
@@ -25,6 +25,10 @@ extern NSString *const kP2PPaymentParameterAmountDue;
 
 // Unknown error code.
 extern NSString *const kErrorKeyUnknown;
+
+extern NSString *const kParameterRedirectUri;
+
+extern NSString *const kParameterScope;
 
 
 

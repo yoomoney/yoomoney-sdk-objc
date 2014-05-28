@@ -1,570 +1,3276 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		02DB453BC5FA4EEEBDFA91AC /* YMASession.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B39863D3FCF4588A2FC2CE3 /* YMASession.h */; };
-		1A439707C96F4A0CB1942620 /* YMAExternalPaymentRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = DDEBD66F68F24125AD886889 /* YMAExternalPaymentRequest.h */; };
-		1ACB5AFB56F148E28635B274 /* YMABaseResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 77767AECB2824D9B9B868EBC /* YMABaseResponse.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		23C670BEDDDB4E32A87C2D7B /* YMAConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 769271D9E9AB481DA38D82CC /* YMAConnection.h */; };
-		342085605DCD4A8FA13E8EFF /* YMABaseRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F9C05BBDF054D8CB4BFF1BF /* YMABaseRequest.h */; };
-		35794021FA544AEE9A5FF3FD /* YMAConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 86FA80F010174955870A8253 /* YMAConstants.h */; };
-		420D338FEF94498B947486CE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7B2AC4F033F41A2BEAC9C5C /* Foundation.framework */; };
-		421A8CE4CE4C405B8A76ECC6 /* YMAAsc.h in Headers */ = {isa = PBXBuildFile; fileRef = 043A83781C25473A92B765E4 /* YMAAsc.h */; };
-		49F618B8230A42B996C16308 /* YMAConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = DB420A76872E4FA391A10EA7 /* YMAConstants.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		4A3899CAD33249ADAF8843C6 /* Pods-YandexMoneySDKObjc-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BCFAF409B9994665A0E1CDD1 /* Pods-YandexMoneySDKObjc-dummy.m */; };
-		4F35631B510949DEAA81367E /* YMAMoneySource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D774262EAEA4D0FBD1F88FA /* YMAMoneySource.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		50FDD5BF2B454A2DAF411F52 /* YMAProcessExternalPaymentRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F16AFC7ACCA4DDA876F7C5D /* YMAProcessExternalPaymentRequest.h */; };
-		5E132E92187143FB9FA898F2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7B2AC4F033F41A2BEAC9C5C /* Foundation.framework */; };
-		643AB2D961894F9E8617C9D7 /* YMAExternalPaymentRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3868F439A5934E85B49A1C56 /* YMAExternalPaymentRequest.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		737F7BDD744B4F889A55AAEC /* YMAMoneySource.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ABDA7788B2243BEA22C8B00 /* YMAMoneySource.h */; };
-		74865ACED31E4C85B0B87520 /* YMABaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC9B485268343578DA1FE2B /* YMABaseRequest.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		846D4892B9FF467EB1A69989 /* YMAExternalPaymentResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = CE3265D385574F3899CAAD01 /* YMAExternalPaymentResponse.h */; };
-		86F3BBEE31FF4236B39D8CB9 /* YMAProcessExternalPaymentResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 947350873B06475F8940CE92 /* YMAProcessExternalPaymentResponse.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		86F46B50B55A4AA5B439D57E /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6A21DCE1044731A9F81BD8 /* Pods-dummy.m */; };
-		8DC284AF0F764656AF04853E /* ymcpssdk.h in Headers */ = {isa = PBXBuildFile; fileRef = 86BACF66CFDE416C884A14A9 /* ymcpssdk.h */; };
-		8F96BD4B94404629A6863572 /* YMAAsc.m in Sources */ = {isa = PBXBuildFile; fileRef = 514CA6F0A3BE4F59B081422E /* YMAAsc.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		982C116397BF48ECAAEC560C /* YMAPaymentRequestInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = E25649203F9741CEADDD4744 /* YMAPaymentRequestInfo.h */; };
-		C9ACC9FCC4AE4A0080B7C497 /* YMAProcessExternalPaymentResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DAE3F2C53B74731B3F36714 /* YMAProcessExternalPaymentResponse.h */; };
-		ECA4FBBF31754A88AA93D9F2 /* YMAExternalPaymentResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 668303BA9E644D4D9E54FF5F /* YMAExternalPaymentResponse.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		F1C6B09A4DBB4994B79277DD /* YMASession.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1B1456C92649288A45B4C0 /* YMASession.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		F2780478A18E4743BE9A350E /* YMABaseResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = FE35F1D12B3B42E5B64BEF40 /* YMABaseResponse.h */; };
-		F505C590165A4750B8D0B397 /* YMAProcessExternalPaymentRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F60C894D3E44393BD1E0DC5 /* YMAProcessExternalPaymentRequest.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		F84F7C16F1BA42FD9FC5BA27 /* libPods-YandexMoneySDKObjc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CF57DA4381B4276B1CD3508 /* libPods-YandexMoneySDKObjc.a */; };
-		FBE295E52EA948E6A016B125 /* YMAConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AD47F3A5524C38871F0780 /* YMAConnection.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		FF80A419C29C4CA382071E35 /* YMAPaymentRequestInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9A1DA0AD64903B8E7C8AD /* YMAPaymentRequestInfo.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		D6E4423A9ED54142B77B323E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 43CD91DCCA294D5281E7E3A5 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C1FE3BB8E604432BAD424DF2;
-			remoteInfo = "Pods-YandexMoneySDKObjc";
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXFileReference section */
-		043A83781C25473A92B765E4 /* YMAAsc.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YMAAsc.h; path = Classes/YMAAsc.h; sourceTree = "<group>"; };
-		0B39863D3FCF4588A2FC2CE3 /* YMASession.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YMASession.h; path = Classes/YMASession.h; sourceTree = "<group>"; };
-		1A347A1EB3B4469F87AAB032 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		2DE9A1DA0AD64903B8E7C8AD /* YMAPaymentRequestInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YMAPaymentRequestInfo.m; path = Classes/YMAPaymentRequestInfo.m; sourceTree = "<group>"; };
-		3868F439A5934E85B49A1C56 /* YMAExternalPaymentRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YMAExternalPaymentRequest.m; path = Classes/Request/YMAExternalPaymentRequest.m; sourceTree = "<group>"; };
-		3DAE3F2C53B74731B3F36714 /* YMAProcessExternalPaymentResponse.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YMAProcessExternalPaymentResponse.h; path = Classes/Response/YMAProcessExternalPaymentResponse.h; sourceTree = "<group>"; };
-		3F16AFC7ACCA4DDA876F7C5D /* YMAProcessExternalPaymentRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YMAProcessExternalPaymentRequest.h; path = Classes/Request/YMAProcessExternalPaymentRequest.h; sourceTree = "<group>"; };
-		45AD47F3A5524C38871F0780 /* YMAConnection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YMAConnection.m; path = Classes/YMAConnection.m; sourceTree = "<group>"; };
-		514CA6F0A3BE4F59B081422E /* YMAAsc.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YMAAsc.m; path = Classes/YMAAsc.m; sourceTree = "<group>"; };
-		5F60C894D3E44393BD1E0DC5 /* YMAProcessExternalPaymentRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YMAProcessExternalPaymentRequest.m; path = Classes/Request/YMAProcessExternalPaymentRequest.m; sourceTree = "<group>"; };
-		648A0B25A1DD41359099654D /* Pods-YandexMoneySDKObjc-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-YandexMoneySDKObjc-prefix.pch"; sourceTree = "<group>"; };
-		6632907846604DED83BECA6B /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
-		668303BA9E644D4D9E54FF5F /* YMAExternalPaymentResponse.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YMAExternalPaymentResponse.m; path = Classes/Response/YMAExternalPaymentResponse.m; sourceTree = "<group>"; };
-		6D774262EAEA4D0FBD1F88FA /* YMAMoneySource.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YMAMoneySource.m; path = Classes/YMAMoneySource.m; sourceTree = "<group>"; };
-		6F9C05BBDF054D8CB4BFF1BF /* YMABaseRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YMABaseRequest.h; path = Classes/Request/YMABaseRequest.h; sourceTree = "<group>"; };
-		769271D9E9AB481DA38D82CC /* YMAConnection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YMAConnection.h; path = Classes/YMAConnection.h; sourceTree = "<group>"; };
-		77767AECB2824D9B9B868EBC /* YMABaseResponse.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YMABaseResponse.m; path = Classes/Response/YMABaseResponse.m; sourceTree = "<group>"; };
-		81B12209C85B47FCAA7693C7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.xcconfig; sourceTree = "<group>"; };
-		86BACF66CFDE416C884A14A9 /* ymcpssdk.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ymcpssdk.h; path = Classes/ymcpssdk.h; sourceTree = "<group>"; };
-		86FA80F010174955870A8253 /* YMAConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YMAConstants.h; path = Classes/YMAConstants.h; sourceTree = "<group>"; };
-		8CF57DA4381B4276B1CD3508 /* libPods-YandexMoneySDKObjc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YandexMoneySDKObjc.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		947350873B06475F8940CE92 /* YMAProcessExternalPaymentResponse.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YMAProcessExternalPaymentResponse.m; path = Classes/Response/YMAProcessExternalPaymentResponse.m; sourceTree = "<group>"; };
-		9ABDA7788B2243BEA22C8B00 /* YMAMoneySource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YMAMoneySource.h; path = Classes/YMAMoneySource.h; sourceTree = "<group>"; };
-		9DC9B485268343578DA1FE2B /* YMABaseRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YMABaseRequest.m; path = Classes/Request/YMABaseRequest.m; sourceTree = "<group>"; };
-		9E5EC754453547AE9A2D9E1A /* Pods-YandexMoneySDKObjc-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-YandexMoneySDKObjc-Private.xcconfig"; sourceTree = "<group>"; };
-		A6970E8A324C46C09EC7B15F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		B54176E31FF64F418571E5A6 /* Pods-YandexMoneySDKObjc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-YandexMoneySDKObjc.xcconfig"; sourceTree = "<group>"; };
-		BB6A21DCE1044731A9F81BD8 /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
-		BCFAF409B9994665A0E1CDD1 /* Pods-YandexMoneySDKObjc-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-YandexMoneySDKObjc-dummy.m"; sourceTree = "<group>"; };
-		C7301C95CF7C4CD2BDE015E2 /* Pods-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-environment.h"; sourceTree = "<group>"; };
-		C7B2AC4F033F41A2BEAC9C5C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		CE3265D385574F3899CAAD01 /* YMAExternalPaymentResponse.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YMAExternalPaymentResponse.h; path = Classes/Response/YMAExternalPaymentResponse.h; sourceTree = "<group>"; };
-		DB420A76872E4FA391A10EA7 /* YMAConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YMAConstants.m; path = Classes/YMAConstants.m; sourceTree = "<group>"; };
-		DDEBD66F68F24125AD886889 /* YMAExternalPaymentRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YMAExternalPaymentRequest.h; path = Classes/Request/YMAExternalPaymentRequest.h; sourceTree = "<group>"; };
-		E25649203F9741CEADDD4744 /* YMAPaymentRequestInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YMAPaymentRequestInfo.h; path = Classes/YMAPaymentRequestInfo.h; sourceTree = "<group>"; };
-		ECE68F2D212D49F7A7A4BA7F /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
-		FA772DB331304FDFAC74025C /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
-		FD1B1456C92649288A45B4C0 /* YMASession.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YMASession.m; path = Classes/YMASession.m; sourceTree = "<group>"; };
-		FE35F1D12B3B42E5B64BEF40 /* YMABaseResponse.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YMABaseResponse.h; path = Classes/Response/YMABaseResponse.h; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		6994AE835E1C4B04AA7FEAC2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5E132E92187143FB9FA898F2 /* Foundation.framework in Frameworks */,
-				F84F7C16F1BA42FD9FC5BA27 /* libPods-YandexMoneySDKObjc.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9F40230798C34F149CDECC17 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				420D338FEF94498B947486CE /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		1236CAEFDE3546D0B5271805 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				C7B2AC4F033F41A2BEAC9C5C /* Foundation.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		38E86206D7D3496A86FBA708 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				1A347A1EB3B4469F87AAB032 /* libPods.a */,
-				8CF57DA4381B4276B1CD3508 /* libPods-YandexMoneySDKObjc.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		66D2100EB30C4ECEB5A273DE /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1236CAEFDE3546D0B5271805 /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		82C5E3648FBB4C86BAD5ACF6 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				8EF311331C7841889311DD40 /* YandexMoneySDKObjc */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		8EF311331C7841889311DD40 /* YandexMoneySDKObjc */ = {
-			isa = PBXGroup;
-			children = (
-				043A83781C25473A92B765E4 /* YMAAsc.h */,
-				514CA6F0A3BE4F59B081422E /* YMAAsc.m */,
-				6F9C05BBDF054D8CB4BFF1BF /* YMABaseRequest.h */,
-				9DC9B485268343578DA1FE2B /* YMABaseRequest.m */,
-				FE35F1D12B3B42E5B64BEF40 /* YMABaseResponse.h */,
-				77767AECB2824D9B9B868EBC /* YMABaseResponse.m */,
-				769271D9E9AB481DA38D82CC /* YMAConnection.h */,
-				45AD47F3A5524C38871F0780 /* YMAConnection.m */,
-				86FA80F010174955870A8253 /* YMAConstants.h */,
-				DB420A76872E4FA391A10EA7 /* YMAConstants.m */,
-				DDEBD66F68F24125AD886889 /* YMAExternalPaymentRequest.h */,
-				3868F439A5934E85B49A1C56 /* YMAExternalPaymentRequest.m */,
-				CE3265D385574F3899CAAD01 /* YMAExternalPaymentResponse.h */,
-				668303BA9E644D4D9E54FF5F /* YMAExternalPaymentResponse.m */,
-				9ABDA7788B2243BEA22C8B00 /* YMAMoneySource.h */,
-				6D774262EAEA4D0FBD1F88FA /* YMAMoneySource.m */,
-				E25649203F9741CEADDD4744 /* YMAPaymentRequestInfo.h */,
-				2DE9A1DA0AD64903B8E7C8AD /* YMAPaymentRequestInfo.m */,
-				3F16AFC7ACCA4DDA876F7C5D /* YMAProcessExternalPaymentRequest.h */,
-				5F60C894D3E44393BD1E0DC5 /* YMAProcessExternalPaymentRequest.m */,
-				3DAE3F2C53B74731B3F36714 /* YMAProcessExternalPaymentResponse.h */,
-				947350873B06475F8940CE92 /* YMAProcessExternalPaymentResponse.m */,
-				0B39863D3FCF4588A2FC2CE3 /* YMASession.h */,
-				FD1B1456C92649288A45B4C0 /* YMASession.m */,
-				86BACF66CFDE416C884A14A9 /* ymcpssdk.h */,
-				D2673EE77ABA41A3A3B2C94D /* Support Files */,
-			);
-			name = YandexMoneySDKObjc;
-			path = YandexMoneySDKObjc;
-			sourceTree = "<group>";
-		};
-		90A33AA7B095464697019542 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				81B12209C85B47FCAA7693C7 /* Pods.xcconfig */,
-				ECE68F2D212D49F7A7A4BA7F /* Pods-acknowledgements.markdown */,
-				6632907846604DED83BECA6B /* Pods-acknowledgements.plist */,
-				BB6A21DCE1044731A9F81BD8 /* Pods-dummy.m */,
-				C7301C95CF7C4CD2BDE015E2 /* Pods-environment.h */,
-				FA772DB331304FDFAC74025C /* Pods-resources.sh */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		AEBF5B3D743E456085115CF4 /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				90A33AA7B095464697019542 /* Pods */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		B40F8E1C16564F6C81995A25 = {
-			isa = PBXGroup;
-			children = (
-				A6970E8A324C46C09EC7B15F /* Podfile */,
-				66D2100EB30C4ECEB5A273DE /* Frameworks */,
-				82C5E3648FBB4C86BAD5ACF6 /* Pods */,
-				38E86206D7D3496A86FBA708 /* Products */,
-				AEBF5B3D743E456085115CF4 /* Targets Support Files */,
-			);
-			sourceTree = "<group>";
-		};
-		D2673EE77ABA41A3A3B2C94D /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				B54176E31FF64F418571E5A6 /* Pods-YandexMoneySDKObjc.xcconfig */,
-				9E5EC754453547AE9A2D9E1A /* Pods-YandexMoneySDKObjc-Private.xcconfig */,
-				BCFAF409B9994665A0E1CDD1 /* Pods-YandexMoneySDKObjc-dummy.m */,
-				648A0B25A1DD41359099654D /* Pods-YandexMoneySDKObjc-prefix.pch */,
-			);
-			name = "Support Files";
-			sourceTree = SOURCE_ROOT;
-		};
-/* End PBXGroup section */
-
-/* Begin PBXHeadersBuildPhase section */
-		E7FB007329FD490F94E72F42 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				421A8CE4CE4C405B8A76ECC6 /* YMAAsc.h in Headers */,
-				342085605DCD4A8FA13E8EFF /* YMABaseRequest.h in Headers */,
-				F2780478A18E4743BE9A350E /* YMABaseResponse.h in Headers */,
-				23C670BEDDDB4E32A87C2D7B /* YMAConnection.h in Headers */,
-				35794021FA544AEE9A5FF3FD /* YMAConstants.h in Headers */,
-				1A439707C96F4A0CB1942620 /* YMAExternalPaymentRequest.h in Headers */,
-				846D4892B9FF467EB1A69989 /* YMAExternalPaymentResponse.h in Headers */,
-				737F7BDD744B4F889A55AAEC /* YMAMoneySource.h in Headers */,
-				982C116397BF48ECAAEC560C /* YMAPaymentRequestInfo.h in Headers */,
-				50FDD5BF2B454A2DAF411F52 /* YMAProcessExternalPaymentRequest.h in Headers */,
-				C9ACC9FCC4AE4A0080B7C497 /* YMAProcessExternalPaymentResponse.h in Headers */,
-				02DB453BC5FA4EEEBDFA91AC /* YMASession.h in Headers */,
-				8DC284AF0F764656AF04853E /* ymcpssdk.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
-/* Begin PBXNativeTarget section */
-		4380A4FDB4A546F18451F326 /* Pods */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = ED131E50512148739A572A65 /* Build configuration list for PBXNativeTarget "Pods" */;
-			buildPhases = (
-				7138E55EE5B84ACBAD4AFBAE /* Sources */,
-				6994AE835E1C4B04AA7FEAC2 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A4964B232A7E40D58D19FB7B /* PBXTargetDependency */,
-			);
-			name = Pods;
-			productName = Pods;
-			productReference = 1A347A1EB3B4469F87AAB032 /* libPods.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		C1FE3BB8E604432BAD424DF2 /* Pods-YandexMoneySDKObjc */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 702888C197684B2CB93D7EC2 /* Build configuration list for PBXNativeTarget "Pods-YandexMoneySDKObjc" */;
-			buildPhases = (
-				218993DAF93B46E2AC91625F /* Sources */,
-				9F40230798C34F149CDECC17 /* Frameworks */,
-				E7FB007329FD490F94E72F42 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Pods-YandexMoneySDKObjc";
-			productName = "Pods-YandexMoneySDKObjc";
-			productReference = 8CF57DA4381B4276B1CD3508 /* libPods-YandexMoneySDKObjc.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		43CD91DCCA294D5281E7E3A5 /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastUpgradeCheck = 0510;
-			};
-			buildConfigurationList = 780814852AA84B679597A6B4 /* Build configuration list for PBXProject "Pods" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-			);
-			mainGroup = B40F8E1C16564F6C81995A25;
-			productRefGroup = 38E86206D7D3496A86FBA708 /* Products */;
-			projectDirPath = "";
-			projectReferences = (
-			);
-			projectRoot = "";
-			targets = (
-				4380A4FDB4A546F18451F326 /* Pods */,
-				C1FE3BB8E604432BAD424DF2 /* Pods-YandexMoneySDKObjc */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXSourcesBuildPhase section */
-		218993DAF93B46E2AC91625F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4A3899CAD33249ADAF8843C6 /* Pods-YandexMoneySDKObjc-dummy.m in Sources */,
-				8F96BD4B94404629A6863572 /* YMAAsc.m in Sources */,
-				74865ACED31E4C85B0B87520 /* YMABaseRequest.m in Sources */,
-				1ACB5AFB56F148E28635B274 /* YMABaseResponse.m in Sources */,
-				FBE295E52EA948E6A016B125 /* YMAConnection.m in Sources */,
-				49F618B8230A42B996C16308 /* YMAConstants.m in Sources */,
-				643AB2D961894F9E8617C9D7 /* YMAExternalPaymentRequest.m in Sources */,
-				ECA4FBBF31754A88AA93D9F2 /* YMAExternalPaymentResponse.m in Sources */,
-				4F35631B510949DEAA81367E /* YMAMoneySource.m in Sources */,
-				FF80A419C29C4CA382071E35 /* YMAPaymentRequestInfo.m in Sources */,
-				F505C590165A4750B8D0B397 /* YMAProcessExternalPaymentRequest.m in Sources */,
-				86F3BBEE31FF4236B39D8CB9 /* YMAProcessExternalPaymentResponse.m in Sources */,
-				F1C6B09A4DBB4994B79277DD /* YMASession.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7138E55EE5B84ACBAD4AFBAE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				86F46B50B55A4AA5B439D57E /* Pods-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A4964B232A7E40D58D19FB7B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C1FE3BB8E604432BAD424DF2 /* Pods-YandexMoneySDKObjc */;
-			targetProxy = D6E4423A9ED54142B77B323E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin XCBuildConfiguration section */
-		045C9439908F4996967E14FD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9E5EC754453547AE9A2D9E1A /* Pods-YandexMoneySDKObjc-Private.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				COPY_PHASE_STRIP = NO;
-				DSTROOT = /tmp/xcodeproj.dst;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Pods-YandexMoneySDKObjc-prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		11C79D4448A94A58A8DCE57E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = NO;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				COPY_PHASE_STRIP = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				ONLY_ACTIVE_ARCH = YES;
-				STRIP_INSTALLED_PRODUCT = NO;
-			};
-			name = Debug;
-		};
-		C35FE8AF532D4565BC842B0C /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 81B12209C85B47FCAA7693C7 /* Pods.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				COPY_PHASE_STRIP = YES;
-				DSTROOT = /tmp/xcodeproj.dst;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				OTHER_CFLAGS = (
-					"-DNS_BLOCK_ASSERTIONS=1",
-					"$(inherited)",
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"-DNS_BLOCK_ASSERTIONS=1",
-					"$(inherited)",
-				);
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		CBC1C84E611A4CE982A79FC3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = NO;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				COPY_PHASE_STRIP = NO;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				STRIP_INSTALLED_PRODUCT = NO;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		CD0DF8DBEE474C63A207B539 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9E5EC754453547AE9A2D9E1A /* Pods-YandexMoneySDKObjc-Private.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				COPY_PHASE_STRIP = YES;
-				DSTROOT = /tmp/xcodeproj.dst;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Pods-YandexMoneySDKObjc-prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				OTHER_CFLAGS = (
-					"-DNS_BLOCK_ASSERTIONS=1",
-					"$(inherited)",
-				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"-DNS_BLOCK_ASSERTIONS=1",
-					"$(inherited)",
-				);
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		DDEC0798089F499082CC28AA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 81B12209C85B47FCAA7693C7 /* Pods.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				COPY_PHASE_STRIP = NO;
-				DSTROOT = /tmp/xcodeproj.dst;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		702888C197684B2CB93D7EC2 /* Build configuration list for PBXNativeTarget "Pods-YandexMoneySDKObjc" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				045C9439908F4996967E14FD /* Debug */,
-				CD0DF8DBEE474C63A207B539 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		780814852AA84B679597A6B4 /* Build configuration list for PBXProject "Pods" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				11C79D4448A94A58A8DCE57E /* Debug */,
-				CBC1C84E611A4CE982A79FC3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		ED131E50512148739A572A65 /* Build configuration list for PBXNativeTarget "Pods" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DDEC0798089F499082CC28AA /* Debug */,
-				C35FE8AF532D4565BC842B0C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = 43CD91DCCA294D5281E7E3A5 /* Project object */;
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>archiveVersion</key>
+	<string>1</string>
+	<key>classes</key>
+	<dict/>
+	<key>objectVersion</key>
+	<string>46</string>
+	<key>objects</key>
+	<dict>
+		<key>004EF01E6822454E8E7AF98D</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>ymexternalpaymentsdk.h</string>
+			<key>path</key>
+			<string>Classes/ymexternalpaymentsdk.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>00AECC00FEBB4077BFEFA67B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAChangeAvatarResponse.h</string>
+			<key>path</key>
+			<string>Classes/Response/YMAChangeAvatarResponse.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>01A2175AE33D4D4483954559</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMADigitalGoods.m</string>
+			<key>path</key>
+			<string>Classes/Models/PaymentProcess/YMADigitalGoods.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>01C2ED44F34A49B3B3DEC081</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5BC685FBA60241BAA86DF911</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>06F5CD14C2F148FAA74FE6F0</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAMoneySources.h</string>
+			<key>path</key>
+			<string>Classes/Models/PaymentProcess/MoneySources/YMAMoneySources.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>08110016C41A4656862EF134</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAProcessExternalPaymentResponse.m</string>
+			<key>path</key>
+			<string>Classes/Response/YMAProcessExternalPaymentResponse.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>08FCD90169D541BD8663FD73</key>
+		<dict>
+			<key>fileRef</key>
+			<string>250C09930DB242E9989A2F4E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>096CB7D73FCC4449BA90B966</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5132C8E4323F4FFB82D4B961</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>0AD122DC20EA42B791FF6A96</key>
+		<dict>
+			<key>fileRef</key>
+			<string>977E95E8B69845BCA5605553</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>0B18EEC6521B432896CFFB4C</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>EBEE4A0A0E7949C4B94BA0E2</string>
+				<string>BFEDB1ADD3A444999414A084</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>0E03A736D6204D23A7DBB905</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>FD2755B700854B96B7858628</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>0F40E6E282824102BA05AC14</key>
+		<dict>
+			<key>fileRef</key>
+			<string>2E4B8066265448F6BD6423C7</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>1168C71B0FD14A25A57598CF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>221BFDEBDFF34A3EA2A3667C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>127BDCE296F9480090DBFFA1</key>
+		<dict>
+			<key>fileRef</key>
+			<string>FD2F6326EE374C888A3A1A6F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>12920F4405554EB68B932944</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>EE83BD44289C4CD0AE71A7DD</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>iOS</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>140DBC4B347C43A480C03456</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMABalanceDetails.h</string>
+			<key>path</key>
+			<string>Classes/Models/AccountInfo/YMABalanceDetails.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>14134DF187AF40769ED67772</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D276DFFA3EA54914BDA9D714</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>153A880D5B3B4BF0A266FDAE</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F154D420ED844A16A85DE3AB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>16596522F438451FA07716E7</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAConstants.h</string>
+			<key>path</key>
+			<string>Classes/YMAConstants.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>16A1C46747B14680A5AE67CC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A3B97D959AB349689245B406</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>180BF8E32C3E4A5FABC95922</key>
+		<dict>
+			<key>fileRef</key>
+			<string>FE1DB6F58FE34986833C80E2</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>18DEFD5894BA4042B2DABDFC</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>NO</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>ENABLE_NS_ASSERTIONS</key>
+				<string>NO</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>6.0</string>
+				<key>STRIP_INSTALLED_PRODUCT</key>
+				<string>NO</string>
+				<key>VALIDATE_PRODUCT</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>1905890E5AEA406B8D304319</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAAPISession.h</string>
+			<key>path</key>
+			<string>Classes/YMAAPISession.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1C55D073A1FC411AB73E83C2</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAIncomingTransferRejectRequest.m</string>
+			<key>path</key>
+			<string>Classes/Request/YMAIncomingTransferRejectRequest.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1CD6DD1B988D49409E268BC9</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>Pods-YandexMoneySDKObjc-Private.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1D430DCB1FC645C2BBC3B6D7</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMABaseResponse.h</string>
+			<key>path</key>
+			<string>Classes/Response/YMABaseResponse.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1F1BA409462A42AC99632DCE</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>LastUpgradeCheck</key>
+				<string>0510</string>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>761A69E1CD354E50971F90E8</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+			</array>
+			<key>mainGroup</key>
+			<string>F861BFB4EB2240638A4F26B6</string>
+			<key>productRefGroup</key>
+			<string>BD62341E7C8B447490EA8875</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>6DC49DFC3756492F86AE4B5B</string>
+				<string>E3E5604B95F2433F8F666CFB</string>
+			</array>
+		</dict>
+		<key>1F81CC70930540DBA76B9E7A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E106BE7BD626420B8B1EE1EF</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>210844606EA24A68A7B845C0</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMABasePaymentProcessResponse.m</string>
+			<key>path</key>
+			<string>Classes/Response/YMABasePaymentProcessResponse.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>21DD14E059AA451AB798D491</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAOperationDetailsRequest.h</string>
+			<key>path</key>
+			<string>Classes/Request/YMAOperationDetailsRequest.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>221BFDEBDFF34A3EA2A3667C</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAHistoryOperationsResponse.h</string>
+			<key>path</key>
+			<string>Classes/Response/YMAHistoryOperationsResponse.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>22BD4E8A77E649EEB8EF4ED8</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E372E65D060340F1BC84345B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>23E6776CC2A84591919C9B67</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAMoneySources.m</string>
+			<key>path</key>
+			<string>Classes/Models/PaymentProcess/MoneySources/YMAMoneySources.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>250C09930DB242E9989A2F4E</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAHostsProvider.h</string>
+			<key>path</key>
+			<string>Classes/YMAHostsProvider.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2524DD6BCC7E450EB89C6659</key>
+		<dict>
+			<key>fileRef</key>
+			<string>C523507180984498A7020C50</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>25D326F85F0D4D4D98E66C6C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F0C3C36AD00F4BF5A7EBADA9</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>2671B8EBA111459790CBAE5A</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMABaseSession.m</string>
+			<key>path</key>
+			<string>Classes/YMABaseSession.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>269565FB3042478DB8FB132E</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMACardsSourceGroup.m</string>
+			<key>path</key>
+			<string>Classes/Models/PaymentProcess/MoneySources/YMACardsSourceGroup.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2860B710E864470EA13696C5</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAHistoryOperation.m</string>
+			<key>path</key>
+			<string>Classes/Models/AccountInfo/YMAHistoryOperation.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>28B0973D2D4143739116E975</key>
+		<dict>
+			<key>fileRef</key>
+			<string>EAE8B2459CC9435F848F7953</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>29336E49CF4740E2BF52AFE0</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>NO</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>YES</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
+				<string>NO</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>6.0</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>STRIP_INSTALLED_PRODUCT</key>
+				<string>NO</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>29D923D5D4374502A50E043A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>2FD2A15101624061A3ED2DB3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>29E69D46E4544BF39FD980DB</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMABaseResponse.m</string>
+			<key>path</key>
+			<string>Classes/Response/YMABaseResponse.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2B9543B0D53F47C3AAAFFAB6</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMABaseSession.h</string>
+			<key>path</key>
+			<string>Classes/YMABaseSession.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2C098F8F28A3455D9CECBAB9</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Pods-acknowledgements.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2D01E7C18B78480E915468DA</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>2F48C968705B4969A67DA16A</string>
+				<string>9B86181E984C40409FCF00D2</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>2D2518CE44004B90A2B69573</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9A5F9FEBE7624EBF83FC839C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>2E13724D64FD4F0E81B87243</key>
+		<dict>
+			<key>fileRef</key>
+			<string>AEF64EC301EA4A499379D975</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>2E4B8066265448F6BD6423C7</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAPaymentResponse.h</string>
+			<key>path</key>
+			<string>Classes/Response/YMAPaymentResponse.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2F48C968705B4969A67DA16A</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>5B2857B4CA554FE4B835B077</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>ARCHS</key>
+				<string>$(ARCHS_STANDARD_INCLUDING_64_BIT)</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>DSTROOT</key>
+				<string>/tmp/xcodeproj.dst</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
+				<string>NO</string>
+				<key>GCC_VERSION</key>
+				<string>com.apple.compilers.llvm.clang.1_0</string>
+				<key>INSTALL_PATH</key>
+				<string>$(BUILT_PRODUCTS_DIR)</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>6.0</string>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>PUBLIC_HEADERS_FOLDER_PATH</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>2FC2FC83D30441DEA9310B3D</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>Pods-YandexMoneySDKObjc-prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2FD2A15101624061A3ED2DB3</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAExternalPaymentRequest.m</string>
+			<key>path</key>
+			<string>Classes/Request/YMAExternalPaymentRequest.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3301E9B9DD8941F5AEA2FDC3</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAIncomingTransferAcceptResponse.h</string>
+			<key>path</key>
+			<string>Classes/Response/YMAIncomingTransferAcceptResponse.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>370E889BF1734238BA64EDA6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>88965B1A889A454CB751D44A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>387016AA0030400FA2CB8105</key>
+		<dict>
+			<key>fileRef</key>
+			<string>7A58934D4191401387E8EF4D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>3A1F8CF90D9F4F169B9D9D64</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAExternalPaymentInfo.m</string>
+			<key>path</key>
+			<string>Classes/Models/PaymentProcess/ExternalPayment/YMAExternalPaymentInfo.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3AD831BAB7F841448D12F5AF</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAConnection.h</string>
+			<key>path</key>
+			<string>Classes/YMAConnection.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3B2D31FAE33040BCA737B911</key>
+		<dict>
+			<key>fileRef</key>
+			<string>CDA084D4FECF44CCA40D5BD5</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>3DA58F7837B444B482653DF1</key>
+		<dict>
+			<key>fileRef</key>
+			<string>2860B710E864470EA13696C5</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>417FE6275A3540A79B1E78EB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>65ED49C0A5CD45FFB83CE679</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>42CEA1BCF3A0491C92E9D882</key>
+		<dict>
+			<key>fileRef</key>
+			<string>7FE0493C91804ED797CA132D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>434D864228A549148DF63B9D</key>
+		<dict>
+			<key>fileRef</key>
+			<string>00AECC00FEBB4077BFEFA67B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>4675B25CBD1B4281A0AD7377</key>
+		<dict>
+			<key>fileRef</key>
+			<string>01A2175AE33D4D4483954559</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>46C9FD1F6DFE4E0FA604702B</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>F747F26EE76E4795BD8EE052</string>
+				<string>B7D3540E84324B6EA2552971</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>4808CEB79AFB4F4BBF0C57CA</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAHistoryOperationsResponse.m</string>
+			<key>path</key>
+			<string>Classes/Response/YMAHistoryOperationsResponse.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>487CE30AE5864FA2B15FA864</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A549F52AE61E46BDB011BBA3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>494EA83D1714457291EBBD0B</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>5B2857B4CA554FE4B835B077</string>
+				<string>7CDD40B0F28E42058539AB7A</string>
+				<string>2C098F8F28A3455D9CECBAB9</string>
+				<string>603FB52BB99B41F18D8BB064</string>
+				<string>7D691EF3005941B3930BCFD5</string>
+				<string>962BBD141C8F44318A354F20</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>4A47DAAFBE7A4AEF8E72E451</key>
+		<dict>
+			<key>fileRef</key>
+			<string>2671B8EBA111459790CBAE5A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>4C721E6A46C04885A51579CC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>210844606EA24A68A7B845C0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>4CD84121A18B479D84ABBE67</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAAPISession.m</string>
+			<key>path</key>
+			<string>Classes/YMAAPISession.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>4E9DC05891A846A48E811678</key>
+		<dict>
+			<key>fileRef</key>
+			<string>67FA6B85231A4492ABED28E0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>4F614D30131C45B49932EC39</key>
+		<dict>
+			<key>fileRef</key>
+			<string>87537A5FBF004D2FB0534231</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>50C3353E7BF045048949E569</key>
+		<dict>
+			<key>fileRef</key>
+			<string>21DD14E059AA451AB798D491</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5132C8E4323F4FFB82D4B961</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAAccountInfoResponse.h</string>
+			<key>path</key>
+			<string>Classes/Response/YMAAccountInfoResponse.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>52E613EBEDC0435A87E219A3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>AF86FB645EDD445BBAA6E3DB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>53C385DD8C994336A9D1A482</key>
+		<dict>
+			<key>fileRef</key>
+			<string>89363B03075B482B92A7F6B2</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>53E0D71D6B6C4D288C55CC23</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>EB5A3D10ABA84F2D8E6CE9F3</string>
+				<string>974CC4E20B104013BADC0C1C</string>
+				<string>E34977F8A7D246279E19F9B1</string>
+				<string>096CB7D73FCC4449BA90B966</string>
+				<string>824907B461D7438887B1490B</string>
+				<string>CA7D8E9DAF684147944B8608</string>
+				<string>D65B7A3387CE45DB8D821539</string>
+				<string>B5F8A742E20042A58EF2C022</string>
+				<string>D7A309FEBADE4CF8A0A2D6DC</string>
+				<string>D3B80418F8174F3EAD5777BB</string>
+				<string>C0575A0DC4A740A9B043DD30</string>
+				<string>5897477A1409474EB2A871A4</string>
+				<string>F4A05EE62BDB45C88E10E1BE</string>
+				<string>434D864228A549148DF63B9D</string>
+				<string>64085433AABB4FB898301776</string>
+				<string>B628D68131014A3E9E2CCCF6</string>
+				<string>28B0973D2D4143739116E975</string>
+				<string>A41256F20BF24922B6BB063C</string>
+				<string>B016A0CE44C6404C87820790</string>
+				<string>9C3F6682C60447368664F65C</string>
+				<string>370E889BF1734238BA64EDA6</string>
+				<string>3B2D31FAE33040BCA737B911</string>
+				<string>180BF8E32C3E4A5FABC95922</string>
+				<string>A8CB1E5A230C43DEA9CA73B0</string>
+				<string>1168C71B0FD14A25A57598CF</string>
+				<string>08FCD90169D541BD8663FD73</string>
+				<string>A335D72C2E5245BEB89DCC96</string>
+				<string>54C5F6363D8C4ABAB56050B0</string>
+				<string>C205177BFF8E4EF99F378AC2</string>
+				<string>2D2518CE44004B90A2B69573</string>
+				<string>2524DD6BCC7E450EB89C6659</string>
+				<string>B1CAF05551834A9DB557D727</string>
+				<string>BE4C5CB6C65C4457BEE10770</string>
+				<string>50C3353E7BF045048949E569</string>
+				<string>60F764EAA05648EE82971264</string>
+				<string>84F9AE434AD640ECA667822B</string>
+				<string>6CBDACCF3C474BA782281BF8</string>
+				<string>0F40E6E282824102BA05AC14</string>
+				<string>BF7EF0C5C3A146858E2E35A2</string>
+				<string>153A880D5B3B4BF0A266FDAE</string>
+				<string>417FE6275A3540A79B1E78EB</string>
+				<string>B7E30F97DE9E49FCAAC2AC9E</string>
+				<string>66A112F73E3B4148A6842D75</string>
+				<string>981D5FDD1D524C2A97E68967</string>
+				<string>E2147330E35C4C0DB5093290</string>
+			</array>
+			<key>isa</key>
+			<string>PBXHeadersBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>54C5F6363D8C4ABAB56050B0</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3301E9B9DD8941F5AEA2FDC3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5897477A1409474EB2A871A4</key>
+		<dict>
+			<key>fileRef</key>
+			<string>CF3351B94A10407DBF4FFE8D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>58C73119193A445283D10D45</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAPaymentInfo.h</string>
+			<key>path</key>
+			<string>Classes/Models/PaymentProcess/YMAPaymentInfo.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5B2857B4CA554FE4B835B077</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>Pods.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5BC685FBA60241BAA86DF911</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMABaseRequest.m</string>
+			<key>path</key>
+			<string>Classes/Request/YMABaseRequest.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5DCBF60900A64C94866EB5DD</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6F17F0D85B854D8AAFA362BD</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>603FB52BB99B41F18D8BB064</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>Pods-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>60F764EAA05648EE82971264</key>
+		<dict>
+			<key>fileRef</key>
+			<string>7074347817F843228CE6D253</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>61057580DDF34E59B670303F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B05CAC960BDA45A49A633FFD</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>628FC2804E46475FBC811918</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAChangeAvatarRequest.h</string>
+			<key>path</key>
+			<string>Classes/Request/YMAChangeAvatarRequest.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>64085433AABB4FB898301776</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3AD831BAB7F841448D12F5AF</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>644974A6B80D442E81EA95A8</key>
+		<dict>
+			<key>fileRef</key>
+			<string>08110016C41A4656862EF134</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>65ED49C0A5CD45FFB83CE679</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAProcessExternalPaymentResponse.h</string>
+			<key>path</key>
+			<string>Classes/Response/YMAProcessExternalPaymentResponse.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>66A112F73E3B4148A6842D75</key>
+		<dict>
+			<key>fileRef</key>
+			<string>7FD714B10D8146218B17C94E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>67FA6B85231A4492ABED28E0</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAPaymentRequest.m</string>
+			<key>path</key>
+			<string>Classes/Request/YMAPaymentRequest.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6B67A4AA75894332AAAF432F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A6F37ABB88314F88B58FF56B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>6CBDACCF3C474BA782281BF8</key>
+		<dict>
+			<key>fileRef</key>
+			<string>7FB2FCBB8D3E4F83A8520D4C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>6DC49DFC3756492F86AE4B5B</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>2D01E7C18B78480E915468DA</string>
+			<key>buildPhases</key>
+			<array>
+				<string>A88C6BB66989431DA27298FE</string>
+				<string>46C9FD1F6DFE4E0FA604702B</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>E89AD85B9C764052B92B4009</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>productName</key>
+			<string>Pods</string>
+			<key>productReference</key>
+			<string>F8CEAB82C27F4321807CD280</string>
+			<key>productType</key>
+			<string>com.apple.product-type.library.static</string>
+		</dict>
+		<key>6EA3CC3C3D7D4220AD666470</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>494EA83D1714457291EBBD0B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Targets Support Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6F17F0D85B854D8AAFA362BD</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAPaymentInfo.m</string>
+			<key>path</key>
+			<string>Classes/Models/PaymentProcess/YMAPaymentInfo.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7074347817F843228CE6D253</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAOperationDetailsResponse.h</string>
+			<key>path</key>
+			<string>Classes/Response/YMAOperationDetailsResponse.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>73E4597EC43543858FBB5ACD</key>
+		<dict>
+			<key>fileRef</key>
+			<string>793FB885CCD743D094A314F4</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>761A69E1CD354E50971F90E8</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>29336E49CF4740E2BF52AFE0</string>
+				<string>18DEFD5894BA4042B2DABDFC</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>76FFA34DD0EA44B29905378C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3A1F8CF90D9F4F169B9D9D64</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>793FB885CCD743D094A314F4</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAHostsProvider.m</string>
+			<key>path</key>
+			<string>Classes/YMAHostsProvider.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7A58934D4191401387E8EF4D</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAExternalPaymentSession.m</string>
+			<key>path</key>
+			<string>Classes/YMAExternalPaymentSession.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7ACC53293EB149639A65468F</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAIncomingTransferRejectRequest.h</string>
+			<key>path</key>
+			<string>Classes/Request/YMAIncomingTransferRejectRequest.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7B5CCBAEA24D42E48E163966</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text</string>
+			<key>name</key>
+			<string>Podfile</string>
+			<key>path</key>
+			<string>../Podfile</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+			<key>xcLanguageSpecificationIdentifier</key>
+			<string>xcode.lang.ruby</string>
+		</dict>
+		<key>7CDD40B0F28E42058539AB7A</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text</string>
+			<key>path</key>
+			<string>Pods-acknowledgements.markdown</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7D691EF3005941B3930BCFD5</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>Pods-environment.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7FB2FCBB8D3E4F83A8520D4C</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAPaymentRequest.h</string>
+			<key>path</key>
+			<string>Classes/Request/YMAPaymentRequest.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7FD714B10D8146218B17C94E</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAProcessPaymentResponse.h</string>
+			<key>path</key>
+			<string>Classes/Response/YMAProcessPaymentResponse.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7FDB55D5749C40CAAE2C017F</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAExternalPaymentResponse.m</string>
+			<key>path</key>
+			<string>Classes/Response/YMAExternalPaymentResponse.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7FE0493C91804ED797CA132D</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAConnection.m</string>
+			<key>path</key>
+			<string>Classes/YMAConnection.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>800CE9D8F08449E486E3DAAA</key>
+		<dict>
+			<key>fileRef</key>
+			<string>4808CEB79AFB4F4BBF0C57CA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>824907B461D7438887B1490B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A91241BCECA549F5B7E79939</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>84F9AE434AD640ECA667822B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>58C73119193A445283D10D45</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>86C32A078998474781BB48F5</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>12920F4405554EB68B932944</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>87537A5FBF004D2FB0534231</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAProcessExternalPaymentRequest.m</string>
+			<key>path</key>
+			<string>Classes/Request/YMAProcessExternalPaymentRequest.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>88965B1A889A454CB751D44A</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAExternalPaymentSession.h</string>
+			<key>path</key>
+			<string>Classes/YMAExternalPaymentSession.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>89363B03075B482B92A7F6B2</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAIncomingTransferAcceptResponse.m</string>
+			<key>path</key>
+			<string>Classes/Response/YMAIncomingTransferAcceptResponse.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8BFEEE5D608E45A58408966D</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMABaseRequest.h</string>
+			<key>path</key>
+			<string>Classes/Request/YMABaseRequest.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8DC9F2588BC44F22BE5F3376</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAMoneySource.m</string>
+			<key>path</key>
+			<string>Classes/Models/PaymentProcess/MoneySources/YMAMoneySource.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>921955DACAD14E20A323D2E4</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>1905890E5AEA406B8D304319</string>
+				<string>4CD84121A18B479D84ABBE67</string>
+				<string>A3CB88AC9DD04AB0839823E2</string>
+				<string>B796DDFD187046AEB017C5A8</string>
+				<string>F90C32C4D9BA4F508C0690BD</string>
+				<string>F0C3C36AD00F4BF5A7EBADA9</string>
+				<string>5132C8E4323F4FFB82D4B961</string>
+				<string>C40A50DD2B5B42A689982286</string>
+				<string>A91241BCECA549F5B7E79939</string>
+				<string>AF86FB645EDD445BBAA6E3DB</string>
+				<string>C4DA9C7C22DE4D0DBBB26C58</string>
+				<string>A53089DD38EA4A13BD5D4686</string>
+				<string>140DBC4B347C43A480C03456</string>
+				<string>E106BE7BD626420B8B1EE1EF</string>
+				<string>F295B806F1524717AC62146A</string>
+				<string>210844606EA24A68A7B845C0</string>
+				<string>8BFEEE5D608E45A58408966D</string>
+				<string>5BC685FBA60241BAA86DF911</string>
+				<string>1D430DCB1FC645C2BBC3B6D7</string>
+				<string>29E69D46E4544BF39FD980DB</string>
+				<string>2B9543B0D53F47C3AAAFFAB6</string>
+				<string>2671B8EBA111459790CBAE5A</string>
+				<string>CF3351B94A10407DBF4FFE8D</string>
+				<string>269565FB3042478DB8FB132E</string>
+				<string>628FC2804E46475FBC811918</string>
+				<string>E372E65D060340F1BC84345B</string>
+				<string>00AECC00FEBB4077BFEFA67B</string>
+				<string>A6F37ABB88314F88B58FF56B</string>
+				<string>3AD831BAB7F841448D12F5AF</string>
+				<string>7FE0493C91804ED797CA132D</string>
+				<string>16596522F438451FA07716E7</string>
+				<string>9EAACF257ACB492190BC3EA7</string>
+				<string>EAE8B2459CC9435F848F7953</string>
+				<string>01A2175AE33D4D4483954559</string>
+				<string>C29D9BEDB0D146AE9A61E203</string>
+				<string>3A1F8CF90D9F4F169B9D9D64</string>
+				<string>C672DDFD1E6247308E7DA223</string>
+				<string>2FD2A15101624061A3ED2DB3</string>
+				<string>DDD10472EC2449B4A59603AA</string>
+				<string>7FDB55D5749C40CAAE2C017F</string>
+				<string>88965B1A889A454CB751D44A</string>
+				<string>7A58934D4191401387E8EF4D</string>
+				<string>CDA084D4FECF44CCA40D5BD5</string>
+				<string>B61815A57B7945A8A2FAB3B5</string>
+				<string>FE1DB6F58FE34986833C80E2</string>
+				<string>2860B710E864470EA13696C5</string>
+				<string>926B0AD50D5D404384C28CB7</string>
+				<string>A3B97D959AB349689245B406</string>
+				<string>221BFDEBDFF34A3EA2A3667C</string>
+				<string>4808CEB79AFB4F4BBF0C57CA</string>
+				<string>250C09930DB242E9989A2F4E</string>
+				<string>793FB885CCD743D094A314F4</string>
+				<string>A722FC0905AB4252AD820A9D</string>
+				<string>A549F52AE61E46BDB011BBA3</string>
+				<string>3301E9B9DD8941F5AEA2FDC3</string>
+				<string>89363B03075B482B92A7F6B2</string>
+				<string>7ACC53293EB149639A65468F</string>
+				<string>1C55D073A1FC411AB73E83C2</string>
+				<string>9A5F9FEBE7624EBF83FC839C</string>
+				<string>CB6024D0EBE248638FC6B3D1</string>
+				<string>C523507180984498A7020C50</string>
+				<string>8DC9F2588BC44F22BE5F3376</string>
+				<string>06F5CD14C2F148FAA74FE6F0</string>
+				<string>23E6776CC2A84591919C9B67</string>
+				<string>B764E3EA0C8D4497963D10D8</string>
+				<string>B05CAC960BDA45A49A633FFD</string>
+				<string>21DD14E059AA451AB798D491</string>
+				<string>AB9F9D4EBC65433E80337604</string>
+				<string>7074347817F843228CE6D253</string>
+				<string>C02F6D080728432A8A86F338</string>
+				<string>58C73119193A445283D10D45</string>
+				<string>6F17F0D85B854D8AAFA362BD</string>
+				<string>7FB2FCBB8D3E4F83A8520D4C</string>
+				<string>67FA6B85231A4492ABED28E0</string>
+				<string>2E4B8066265448F6BD6423C7</string>
+				<string>C33B06FFC09448F699022948</string>
+				<string>A6D968C4164442408E7E37BA</string>
+				<string>92BF3D70747F4D789A104268</string>
+				<string>F154D420ED844A16A85DE3AB</string>
+				<string>87537A5FBF004D2FB0534231</string>
+				<string>65ED49C0A5CD45FFB83CE679</string>
+				<string>08110016C41A4656862EF134</string>
+				<string>CA64BD245C04483693B71806</string>
+				<string>977E95E8B69845BCA5605553</string>
+				<string>7FD714B10D8146218B17C94E</string>
+				<string>AEF64EC301EA4A499379D975</string>
+				<string>E8DCCFDE0A344A359A0B29DA</string>
+				<string>D276DFFA3EA54914BDA9D714</string>
+				<string>004EF01E6822454E8E7AF98D</string>
+				<string>C57914B23A66458EA653F2BA</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>YandexMoneySDKObjc</string>
+			<key>path</key>
+			<string>YandexMoneySDKObjc</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>926B0AD50D5D404384C28CB7</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAHistoryOperationsRequest.h</string>
+			<key>path</key>
+			<string>Classes/Request/YMAHistoryOperationsRequest.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>92BF3D70747F4D789A104268</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAPaymentResultInfo.m</string>
+			<key>path</key>
+			<string>Classes/Models/PaymentProcess/YMAPaymentResultInfo.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>962BBD141C8F44318A354F20</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.script.sh</string>
+			<key>path</key>
+			<string>Pods-resources.sh</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>974CC4E20B104013BADC0C1C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A3CB88AC9DD04AB0839823E2</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>977E95E8B69845BCA5605553</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAProcessPaymentRequest.m</string>
+			<key>path</key>
+			<string>Classes/Request/YMAProcessPaymentRequest.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>981D5FDD1D524C2A97E68967</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E8DCCFDE0A344A359A0B29DA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>98F6DDB8AD7C46978851139D</key>
+		<dict>
+			<key>fileRef</key>
+			<string>7FDB55D5749C40CAAE2C017F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>9927F71901DB484BA680E4A5</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>libPods-YandexMoneySDKObjc.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>999810EC1DDB41EB931A58EE</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>127BDCE296F9480090DBFFA1</string>
+				<string>EB89E4F6C02B489BB7C3CFCF</string>
+				<string>F6AAF55CDAFC4272A2296F27</string>
+				<string>25D326F85F0D4D4D98E66C6C</string>
+				<string>E93E694653944B6DBB814FBB</string>
+				<string>52E613EBEDC0435A87E219A3</string>
+				<string>F4E2B936CAD0413A855B36C5</string>
+				<string>1F81CC70930540DBA76B9E7A</string>
+				<string>4C721E6A46C04885A51579CC</string>
+				<string>01C2ED44F34A49B3B3DEC081</string>
+				<string>D5026581EF31486497B581ED</string>
+				<string>4A47DAAFBE7A4AEF8E72E451</string>
+				<string>C93E34615DEB40A99237F06B</string>
+				<string>22BD4E8A77E649EEB8EF4ED8</string>
+				<string>6B67A4AA75894332AAAF432F</string>
+				<string>42CEA1BCF3A0491C92E9D882</string>
+				<string>B0E6391D9C00479785643C04</string>
+				<string>4675B25CBD1B4281A0AD7377</string>
+				<string>76FFA34DD0EA44B29905378C</string>
+				<string>29D923D5D4374502A50E043A</string>
+				<string>98F6DDB8AD7C46978851139D</string>
+				<string>387016AA0030400FA2CB8105</string>
+				<string>B9C2228E37DF4A7D8A0D60B0</string>
+				<string>3DA58F7837B444B482653DF1</string>
+				<string>16A1C46747B14680A5AE67CC</string>
+				<string>800CE9D8F08449E486E3DAAA</string>
+				<string>73E4597EC43543858FBB5ACD</string>
+				<string>487CE30AE5864FA2B15FA864</string>
+				<string>53C385DD8C994336A9D1A482</string>
+				<string>9C4047E6E0C34270A6355E46</string>
+				<string>FB2E3A8DC61F47F19F909C90</string>
+				<string>CC5555EE24884AF49ABE989B</string>
+				<string>B212548F118945FFA180FE2F</string>
+				<string>61057580DDF34E59B670303F</string>
+				<string>9EBFD1F11AEF4622ADF42C80</string>
+				<string>A97AA6533BFB49B189202F54</string>
+				<string>5DCBF60900A64C94866EB5DD</string>
+				<string>4E9DC05891A846A48E811678</string>
+				<string>E17ADF884E6544FDA4937949</string>
+				<string>9CAC702BD4AF4C0BB46C2CDF</string>
+				<string>4F614D30131C45B49932EC39</string>
+				<string>644974A6B80D442E81EA95A8</string>
+				<string>0AD122DC20EA42B791FF6A96</string>
+				<string>2E13724D64FD4F0E81B87243</string>
+				<string>14134DF187AF40769ED67772</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>9A5F9FEBE7624EBF83FC839C</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAIncomingTransferRejectResponse.h</string>
+			<key>path</key>
+			<string>Classes/Response/YMAIncomingTransferRejectResponse.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9B86181E984C40409FCF00D2</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>5B2857B4CA554FE4B835B077</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>ARCHS</key>
+				<string>$(ARCHS_STANDARD_INCLUDING_64_BIT)</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>YES</string>
+				<key>DSTROOT</key>
+				<string>/tmp/xcodeproj.dst</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_VERSION</key>
+				<string>com.apple.compilers.llvm.clang.1_0</string>
+				<key>INSTALL_PATH</key>
+				<string>$(BUILT_PRODUCTS_DIR)</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>6.0</string>
+				<key>OTHER_CFLAGS</key>
+				<array>
+					<string>-DNS_BLOCK_ASSERTIONS=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>OTHER_CPLUSPLUSFLAGS</key>
+				<array>
+					<string>-DNS_BLOCK_ASSERTIONS=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>PUBLIC_HEADERS_FOLDER_PATH</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>VALIDATE_PRODUCT</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>9C3F6682C60447368664F65C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>DDD10472EC2449B4A59603AA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>9C4047E6E0C34270A6355E46</key>
+		<dict>
+			<key>fileRef</key>
+			<string>1C55D073A1FC411AB73E83C2</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>9CAC702BD4AF4C0BB46C2CDF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>92BF3D70747F4D789A104268</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>9EAACF257ACB492190BC3EA7</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAConstants.m</string>
+			<key>path</key>
+			<string>Classes/YMAConstants.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9EBFD1F11AEF4622ADF42C80</key>
+		<dict>
+			<key>fileRef</key>
+			<string>AB9F9D4EBC65433E80337604</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>A335D72C2E5245BEB89DCC96</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A722FC0905AB4252AD820A9D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A3B97D959AB349689245B406</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAHistoryOperationsRequest.m</string>
+			<key>path</key>
+			<string>Classes/Request/YMAHistoryOperationsRequest.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A3CB88AC9DD04AB0839823E2</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAAccountInfo.h</string>
+			<key>path</key>
+			<string>Classes/Models/AccountInfo/YMAAccountInfo.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A41256F20BF24922B6BB063C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>C29D9BEDB0D146AE9A61E203</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A53089DD38EA4A13BD5D4686</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAAvatar.m</string>
+			<key>path</key>
+			<string>Classes/Models/AccountInfo/YMAAvatar.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A549F52AE61E46BDB011BBA3</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAIncomingTransferAcceptRequest.m</string>
+			<key>path</key>
+			<string>Classes/Request/YMAIncomingTransferAcceptRequest.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6CF222577B94451BA3EF237</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>1F1BA409462A42AC99632DCE</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>E3E5604B95F2433F8F666CFB</string>
+			<key>remoteInfo</key>
+			<string>Pods-YandexMoneySDKObjc</string>
+		</dict>
+		<key>A6D968C4164442408E7E37BA</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAPaymentResultInfo.h</string>
+			<key>path</key>
+			<string>Classes/Models/PaymentProcess/YMAPaymentResultInfo.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6F37ABB88314F88B58FF56B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAChangeAvatarResponse.m</string>
+			<key>path</key>
+			<string>Classes/Response/YMAChangeAvatarResponse.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A722FC0905AB4252AD820A9D</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAIncomingTransferAcceptRequest.h</string>
+			<key>path</key>
+			<string>Classes/Request/YMAIncomingTransferAcceptRequest.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A88C6BB66989431DA27298FE</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>E78B11298DA34012A8959625</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>A8CB1E5A230C43DEA9CA73B0</key>
+		<dict>
+			<key>fileRef</key>
+			<string>926B0AD50D5D404384C28CB7</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A91241BCECA549F5B7E79939</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAAsc.h</string>
+			<key>path</key>
+			<string>Classes/Models/PaymentProcess/YMAAsc.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A97AA6533BFB49B189202F54</key>
+		<dict>
+			<key>fileRef</key>
+			<string>C02F6D080728432A8A86F338</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>AB9F9D4EBC65433E80337604</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAOperationDetailsRequest.m</string>
+			<key>path</key>
+			<string>Classes/Request/YMAOperationDetailsRequest.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>AEF64EC301EA4A499379D975</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAProcessPaymentResponse.m</string>
+			<key>path</key>
+			<string>Classes/Response/YMAProcessPaymentResponse.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>AF86FB645EDD445BBAA6E3DB</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAAsc.m</string>
+			<key>path</key>
+			<string>Classes/Models/PaymentProcess/YMAAsc.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B016A0CE44C6404C87820790</key>
+		<dict>
+			<key>fileRef</key>
+			<string>C672DDFD1E6247308E7DA223</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B05CAC960BDA45A49A633FFD</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAOperationDetails.m</string>
+			<key>path</key>
+			<string>Classes/Models/AccountInfo/YMAOperationDetails.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B0E6391D9C00479785643C04</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9EAACF257ACB492190BC3EA7</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>B1CAF05551834A9DB557D727</key>
+		<dict>
+			<key>fileRef</key>
+			<string>06F5CD14C2F148FAA74FE6F0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B212548F118945FFA180FE2F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>23E6776CC2A84591919C9B67</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>B5510E7D2606410EADF275C1</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>921955DACAD14E20A323D2E4</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B5F8A742E20042A58EF2C022</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F295B806F1524717AC62146A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B61815A57B7945A8A2FAB3B5</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAGoods.m</string>
+			<key>path</key>
+			<string>Classes/Models/PaymentProcess/YMAGoods.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B628D68131014A3E9E2CCCF6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>16596522F438451FA07716E7</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B764E3EA0C8D4497963D10D8</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAOperationDetails.h</string>
+			<key>path</key>
+			<string>Classes/Models/AccountInfo/YMAOperationDetails.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B796DDFD187046AEB017C5A8</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAAccountInfo.m</string>
+			<key>path</key>
+			<string>Classes/Models/AccountInfo/YMAAccountInfo.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B7D3540E84324B6EA2552971</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9927F71901DB484BA680E4A5</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B7E30F97DE9E49FCAAC2AC9E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>CA64BD245C04483693B71806</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B9C2228E37DF4A7D8A0D60B0</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B61815A57B7945A8A2FAB3B5</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>BD62341E7C8B447490EA8875</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>F8CEAB82C27F4321807CD280</string>
+				<string>9927F71901DB484BA680E4A5</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BE4C5CB6C65C4457BEE10770</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B764E3EA0C8D4497963D10D8</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BF7EF0C5C3A146858E2E35A2</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A6D968C4164442408E7E37BA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BFEDB1ADD3A444999414A084</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>1CD6DD1B988D49409E268BC9</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>ARCHS</key>
+				<string>$(ARCHS_STANDARD_INCLUDING_64_BIT)</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>YES</string>
+				<key>DSTROOT</key>
+				<string>/tmp/xcodeproj.dst</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Pods-YandexMoneySDKObjc-prefix.pch</string>
+				<key>GCC_VERSION</key>
+				<string>com.apple.compilers.llvm.clang.1_0</string>
+				<key>INSTALL_PATH</key>
+				<string>$(BUILT_PRODUCTS_DIR)</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>6.0</string>
+				<key>OTHER_CFLAGS</key>
+				<array>
+					<string>-DNS_BLOCK_ASSERTIONS=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>OTHER_CPLUSPLUSFLAGS</key>
+				<array>
+					<string>-DNS_BLOCK_ASSERTIONS=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>PUBLIC_HEADERS_FOLDER_PATH</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>VALIDATE_PRODUCT</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>C02F6D080728432A8A86F338</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAOperationDetailsResponse.m</string>
+			<key>path</key>
+			<string>Classes/Response/YMAOperationDetailsResponse.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C0575A0DC4A740A9B043DD30</key>
+		<dict>
+			<key>fileRef</key>
+			<string>2B9543B0D53F47C3AAAFFAB6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>C205177BFF8E4EF99F378AC2</key>
+		<dict>
+			<key>fileRef</key>
+			<string>7ACC53293EB149639A65468F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>C29D9BEDB0D146AE9A61E203</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAExternalPaymentInfo.h</string>
+			<key>path</key>
+			<string>Classes/Models/PaymentProcess/ExternalPayment/YMAExternalPaymentInfo.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C33B06FFC09448F699022948</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAPaymentResponse.m</string>
+			<key>path</key>
+			<string>Classes/Response/YMAPaymentResponse.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C40A50DD2B5B42A689982286</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAAccountInfoResponse.m</string>
+			<key>path</key>
+			<string>Classes/Response/YMAAccountInfoResponse.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C4DA9C7C22DE4D0DBBB26C58</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAAvatar.h</string>
+			<key>path</key>
+			<string>Classes/Models/AccountInfo/YMAAvatar.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C523507180984498A7020C50</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAMoneySource.h</string>
+			<key>path</key>
+			<string>Classes/Models/PaymentProcess/MoneySources/YMAMoneySource.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C57914B23A66458EA653F2BA</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E34A5314B5FC4048BF791E50</string>
+				<string>1CD6DD1B988D49409E268BC9</string>
+				<string>FD2F6326EE374C888A3A1A6F</string>
+				<string>2FC2FC83D30441DEA9310B3D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Support Files</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>C672DDFD1E6247308E7DA223</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAExternalPaymentRequest.h</string>
+			<key>path</key>
+			<string>Classes/Request/YMAExternalPaymentRequest.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C93E34615DEB40A99237F06B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>269565FB3042478DB8FB132E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>CA64BD245C04483693B71806</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAProcessPaymentRequest.h</string>
+			<key>path</key>
+			<string>Classes/Request/YMAProcessPaymentRequest.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>CA7D8E9DAF684147944B8608</key>
+		<dict>
+			<key>fileRef</key>
+			<string>C4DA9C7C22DE4D0DBBB26C58</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>CB6024D0EBE248638FC6B3D1</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAIncomingTransferRejectResponse.m</string>
+			<key>path</key>
+			<string>Classes/Response/YMAIncomingTransferRejectResponse.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>CC5555EE24884AF49ABE989B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>8DC9F2588BC44F22BE5F3376</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>CDA084D4FECF44CCA40D5BD5</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAGoods.h</string>
+			<key>path</key>
+			<string>Classes/Models/PaymentProcess/YMAGoods.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>CF3351B94A10407DBF4FFE8D</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMACardsSourceGroup.h</string>
+			<key>path</key>
+			<string>Classes/Models/PaymentProcess/MoneySources/YMACardsSourceGroup.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D276DFFA3EA54914BDA9D714</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAWalletSourceGroup.m</string>
+			<key>path</key>
+			<string>Classes/Models/PaymentProcess/MoneySources/YMAWalletSourceGroup.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D3B80418F8174F3EAD5777BB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>1D430DCB1FC645C2BBC3B6D7</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D5026581EF31486497B581ED</key>
+		<dict>
+			<key>fileRef</key>
+			<string>29E69D46E4544BF39FD980DB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>D65B7A3387CE45DB8D821539</key>
+		<dict>
+			<key>fileRef</key>
+			<string>140DBC4B347C43A480C03456</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>D7A309FEBADE4CF8A0A2D6DC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>8BFEEE5D608E45A58408966D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>DDD10472EC2449B4A59603AA</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAExternalPaymentResponse.h</string>
+			<key>path</key>
+			<string>Classes/Response/YMAExternalPaymentResponse.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E106BE7BD626420B8B1EE1EF</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMABalanceDetails.m</string>
+			<key>path</key>
+			<string>Classes/Models/AccountInfo/YMABalanceDetails.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E17ADF884E6544FDA4937949</key>
+		<dict>
+			<key>fileRef</key>
+			<string>C33B06FFC09448F699022948</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>E2147330E35C4C0DB5093290</key>
+		<dict>
+			<key>fileRef</key>
+			<string>004EF01E6822454E8E7AF98D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E34977F8A7D246279E19F9B1</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F90C32C4D9BA4F508C0690BD</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E34A5314B5FC4048BF791E50</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>Pods-YandexMoneySDKObjc.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E372E65D060340F1BC84345B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAChangeAvatarRequest.m</string>
+			<key>path</key>
+			<string>Classes/Request/YMAChangeAvatarRequest.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E3E5604B95F2433F8F666CFB</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>0B18EEC6521B432896CFFB4C</string>
+			<key>buildPhases</key>
+			<array>
+				<string>999810EC1DDB41EB931A58EE</string>
+				<string>0E03A736D6204D23A7DBB905</string>
+				<string>53E0D71D6B6C4D288C55CC23</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>Pods-YandexMoneySDKObjc</string>
+			<key>productName</key>
+			<string>Pods-YandexMoneySDKObjc</string>
+			<key>productReference</key>
+			<string>9927F71901DB484BA680E4A5</string>
+			<key>productType</key>
+			<string>com.apple.product-type.library.static</string>
+		</dict>
+		<key>E78B11298DA34012A8959625</key>
+		<dict>
+			<key>fileRef</key>
+			<string>603FB52BB99B41F18D8BB064</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E89AD85B9C764052B92B4009</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>E3E5604B95F2433F8F666CFB</string>
+			<key>targetProxy</key>
+			<string>A6CF222577B94451BA3EF237</string>
+		</dict>
+		<key>E8DCCFDE0A344A359A0B29DA</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAWalletSourceGroup.h</string>
+			<key>path</key>
+			<string>Classes/Models/PaymentProcess/MoneySources/YMAWalletSourceGroup.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E93E694653944B6DBB814FBB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>C40A50DD2B5B42A689982286</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>EAE8B2459CC9435F848F7953</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMADigitalGoods.h</string>
+			<key>path</key>
+			<string>Classes/Models/PaymentProcess/YMADigitalGoods.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>EB5A3D10ABA84F2D8E6CE9F3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>1905890E5AEA406B8D304319</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>EB89E4F6C02B489BB7C3CFCF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>4CD84121A18B479D84ABBE67</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>EBEE4A0A0E7949C4B94BA0E2</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>1CD6DD1B988D49409E268BC9</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>ARCHS</key>
+				<string>$(ARCHS_STANDARD_INCLUDING_64_BIT)</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>DSTROOT</key>
+				<string>/tmp/xcodeproj.dst</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Pods-YandexMoneySDKObjc-prefix.pch</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
+				<string>NO</string>
+				<key>GCC_VERSION</key>
+				<string>com.apple.compilers.llvm.clang.1_0</string>
+				<key>INSTALL_PATH</key>
+				<string>$(BUILT_PRODUCTS_DIR)</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>6.0</string>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>PUBLIC_HEADERS_FOLDER_PATH</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>EE83BD44289C4CD0AE71A7DD</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>Foundation.framework</string>
+			<key>path</key>
+			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Foundation.framework</string>
+			<key>sourceTree</key>
+			<string>DEVELOPER_DIR</string>
+		</dict>
+		<key>F0C3C36AD00F4BF5A7EBADA9</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>YMAAccountInfoRequest.m</string>
+			<key>path</key>
+			<string>Classes/Request/YMAAccountInfoRequest.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F154D420ED844A16A85DE3AB</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAProcessExternalPaymentRequest.h</string>
+			<key>path</key>
+			<string>Classes/Request/YMAProcessExternalPaymentRequest.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F295B806F1524717AC62146A</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMABasePaymentProcessResponse.h</string>
+			<key>path</key>
+			<string>Classes/Response/YMABasePaymentProcessResponse.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F4A05EE62BDB45C88E10E1BE</key>
+		<dict>
+			<key>fileRef</key>
+			<string>628FC2804E46475FBC811918</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F4E2B936CAD0413A855B36C5</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A53089DD38EA4A13BD5D4686</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>F6AAF55CDAFC4272A2296F27</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B796DDFD187046AEB017C5A8</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>F747F26EE76E4795BD8EE052</key>
+		<dict>
+			<key>fileRef</key>
+			<string>EE83BD44289C4CD0AE71A7DD</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F861BFB4EB2240638A4F26B6</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>7B5CCBAEA24D42E48E163966</string>
+				<string>86C32A078998474781BB48F5</string>
+				<string>B5510E7D2606410EADF275C1</string>
+				<string>BD62341E7C8B447490EA8875</string>
+				<string>6EA3CC3C3D7D4220AD666470</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F8CEAB82C27F4321807CD280</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>libPods.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>F90C32C4D9BA4F508C0690BD</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAAccountInfoRequest.h</string>
+			<key>path</key>
+			<string>Classes/Request/YMAAccountInfoRequest.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>FB2E3A8DC61F47F19F909C90</key>
+		<dict>
+			<key>fileRef</key>
+			<string>CB6024D0EBE248638FC6B3D1</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-fobjc-arc</string>
+			</dict>
+		</dict>
+		<key>FD2755B700854B96B7858628</key>
+		<dict>
+			<key>fileRef</key>
+			<string>EE83BD44289C4CD0AE71A7DD</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>FD2F6326EE374C888A3A1A6F</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>Pods-YandexMoneySDKObjc-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>FE1DB6F58FE34986833C80E2</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>YMAHistoryOperation.h</string>
+			<key>path</key>
+			<string>Classes/Models/AccountInfo/YMAHistoryOperation.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+	</dict>
+	<key>rootObject</key>
+	<string>1F1BA409462A42AC99632DCE</string>
+</dict>
+</plist>

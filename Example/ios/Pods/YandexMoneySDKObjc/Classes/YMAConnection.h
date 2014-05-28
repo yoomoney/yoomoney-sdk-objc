@@ -1,7 +1,7 @@
 //
 //  YMAConnection.h
 //
-//  Created by Александр Мертвецов on 31.10.13.
+//  Created by Alexander Mertvetsov on 31.10.13.
 //  Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
@@ -14,6 +14,8 @@ typedef void (^YMAConnectionHandler)(NSURLRequest *request, NSURLResponse *respo
 @property(nonatomic, copy) NSString *requestMethod;
 
 + (instancetype)connectionWithUrl:(NSURL *)url;
+
++ (NSString *)addPercentEscapesForString:(NSString *)string;
 
 - (id)initWithUrl:(NSURL *)url;
 
