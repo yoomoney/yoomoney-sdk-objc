@@ -26,12 +26,12 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
 @property(nonatomic, strong) NSDate *till;
 @property(nonatomic, copy) NSString *startRecord;
 @property(nonatomic, assign) NSUInteger records;
-@property(nonatomic, assign) BOOL details;
+
 @end
 
 @implementation YMAHistoryOperationsRequest
 
-- (id)initWithFilter:(YMAHistoryOperationFilter)filter label:(NSString *)label from:(NSDate *)from till:(NSDate *)till startRecord:(NSString *)startRecord records:(NSUInteger)records details:(BOOL)details {
+- (id)initWithFilter:(YMAHistoryOperationFilter)filter label:(NSString *)label from:(NSDate *)from till:(NSDate *)till startRecord:(NSString *)startRecord records:(NSUInteger)records {
     self = [super self];
 
     if (self) {
@@ -41,14 +41,13 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
         _till = till;
         _records = records;
         _startRecord = [startRecord copy];
-        _details = details;
     }
 
     return self;
 }
 
 + (instancetype)operationHistoryWithFilter:(YMAHistoryOperationFilter)filter label:(NSString *)label from:(NSDate *)from till:(NSDate *)till startRecord:(NSString *)startRecord records:(NSUInteger)records details:(BOOL)details; {
-    return [[YMAHistoryOperationsRequest alloc] initWithFilter:filter label:label from:from till:till startRecord:startRecord records:records details:details];
+    return [[YMAHistoryOperationsRequest alloc] initWithFilter:filter label:label from:from till:till startRecord:startRecord records:records];
 }
 
 #pragma mark -
@@ -83,7 +82,6 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
 
     [dictionary setValue:self.startRecord forKey:kParameterStartRecord];
     [dictionary setValue:[NSString stringWithFormat:@"%lu", (unsigned long)self.records] forKey:kParameterRecords];
-    [dictionary setValue:self.details ? @"true" : @"false" forKey:kParameterDetails];
 
     return dictionary;
 }
