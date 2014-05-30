@@ -1,3 +1,3 @@
 platform :ios, '6.0'
 
-pod 'YandexMoneySDKObjc', '1.0.1'
+pod 'YandexMoneySDKObjc', :git => 'https://axidms@bitbucket.org/axidms/yandex-money-sdk-objc.git', :branch => 'master'
