@@ -6,7 +6,7 @@
 //
 
 #import "YMABaseRequest.h"
-#import "YMABaseProcessResponse.h"
+#import "YMABaseResponse.h"
 #import "YMAConstants.h"
 
 @implementation YMABaseRequest
