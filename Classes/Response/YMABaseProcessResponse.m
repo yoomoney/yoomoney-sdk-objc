@@ -37,7 +37,8 @@ static NSString *const kParameterAccountUnblockUri = @"account_unblock_uri";
 
 - (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error {
     NSString *statusKey = [responseModel objectForKey:kParameterStatus];
-    _accountUnblockUri = [responseModel objectForKey:kParameterAccountUnblockUri];
+    NSString *accountUnblockUri = [responseModel objectForKey:kParameterAccountUnblockUri];
+    _accountUnblockUri = [accountUnblockUri copy];
 
     if ([statusKey isEqual:kKeyResponseStatusRefused]) {
         NSString *errorKey = [responseModel objectForKey:kParameterError];

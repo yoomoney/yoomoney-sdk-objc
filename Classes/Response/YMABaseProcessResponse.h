@@ -19,6 +19,6 @@
 /// The property is not equal to zero for status = YMAResponseStatusInProgress.
 @property(nonatomic, assign, readonly) NSUInteger nextRetry;
 
-@property(nonatomic, assign, readonly) NSString *accountUnblockUri;
+@property(nonatomic, copy, readonly) NSString *accountUnblockUri;
 
 @end
