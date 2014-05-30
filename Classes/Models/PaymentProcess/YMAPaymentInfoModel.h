@@ -4,15 +4,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "YMAAccountInfo.h"
-#import "YMAMoneySources.h"
+#import "YMAAccountInfoModel.h"
+#import "YMAMoneySourcesModel.h"
 
-@interface YMAPaymentInfo : NSObject
+@interface YMAPaymentInfoModel : NSObject
 
-+ (instancetype)paymentInfoWithMoneySources:(YMAMoneySources *)moneySources requestId:(NSString *)requestId contractAmount:(NSString *)contractAmount balance:(NSString *)balance recipientAccountStatus:(YMAAccountStatus)recipientAccountStatus recipientAccountType:(YMAAccountType)recipientAccountType protectionCode:(NSString *)protectionCode extActionUri:(NSURL *)extActionUri;
++ (instancetype)paymentInfoWithMoneySources:(YMAMoneySourcesModel *)moneySources requestId:(NSString *)requestId contractAmount:(NSString *)contractAmount balance:(NSString *)balance recipientAccountStatus:(YMAAccountStatus)recipientAccountStatus recipientAccountType:(YMAAccountType)recipientAccountType protectionCode:(NSString *)protectionCode extActionUri:(NSURL *)extActionUri;
 
 @property(nonatomic, copy, readonly) NSString *requestId;
-@property(nonatomic, strong, readonly) YMAMoneySources *moneySources;
+@property(nonatomic, strong, readonly) YMAMoneySourcesModel *moneySources;
 @property(nonatomic, copy, readonly) NSString *contractAmount;
 @property(nonatomic, copy, readonly) NSString *balance;
 @property(nonatomic, assign, readonly) YMAAccountStatus recipientAccountStatus;

@@ -3,12 +3,12 @@
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
-#import "YMACardsSourceGroup.h"
+#import "YMACardsSourceGroupModel.h"
 
 
-@implementation YMACardsSourceGroup
+@implementation YMACardsSourceGroupModel
 
-- (id)initWithCards:(NSArray *)cards defaultCard:(YMAMoneySource *)defaultCard cscRequired:(BOOL)cscRequired allowed:(BOOL)allowed {
+- (id)initWithCards:(NSArray *)cards defaultCard:(YMAMoneySourceModel *)defaultCard cscRequired:(BOOL)cscRequired allowed:(BOOL)allowed {
     self = [self init];
 
     if (self) {
@@ -21,8 +21,8 @@
     return self;
 }
 
-+ (instancetype)cardsSourceWithCards:(NSArray *)cards defaultCard:(YMAMoneySource *)defaultCard cscRequired:(BOOL)cscRequired allowed:(BOOL)allowed {
-    return [[YMACardsSourceGroup alloc] initWithCards:cards defaultCard:defaultCard cscRequired:cscRequired allowed:allowed];
++ (instancetype)cardsSourceWithCards:(NSArray *)cards defaultCard:(YMAMoneySourceModel *)defaultCard cscRequired:(BOOL)cscRequired allowed:(BOOL)allowed {
+    return [[YMACardsSourceGroupModel alloc] initWithCards:cards defaultCard:defaultCard cscRequired:cscRequired allowed:allowed];
 }
 
 

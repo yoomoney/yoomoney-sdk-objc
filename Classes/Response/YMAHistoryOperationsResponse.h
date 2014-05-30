@@ -6,11 +6,11 @@
 #import <Foundation/Foundation.h>
 #import "YMABaseResponse.h"
 
-@class YMAHistoryOperation;
+@class YMAHistoryOperationModel;
 
 @interface YMAHistoryOperationsResponse : YMABaseResponse
 
-+ (YMAHistoryOperation *)historyOperationByModel:(id)historyOperationModel;
++ (YMAHistoryOperationModel *)historyOperationByModel:(id)historyOperationModel;
 
 @property(nonatomic, copy, readonly) NSString *nextRecord;
 @property(nonatomic, strong, readonly) NSArray *operations;

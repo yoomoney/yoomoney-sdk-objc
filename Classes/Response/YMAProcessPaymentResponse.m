@@ -4,10 +4,10 @@
 //
 
 #import "YMAProcessPaymentResponse.h"
-#import "YMAPaymentResultInfo.h"
-#import "YMAAsc.h"
-#import "YMADigitalGoods.h"
-#import "YMAGoods.h"
+#import "YMAPaymentResultModel.h"
+#import "YMAAscModel.h"
+#import "YMADigitalGoodsModel.h"
+#import "YMAGoodsModel.h"
 
 static NSString *const kParameterPaymentId = @"payment_id";
 static NSString *const kParameterBalance = @"balance";
@@ -39,13 +39,13 @@ static NSString *const kParameterDigitalGoodsSecret = @"secret";
         NSString *merchantArticleId = [article objectForKey:kParameterDigitalGoodsMerchantArticleId];
         NSString *serial = [article objectForKey:kParameterDigitalGoodsSerial];
         NSString *secret = [article objectForKey:kParameterDigitalGoodsSecret];
-        [goods addObject:[YMAGoods goodsWithId:merchantArticleId serial:serial secret:secret]];
+        [goods addObject:[YMAGoodsModel goodsWithId:merchantArticleId serial:serial secret:secret]];
     }
 
     return goods;
 }
 
-+ (YMADigitalGoods *)digitalGoodsByModel:(id)digitalGoodsModel {
++ (YMADigitalGoodsModel *)digitalGoodsByModel:(id)digitalGoodsModel {
    if (!digitalGoodsModel)
        return nil;
 
@@ -55,7 +55,7 @@ static NSString *const kParameterDigitalGoodsSecret = @"secret";
     NSArray *bonusModel = [digitalGoodsModel objectForKey:kParameterDigitalGoodsBonus];
     NSArray *bonus = [YMAProcessPaymentResponse goodsByModel:bonusModel];
 
-    return [YMADigitalGoods digitalGoodsWithArticle:article bonus:bonus];
+    return [YMADigitalGoodsModel digitalGoodsWithArticle:article bonus:bonus];
 }
 
 #pragma mark -
@@ -76,17 +76,17 @@ static NSString *const kParameterDigitalGoodsSecret = @"secret";
     NSURL *holdForPickupLink = [NSURL URLWithString:holdForPickupLinkString];
 
     NSString *acsUrl = [responseModel objectForKey:kParameterAcsUri];
-    YMAAsc *asc = nil;
+    YMAAscModel *asc = nil;
 
     if (acsUrl) {
         NSDictionary *acsParams = [responseModel objectForKey:kParameterAcsParams];
-        asc = [YMAAsc ascWithUrl:[NSURL URLWithString:acsUrl] andParams:acsParams];
+        asc = [YMAAscModel ascWithUrl:[NSURL URLWithString:acsUrl] andParams:acsParams];
     }
 
     id digitalGoodsModel = [responseModel objectForKey:kParameterDigitalGoods];
-    YMADigitalGoods *digitalGoods = [YMAProcessPaymentResponse digitalGoodsByModel:digitalGoodsModel];
+    YMADigitalGoodsModel *digitalGoods = [YMAProcessPaymentResponse digitalGoodsByModel:digitalGoodsModel];
 
-    _paymentResultInfo = [YMAPaymentResultInfo paymentResultWithPaymentId:paymentId balance:balance invoiceId:invoiceId payer:payer payee:payee creditAmount:creditAmount payeeUid:payeeUid holdForPickupLink:holdForPickupLink asc:asc digitalGoods:digitalGoods];
+    _paymentResultInfo = [YMAPaymentResultModel paymentResultWithPaymentId:paymentId balance:balance invoiceId:invoiceId payer:payer payee:payee creditAmount:creditAmount payeeUid:payeeUid holdForPickupLink:holdForPickupLink asc:asc digitalGoods:digitalGoods];
 }
 
 - (NSString *)description {

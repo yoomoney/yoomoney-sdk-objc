@@ -3,7 +3,7 @@
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
-#import "YMAHistoryOperation.h"
+#import "YMAHistoryOperationModel.h"
 
 static NSString *const kKeyHistoryOperationStatusSuccess = @"success";
 static NSString *const kKeyHistoryOperationStatusRefused = @"refused";
@@ -18,7 +18,7 @@ static NSString *const kKeyHistoryOperationTypeDeposition = @"deposition";
 static NSString *const kKeyHistoryOperationTypeIncomingTransfer = @"incoming-transfer";
 static NSString *const kKeyHistoryOperationTypeIncomingTransferProtected = @"incoming-transfer-protected";
 
-@implementation YMAHistoryOperation
+@implementation YMAHistoryOperationModel
 
 - (id)initWithOperationId:(NSString *)operationId status:(YMAHistoryOperationStatus)status datetime:(NSDate *)datetime title:(NSString *)title patternId:(NSString *)patternId direction:(YMAHistoryOperationDirection)direction amount:(NSString *)amount label:(NSString *)label favourite:(BOOL)favourite type:(YMAHistoryOperationType)type {
     self = [super init];
@@ -40,7 +40,7 @@ static NSString *const kKeyHistoryOperationTypeIncomingTransferProtected = @"inc
 }
 
 + (instancetype)historyOperationWithOperationId:(NSString *)operationId status:(YMAHistoryOperationStatus)status datetime:(NSDate *)datetime title:(NSString *)title patternId:(NSString *)patternId direction:(YMAHistoryOperationDirection)direction amount:(NSString *)amount label:(NSString *)label favourite:(BOOL)favourite type:(YMAHistoryOperationType)type {
-    return [[YMAHistoryOperation alloc] initWithOperationId:operationId status:status datetime:datetime title:title patternId:patternId direction:direction amount:amount label:label favourite:favourite type:type];
+    return [[YMAHistoryOperationModel alloc] initWithOperationId:operationId status:status datetime:datetime title:title patternId:patternId direction:direction amount:amount label:label favourite:favourite type:type];
 }
 
 + (YMAHistoryOperationStatus)historyOperationStatusByString:(NSString *)historyOperationStatusString {

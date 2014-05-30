@@ -3,9 +3,9 @@
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
-#import "YMAAccountInfo.h"
-#import "YMAAvatar.h"
-#import "YMABalanceDetails.h"
+#import "YMAAccountInfoModel.h"
+#import "YMAAvatarModel.h"
+#import "YMABalanceDetailsModel.h"
 
 static NSString *const kKeyAccountStatusAnonymous = @"anonymous";
 static NSString *const kKeyAccountStatusNamed = @"named";
@@ -14,9 +14,9 @@ static NSString *const kKeyAccountStatusIdentified = @"identified";
 static NSString *const kKeyAccountTypePersonal = @"personal";
 static NSString *const kKeyAccountTypeProfessional = @"professional";
 
-@implementation YMAAccountInfo
+@implementation YMAAccountInfoModel
 
-- (id)initWithAccount:(NSString *)account balance:(NSString *)balance currency:(NSString *)currency accountStatus:(YMAAccountStatus)accountStatus accountType:(YMAAccountType)accountType avatar:(YMAAvatar *)avatar balanceDetails:(YMABalanceDetails *)balanceDetails cardsLinked:(NSArray *)cardsLinked servicesAdditional:(NSArray *)servicesAdditional {
+- (id)initWithAccount:(NSString *)account balance:(NSString *)balance currency:(NSString *)currency accountStatus:(YMAAccountStatus)accountStatus accountType:(YMAAccountType)accountType avatar:(YMAAvatarModel *)avatar balanceDetails:(YMABalanceDetailsModel *)balanceDetails cardsLinked:(NSArray *)cardsLinked servicesAdditional:(NSArray *)servicesAdditional {
     self = [super init];
 
     if (self) {
@@ -34,8 +34,8 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
     return self;
 }
 
-+ (instancetype)accountInfoWithAccount:(NSString *)account balance:(NSString *)balance currency:(NSString *)currency accountStatus:(YMAAccountStatus)accountStatus accountType:(YMAAccountType)accountType avatar:(YMAAvatar *)avatar balanceDetails:(YMABalanceDetails *)balanceDetails cardsLinked:(NSArray *)cardsLinked servicesAdditional:(NSArray *)servicesAdditional {
-    return [[YMAAccountInfo alloc] initWithAccount:account balance:balance currency:currency accountStatus:accountStatus accountType:accountType avatar:avatar balanceDetails:balanceDetails cardsLinked:cardsLinked servicesAdditional:servicesAdditional];
++ (instancetype)accountInfoWithAccount:(NSString *)account balance:(NSString *)balance currency:(NSString *)currency accountStatus:(YMAAccountStatus)accountStatus accountType:(YMAAccountType)accountType avatar:(YMAAvatarModel *)avatar balanceDetails:(YMABalanceDetailsModel *)balanceDetails cardsLinked:(NSArray *)cardsLinked servicesAdditional:(NSArray *)servicesAdditional {
+    return [[YMAAccountInfoModel alloc] initWithAccount:account balance:balance currency:currency accountStatus:accountStatus accountType:accountType avatar:avatar balanceDetails:balanceDetails cardsLinked:cardsLinked servicesAdditional:servicesAdditional];
 }
 
 + (YMAAccountStatus)accountStatusByString:(NSString *)accountStatusString {

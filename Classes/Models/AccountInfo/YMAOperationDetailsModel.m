@@ -3,16 +3,16 @@
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
-#import "YMAOperationDetails.h"
-#import "YMADigitalGoods.h"
+#import "YMAOperationDetailsModel.h"
+#import "YMADigitalGoodsModel.h"
 
 static NSString *const kKeyRecipientTypeAccount = @"account";
 static NSString *const kKeyRecipientTypePhone = @"phone";
 static NSString *const kKeyRecipientTypeEmail = @"email";
 
-@implementation YMAOperationDetails
+@implementation YMAOperationDetailsModel
 
-- (id)initWithOperation:(YMAHistoryOperation *)operation amountDue:(NSString *)amountDue fee:(NSString *)fee sender:(NSString *)sender recipient:(NSString *)recipient recipientType:(YMARecipientType)recipientType message:(NSString *)message comment:(NSString *)comment codepro:(BOOL)codePro protectionCode:(NSString *)protectionCode expires:(NSDate *)expires answerDatetime:(NSDate *)answerDatetime details:(NSString *)details repeatable:(BOOL)repeatable paymentParameters:(NSDictionary *)paymentParameters digitalGoods:(YMADigitalGoods *)digitalGoods {
+- (id)initWithOperation:(YMAHistoryOperationModel *)operation amountDue:(NSString *)amountDue fee:(NSString *)fee sender:(NSString *)sender recipient:(NSString *)recipient recipientType:(YMARecipientType)recipientType message:(NSString *)message comment:(NSString *)comment codepro:(BOOL)codePro protectionCode:(NSString *)protectionCode expires:(NSDate *)expires answerDatetime:(NSDate *)answerDatetime details:(NSString *)details repeatable:(BOOL)repeatable paymentParameters:(NSDictionary *)paymentParameters digitalGoods:(YMADigitalGoodsModel *)digitalGoods {
     self = [super initWithOperationId:operation.operationId status:operation.status datetime:operation.datetime title:operation.title patternId:operation.patternId direction:operation.direction amount:operation.amount label:operation.label favourite:operation.isFavourite type:operation.type];
 
     if (self) {
@@ -36,8 +36,8 @@ static NSString *const kKeyRecipientTypeEmail = @"email";
     return self;
 }
 
-+ (instancetype)operationDetailsWithOperation:(YMAHistoryOperation *)operation amountDue:(NSString *)amountDue fee:(NSString *)fee sender:(NSString *)sender recipient:(NSString *)recipient recipientType:(YMARecipientType)recipientType message:(NSString *)message comment:(NSString *)comment codepro:(BOOL)codePro protectionCode:(NSString *)protectionCode expires:(NSDate *)expires answerDatetime:(NSDate *)answerDatetime details:(NSString *)details repeatable:(BOOL)repeatable paymentParameters:(NSDictionary *)paymentParameters digitalGoods:(YMADigitalGoods *)digitalGoods {
-    return [[YMAOperationDetails alloc] initWithOperation:operation amountDue:amountDue fee:fee sender:sender recipient:recipient recipientType:recipientType message:message comment:comment codepro:codePro protectionCode:protectionCode expires:expires answerDatetime:answerDatetime details:details repeatable:repeatable paymentParameters:paymentParameters digitalGoods:digitalGoods];
++ (instancetype)operationDetailsWithOperation:(YMAHistoryOperationModel *)operation amountDue:(NSString *)amountDue fee:(NSString *)fee sender:(NSString *)sender recipient:(NSString *)recipient recipientType:(YMARecipientType)recipientType message:(NSString *)message comment:(NSString *)comment codepro:(BOOL)codePro protectionCode:(NSString *)protectionCode expires:(NSDate *)expires answerDatetime:(NSDate *)answerDatetime details:(NSString *)details repeatable:(BOOL)repeatable paymentParameters:(NSDictionary *)paymentParameters digitalGoods:(YMADigitalGoodsModel *)digitalGoods {
+    return [[YMAOperationDetailsModel alloc] initWithOperation:operation amountDue:amountDue fee:fee sender:sender recipient:recipient recipientType:recipientType message:message comment:comment codepro:codePro protectionCode:protectionCode expires:expires answerDatetime:answerDatetime details:details repeatable:repeatable paymentParameters:paymentParameters digitalGoods:digitalGoods];
 }
 
 + (YMARecipientType)recipientTypeByString:(NSString *)recipientTypeString {

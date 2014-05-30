@@ -8,7 +8,7 @@
 #import "YMAExternalPaymentResponse.h"
 
 ///
-/// Payment request. First phase of payment is required to obtain payment info (YMAExternalPaymentInfo)
+/// Payment request. First phase of payment is required to obtain payment info (YMAExternalPaymentInfoModel)
 /// using patternId and paymentParams.
 ///
 @interface YMAExternalPaymentRequest : YMABaseRequest <YMAParametersPosting>

@@ -6,7 +6,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface YMABalanceDetails : NSObject
+@interface YMABalanceDetailsModel : NSObject
 
 + (instancetype)balanceDetailsWithTotal:(NSString *)total available:(NSString *)available depositionPending:(NSString *)depositionPending blocked:(NSString *)blocked debt:(NSString *)debt;
 

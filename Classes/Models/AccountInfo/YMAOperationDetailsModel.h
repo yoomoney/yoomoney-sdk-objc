@@ -4,9 +4,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "YMAHistoryOperation.h"
+#import "YMAHistoryOperationModel.h"
 
-@class YMADigitalGoods;
+@class YMADigitalGoodsModel;
 
 typedef NS_ENUM(NSInteger, YMARecipientType) {
     YMARecipientTypeUnknown,
@@ -15,9 +15,9 @@ typedef NS_ENUM(NSInteger, YMARecipientType) {
     YMARecipientTypeEmail
 };
 
-@interface YMAOperationDetails : YMAHistoryOperation
+@interface YMAOperationDetailsModel : YMAHistoryOperationModel
 
-+ (instancetype)operationDetailsWithOperation:(YMAHistoryOperation *)operation amountDue:(NSString *)amountDue fee:(NSString *)fee sender:(NSString *)sender recipient:(NSString *)recipient recipientType:(YMARecipientType)recipientType message:(NSString *)message comment:(NSString *)comment codepro:(BOOL)codePro protectionCode:(NSString *)protectionCode expires:(NSDate *)expires answerDatetime:(NSDate *)answerDatetime details:(NSString *)details repeatable:(BOOL)repeatable paymentParameters:(NSDictionary *)paymentParameters digitalGoods:(YMADigitalGoods *)digitalGoods;
++ (instancetype)operationDetailsWithOperation:(YMAHistoryOperationModel *)operation amountDue:(NSString *)amountDue fee:(NSString *)fee sender:(NSString *)sender recipient:(NSString *)recipient recipientType:(YMARecipientType)recipientType message:(NSString *)message comment:(NSString *)comment codepro:(BOOL)codePro protectionCode:(NSString *)protectionCode expires:(NSDate *)expires answerDatetime:(NSDate *)answerDatetime details:(NSString *)details repeatable:(BOOL)repeatable paymentParameters:(NSDictionary *)paymentParameters digitalGoods:(YMADigitalGoodsModel *)digitalGoods;
 
 + (YMARecipientType)recipientTypeByString:(NSString *)recipientTypeString;
 
@@ -35,6 +35,6 @@ typedef NS_ENUM(NSInteger, YMARecipientType) {
 @property(nonatomic, copy, readonly) NSString *details;
 @property(nonatomic, assign, readonly) BOOL repeatable;
 @property(nonatomic, strong, readonly) NSDictionary *paymentParameters;
-@property(nonatomic, strong, readonly) YMADigitalGoods *digitalGoods;
+@property(nonatomic, strong, readonly) YMADigitalGoodsModel *digitalGoods;
 
 @end

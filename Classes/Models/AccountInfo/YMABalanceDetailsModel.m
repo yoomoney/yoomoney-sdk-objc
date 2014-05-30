@@ -3,10 +3,10 @@
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
-#import "YMABalanceDetails.h"
+#import "YMABalanceDetailsModel.h"
 
 
-@implementation YMABalanceDetails
+@implementation YMABalanceDetailsModel
 
 - (id)initWithTotal:(NSString *)total available:(NSString *)available depositionPending:(NSString *)depositionPending blocked:(NSString *)blocked debt:(NSString *)debt {
     self = [super init];
@@ -23,7 +23,7 @@
 }
 
 + (instancetype)balanceDetailsWithTotal:(NSString *)total available:(NSString *)available depositionPending:(NSString *)depositionPending blocked:(NSString *)blocked debt:(NSString *)debt {
-    return [[YMABalanceDetails alloc] initWithTotal:total available:available depositionPending:depositionPending blocked:blocked debt:debt];
+    return [[YMABalanceDetailsModel alloc] initWithTotal:total available:available depositionPending:depositionPending blocked:blocked debt:debt];
 }
 
 #pragma mark -

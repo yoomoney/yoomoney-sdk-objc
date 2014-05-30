@@ -8,9 +8,9 @@
 ///
 /// This class contains info about redirect to authorization page (url, params).
 ///
-@interface YMAAsc : NSObject
+@interface YMAAscModel : NSObject
 
-/// Constructor. Returns a YMAAsc with the specified url and authorization parameters.
+/// Constructor. Returns a YMAAscModel with the specified url and authorization parameters.
 /// @param url - Address authorization page. If the field is present to complete the transaction
 /// requires authorization (credit card page / or 3D-Secure).
 /// @param params - Authorization parameters in the format collection name-value pairs.

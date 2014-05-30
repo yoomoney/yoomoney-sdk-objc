@@ -6,10 +6,10 @@
 #import <Foundation/Foundation.h>
 #import "YMABaseResponse.h"
 
-@class YMAAccountInfo;
+@class YMAAccountInfoModel;
 
 @interface YMAAccountInfoResponse : YMABaseResponse
 
-@property(nonatomic, strong, readonly) YMAAccountInfo *accountInfo;
+@property(nonatomic, strong, readonly) YMAAccountInfoModel *accountInfo;
 
 @end

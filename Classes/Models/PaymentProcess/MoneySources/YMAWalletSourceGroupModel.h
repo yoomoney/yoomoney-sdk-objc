@@ -5,13 +5,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class YMAMoneySource;
+@class YMAMoneySourceModel;
 
-@interface YMAWalletSourceGroup : NSObject
+@interface YMAWalletSourceGroupModel : NSObject
 
 + (instancetype)walletMoneySourceWithAllowed:(BOOL)allowed;
 
 @property(nonatomic, assign, readonly) BOOL isAllowed;
-@property(nonatomic, strong, readonly) YMAMoneySource *moneySource;
+@property(nonatomic, strong, readonly) YMAMoneySourceModel *moneySource;
 
 @end

@@ -4,10 +4,10 @@
 //
 
 #import "YMAAccountInfoResponse.h"
-#import "YMAAccountInfo.h"
-#import "YMAAvatar.h"
-#import "YMABalanceDetails.h"
-#import "YMAMoneySource.h"
+#import "YMAAccountInfoModel.h"
+#import "YMAAvatarModel.h"
+#import "YMABalanceDetailsModel.h"
+#import "YMAMoneySourceModel.h"
 
 static NSString *const kParameterAccount = @"account";
 static NSString *const kParameterBalance = @"balance";
@@ -44,13 +44,13 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
     NSString *currency = [responseModel objectForKey:kParameterCurrency];
 
     NSString *accountStatusString = [responseModel objectForKey:kParameterAccountStatus];
-    YMAAccountStatus accountStatus = [YMAAccountInfo accountStatusByString:accountStatusString];
+    YMAAccountStatus accountStatus = [YMAAccountInfoModel accountStatusByString:accountStatusString];
 
     NSString *accountTypeString = [responseModel objectForKey:kParameterAccountType];
-    YMAAccountType accountType = [YMAAccountInfo accountTypeByString:accountTypeString];
+    YMAAccountType accountType = [YMAAccountInfoModel accountTypeByString:accountTypeString];
 
     id avatarModel = [responseModel objectForKey:kParameterAvatar];
-    YMAAvatar *avatar = nil;
+    YMAAvatarModel *avatar = nil;
 
     if (avatarModel) {
         NSString *avatarUrlString = [avatarModel objectForKey:kParameterAvatarUrl];
@@ -59,11 +59,11 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"];
         NSDate *timeStamp = [formatter dateFromString:timeStampString];
-        avatar = [YMAAvatar avatarWithUrl:avatarUrl timeStamp:timeStamp];
+        avatar = [YMAAvatarModel avatarWithUrl:avatarUrl timeStamp:timeStamp];
     }
 
     id balanceDetailsModel = [responseModel objectForKey:kParameterBalanceDetails];
-    YMABalanceDetails *balanceDetails = nil;
+    YMABalanceDetailsModel *balanceDetails = nil;
 
     if (balanceDetailsModel) {
         NSString *total = [balanceDetailsModel objectForKey:kParameterBalanceTotal];
@@ -72,7 +72,7 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
         NSString *blocked = [balanceDetailsModel objectForKey:kParameterBalanceBlocked];
         NSString *debt = [balanceDetailsModel objectForKey:kParameterBalanceDebt];
 
-        balanceDetails = [YMABalanceDetails balanceDetailsWithTotal:total available:available depositionPending:depositionPending blocked:blocked debt:debt];
+        balanceDetails = [YMABalanceDetailsModel balanceDetailsWithTotal:total available:available depositionPending:depositionPending blocked:blocked debt:debt];
     }
 
     id cardsLinkedModel = [responseModel objectForKey:kParameterCardsLinked];
@@ -84,8 +84,8 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
         for (id card in cardsLinkedModel) {
             NSString *panFragment = [card objectForKey:kParameterCardsLinkedPanFragment];
             NSString *cardTypeString = [card objectForKey:kParameterCardsLinkedType];
-            YMAPaymentCardType cardType = [YMAMoneySource paymentCardTypeByString:cardTypeString];
-            [cardsLinked addObject:[YMAMoneySource moneySourceWithType:YMAMoneySourcePaymentCard cardType:cardType panFragment:panFragment moneySourceToken:nil]];
+            YMAPaymentCardType cardType = [YMAMoneySourceModel paymentCardTypeByString:cardTypeString];
+            [cardsLinked addObject:[YMAMoneySourceModel moneySourceWithType:YMAMoneySourcePaymentCard cardType:cardType panFragment:panFragment moneySourceToken:nil]];
         }
     }
 
@@ -99,7 +99,7 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
             [servicesAdditional addObject:service];
     }
 
-    _accountInfo = [YMAAccountInfo accountInfoWithAccount:account balance:balance currency:currency accountStatus:accountStatus accountType:accountType avatar:avatar balanceDetails:balanceDetails cardsLinked:cardsLinked servicesAdditional:servicesAdditional];
+    _accountInfo = [YMAAccountInfoModel accountInfoWithAccount:account balance:balance currency:currency accountStatus:accountStatus accountType:accountType avatar:avatar balanceDetails:balanceDetails cardsLinked:cardsLinked servicesAdditional:servicesAdditional];
 }
 
 - (NSString *)description {

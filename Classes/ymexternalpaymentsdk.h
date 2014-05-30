@@ -9,9 +9,9 @@
 // All-in-one import for the Yandex.Money External Payment SDK
 
 #import "YMAExternalPaymentSession.h"
-#import "YMAAsc.h"
-#import "YMAMoneySource.h"
-#import "YMAExternalPaymentInfo.h"
+#import "YMAAscModel.h"
+#import "YMAMoneySourceModel.h"
+#import "YMAExternalPaymentInfoModel.h"
 #import "YMAConstants.h"
 #import "YMABaseRequest.h"
 #import "YMAExternalPaymentRequest.h"

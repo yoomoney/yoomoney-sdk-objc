@@ -6,13 +6,13 @@
 #import <Foundation/Foundation.h>
 #import "YMABasePaymentProcessResponse.h"
 
-@class YMAPaymentResultInfo;
-@class YMADigitalGoods;
+@class YMAPaymentResultModel;
+@class YMADigitalGoodsModel;
 
 @interface YMAProcessPaymentResponse : YMABasePaymentProcessResponse
 
-+ (YMADigitalGoods *)digitalGoodsByModel:(id)digitalGoodsModel;
++ (YMADigitalGoodsModel *)digitalGoodsByModel:(id)digitalGoodsModel;
 
-@property(nonatomic, strong, readonly) YMAPaymentResultInfo *paymentResultInfo;
+@property(nonatomic, strong, readonly) YMAPaymentResultModel *paymentResultInfo;
 
 @end

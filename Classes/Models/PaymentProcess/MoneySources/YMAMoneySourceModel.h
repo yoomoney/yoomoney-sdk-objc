@@ -4,7 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "YMAMoneySource.h"
+#import "YMAMoneySourceModel.h"
 
 /// Values for YMAMoneySourceType
 typedef NS_ENUM(NSInteger, YMAMoneySourceType) {
@@ -34,9 +34,9 @@ typedef NS_ENUM(NSInteger, YMAPaymentCardType) {
 ///
 /// This class contains info about the money source (type, cardType, panFragment, moneySourceToken).
 ///
-@interface YMAMoneySource : NSObject
+@interface YMAMoneySourceModel : NSObject
 
-/// Constructor. Returns a YMAMoneySource with the specified money source type,
+/// Constructor. Returns a YMAMoneySourceModel with the specified money source type,
 /// credit card type, PAN truncation and money source token.
 /// @param type - The money source type.
 /// @param cardType - The type of the credit card.

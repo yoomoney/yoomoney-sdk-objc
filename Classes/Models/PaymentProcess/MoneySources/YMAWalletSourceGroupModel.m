@@ -3,12 +3,12 @@
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
-#import "YMAWalletSourceGroup.h"
-#import "YMAMoneySource.h"
+#import "YMAWalletSourceGroupModel.h"
+#import "YMAMoneySourceModel.h"
 
-@implementation YMAWalletSourceGroup
+@implementation YMAWalletSourceGroupModel
 
-- (id)initWithMoneySource:(YMAMoneySource *)moneySource allowed:(BOOL)allowed {
+- (id)initWithMoneySource:(YMAMoneySourceModel *)moneySource allowed:(BOOL)allowed {
     self = [super init];
 
     if (self) {
@@ -20,7 +20,7 @@
 }
 
 + (instancetype)walletMoneySourceWithAllowed:(BOOL)allowed {
-    return [[YMAWalletSourceGroup alloc] initWithMoneySource:[YMAMoneySource moneySourceWithType:YMAMoneySourceWallet cardType:YMAPaymentCardUnknown panFragment:nil moneySourceToken:nil] allowed:allowed];
+    return [[YMAWalletSourceGroupModel alloc] initWithMoneySource:[YMAMoneySourceModel moneySourceWithType:YMAMoneySourceWallet cardType:YMAPaymentCardUnknown panFragment:nil moneySourceToken:nil] allowed:allowed];
 }
 
 #pragma mark -

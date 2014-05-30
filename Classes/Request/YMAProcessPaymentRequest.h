@@ -7,10 +7,10 @@
 #import "YMABaseRequest.h"
 #import "YMAProcessPaymentResponse.h"
 
-@class YMAMoneySource;
+@class YMAMoneySourceModel;
 
 @interface YMAProcessPaymentRequest : YMABaseRequest <YMAParametersPosting>
 
-+ (instancetype)processPaymentRequestId:(NSString *)requestId moneySource:(YMAMoneySource *)moneySource csc:(NSString *)csc successUri:(NSString *)successUri failUri:(NSString *)failUri;
++ (instancetype)processPaymentRequestId:(NSString *)requestId moneySource:(YMAMoneySourceModel *)moneySource csc:(NSString *)csc successUri:(NSString *)successUri failUri:(NSString *)failUri;
 
 @end

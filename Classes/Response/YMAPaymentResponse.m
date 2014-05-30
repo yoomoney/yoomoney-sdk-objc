@@ -4,11 +4,11 @@
 //
 
 #import "YMAPaymentResponse.h"
-#import "YMAPaymentInfo.h"
-#import "YMAMoneySources.h"
-#import "YMAWalletSourceGroup.h"
-#import "YMAMoneySource.h"
-#import "YMACardsSourceGroup.h"
+#import "YMAPaymentInfoModel.h"
+#import "YMAMoneySourcesModel.h"
+#import "YMAWalletSourceGroupModel.h"
+#import "YMAMoneySourceModel.h"
+#import "YMACardsSourceGroupModel.h"
 
 static NSString *const kParameterRequestId = @"request_id";
 static NSString *const kParameterMoneySource = @"money_source";
@@ -30,28 +30,28 @@ static NSString *const kParameterMoneySourceCscRequired = @"csc_required";
 
 @implementation YMAPaymentResponse
 
-+ (YMAMoneySources *)moneySourcesFromModel:(id)moneySourcesModel {
++ (YMAMoneySourcesModel *)moneySourcesFromModel:(id)moneySourcesModel {
     if (!moneySourcesModel)
         return nil;
 
-    YMAWalletSourceGroup *walletSourceGroup = nil;
+    YMAWalletSourceGroupModel *walletSourceGroup = nil;
 
     id walletModel = [moneySourcesModel objectForKey:kParameterMoneySourceWallet];
 
     if (walletModel) {
         BOOL walletAllowed = [[walletModel objectForKey:kParameterMoneySourceAllowed] boolValue];
-        walletSourceGroup = [YMAWalletSourceGroup walletMoneySourceWithAllowed:walletAllowed];
+        walletSourceGroup = [YMAWalletSourceGroupModel walletMoneySourceWithAllowed:walletAllowed];
     }
 
-    YMACardsSourceGroup *cardsSourceGroup = nil;
+    YMACardsSourceGroupModel *cardsSourceGroup = nil;
 
     id cardsModel = [moneySourcesModel objectForKey:kParameterMoneySourceCards];
 
     if (!cardsModel)
-        return [YMAMoneySources moneySourcesWithWallet:walletSourceGroup cardsSource:nil];
+        return [YMAMoneySourcesModel moneySourcesWithWallet:walletSourceGroup cardsSource:nil];
 
     NSMutableArray *cards = nil;
-    YMAMoneySource *defaultCard = nil;
+    YMAMoneySourceModel *defaultCard = nil;
 
     BOOL cardsAllowed = [[cardsModel objectForKey:kParameterMoneySourceAllowed] boolValue];
     BOOL isCscRequired = [[cardsModel objectForKey:kParameterMoneySourceCscRequired] boolValue];
@@ -65,19 +65,19 @@ static NSString *const kParameterMoneySourceCscRequired = @"csc_required";
             NSString *cardId = [cardModel objectForKey:kParameterMoneySourceId];
             NSString *panFragment = [cardModel objectForKey:kParameterMoneySourcePanFragment];
             NSString *cardTypeString = [cardModel objectForKey:kParameterMoneySourceType];
-            YMAPaymentCardType cardType = [YMAMoneySource paymentCardTypeByString:cardTypeString];
+            YMAPaymentCardType cardType = [YMAMoneySourceModel paymentCardTypeByString:cardTypeString];
             cardsAllowed = [[cardModel objectForKey:kParameterMoneySourceAllowed] boolValue];
             isCscRequired = [[cardModel objectForKey:kParameterMoneySourceCscRequired] boolValue];
-            YMAMoneySource *card = [YMAMoneySource moneySourceWithType:YMAMoneySourcePaymentCard cardType:cardType panFragment:panFragment moneySourceToken:cardId];
+            YMAMoneySourceModel *card = [YMAMoneySourceModel moneySourceWithType:YMAMoneySourcePaymentCard cardType:cardType panFragment:panFragment moneySourceToken:cardId];
             [cards addObject:card];
         }
 
         defaultCard = cards.count ? cards[0] : nil;
     }
 
-    cardsSourceGroup = [YMACardsSourceGroup cardsSourceWithCards:cards defaultCard:defaultCard cscRequired:isCscRequired allowed:cardsAllowed];
+    cardsSourceGroup = [YMACardsSourceGroupModel cardsSourceWithCards:cards defaultCard:defaultCard cscRequired:isCscRequired allowed:cardsAllowed];
 
-    return [YMAMoneySources moneySourcesWithWallet:walletSourceGroup cardsSource:cardsSourceGroup];
+    return [YMAMoneySourcesModel moneySourcesWithWallet:walletSourceGroup cardsSource:cardsSourceGroup];
 }
 
 
@@ -93,19 +93,19 @@ static NSString *const kParameterMoneySourceCscRequired = @"csc_required";
     NSString *balance = [[responseModel objectForKey:kParameterBalance] stringValue];
 
     NSString *accountStatusString = [responseModel objectForKey:kParameterRecipientAccountStatus];
-    YMAAccountStatus accountStatus = [YMAAccountInfo accountStatusByString:accountStatusString];
+    YMAAccountStatus accountStatus = [YMAAccountInfoModel accountStatusByString:accountStatusString];
 
     NSString *accountTypeString = [responseModel objectForKey:kParameterRecipientAccountType];
-    YMAAccountType accountType = [YMAAccountInfo accountTypeByString:accountTypeString];
+    YMAAccountType accountType = [YMAAccountInfoModel accountTypeByString:accountTypeString];
 
     NSString *protectionCode = [responseModel objectForKey:kParameterProtectionCode];
     NSString *extActionUriString = [responseModel objectForKey:kParameterExtActionUri];
     NSURL *extActionUri = [NSURL URLWithString:extActionUriString];
 
     id moneySourcesModel = [responseModel objectForKey:kParameterMoneySource];
-    YMAMoneySources *moneySources = [YMAPaymentResponse moneySourcesFromModel:moneySourcesModel];
+    YMAMoneySourcesModel *moneySources = [YMAPaymentResponse moneySourcesFromModel:moneySourcesModel];
 
-    _paymentInfo = [YMAPaymentInfo paymentInfoWithMoneySources:moneySources requestId:requestId contractAmount:contractAmount balance:balance recipientAccountStatus:accountStatus recipientAccountType:accountType protectionCode:protectionCode extActionUri:extActionUri];
+    _paymentInfo = [YMAPaymentInfoModel paymentInfoWithMoneySources:moneySources requestId:requestId contractAmount:contractAmount balance:balance recipientAccountStatus:accountStatus recipientAccountType:accountType protectionCode:protectionCode extActionUri:extActionUri];
 }
 
 - (NSString *)description {

@@ -3,10 +3,10 @@
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
-#import "YMAAvatar.h"
+#import "YMAAvatarModel.h"
 
 
-@implementation YMAAvatar
+@implementation YMAAvatarModel
 
 - (id)initWithUrl:(NSURL *)url timeStamp:(NSDate *)timeStamp {
     self = [super init];
@@ -20,7 +20,7 @@
 }
 
 + (instancetype)avatarWithUrl:(NSURL *)url timeStamp:(NSDate *)timeStamp {
-    return [[YMAAvatar alloc] initWithUrl:url timeStamp:timeStamp];
+    return [[YMAAvatarModel alloc] initWithUrl:url timeStamp:timeStamp];
 }
 
 #pragma mark -

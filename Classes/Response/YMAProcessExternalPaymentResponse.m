@@ -4,8 +4,8 @@
 //
 
 #import "YMAProcessExternalPaymentResponse.h"
-#import "YMAAsc.h"
-#import "YMAMoneySource.h"
+#import "YMAAscModel.h"
+#import "YMAMoneySourceModel.h"
 
 static NSString *const kParameterAcsUrl = @"acs_uri";
 static NSString *const kParameterAcsParams = @"acs_params";
@@ -31,7 +31,7 @@ static NSString *const kMoneySourceTypePaymentCard = @"payment-card";
 
     if (acsUrl) {
         NSDictionary *acsParams = [responseModel objectForKey:kParameterAcsParams];
-        _asc = [YMAAsc ascWithUrl:[NSURL URLWithString:acsUrl] andParams:acsParams];
+        _asc = [YMAAscModel ascWithUrl:[NSURL URLWithString:acsUrl] andParams:acsParams];
     }
 
     NSDictionary *moneySource = [responseModel objectForKey:kParameterMoneySource];
@@ -41,15 +41,15 @@ static NSString *const kMoneySourceTypePaymentCard = @"payment-card";
 
         if ([type isEqual:kMoneySourceTypePaymentCard]) {
             NSString *paymentCardTypeString = [moneySource objectForKey:kParameterPaymentCardType];
-            YMAPaymentCardType paymentCardType = [YMAMoneySource paymentCardTypeByString:paymentCardTypeString];
+            YMAPaymentCardType paymentCardType = [YMAMoneySourceModel paymentCardTypeByString:paymentCardTypeString];
 
             NSString *panFragment = [moneySource objectForKey:kParameterPanFragment];
             NSString *moneySourceToken = [moneySource objectForKey:kParameterMoneySourceToken];
 
-            _moneySource = [YMAMoneySource moneySourceWithType:YMAMoneySourcePaymentCard cardType:paymentCardType panFragment:panFragment moneySourceToken:moneySourceToken];
+            _moneySource = [YMAMoneySourceModel moneySourceWithType:YMAMoneySourcePaymentCard cardType:paymentCardType panFragment:panFragment moneySourceToken:moneySourceToken];
 
         } else
-            _moneySource = [YMAMoneySource moneySourceWithType:YMAMoneySourceUnknown cardType:YMAPaymentCardUnknown panFragment:nil moneySourceToken:nil];
+            _moneySource = [YMAMoneySourceModel moneySourceWithType:YMAMoneySourceUnknown cardType:YMAPaymentCardUnknown panFragment:nil moneySourceToken:nil];
     }
 
     _invoiceId = [responseModel objectForKey:kParameterInvoiceId];

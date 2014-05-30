@@ -3,10 +3,10 @@
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
-#import "YMAGoods.h"
+#import "YMAGoodsModel.h"
 
 
-@implementation YMAGoods
+@implementation YMAGoodsModel
 
 - (id)initWithId:(NSString *)merchantArticleId serial:(NSString *)serial secret:(NSString *)secret {
     self = [super init];
@@ -21,7 +21,7 @@
 }
 
 + (instancetype)goodsWithId:(NSString *)merchantArticleId serial:(NSString *)serial secret:(NSString *)secret {
-    return [[YMAGoods alloc] initWithId:merchantArticleId serial:serial secret:secret];
+    return [[YMAGoodsModel alloc] initWithId:merchantArticleId serial:serial secret:secret];
 }
 
 #pragma mark -

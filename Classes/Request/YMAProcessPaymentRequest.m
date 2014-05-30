@@ -4,7 +4,7 @@
 //
 
 #import "YMAProcessPaymentRequest.h"
-#import "YMAMoneySource.h"
+#import "YMAMoneySourceModel.h"
 #import "YMAHostsProvider.h"
 
 static NSString *const kParameterRequestId = @"request_id";
@@ -18,7 +18,7 @@ static NSString *const kUrlProcessPayment = @"api/process-payment";
 @interface YMAProcessPaymentRequest ()
 
 @property(nonatomic, copy) NSString *requestId;
-@property(nonatomic, strong) YMAMoneySource *moneySource;
+@property(nonatomic, strong) YMAMoneySourceModel *moneySource;
 @property(nonatomic, copy) NSString *csc;
 @property(nonatomic, copy) NSString *successUri;
 @property(nonatomic, copy) NSString *failUri;
@@ -28,7 +28,7 @@ static NSString *const kUrlProcessPayment = @"api/process-payment";
 
 @implementation YMAProcessPaymentRequest
 
-- (id)initWithRequestId:(NSString *)requestId moneySource:(YMAMoneySource *)moneySource csc:(NSString *)csc successUri:(NSString *)successUri failUri:(NSString *)failUri {
+- (id)initWithRequestId:(NSString *)requestId moneySource:(YMAMoneySourceModel *)moneySource csc:(NSString *)csc successUri:(NSString *)successUri failUri:(NSString *)failUri {
     self = [super init];
 
     if (self) {
@@ -42,7 +42,7 @@ static NSString *const kUrlProcessPayment = @"api/process-payment";
     return self;
 }
 
-+ (instancetype)processPaymentRequestId:(NSString *)requestId moneySource:(YMAMoneySource *)moneySource csc:(NSString *)csc successUri:(NSString *)successUri failUri:(NSString *)failUri {
++ (instancetype)processPaymentRequestId:(NSString *)requestId moneySource:(YMAMoneySourceModel *)moneySource csc:(NSString *)csc successUri:(NSString *)successUri failUri:(NSString *)failUri {
     return [[YMAProcessPaymentRequest alloc] initWithRequestId:requestId moneySource:moneySource csc:csc successUri:successUri failUri:failUri];
 }
 

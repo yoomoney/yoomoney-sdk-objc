@@ -6,7 +6,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface YMADigitalGoods : NSObject
+@interface YMADigitalGoodsModel : NSObject
 
 + (instancetype)digitalGoodsWithArticle:(NSArray *)article bonus:(NSArray *)bonus;
 

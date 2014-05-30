@@ -6,7 +6,7 @@
 #import <Foundation/Foundation.h>
 #import "YMABasePaymentProcessResponse.h"
 
-@class YMAExternalPaymentInfo;
+@class YMAExternalPaymentInfoModel;
 
 ///
 /// Payment response. This class contains payment info (paymentRequestInfo)
@@ -15,6 +15,6 @@
 
 /// Info about the current payment request.
 /// The property is not equal to zero for status = YMAResponseStatusInProgress.
-@property(nonatomic, strong, readonly) YMAExternalPaymentInfo *paymentRequestInfo;
+@property(nonatomic, strong, readonly) YMAExternalPaymentInfoModel *paymentRequestInfo;
 
 @end

@@ -1,5 +1,5 @@
 //
-//  YMAExternalPaymentInfo.h
+//  YMAExternalPaymentInfoModel.h
 //  cps-sdk
 //
 //  Created by Alexander Mertvetsov on 10.02.14.
@@ -11,9 +11,9 @@
 ///
 /// This class contains info about the payment request (requestId, amount, title).
 ///
-@interface YMAExternalPaymentInfo : NSObject
+@interface YMAExternalPaymentInfoModel : NSObject
 
-/// Constructor. Returns a YMAExternalPaymentInfo with the specified requestId, amount, and payment title.
+/// Constructor. Returns a YMAExternalPaymentInfoModel with the specified requestId, amount, and payment title.
 /// @param requestId - ID of the current payment request.
 /// @param amount - The amount of the payment.
 /// @param title - A title of the payment.

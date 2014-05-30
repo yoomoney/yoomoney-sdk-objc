@@ -20,7 +20,7 @@
 /// @param requestId - ID of the current payment request.
 /// @param successUri - Return address of the page if successful payment authorization by credit card.
 /// @param failUri - Return address of the page with the refusal to authorize payment by credit card.
-/// @param requestToken - Parameter is set to YES - an application requests a token (YMAMoneySource) for repeat payments.
+/// @param requestToken - Parameter is set to YES - an application requests a token (YMAMoneySourceModel) for repeat payments.
 + (instancetype)processExternalPaymentWithRequestId:(NSString *)requestId successUri:(NSString *)successUri failUri:(NSString *)failUri requestToken:(BOOL)requestToken;
 
 /// Constructor. Returns a YMAProcessExternalPaymentRequest with the specified requestId, successUri,
@@ -28,7 +28,7 @@
 /// @param requestId - ID of the current payment request.
 /// @param successUri - Return address of the page if successful payment authorization by credit card.
 /// @param failUri - Return address of the page with the refusal to authorize payment by credit card.
-/// @param moneySourceToken - Token for repeating payments (YMAMoneySource).
+/// @param moneySourceToken - Token for repeating payments (YMAMoneySourceModel).
 /// @param csc -  Card Security Code, CVV2/CVC2.
 + (instancetype)processExternalPaymentWithRequestId:(NSString *)requestId successUri:(NSString *)successUri failUri:(NSString *)failUri moneySourceToken:(NSString *)moneySourceToken andCsc:(NSString *)csc;
 

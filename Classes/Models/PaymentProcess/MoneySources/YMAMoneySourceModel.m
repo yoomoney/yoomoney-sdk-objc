@@ -3,14 +3,14 @@
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
-#import "YMAMoneySource.h"
+#import "YMAMoneySourceModel.h"
 
 static NSString *const kPaymentCardTypeVISA = @"VISA";
 static NSString *const kPaymentCardTypeMasterCard = @"MasterCard";
 static NSString *const kPaymentCardTypeAmericanExpress = @"AmericanExpress";
 static NSString *const kPaymentCardTypeJCB = @"JCB";
 
-@implementation YMAMoneySource
+@implementation YMAMoneySourceModel
 
 - (id)initWithType:(YMAMoneySourceType)type cardType:(YMAPaymentCardType)cardType panFragment:(NSString *)panFragment moneySourceToken:(NSString *)moneySourceToken {
     self = [super init];
@@ -26,7 +26,7 @@ static NSString *const kPaymentCardTypeJCB = @"JCB";
 }
 
 + (instancetype)moneySourceWithType:(YMAMoneySourceType)type cardType:(YMAPaymentCardType)cardType panFragment:(NSString *)panFragment moneySourceToken:(NSString *)moneySourceToken {
-    return [[YMAMoneySource alloc] initWithType:type cardType:cardType panFragment:panFragment moneySourceToken:moneySourceToken];
+    return [[YMAMoneySourceModel alloc] initWithType:type cardType:cardType panFragment:panFragment moneySourceToken:moneySourceToken];
 }
 
 + (YMAPaymentCardType)paymentCardTypeByString:(NSString *)string {

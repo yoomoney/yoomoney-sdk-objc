@@ -3,10 +3,10 @@
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
-#import "YMADigitalGoods.h"
+#import "YMADigitalGoodsModel.h"
 
 
-@implementation YMADigitalGoods
+@implementation YMADigitalGoodsModel
 
 - (id)initWithWithArticle:(NSArray *)article bonus:(NSArray *)bonus {
     self = [super init];
@@ -20,7 +20,7 @@
 }
 
 + (instancetype)digitalGoodsWithArticle:(NSArray *)article bonus:(NSArray *)bonus {
-    return [[YMADigitalGoods alloc] initWithWithArticle:article bonus:bonus];
+    return [[YMADigitalGoodsModel alloc] initWithWithArticle:article bonus:bonus];
 }
 
 #pragma mark -

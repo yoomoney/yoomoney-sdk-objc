@@ -27,7 +27,7 @@ typedef NS_ENUM(NSInteger, YMAHistoryOperationType) {
     YMAHistoryOperationTypeIncomingTransferProtected
 };
 
-@interface YMAHistoryOperation : NSObject
+@interface YMAHistoryOperationModel : NSObject
 
 - (id)initWithOperationId:(NSString *)operationId status:(YMAHistoryOperationStatus)status datetime:(NSDate *)datetime title:(NSString *)title patternId:(NSString *)patternId direction:(YMAHistoryOperationDirection)direction amount:(NSString *)amount label:(NSString *)label favourite:(BOOL)favourite type:(YMAHistoryOperationType)type;
 

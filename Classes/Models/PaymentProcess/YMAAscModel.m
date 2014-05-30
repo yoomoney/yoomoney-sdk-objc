@@ -3,10 +3,10 @@
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
-#import "YMAAsc.h"
+#import "YMAAscModel.h"
 
 
-@implementation YMAAsc
+@implementation YMAAscModel
 
 - (id)initWithUrl:(NSURL *)url andParams:(NSDictionary *)params {
     self = [super init];
@@ -20,7 +20,7 @@
 }
 
 + (instancetype)ascWithUrl:(NSURL *)url andParams:(NSDictionary *)params {
-    return [[YMAAsc alloc] initWithUrl:url andParams:params];
+    return [[YMAAscModel alloc] initWithUrl:url andParams:params];
 }
 
 #pragma mark -

@@ -4,7 +4,7 @@
 //
 
 #import "YMAOperationDetailsResponse.h"
-#import "YMAOperationDetails.h"
+#import "YMAOperationDetailsModel.h"
 #import "YMAConstants.h"
 #import "YMAHistoryOperationsResponse.h"
 #import "YMAProcessPaymentResponse.h"
@@ -49,7 +49,7 @@ static NSString *const kParameterDigitalGoods = @"digital_goods";
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"];
 
-    YMAHistoryOperation *historyOperation = [YMAHistoryOperationsResponse historyOperationByModel:responseModel];
+    YMAHistoryOperationModel *historyOperation = [YMAHistoryOperationsResponse historyOperationByModel:responseModel];
 
     NSString *amountDue = [[responseModel objectForKey:kParameterAmountDue] stringValue];
     NSString *fee = [[responseModel objectForKey:kParameterFee] stringValue];
@@ -57,7 +57,7 @@ static NSString *const kParameterDigitalGoods = @"digital_goods";
     NSString *recipient = [responseModel objectForKey:kParameterRecipient];
 
     NSString *recipientTypeString = [responseModel objectForKey:kParameterRecipientType];
-    YMARecipientType recipientType = [YMAOperationDetails recipientTypeByString:recipientTypeString];
+    YMARecipientType recipientType = [YMAOperationDetailsModel recipientTypeByString:recipientTypeString];
 
     NSString *message = [responseModel objectForKey:kParameterMessage];
     NSString *comment = [responseModel objectForKey:kParameterComment];
@@ -76,9 +76,9 @@ static NSString *const kParameterDigitalGoods = @"digital_goods";
     NSDictionary *paymentParameters = [responseModel objectForKey:kParameterPaymentParameters];
 
     id digitalGoodsModel = [responseModel objectForKey:kParameterDigitalGoods];
-    YMADigitalGoods *digitalGoods = [YMAProcessPaymentResponse digitalGoodsByModel:digitalGoodsModel];
+    YMADigitalGoodsModel *digitalGoods = [YMAProcessPaymentResponse digitalGoodsByModel:digitalGoodsModel];
 
-    _operationDetails = [YMAOperationDetails operationDetailsWithOperation:historyOperation amountDue:amountDue fee:fee sender:sender recipient:recipient recipientType:recipientType message:message comment:comment codepro:codePro protectionCode:protectionCode expires:expires answerDatetime:answerDatetime details:details repeatable:repeatable paymentParameters:paymentParameters digitalGoods:digitalGoods];
+    _operationDetails = [YMAOperationDetailsModel operationDetailsWithOperation:historyOperation amountDue:amountDue fee:fee sender:sender recipient:recipient recipientType:recipientType message:message comment:comment codepro:codePro protectionCode:protectionCode expires:expires answerDatetime:answerDatetime details:details repeatable:repeatable paymentParameters:paymentParameters digitalGoods:digitalGoods];
 }
 
 - (NSString *)description {
