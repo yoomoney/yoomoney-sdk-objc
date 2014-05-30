@@ -80,10 +80,10 @@ NSString *const kValueContentTypeDefault = @"application/x-www-form-urlencoded;c
 }
 
 - (void)processRequest:(NSURLRequest *)urlRequest response:(NSURLResponse *)urlResponse responseData:(NSData *)responseData error:(NSError *)error completion:(YMAConnectionHandler)block {
-//    if (error) {
-//        block(urlRequest, urlResponse, responseData, error);
-//        return;
-//    }
+    if (error) {
+        block(urlRequest, urlResponse, responseData, error);
+        return;
+    }
 
     NSInteger statusCode = ((NSHTTPURLResponse *) urlResponse).statusCode;
     NSError *technicalError = [NSError errorWithDomain:kErrorKeyUnknown code:statusCode userInfo:@{@"request" : urlRequest, @"response" : urlResponse}];
@@ -97,7 +97,7 @@ NSString *const kValueContentTypeDefault = @"application/x-www-form-urlencoded;c
             block(urlRequest, urlResponse, responseData, [NSError errorWithDomain:[self valueOfHeader:kHeaderWWWAuthenticate forResponse:urlResponse] code:statusCode userInfo:@{@"request" : urlRequest, @"response" : urlResponse}]);
             break;
         default:
-            block(urlRequest, urlResponse, responseData, error ? error : technicalError);
+            block(urlRequest, urlResponse, responseData, technicalError);
             break;
     }
 }
