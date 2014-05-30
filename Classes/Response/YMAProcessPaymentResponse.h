@@ -4,12 +4,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "YMABasePaymentProcessResponse.h"
+#import "YMABaseProcessResponse.h"
 
 @class YMAPaymentResultModel;
 @class YMADigitalGoodsModel;
 
-@interface YMAProcessPaymentResponse : YMABasePaymentProcessResponse
+@interface YMAProcessPaymentResponse : YMABaseProcessResponse
 
 + (YMADigitalGoodsModel *)digitalGoodsByModel:(id)digitalGoodsModel;
 

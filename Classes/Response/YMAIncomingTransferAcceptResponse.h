@@ -4,9 +4,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "YMABasePaymentProcessResponse.h"
+#import "YMABaseProcessResponse.h"
 
-@interface YMAIncomingTransferAcceptResponse : YMABasePaymentProcessResponse
+@interface YMAIncomingTransferAcceptResponse : YMABaseProcessResponse
 
 @property(nonatomic, assign, readonly) NSInteger protectionCodeAttemptsAvailable;
 @property(nonatomic, strong, readonly) NSURL *extActionUri;

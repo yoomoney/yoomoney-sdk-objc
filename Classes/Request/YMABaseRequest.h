@@ -26,7 +26,7 @@
 
 /// Completion of block is used to get the response.
 /// @param request - request inherited from abstract class YMABaseRequest.
-/// @param response - response inherited from abstract class YMABasePaymentProcessResponse.
+/// @param response - response inherited from abstract class YMABaseProcessResponse.
 /// @param error - Error information or nil.
 typedef void (^YMARequestHandler)(YMABaseRequest *request, YMABaseResponse *response, NSError *error);
 

@@ -4,7 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "YMABasePaymentProcessResponse.h"
+#import "YMABaseProcessResponse.h"
 
 @class YMAAscModel;
 @class YMAMoneySourceModel;
@@ -14,7 +14,7 @@
 /// Process payment response. This class contains info about redirect to authorization page (asc)
 /// and info about the money source (moneySource).
 ///
-@interface YMAProcessExternalPaymentResponse : YMABasePaymentProcessResponse
+@interface YMAProcessExternalPaymentResponse : YMABaseProcessResponse
 
 /// Info about redirect to authorization page.
 /// The property is not equal nil for status = YMAResponseStatusExtAuthRequired.

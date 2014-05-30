@@ -17,20 +17,7 @@ static NSString *const kKeyResponseStatusSuccess = @"success";
 #pragma mark -
 
 - (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error {
-    NSString *statusKey = [responseModel objectForKey:kParameterStatus];
-
-    if ([statusKey isEqual:kKeyResponseStatusSuccess]) {
-        _status = YMAResponseStatusSuccess;
-        return;
-    }
-
-    _status = YMAResponseStatusRefused;
-
-    if (!error) return;
-
-    NSString *errorKey = [responseModel objectForKey:kParameterError];
-    NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"response" : self}];
-    *error = errorKey ? [NSError errorWithDomain:errorKey code:0 userInfo:@{@"response" : self}] : unknownError;
+    [super parseJSONModel:responseModel error:error];
 }
 
 - (NSString *)description {

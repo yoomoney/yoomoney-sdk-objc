@@ -4,11 +4,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "YMABaseResponse.h"
+#import "YMABaseProcessResponse.h"
 
-@interface YMAChangeAvatarResponse : YMABaseResponse
-
-/// Response status.
-@property(nonatomic, assign, readonly) YMAResponseStatus status;
+@interface YMAChangeAvatarResponse : YMABaseProcessResponse
 
 @end

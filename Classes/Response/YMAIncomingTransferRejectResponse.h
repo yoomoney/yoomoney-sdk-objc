@@ -4,8 +4,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "YMABasePaymentProcessResponse.h"
+#import "YMABaseProcessResponse.h"
 
-@interface YMAIncomingTransferRejectResponse : YMABasePaymentProcessResponse
+@interface YMAIncomingTransferRejectResponse : YMABaseProcessResponse
 
 @end

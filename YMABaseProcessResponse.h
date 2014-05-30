@@ -1,5 +1,5 @@
 //
-//  YMABasePaymentProcessResponse.h
+//  YMABaseProcessResponse.h
 //
 //  Created by Alexander Mertvetsov on 01.11.13.
 //  Copyright (c) 2013 Yandex.Money. All rights reserved.
@@ -11,7 +11,7 @@
 ///
 /// Abstract class of response. This class contains common info about the response (status, nextRetry).
 ///
-@interface YMABasePaymentProcessResponse : YMABaseResponse
+@interface YMABaseProcessResponse : YMABaseResponse
 
 /// Status of process payment.
 @property(nonatomic, assign, readonly) YMAResponseStatus status;

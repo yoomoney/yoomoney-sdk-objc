@@ -36,7 +36,7 @@ typedef void (^YMAResponseHandler)(YMABaseResponse *response, NSError *error);
 ///
 @interface YMABaseResponse : NSOperation
 
-/// Constructor. Returns a YMABasePaymentProcessResponse with the specified data and completion of block.
+/// Constructor. Returns a YMABaseProcessResponse with the specified data and completion of block.
 /// @param data -
 /// @param block -
 - (id)initWithData:(NSData *)data andCompletion:(YMAResponseHandler)block;

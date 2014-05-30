@@ -1,11 +1,11 @@
 //
-//  YMABasePaymentProcessResponse.m
+//  YMABaseProcessResponse.m
 //
 //  Created by Alexander Mertvetsov on 01.11.13.
 //  Copyright (c) 2013 Yandex.Money. All rights reserved.
 //
 
-#import "YMABasePaymentProcessResponse.h"
+#import "YMABaseProcessResponse.h"
 #import "YMAConstants.h"
 
 static NSString *const kKeyResponseStatusRefused = @"refused";
@@ -19,7 +19,7 @@ static NSString *const kParameterError = @"error";
 static NSString *const kParameterNextRetry = @"next_retry";
 static NSString *const kParameterAccountUnblockUri = @"account_unblock_uri";
 
-@implementation YMABasePaymentProcessResponse
+@implementation YMABaseProcessResponse
 
 - (id)init {
     self = [super init];
