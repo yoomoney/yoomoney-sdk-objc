@@ -66,4 +66,13 @@ static NSString *const kParameterAccountUnblockUri = @"account_unblock_uri";
         _status = YMAResponseStatusUnknown;
 }
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self,
+                                      @{
+                                              @"status" : [NSNumber numberWithInteger:self.status],
+                                              @"nextRetry" : [NSNumber numberWithInteger:self.nextRetry],
+                                              @"accountUnblockUri" : self.accountUnblockUri
+                                      }];
+}
+
 @end

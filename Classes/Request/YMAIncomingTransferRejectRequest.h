@@ -5,7 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import "YMABaseRequest.h"
-#import "YMAIncomingTransferRejectResponse.h"
+#import "YMABaseProcessResponse.h"
 
 @interface YMAIncomingTransferRejectRequest : YMABaseRequest <YMAParametersPosting>
 

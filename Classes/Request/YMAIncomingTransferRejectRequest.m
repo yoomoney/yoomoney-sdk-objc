@@ -47,7 +47,7 @@ static NSString *const kParameterOperationId = @"operation_id";
 }
 
 - (NSOperation *)buildResponseOperationWithData:(NSData *)data andCompletionHandler:(YMAResponseHandler)handler {
-    return [[YMAIncomingTransferRejectResponse alloc] initWithData:data andCompletion:handler];
+    return [[YMABaseProcessResponse alloc] initWithData:data andCompletion:handler];
 }
 
 @end

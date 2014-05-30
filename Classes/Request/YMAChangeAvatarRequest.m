@@ -36,7 +36,7 @@ static NSString *const kUrlAvatar = @"api/avatar-set";
 }
 
 - (NSOperation *)buildResponseOperationWithData:(NSData *)data andCompletionHandler:(YMAResponseHandler)handler {
-    return [[YMAChangeAvatarResponse alloc] initWithData:data andCompletion:handler];
+    return [[YMABaseProcessResponse alloc] initWithData:data andCompletion:handler];
 }
 
 @end
