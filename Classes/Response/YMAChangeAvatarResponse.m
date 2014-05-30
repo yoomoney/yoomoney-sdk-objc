@@ -6,10 +6,6 @@
 #import "YMAChangeAvatarResponse.h"
 #import "YMAConstants.h"
 
-static NSString *const kParameterStatus = @"status";
-static NSString *const kParameterError = @"error";
-static NSString *const kKeyResponseStatusSuccess = @"success";
-
 @implementation YMAChangeAvatarResponse
 
 #pragma mark -
