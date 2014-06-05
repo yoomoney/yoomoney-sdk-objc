@@ -10,7 +10,8 @@
 typedef NS_ENUM(NSUInteger, YMAHistoryOperationFilter) {
     YMAHistoryOperationFilterUnknown = 0,
     YMAHistoryOperationFilterDeposition = 1 << 0,
-    YMAHistoryOperationFilterPayment = 1 << 1
+    YMAHistoryOperationFilterPayment = 1 << 1,
+    YMAHistoryOperationFilterIncomingTransfersUnaccepted = 1 << 2
 };
 
 @interface YMAHistoryOperationsRequest : YMABaseRequest <YMAParametersPosting>

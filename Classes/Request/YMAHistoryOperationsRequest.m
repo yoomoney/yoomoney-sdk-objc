@@ -9,6 +9,7 @@
 static NSString *const kParameterType = @"type";
 static NSString *const kKeyTypePayment = @"payment";
 static NSString *const kKeyTypeDeposition = @"deposition";
+static NSString *const kKeyTypeIncomingTransfersUnaccepted = @"incoming-transfers-unaccepted";
 static NSString *const kParameterLabel = @"label";
 static NSString *const kParameterFrom = @"from";
 static NSString *const kParameterTill = @"till";
@@ -64,14 +65,16 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
     [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"];
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
 
-    NSMutableString *typeString = [NSMutableString stringWithCapacity:0];
+    NSString *typeString;
 
     if (self.filter & YMAHistoryOperationFilterPayment)
-        [typeString appendString:kKeyTypePayment];
+        typeString = kKeyTypePayment;
     else if (self.filter & YMAHistoryOperationFilterDeposition)
-        [typeString appendString:kKeyTypeDeposition];
+        typeString = kKeyTypeDeposition;
+    else if (self.filter & YMAHistoryOperationFilterIncomingTransfersUnaccepted)
+        typeString = kKeyTypeIncomingTransfersUnaccepted;
 
-    [dictionary setValue:typeString.length ? typeString : nil forKey:kParameterType];
+    [dictionary setValue:typeString forKey:kParameterType];
     [dictionary setValue:self.label forKey:kParameterLabel];
 
     NSString *fromString = [formatter stringFromDate:self.from];
