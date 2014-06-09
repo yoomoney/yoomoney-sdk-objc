@@ -26,13 +26,13 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
 @property(nonatomic, strong) NSDate *from;
 @property(nonatomic, strong) NSDate *till;
 @property(nonatomic, copy) NSString *startRecord;
-@property(nonatomic, assign) NSUInteger records;
+@property(nonatomic, copy) NSString *records;
 
 @end
 
 @implementation YMAHistoryOperationsRequest
 
-- (id)initWithFilter:(YMAHistoryOperationFilter)filter label:(NSString *)label from:(NSDate *)from till:(NSDate *)till startRecord:(NSString *)startRecord records:(NSUInteger)records {
+- (id)initWithFilter:(YMAHistoryOperationFilter)filter label:(NSString *)label from:(NSDate *)from till:(NSDate *)till startRecord:(NSString *)startRecord records:(NSString *)records {
     self = [super self];
 
     if (self) {
@@ -40,14 +40,14 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
         _label = [label copy];
         _from = from;
         _till = till;
-        _records = records;
+        _records = [records copy];
         _startRecord = [startRecord copy];
     }
 
     return self;
 }
 
-+ (instancetype)operationHistoryWithFilter:(YMAHistoryOperationFilter)filter label:(NSString *)label from:(NSDate *)from till:(NSDate *)till startRecord:(NSString *)startRecord records:(NSUInteger)records {
++ (instancetype)operationHistoryWithFilter:(YMAHistoryOperationFilter)filter label:(NSString *)label from:(NSDate *)from till:(NSDate *)till startRecord:(NSString *)startRecord records:(NSString *)records {
     return [[YMAHistoryOperationsRequest alloc] initWithFilter:filter label:label from:from till:till startRecord:startRecord records:records];
 }
 
@@ -84,7 +84,7 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
     [dictionary setValue:tillString forKey:kParameterTill];
 
     [dictionary setValue:self.startRecord forKey:kParameterStartRecord];
-    [dictionary setValue:[NSString stringWithFormat:@"%lu", (unsigned long)self.records] forKey:kParameterRecords];
+    [dictionary setValue:self.records forKey:kParameterRecords];
 
     return dictionary;
 }

@@ -16,6 +16,6 @@ typedef NS_ENUM(NSUInteger, YMAHistoryOperationFilter) {
 
 @interface YMAHistoryOperationsRequest : YMABaseRequest <YMAParametersPosting>
 
-+ (instancetype)operationHistoryWithFilter:(YMAHistoryOperationFilter)filter label:(NSString *)label from:(NSDate *)from till:(NSDate *)till startRecord:(NSString *)startRecord records:(NSUInteger)records;
++ (instancetype)operationHistoryWithFilter:(YMAHistoryOperationFilter)filter label:(NSString *)label from:(NSDate *)from till:(NSDate *)till startRecord:(NSString *)startRecord records:(NSString *)records;
 
 @end
