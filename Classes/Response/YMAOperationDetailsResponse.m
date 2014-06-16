@@ -81,11 +81,4 @@ static NSString *const kParameterDigitalGoods = @"digital_goods";
     _operationDetails = [YMAOperationDetailsModel operationDetailsWithOperation:historyOperation amountDue:amountDue fee:fee sender:sender recipient:recipient recipientType:recipientType message:message comment:comment codepro:codePro protectionCode:protectionCode expires:expires answerDatetime:answerDatetime details:details repeatable:repeatable paymentParameters:paymentParameters digitalGoods:digitalGoods];
 }
 
-- (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self,
-                                      @{
-                                              @"operationDetails" : self.operationDetails.description
-                                      }];
-}
-
 @end

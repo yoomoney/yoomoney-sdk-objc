@@ -78,25 +78,4 @@ static NSString *const kKeyHistoryOperationTypeIncomingTransferProtected = @"inc
     return YMAHistoryOperationTypeUnknown;
 }
 
-
-#pragma mark -
-#pragma mark *** Overridden methods ***
-#pragma mark -
-
-- (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self,
-                                      @{
-                                              @"operationId" : self.operationId,
-                                              @"status" : [NSNumber numberWithInteger:self.status],
-                                              @"datetime" : self.datetime.description,
-                                              @"title" : self.title,
-                                              @"patternId" : self.patternId,
-                                              @"direction" : [NSNumber numberWithInteger:self.direction],
-                                              @"amount" : self.amount,
-                                              @"label" : self.label,
-                                              @"favourite" : self.isFavourite ? @"true" : @"false",
-                                              @"type" : [NSNumber numberWithInteger:self.type]
-                                      }];
-}
-
 @end

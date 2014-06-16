@@ -23,16 +23,4 @@
     return [[YMADigitalGoodsModel alloc] initWithWithArticle:article bonus:bonus];
 }
 
-#pragma mark -
-#pragma mark *** Overridden methods ***
-#pragma mark -
-
-- (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self,
-                                      @{
-                                              @"article" : self.article.description,
-                                              @"bonus" : self.bonus.description
-                                      }];
-}
-
 @end

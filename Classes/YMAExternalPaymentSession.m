@@ -87,12 +87,4 @@ static NSString *const kValueParameterStatusSuccess = @"success";
     }
 }
 
-#pragma mark -
-#pragma mark *** Overridden methods ***
-#pragma mark -
-
-- (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self, @{@"instanceId" : self.instanceId}];
-}
-
 @end

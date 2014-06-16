@@ -33,25 +33,4 @@
     return [[YMAPaymentResultModel alloc] initWithPaymentId:paymentId balance:balance invoiceId:invoiceId payer:payer payee:payee creditAmount:creditAmount payeeUid:payeeUid holdForPickupLink:holdForPickupLink asc:asc digitalGoods:digitalGoods];
 }
 
-#pragma mark -
-#pragma mark *** Overridden methods ***
-#pragma mark -
-
-- (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self,
-                                      @{
-                                              @"paymentId" : self.paymentId,
-                                              @"balance" : self.balance,
-                                              @"invoiceId" : self.invoiceId,
-                                              @"payer" : self.payer,
-                                              @"payee" : self.payee,
-                                              @"creditAmount" : self.creditAmount,
-                                              @"payeeUid" : self.payeeUid,
-                                              @"holdForPickupLink" : self.holdForPickupLink.description,
-                                              @"asc" : self.asc.description,
-                                              @"digitalGoods" : self.digitalGoods.description
-                                      }];
-}
-
-
 @end

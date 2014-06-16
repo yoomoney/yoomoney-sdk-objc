@@ -58,23 +58,4 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
     return YMAAccountTypeUnknown;
 }
 
-#pragma mark -
-#pragma mark *** Overridden methods ***
-#pragma mark -
-
-- (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self,
-                                      @{
-                                              @"account" : self.account,
-                                              @"balance" : self.balance,
-                                              @"currency" : self.currency,
-                                              @"accountStatus" : [NSNumber numberWithInteger:self.accountStatus],
-                                              @"accountType" : [NSNumber numberWithInteger:self.accountType],
-                                              @"avatar" : self.avatar.description,
-                                              @"balanceDetails" : self.balanceDetails.description,
-                                              @"cardsLinked" : self.cardsLinked.description,
-                                              @"servicesAdditional" : self.servicesAdditional.description
-                                      }];
-}
-
 @end

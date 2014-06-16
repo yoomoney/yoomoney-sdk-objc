@@ -89,11 +89,4 @@ static NSString *const kParameterDigitalGoodsSecret = @"secret";
     _paymentResultInfo = [YMAPaymentResultModel paymentResultWithPaymentId:paymentId balance:balance invoiceId:invoiceId payer:payer payee:payee creditAmount:creditAmount payeeUid:payeeUid holdForPickupLink:holdForPickupLink asc:asc digitalGoods:digitalGoods];
 }
 
-- (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self,
-                                      @{
-                                              @"paymentInfo" : self.paymentResultInfo.description
-                                      }];
-}
-
 @end

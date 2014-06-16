@@ -26,13 +26,4 @@ static NSString *const kParameterTitle = @"title";
     _paymentRequestInfo = [YMAExternalPaymentInfoModel paymentRequestInfoWithId:requestId amount:contractAmount andTitle:title];
 }
 
-- (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self,
-                                      @{
-                                              @"requestId" : self.paymentRequestInfo.requestId,
-                                              @"contract amount" : self.paymentRequestInfo.amount,
-                                              @"title" : self.paymentRequestInfo.title
-                                      }];
-}
-
 @end

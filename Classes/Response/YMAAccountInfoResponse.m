@@ -102,11 +102,4 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
     _accountInfo = [YMAAccountInfoModel accountInfoWithAccount:account balance:balance currency:currency accountStatus:accountStatus accountType:accountType avatar:avatar balanceDetails:balanceDetails cardsLinked:cardsLinked servicesAdditional:servicesAdditional];
 }
 
-- (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self,
-                                      @{
-                                              @"paymentInfo" : self.accountInfo.description
-                                      }];
-}
-
 @end

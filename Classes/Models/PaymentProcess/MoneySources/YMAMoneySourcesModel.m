@@ -25,17 +25,4 @@
     return [[YMAMoneySourcesModel alloc] initWithWallet:walletSource cardsSource:cards];
 }
 
-#pragma mark -
-#pragma mark *** Overridden methods ***
-#pragma mark -
-
-- (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self,
-                                      @{
-                                              @"wallet" : self.wallet.description,
-                                              @"cards" : self.cards.description
-                                      }];
-}
-
-
 @end

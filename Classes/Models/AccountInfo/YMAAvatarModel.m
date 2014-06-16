@@ -23,16 +23,4 @@
     return [[YMAAvatarModel alloc] initWithUrl:url timeStamp:timeStamp];
 }
 
-#pragma mark -
-#pragma mark *** Overridden methods ***
-#pragma mark -
-
-- (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self,
-                                      @{
-                                              @"url" : self.url,
-                                              @"timeStamp" : self.timeStamp
-                                      }];
-}
-
 @end

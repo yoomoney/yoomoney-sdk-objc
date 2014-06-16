@@ -51,38 +51,4 @@ static NSString *const kKeyRecipientTypeEmail = @"email";
     return YMARecipientTypeUnknown;
 }
 
-#pragma mark -
-#pragma mark *** Overridden methods ***
-#pragma mark -
-
-- (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self,
-                                      @{
-                                              @"operationId" : self.operationId,
-                                              @"status" : [NSNumber numberWithInteger:self.status],
-                                              @"datetime" : self.datetime.description,
-                                              @"title" : self.title,
-                                              @"patternId" : self.patternId,
-                                              @"direction" : [NSNumber numberWithInteger:self.direction],
-                                              @"amount" : self.amount,
-                                              @"label" : self.label,
-                                              @"favourite" : self.isFavourite ? @"true" : @"false",
-                                              @"amountDue" : self.amountDue,
-                                              @"type" : [NSNumber numberWithInteger:self.type],
-                                              @"fee" : self.fee,
-                                              @"sender" : self.sender,
-                                              @"recipientType" : [NSNumber numberWithInteger:self.recipientType],
-                                              @"message" : self.message,
-                                              @"comment" : self.comment,
-                                              @"codePro" : [NSNumber numberWithBool:self.codePro],
-                                              @"protectionCode" : self.protectionCode,
-                                              @"expires" : self.expires.description,
-                                              @"answerDatetime" : self.answerDatetime.description,
-                                              @"details" : self.details,
-                                              @"repeatable" : [NSNumber numberWithBool:self.repeatable],
-                                              @"paymentParameters" : self.paymentParameters.description,
-                                              @"digitalGoods" : self.digitalGoods.description
-                                      }];
-}
-
 @end

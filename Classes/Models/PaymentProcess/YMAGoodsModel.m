@@ -24,18 +24,4 @@
     return [[YMAGoodsModel alloc] initWithId:merchantArticleId serial:serial secret:secret];
 }
 
-#pragma mark -
-#pragma mark *** Overridden methods ***
-#pragma mark -
-
-- (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self,
-                                      @{
-                                              @"merchantArticleId" : self.merchantArticleId,
-                                              @"serial" : self.serial,
-                                              @"secret" : self.secret
-                                      }];
-}
-
-
 @end

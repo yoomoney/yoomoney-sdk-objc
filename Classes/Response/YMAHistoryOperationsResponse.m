@@ -86,12 +86,4 @@ static NSString *const kParameterOperationType = @"type";
     _operations = historyOperations;
 }
 
-- (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self,
-                                      @{
-                                              @"nextRecord" : self.nextRecord,
-                                              @"operations" : self.operations.description
-                                      }];
-}
-
 @end

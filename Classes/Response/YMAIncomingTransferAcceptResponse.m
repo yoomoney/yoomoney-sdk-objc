@@ -22,12 +22,4 @@ static NSString *const kParameterExtActionUri = @"ext_action_uri";
     _extActionUri = [NSURL URLWithString:extActionUriString];
 }
 
-- (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self,
-                                      @{
-                                              @"protectionCodeAttemptsAvailable" : [NSNumber numberWithInteger:self.protectionCodeAttemptsAvailable],
-                                              @"extActionUri" : self.extActionUri
-                                      }];
-}
-
 @end

@@ -26,17 +26,4 @@
     return [[YMAExternalPaymentInfoModel alloc] initPaymentRequestInfoWithId:requestId amount:amount andTitle:title];
 }
 
-#pragma mark -
-#pragma mark *** Overridden methods ***
-#pragma mark -
-
-- (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self,
-                                      @{
-                                              @"requestId" : self.requestId,
-                                              @"amount" : self.amount,
-                                              @"title" : self.title
-                                      }];
-}
-
 @end

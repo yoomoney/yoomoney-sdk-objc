@@ -45,18 +45,4 @@ static NSString *const kPaymentCardTypeJCB = @"JCB";
     return YMAPaymentCardUnknown;
 }
 
-#pragma mark -
-#pragma mark *** Overridden methods ***
-#pragma mark -
-
-- (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self,
-                                      @{
-                                              @"moneySourceType" : [NSNumber numberWithInt:self.type],
-                                              @"cardType" : [NSNumber numberWithInt:self.cardType],
-                                              @"panFragment" : self.panFragment,
-                                              @"moneySourceToken" : self.moneySourceToken
-                                      }];
-}
-
 @end

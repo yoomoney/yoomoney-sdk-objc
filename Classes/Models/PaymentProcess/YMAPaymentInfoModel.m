@@ -30,22 +30,4 @@
     return [[YMAPaymentInfoModel alloc] initWithMoneySources:moneySources requestId:requestId contractAmount:contractAmount balance:balance recipientAccountStatus:recipientAccountStatus recipientAccountType:recipientAccountType protectionCode:protectionCode extActionUri:extActionUri];
 }
 
-#pragma mark -
-#pragma mark *** Overridden methods ***
-#pragma mark -
-
-- (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self,
-                                      @{
-                                              @"moneySources" : self.moneySources.description,
-                                              @"requestId" : self.requestId,
-                                              @"contractAmount" : self.contractAmount,
-                                              @"balance" : self.balance,
-                                              @"recipientAccountStatus" : [NSNumber numberWithInteger:self.recipientAccountStatus],
-                                              @"recipientAccountType" : [NSNumber numberWithInteger:self.recipientAccountType],
-                                              @"protectionCode" : self.protectionCode,
-                                              @"extActionUri" : self.extActionUri.description
-                                      }];
-}
-
 @end

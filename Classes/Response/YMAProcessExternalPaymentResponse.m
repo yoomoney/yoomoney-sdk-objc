@@ -56,12 +56,4 @@ static NSString *const kMoneySourceTypePaymentCard = @"payment-card";
     _invoiceId = [invoiceId copy];
 }
 
-- (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self,
-                                      @{
-                                              @"asc" : [self.asc description],
-                                              @"moneySource" : [self.moneySource description]
-                                      }];
-}
-
 @end

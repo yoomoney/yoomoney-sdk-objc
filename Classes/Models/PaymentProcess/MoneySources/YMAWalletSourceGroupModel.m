@@ -23,15 +23,4 @@
     return [[YMAWalletSourceGroupModel alloc] initWithMoneySource:[YMAMoneySourceModel moneySourceWithType:YMAMoneySourceWallet cardType:YMAPaymentCardUnknown panFragment:nil moneySourceToken:nil] allowed:allowed];
 }
 
-#pragma mark -
-#pragma mark *** Overridden methods ***
-#pragma mark -
-
-- (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self,
-                                      @{
-                                              @"isAllowed" : (self.isAllowed) ? @"YES" : @"NO"
-                                      }];
-}
-
 @end

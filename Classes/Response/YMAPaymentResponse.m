@@ -108,11 +108,4 @@ static NSString *const kParameterMoneySourceCscRequired = @"csc_required";
     _paymentInfo = [YMAPaymentInfoModel paymentInfoWithMoneySources:moneySources requestId:requestId contractAmount:contractAmount balance:balance recipientAccountStatus:accountStatus recipientAccountType:accountType protectionCode:protectionCode extActionUri:extActionUri];
 }
 
-- (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self,
-                                      @{
-                                              @"paymentInfo" : self.paymentInfo.description
-                                      }];
-}
-
 @end

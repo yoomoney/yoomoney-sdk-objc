@@ -25,19 +25,4 @@
     return [[YMACardsSourceGroupModel alloc] initWithCards:cards defaultCard:defaultCard cscRequired:cscRequired allowed:allowed];
 }
 
-
-#pragma mark -
-#pragma mark *** Overridden methods ***
-#pragma mark -
-
-- (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p, %@>", [self class], (__bridge void *) self,
-                                      @{
-                                              @"isAllowed" : (self.isAllowed) ? @"YES" : @"NO",
-                                              @"isCscRequired" : (self.isCscRequired) ? @"YES" : @"NO",
-                                              @"defaultCard" : self.defaultCard.description,
-                                              @"cards" : self.cards.description
-                                      }];
-}
-
 @end
