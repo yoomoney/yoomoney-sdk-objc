@@ -37,6 +37,7 @@ typedef void (^YMARequestHandler)(YMABaseRequest *request, YMABaseResponse *resp
 
 /// Request url
 @property(nonatomic, strong, readonly) NSURL *requestUrl;
+@property(nonatomic, strong) id context;
 
 /// Method is used for parse response data.
 /// @param data - response data.
