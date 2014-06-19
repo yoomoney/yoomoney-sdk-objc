@@ -5,7 +5,6 @@
 
 #import "YMAHistoryOperationsResponse.h"
 #import "YMAConstants.h"
-#import "YMAHistoryOperationModel.h"
 
 static NSString *const kParameterError = @"error";
 static NSString *const kParameterNextRecord = @"next_record";

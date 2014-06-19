@@ -78,4 +78,8 @@ static NSString *const kKeyHistoryOperationTypeIncomingTransferProtected = @"inc
     return YMAHistoryOperationTypeUnknown;
 }
 
+- (NSComparisonResult)compare:(YMAHistoryOperationModel *)otherObject {
+    return -[self.datetime compare:otherObject.datetime];
+}
+
 @end

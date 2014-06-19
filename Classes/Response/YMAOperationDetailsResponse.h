@@ -5,8 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import "YMABaseResponse.h"
-
-@class YMAOperationDetailsModel;
+#import "YMAOperationDetailsModel.h"
 
 @interface YMAOperationDetailsResponse : YMABaseResponse
 

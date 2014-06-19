@@ -4,7 +4,6 @@
 //
 
 #import "YMAAccountInfoResponse.h"
-#import "YMAAccountInfoModel.h"
 #import "YMAAvatarModel.h"
 #import "YMABalanceDetailsModel.h"
 #import "YMAMoneySourceModel.h"

@@ -4,7 +4,6 @@
 //
 
 #import "YMAOperationDetailsResponse.h"
-#import "YMAOperationDetailsModel.h"
 #import "YMAConstants.h"
 #import "YMAHistoryOperationsResponse.h"
 #import "YMAProcessPaymentResponse.h"

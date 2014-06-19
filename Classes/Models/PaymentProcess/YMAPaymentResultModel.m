@@ -7,7 +7,6 @@
 #import "YMAAscModel.h"
 #import "YMADigitalGoodsModel.h"
 
-
 @implementation YMAPaymentResultModel
 
 - (id)initWithPaymentId:(NSString *)paymentId balance:(NSString *)balance invoiceId:(NSString *)invoiceId payer:(NSString *)payer payee:(NSString *)payee creditAmount:(NSString *)creditAmount payeeUid:(NSString *)payeeUid holdForPickupLink:(NSURL *)holdForPickupLink asc:(YMAAscModel *)asc digitalGoods:(YMADigitalGoodsModel *)digitalGoods {

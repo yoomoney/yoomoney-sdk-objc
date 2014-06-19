@@ -39,6 +39,8 @@ typedef NS_ENUM(NSInteger, YMAHistoryOperationType) {
 
 + (YMAHistoryOperationType)historyOperationTypeByString:(NSString *)historyOperationTypeString;
 
+- (NSComparisonResult)compare:(YMAHistoryOperationModel *)otherObject;
+
 @property(nonatomic, copy, readonly) NSString *operationId;
 @property(nonatomic, assign, readonly) YMAHistoryOperationStatus status;
 @property(nonatomic, strong, readonly) NSDate *datetime;
