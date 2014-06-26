@@ -7,7 +7,6 @@
 #import "YMAWalletSourceGroupModel.h"
 #import "YMACardsSourceGroupModel.h"
 
-
 @implementation YMAMoneySourcesModel
 
 - (id)initWithWallet:(YMAWalletSourceGroupModel *)walletSource cardsSource:(YMACardsSourceGroupModel *)cards {

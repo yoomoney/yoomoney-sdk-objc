@@ -5,7 +5,6 @@
 
 #import "YMABalanceDetailsModel.h"
 
-
 @implementation YMABalanceDetailsModel
 
 - (id)initWithTotal:(NSString *)total available:(NSString *)available depositionPending:(NSString *)depositionPending blocked:(NSString *)blocked debt:(NSString *)debt {

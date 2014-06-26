@@ -5,10 +5,8 @@
 
 #import <Foundation/Foundation.h>
 #import "YMABaseProcessResponse.h"
-
-@class YMAAscModel;
-@class YMAMoneySourceModel;
-@class YMAMoneySourceModel;
+#import "YMAMoneySourceModel.h"
+#import "YMAAscModel.h"
 
 ///
 /// Process payment response. This class contains info about redirect to authorization page (asc)

@@ -4,6 +4,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "YMAAvatarModel.h"
+#import "YMABalanceDetailsModel.h"
 
 typedef NS_ENUM(NSInteger, YMAAccountStatus) {
     YMAAccountStatusUnknown,
@@ -17,9 +19,6 @@ typedef NS_ENUM(NSInteger, YMAAccountType) {
     YMAAccountTypePersonal,
     YMAAccountTypeProfessional
 };
-
-@class YMAAvatarModel;
-@class YMABalanceDetailsModel;
 
 @interface YMAAccountInfoModel : NSObject
 

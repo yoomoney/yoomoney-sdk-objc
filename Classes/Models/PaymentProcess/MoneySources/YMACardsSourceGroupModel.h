@@ -6,9 +6,6 @@
 #import <Foundation/Foundation.h>
 #import "YMAMoneySourceModel.h"
 
-@class YMAMoneySourceModel;
-
-
 @interface YMACardsSourceGroupModel : NSObject
 
 + (instancetype)cardsSourceWithCards:(NSArray *)cards defaultCard:(YMAMoneySourceModel *)defaultCard cscRequired:(BOOL)cscRequired allowed:(BOOL)allowed;

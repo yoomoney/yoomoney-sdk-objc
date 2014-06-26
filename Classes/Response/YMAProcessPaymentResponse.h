@@ -5,9 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import "YMABaseProcessResponse.h"
-
-@class YMAPaymentResultModel;
-@class YMADigitalGoodsModel;
+#import "YMAPaymentResultModel.h"
 
 @interface YMAProcessPaymentResponse : YMABaseProcessResponse
 

@@ -5,7 +5,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface YMAAvatarModel : NSObject
 
 + (instancetype)avatarWithUrl:(NSURL *)url timeStamp:(NSDate *)timeStamp;

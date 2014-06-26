@@ -4,7 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "YMAGoodsModel.h"
 
 @interface YMADigitalGoodsModel : NSObject
 

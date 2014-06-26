@@ -4,10 +4,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@class YMAAscModel;
-@class YMADigitalGoodsModel;
-
+#import "YMAAscModel.h"
+#import "YMADigitalGoodsModel.h"
 
 @interface YMAPaymentResultModel : NSObject
 

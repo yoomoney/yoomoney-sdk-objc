@@ -5,7 +5,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface YMAGoodsModel : NSObject
 
 + (instancetype)goodsWithId:(NSString *)merchantArticleId serial:(NSString *)serial secret:(NSString *)secret;

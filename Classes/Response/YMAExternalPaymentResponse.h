@@ -5,8 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import "YMABaseProcessResponse.h"
-
-@class YMAExternalPaymentInfoModel;
+#import "YMAExternalPaymentInfoModel.h"
 
 ///
 /// Payment response. This class contains payment info (paymentRequestInfo)
