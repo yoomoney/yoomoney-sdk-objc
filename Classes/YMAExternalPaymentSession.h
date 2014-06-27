@@ -7,7 +7,7 @@
 #import "YMABaseSession.h"
 
 ///
-/// Session object to access Yandex.Money.
+/// Session object to access Yandex.Money (for external payments).
 ///
 @interface YMAExternalPaymentSession : YMABaseSession
 

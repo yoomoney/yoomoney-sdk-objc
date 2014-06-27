@@ -14,11 +14,11 @@ static NSString *const kValueAcceptEncoding = @"gzip";
 static NSString *const kHeaderAcceptLanguage = @"Accept-Language";
 static NSString *const kValueAcceptLanguageDefault = @"ru";
 
-NSString *const kValueUserAgentDefault = @"Yandex.Money.SDK/iOS";
-NSString *const kHeaderContentType = @"Content-Type";
-NSString *const kHeaderUserAgent = @"User-Agent";
-NSString *const kMethodPost = @"POST";
-NSString *const kValueContentTypeDefault = @"application/x-www-form-urlencoded;charset=UTF-8";
+NSString *const YMAValueUserAgentDefault = @"Yandex.Money.SDK/iOS";
+NSString *const YMAHeaderContentType = @"Content-Type";
+NSString *const YMAHeaderUserAgent = @"User-Agent";
+NSString *const YMAMethodPost = @"POST";
+NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded;charset=UTF-8";
 
 @implementation YMABaseSession
 
@@ -28,7 +28,7 @@ NSString *const kValueContentTypeDefault = @"application/x-www-form-urlencoded;c
     if (self) {
         _requestQueue = [[NSOperationQueue alloc] init];
         _responseQueue = [[NSOperationQueue alloc] init];
-        _userAgent = kValueUserAgentDefault;
+        _userAgent = YMAValueUserAgentDefault;
         _language = kValueAcceptLanguageDefault;
     }
 
@@ -86,7 +86,7 @@ NSString *const kValueContentTypeDefault = @"application/x-www-form-urlencoded;c
     }
 
     NSInteger statusCode = ((NSHTTPURLResponse *) urlResponse).statusCode;
-    NSError *technicalError = [NSError errorWithDomain:kErrorKeyUnknown code:statusCode userInfo:@{@"request" : urlRequest, @"response" : urlResponse}];
+    NSError *technicalError = [NSError errorWithDomain:YMAErrorKeyUnknown code:statusCode userInfo:@{@"request" : urlRequest, @"response" : urlResponse}];
 
     switch (statusCode) {
         case YMAStatusCodeOkHTTP:
@@ -104,9 +104,9 @@ NSString *const kValueContentTypeDefault = @"application/x-www-form-urlencoded;c
 
 - (YMAConnection *)connectionWithUrl:(NSURL *)url andToken:(NSString *)token {
     YMAConnection *connection = [[YMAConnection alloc] initWithUrl:url];
-    connection.requestMethod = kMethodPost;
-    [connection addValue:kValueContentTypeDefault forHeader:kHeaderContentType];
-    [connection addValue:_userAgent forHeader:kHeaderUserAgent];
+    connection.requestMethod = YMAMethodPost;
+    [connection addValue:YMAValueContentTypeDefault forHeader:YMAHeaderContentType];
+    [connection addValue:_userAgent forHeader:YMAHeaderUserAgent];
     [connection addValue:kValueAcceptEncoding forHeader:kHeaderAcceptEncoding];
     [connection addValue:self.language forHeader:kHeaderAcceptLanguage];
 

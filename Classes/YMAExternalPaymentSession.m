@@ -35,7 +35,7 @@ static NSString *const kValueParameterStatusSuccess = @"success";
 
         id responseModel = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
 
-        NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"response" : response, @"request" : request}];
+        NSError *unknownError = [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:@{@"response" : response, @"request" : request}];
 
         if (error || !responseModel) {
             block(nil, (error) ? error : unknownError);
@@ -63,7 +63,7 @@ static NSString *const kValueParameterStatusSuccess = @"success";
 }
 
 - (void)performRequest:(YMABaseRequest *)request token:(NSString *)token completion:(YMARequestHandler)block {
-    NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"request" : request}];
+    NSError *unknownError = [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:@{@"request" : request}];
 
     if (!request || !self.instanceId) {
         block(request, nil, unknownError);

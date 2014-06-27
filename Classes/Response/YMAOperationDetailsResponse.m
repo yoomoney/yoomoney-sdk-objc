@@ -39,7 +39,7 @@ static NSString *const kParameterDigitalGoods = @"digital_goods";
     if (errorKey) {
         if (!error) return;
 
-        NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"response" : self}];
+        NSError *unknownError = [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:@{@"response" : self}];
         *error = errorKey ? [NSError errorWithDomain:errorKey code:0 userInfo:@{@"response" : self}] : unknownError;
 
         return;

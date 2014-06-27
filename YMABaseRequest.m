@@ -17,7 +17,7 @@
     }];
 
     if (!operation) {
-        block(self, nil, [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:nil]);
+        block(self, nil, [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:nil]);
         return;
     }
 

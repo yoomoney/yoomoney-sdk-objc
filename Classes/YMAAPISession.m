@@ -12,8 +12,8 @@ static NSString *const kUrlRevoke = @"api/revoke";
 static NSString *const kParameterClientId = @"client_id";
 
 
-NSString *const kParameterResponseType = @"response_type";
-NSString *const kValueParameterResponseType = @"code";
+NSString *const YMAParameterResponseType = @"response_type";
+NSString *const YMAValueParameterResponseType = @"code";
 
 @implementation YMAAPISession
 
@@ -42,10 +42,10 @@ NSString *const kValueParameterResponseType = @"code";
 
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
-    [request setHTTPMethod:kMethodPost];
+    [request setHTTPMethod:YMAMethodPost];
     [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long) [postData length]] forHTTPHeaderField:@"Content-Length"];
-    [request setValue:kValueContentTypeDefault forHTTPHeaderField:kHeaderContentType];
-    [request setValue:_userAgent forHTTPHeaderField:kHeaderUserAgent];
+    [request setValue:YMAValueContentTypeDefault forHTTPHeaderField:YMAHeaderContentType];
+    [request setValue:_userAgent forHTTPHeaderField:YMAHeaderUserAgent];
     [request setHTTPBody:postData];
 
     return request;
@@ -69,7 +69,7 @@ NSString *const kValueParameterResponseType = @"code";
 
         if (!query || query.length == 0) {
             if (error)
-                *error = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"requestUrl" : request.URL}];
+                *error = [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:@{@"requestUrl" : request.URL}];
         } else if (authInfo) {
 
             *authInfo = [NSMutableDictionary dictionary];
@@ -96,7 +96,7 @@ NSString *const kValueParameterResponseType = @"code";
 
 - (void)receiveTokenWithWithUrl:(NSString *)relativeUrlString code:(NSString *)code clientId:(NSString *)clientId andAdditionalParams:(NSDictionary *)params completion:(YMAIdHandler)block {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters setObject:code forKey:kValueParameterResponseType];
+    [parameters setObject:code forKey:YMAValueParameterResponseType];
     [parameters setObject:clientId forKey:kParameterClientId];
     [parameters addEntriesFromDictionary:params];
 
@@ -114,7 +114,7 @@ NSString *const kValueParameterResponseType = @"code";
 
         id responseModel = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
 
-        NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"response" : response, @"request" : request}];
+        NSError *unknownError = [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:@{@"response" : response, @"request" : request}];
 
         if (error || !responseModel) {
             block(nil, (error) ? error : unknownError);
@@ -154,7 +154,7 @@ NSString *const kValueParameterResponseType = @"code";
 }
 
 - (void)performRequest:(YMABaseRequest *)request token:(NSString *)token completion:(YMARequestHandler)block {
-    NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"request" : request}];
+    NSError *unknownError = [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:@{@"request" : request}];
 
     if (!request) {
         block(request, nil, unknownError);
