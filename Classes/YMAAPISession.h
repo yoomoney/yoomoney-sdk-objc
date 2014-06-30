@@ -27,6 +27,7 @@ extern NSString *const YMAValueParameterResponseType;
 /// @param error -
 - (BOOL)isRequest:(NSURLRequest *)request toRedirectUrl:(NSString *)redirectUrl authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo error:(NSError * __autoreleasing *)error;
 
+// get authorization token
 - (void)receiveTokenWithWithCode:(NSString *)code clientId:(NSString *)clientId andAdditionalParams:(NSDictionary *)params completion:(YMAIdHandler)block;
 - (void)receiveTokenWithWithUrl:(NSString *)relativeUrlString code:(NSString *)code clientId:(NSString *)clientId andAdditionalParams:(NSDictionary *)params completion:(YMAIdHandler)block;
 
