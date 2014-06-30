@@ -1,12 +1,12 @@
 //
 //  YMABaseRequest.m
 //
-//  Created by Александр Мертвецов on 01.11.13.
+//  Created by Alexander Mertvetsov on 01.11.13.
 //  Copyright (c) 2013 Yandex.Money. All rights reserved.
 //
 
 #import "YMABaseRequest.h"
-#import "YMABaseResponse.h"
+#import "YMABasePaymentProcessResponse.h"
 #import "YMAConstants.h"
 
 @implementation YMABaseRequest

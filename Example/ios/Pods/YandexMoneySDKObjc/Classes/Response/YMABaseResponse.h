@@ -1,17 +1,15 @@
 //
-//  YMABaseResponse.h
-//
-//  Created by Александр Мертвецов on 01.11.13.
-//  Copyright (c) 2013 Yandex.Money. All rights reserved.
+// Created by Alexander Mertvetsov on 20.05.14.
+// Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@class YMABaseResponse;
-
 /// Values for YMAResponseStatus
 /// Status of process payment
 typedef NS_ENUM(NSInteger, YMAResponseStatus) {
+    YMAResponseStatusUnknown,
+
     /// Payment processing completed successfully
             YMAResponseStatusSuccess,
     /// The refusal of the payment.
@@ -24,8 +22,12 @@ typedef NS_ENUM(NSInteger, YMAResponseStatus) {
             YMAResponseStatusInProgress,
     /// To complete the processing of payment requires additional authorization
     /// (you should open the WebView and send the client to uri + params specified in YMAAsc)
-            YMAResponseStatusExtAuthRequired
+            YMAResponseStatusExtAuthRequired,
+
+    YMAResponseStatusHoldForPickup
 };
+
+@class YMABaseResponse;
 
 typedef void (^YMAResponseHandler)(YMABaseResponse *response, NSError *error);
 
@@ -34,15 +36,11 @@ typedef void (^YMAResponseHandler)(YMABaseResponse *response, NSError *error);
 ///
 @interface YMABaseResponse : NSOperation
 
-/// Constructor. Returns a YMABaseResponse with the specified data and completion of block.
+/// Constructor. Returns a YMABasePaymentProcessResponse with the specified data and completion of block.
 /// @param data -
 /// @param block -
 - (id)initWithData:(NSData *)data andCompletion:(YMAResponseHandler)block;
 
-/// Status of process payment.
-@property(nonatomic, assign, readonly) YMAResponseStatus status;
-/// Recommended time later that you should repeat the request in milliseconds.
-/// The property is not equal to zero for status = YMAResponseStatusInProgress.
-@property(nonatomic, assign, readonly) NSUInteger nextRetry;
+- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error;
 
 @end

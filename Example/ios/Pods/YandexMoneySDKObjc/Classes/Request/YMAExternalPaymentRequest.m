@@ -1,12 +1,12 @@
 //
-// Created by Александр Мертвецов on 28.01.14.
+// Created by Alexander Mertvetsov on 28.01.14.
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
 #import "YMAExternalPaymentRequest.h"
-#import "YMAExternalPaymentResponse.h"
+#import "YMAHostsProvider.h"
 
-static NSString *const kUrlExternalPayment = @"https://money.yandex.ru/api/request-external-payment";
+static NSString *const kUrlExternalPayment = @"api/request-external-payment";
 static NSString *const kParameterPatternId = @"pattern_id";
 
 @interface YMAExternalPaymentRequest ()
@@ -38,8 +38,8 @@ static NSString *const kParameterPatternId = @"pattern_id";
 #pragma mark -
 
 - (NSURL *)requestUrl {
-    //TODO use EPR API urls
-    return [NSURL URLWithString:kUrlExternalPayment];
+    NSString *urlString = [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, kUrlExternalPayment];
+    return [NSURL URLWithString:urlString];
 }
 
 - (NSDictionary *)parameters {

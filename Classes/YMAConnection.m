@@ -20,11 +20,11 @@ static NSString *const kHeaderContentLength = @"Content-Length";
 
 - (id)initWithUrl:(NSURL *)url {
     self = [super init];
-    
+
     if (self) {
         _request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kRequestTimeoutIntervalDefault];
     }
-    
+
     return self;
 }
 
@@ -32,10 +32,18 @@ static NSString *const kHeaderContentLength = @"Content-Length";
     return [[YMAConnection alloc] initWithUrl:url];
 }
 
++ (NSString *)addPercentEscapesForString:(NSString *)string {
+    return (NSString *) CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
+            (__bridge CFStringRef) string,
+            NULL,
+            (CFStringRef) @";/?:@&=+$,",
+            kCFStringEncodingUTF8));
+}
+
 - (void)sendAsynchronousWithQueue:(NSOperationQueue *)queue completionHandler:(YMAConnectionHandler)handler {
-    
+
     [self.request addValue:[NSString stringWithFormat:@"%lu", (unsigned long) [self.request.HTTPBody length]] forHTTPHeaderField:kHeaderContentLength];
-    
+
     [NSURLConnection sendAsynchronousRequest:self.request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         handler(self.request, response, data, connectionError);
     }];
@@ -48,33 +56,25 @@ static NSString *const kHeaderContentLength = @"Content-Length";
 - (void)addPostParams:(NSDictionary *)postParams {
     if (!postParams)
         return;
-    
+
     NSMutableArray *bodyParams = [[NSMutableArray alloc] init];
-    
+
     for (NSString *key in postParams.allKeys) {
-        
+
         id value = [postParams objectForKey:key];
         NSString *paramValue = nil;
-        
+
         if ([value isKindOfClass:[NSNumber class]])
             paramValue = [value stringValue];
         else
             paramValue = value;
-        
-        NSString *encodedValue = (NSString *) CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
-                                                                                                        (__bridge CFStringRef)paramValue,
-                                                                                                        NULL,
-                                                                                                        (CFStringRef)@";/?:@&=+$,",
-                                                                                                        kCFStringEncodingUTF8));
-        
-        NSString *encodedKey = (NSString *) CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
-                                                                                                      (__bridge CFStringRef)key,
-                                                                                                      NULL,
-                                                                                                      (CFStringRef)@";/?:@&=+$,",
-                                                                                                      kCFStringEncodingUTF8));
+
+        NSString *encodedValue = [YMAConnection addPercentEscapesForString:paramValue];
+        NSString *encodedKey = [YMAConnection addPercentEscapesForString:key];
+
         [bodyParams addObject:[NSString stringWithFormat:@"%@=%@", encodedKey, encodedValue]];
     }
-    
+
     NSString *bodyString = [bodyParams componentsJoinedByString:@"&"];
     self.request.HTTPBody = [bodyString dataUsingEncoding:NSUTF8StringEncoding];
 }

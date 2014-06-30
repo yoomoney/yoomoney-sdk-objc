@@ -4,9 +4,9 @@
 //
 
 #import "YMAExternalPaymentRequest.h"
-#import "YMAExternalPaymentResponse.h"
+#import "YMAHostsProvider.h"
 
-static NSString *const kUrlExternalPayment = @"https://money.yandex.ru/api/request-external-payment";
+static NSString *const kUrlExternalPayment = @"api/request-external-payment";
 static NSString *const kParameterPatternId = @"pattern_id";
 
 @interface YMAExternalPaymentRequest ()
@@ -38,7 +38,8 @@ static NSString *const kParameterPatternId = @"pattern_id";
 #pragma mark -
 
 - (NSURL *)requestUrl {
-    return [NSURL URLWithString:kUrlExternalPayment];
+    NSString *urlString = [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, kUrlExternalPayment];
+    return [NSURL URLWithString:urlString];
 }
 
 - (NSDictionary *)parameters {

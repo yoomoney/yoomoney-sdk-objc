@@ -8,9 +8,12 @@
 
 #import "YMAConstants.h"
 
-NSString *const kP2PPaymentParameterTo = @"to";
-NSString *const kP2PPaymentParameterMessage = @"message";
-NSString *const kP2PPaymentParameterAmount = @"amount";
-NSString *const kP2PPaymentParameterAmountDue = @"amount_due";
+NSString *const YMAP2PPaymentParameterTo = @"to";
+NSString *const YMAP2PPaymentParameterMessage = @"message";
+NSString *const YMAP2PPaymentParameterAmount = @"amount";
+NSString *const YMAP2PPaymentParameterAmountDue = @"amount_due";
 
-NSString *const kErrorKeyUnknown = @"technicalError";
+NSString *const YMAErrorKeyUnknown = @"technicalError";
+
+NSString *const YMAParameterRedirectUri = @"redirect_uri";
+NSString *const YMAParameterScope = @"scope";

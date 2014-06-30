@@ -1,5 +1,5 @@
 //
-// Created by Александр Мертвецов on 29.01.14.
+// Created by Alexander Mertvetsov on 29.01.14.
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
@@ -14,42 +14,19 @@ static NSString *const kParameterType = @"type";
 static NSString *const kParameterPaymentCardType = @"payment_card_type";
 static NSString *const kParameterPanFragment = @"pan_fragment";
 static NSString *const kParameterMoneySourceToken = @"money_source_token";
-static NSString *const kParameterInvoceId = @"invoice_id";
+static NSString *const kParameterInvoiceId = @"invoice_id";
 
 static NSString *const kMoneySourceTypePaymentCard = @"payment-card";
 
-static NSString *const kPaymentCardTypeVISA = @"VISA";
-static NSString *const kPaymentCardTypeMasterCard = @"MasterCard";
-static NSString *const kPaymentCardTypeAmericanExpress = @"AmericanExpress";
-static NSString *const kPaymentCardTypeJCB = @"JCB";
-
 @implementation YMAProcessExternalPaymentResponse
-
-#pragma mark -
-#pragma mark *** Private methods ***
-#pragma mark -
-
-- (YMAPaymentCardType)paymentCardTypeByString:(NSString *)string {
-    if ([string isEqual:kPaymentCardTypeVISA])
-        return YMAPaymentCardTypeVISA;
-
-    if ([string isEqual:kPaymentCardTypeMasterCard])
-        return YMAPaymentCardTypeMasterCard;
-
-    if ([string isEqual:kPaymentCardTypeAmericanExpress])
-        return YMAPaymentCardTypeAmericanExpress;
-
-    if ([string isEqual:kPaymentCardTypeJCB])
-        return YMAPaymentCardTypeJCB;
-
-    return YMAPaymentCardUnknown;
-}
 
 #pragma mark -
 #pragma mark *** Overridden methods ***
 #pragma mark -
 
-- (void)parseJSONModel:(id)responseModel {
+- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error {
+    [super parseJSONModel:responseModel error:error];
+
     NSString *acsUrl = [responseModel objectForKey:kParameterAcsUrl];
 
     if (acsUrl) {
@@ -64,7 +41,7 @@ static NSString *const kPaymentCardTypeJCB = @"JCB";
 
         if ([type isEqual:kMoneySourceTypePaymentCard]) {
             NSString *paymentCardTypeString = [moneySource objectForKey:kParameterPaymentCardType];
-            YMAPaymentCardType paymentCardType = [self paymentCardTypeByString:paymentCardTypeString];
+            YMAPaymentCardType paymentCardType = [YMAMoneySource paymentCardTypeByString:paymentCardTypeString];
 
             NSString *panFragment = [moneySource objectForKey:kParameterPanFragment];
             NSString *moneySourceToken = [moneySource objectForKey:kParameterMoneySourceToken];
@@ -74,8 +51,8 @@ static NSString *const kPaymentCardTypeJCB = @"JCB";
         } else
             _moneySource = [YMAMoneySource moneySourceWithType:YMAMoneySourceUnknown cardType:YMAPaymentCardUnknown panFragment:nil moneySourceToken:nil];
     }
-    
-    _invoiceId = [responseModel objectForKey:kParameterInvoceId];
+
+    _invoiceId = [responseModel objectForKey:kParameterInvoiceId];
 }
 
 - (NSString *)description {

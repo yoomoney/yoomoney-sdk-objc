@@ -4,25 +4,24 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "YMABaseResponse.h"
-
-@class YMAAsc;
-@class YMAMoneySource;
+#import "YMABaseProcessResponse.h"
+#import "YMAMoneySourceModel.h"
+#import "YMAAscModel.h"
 
 ///
 /// Process payment response. This class contains info about redirect to authorization page (asc)
 /// and info about the money source (moneySource).
 ///
-@interface YMAProcessExternalPaymentResponse : YMABaseResponse
+@interface YMAProcessExternalPaymentResponse : YMABaseProcessResponse
 
 /// Info about redirect to authorization page.
 /// The property is not equal nil for status = YMAResponseStatusExtAuthRequired.
-@property(nonatomic, strong, readonly) YMAAsc *asc;
+@property(nonatomic, strong, readonly) YMAAscModel *asc;
 /// Info about the money source (Information about the credit card).
 /// The property is not equal nil if:
 /// - was set the request parameter requestToken = YES;
 /// - payment completed successfully (status = YMAResponseStatusSuccess).
-@property(nonatomic, strong, readonly) YMAMoneySource *moneySource;
+@property(nonatomic, strong, readonly) YMAMoneySourceModel *moneySource;
 /// The number of transaction in the system Yandex.Money.
 /// Present at the success of the payment in the shop.
 @property(nonatomic, copy, readonly) NSString *invoiceId;

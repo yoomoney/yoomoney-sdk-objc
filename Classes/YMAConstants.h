@@ -12,19 +12,25 @@
 #import <Foundation/Foundation.h>
 
 // p2p parameter name. Identifier the transfer recipient.
-extern NSString *const kP2PPaymentParameterTo;
+extern NSString *const YMAP2PPaymentParameterTo;
 
 // p2p parameter name. Comments for payment, displayed to the recipient.
-extern NSString *const kP2PPaymentParameterMessage;
+extern NSString *const YMAP2PPaymentParameterMessage;
 
 // p2p parameter name. Amount to be deducted from a credit card.
-extern NSString *const kP2PPaymentParameterAmount;
+extern NSString *const YMAP2PPaymentParameterAmount;
 
 // p2p parameter name. Amount to be credited to the account of Yandex.Money.
-extern NSString *const kP2PPaymentParameterAmountDue;
+extern NSString *const YMAP2PPaymentParameterAmountDue;
 
 // Unknown error code.
-extern NSString *const kErrorKeyUnknown;
+extern NSString *const YMAErrorKeyUnknown;
+
+// Redirect uri
+extern NSString *const YMAParameterRedirectUri;
+
+// Scope
+extern NSString *const YMAParameterScope;
 
 
 

@@ -1,10 +1,10 @@
 PODS:
-  - YandexMoneySDKObjc (1.0.0)
+  - YandexMoneySDKObjc (1.0.1)
 
 DEPENDENCIES:
-  - YandexMoneySDKObjc
+  - YandexMoneySDKObjc (= 1.0.1)
 
 SPEC CHECKSUMS:
-  YandexMoneySDKObjc: 2231bd917495e924a4ad61673cdc40a4a3488c8c
+  YandexMoneySDKObjc: 1535a8540091881a512d08603b4d1021bf5eff84
 
 COCOAPODS: 0.32.1
