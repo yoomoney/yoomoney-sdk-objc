@@ -10,23 +10,9 @@
 @class YMABaseRequest;
 @class YMABaseResponse;
 
-@protocol YMADataPosting <NSObject>
-
-/// Request data.
-@property(nonatomic, strong, readonly) NSData *data;
-
-@end
-
-@protocol YMAParametersPosting <NSObject>
-
-/// Request parameters.
-@property(nonatomic, strong, readonly) NSDictionary *parameters;
-
-@end
-
 /// Completion of block is used to get the response.
 /// @param request - request inherited from abstract class YMABaseRequest.
-/// @param response - response inherited from abstract class YMABasePaymentProcessResponse.
+/// @param response - response inherited from abstract class YMABaseResponse.
 /// @param error - Error information or nil.
 typedef void (^YMARequestHandler)(YMABaseRequest *request, YMABaseResponse *response, NSError *error);
 
@@ -37,6 +23,8 @@ typedef void (^YMARequestHandler)(YMABaseRequest *request, YMABaseResponse *resp
 
 /// Request url
 @property(nonatomic, strong, readonly) NSURL *requestUrl;
+/// Request parameters.
+@property(nonatomic, strong, readonly) NSDictionary *parameters;
 
 /// Method is used for parse response data.
 /// @param data - response data.

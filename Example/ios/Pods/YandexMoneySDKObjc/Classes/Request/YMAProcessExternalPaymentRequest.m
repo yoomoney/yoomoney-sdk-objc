@@ -4,9 +4,9 @@
 //
 
 #import "YMAProcessExternalPaymentRequest.h"
-#import "YMAHostsProvider.h"
+#import "YMAProcessExternalPaymentResponse.h"
 
-static NSString *const kUrlProcessExternalPayment = @"api/process-external-payment";
+static NSString *const kUrlProcessExternalPayment = @"https://money.yandex.ru/api/process-external-payment";
 
 static NSString *const kParameterRequestId = @"request_id";
 static NSString *const kParameterSuccessUri = @"ext_auth_success_uri";
@@ -56,25 +56,24 @@ static NSString *const kParameterCsc = @"csc";
 #pragma mark -
 
 - (NSURL *)requestUrl {
-    NSString *urlString = [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, kUrlProcessExternalPayment];
-    return [NSURL URLWithString:urlString];
+    return [NSURL URLWithString:kUrlProcessExternalPayment];
 }
 
 - (NSDictionary *)parameters {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setValue:self.requestId forKey:kParameterRequestId];
-    [dictionary setValue:self.successUri forKey:kParameterSuccessUri];
-    [dictionary setValue:self.failUri forKey:kParameterFailUri];
+    [dictionary setObject:self.requestId forKey:kParameterRequestId];
+    [dictionary setObject:self.successUri forKey:kParameterSuccessUri];
+    [dictionary setObject:self.failUri forKey:kParameterFailUri];
 
     if (!self.moneySourceToken) {
         if (self.requestToken)
-            [dictionary setValue:@"true" forKey:kParameterRequestToken];
+            [dictionary setObject:@"true"forKey:kParameterRequestToken];
 
         return dictionary;
     }
 
-    [dictionary setValue:self.moneySourceToken forKey:kParameterMoneySourceToken];
-    [dictionary setValue:self.csc forKey:kParameterCsc];
+    [dictionary setObject:self.moneySourceToken forKeyedSubscript:kParameterMoneySourceToken];
+    [dictionary setObject:self.csc forKeyedSubscript:kParameterCsc];
 
     return dictionary;
 }

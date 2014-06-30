@@ -1,16 +1,13 @@
 # YandexMoneySDKObjc
 
-[![Version](http://cocoapod-badges.herokuapp.com/v/YandexMoneySDKObjc/badge.png)](http://api.yandex.ru/money/)
-[![Platform](http://cocoapod-badges.herokuapp.com/p/YandexMoneySDKObjc/badge.png)](http://api.yandex.ru/money/)
+[![Version](http://cocoapod-badges.herokuapp.com/v/YandexMoneySDKObjc/badge.png)](http://cocoadocs.org/docsets/YandexMoneySDKObjc)
+[![Platform](http://cocoapod-badges.herokuapp.com/p/YandexMoneySDKObjc/badge.png)](http://cocoadocs.org/docsets/YandexMoneySDKObjc)
 
 ## Usage
 
 To run the example project; clone the repo, and run `pod install` from the Example directory first.
 
-## Links
-
-* Yandex.Money API page: [Ru](http://api.yandex.ru/money/), [En](http://api.yandex.com/money/)
-* [example projects](https://github.com/yandex-money/yandex-money-sdk-objc/tree/master/Example)
+## Requirements
 
 ## Installation
 
@@ -18,6 +15,10 @@ YandexMoneySDKObjc is available through [CocoaPods](http://cocoapods.org), to in
 it simply add the following line to your Podfile:
 
     pod "YandexMoneySDKObjc"
+
+## Author
+
+Alexander Mertvetsov, amertvetsov@yandex.ru
 
 ## License
 

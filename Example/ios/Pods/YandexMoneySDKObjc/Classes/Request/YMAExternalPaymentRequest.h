@@ -5,13 +5,12 @@
 
 #import <Foundation/Foundation.h>
 #import "YMABaseRequest.h"
-#import "YMAExternalPaymentResponse.h"
 
 ///
-/// Payment request. First phase of payment is required to obtain payment info (YMAExternalPaymentInfo)
+/// Payment request. First phase of payment is required to obtain payment info (YMAPaymentRequestInfo)
 /// using patternId and paymentParams.
 ///
-@interface YMAExternalPaymentRequest : YMABaseRequest <YMAParametersPosting>
+@interface YMAExternalPaymentRequest : YMABaseRequest
 
 /// Constructor. Returns a YMAExternalPaymentRequest with the specified patternId and paymentParams.
 /// @param patternId - ID of showcase on which payment is made.

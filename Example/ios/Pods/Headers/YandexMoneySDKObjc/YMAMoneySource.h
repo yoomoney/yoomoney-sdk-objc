@@ -1,1 +1,1 @@
-../../YandexMoneySDKObjc/Classes/Models/PaymentProcess/MoneySources/YMAMoneySource.h
+../../YandexMoneySDKObjc/Classes/YMAMoneySource.h
