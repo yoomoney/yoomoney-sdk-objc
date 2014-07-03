@@ -66,7 +66,7 @@ static NSString *const kUrlProcessPayment = @"api/process-payment";
     if (self.moneySource.type == YMAMoneySourceWallet)
         [dictionary setValue:@"wallet" forKey:kParameterMoneySource];
     else if (self.moneySource.type == YMAMoneySourcePaymentCard)
-        [dictionary setValue:[NSString stringWithFormat:@"card_%@", self.moneySource.moneySourceToken] forKey:kParameterMoneySource];
+        [dictionary setValue:[NSString stringWithFormat:@"%@", self.moneySource.moneySourceToken] forKey:kParameterMoneySource];
 
     return dictionary;
 }
