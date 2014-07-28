@@ -175,12 +175,12 @@ NSString *const YMAValueParameterResponseType = @"code";
     } else if ([request conformsToProtocol:@protocol(YMADataPosting)]) {
         YMABaseRequest <YMADataPosting> *dataRequest = (YMABaseRequest <YMADataPosting> *) request;
 
-        [self performAndProcessRequestWithToken:token data:dataRequest.data url:dataRequest.requestUrl completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
+        [self performAndProcessRequestWithToken:token data:dataRequest.data contentType:dataRequest.contentType url:dataRequest.requestUrl completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
             if (error) {
                 block(request, nil, error);
                 return;
             }
-
+            
             [request buildResponseWithData:responseData queue:_responseQueue andCompletion:block];
         }];
     }

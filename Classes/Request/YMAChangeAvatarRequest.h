@@ -9,6 +9,7 @@
 
 @interface YMAChangeAvatarRequest : YMABaseRequest <YMADataPosting>
 
+/// use only image in PNG format!
 + (instancetype)changeAvatarWithImageData:(NSData *)imageData;
 
 @end

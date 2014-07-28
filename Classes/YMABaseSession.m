@@ -13,6 +13,7 @@ static NSString *const kHeaderAcceptEncoding = @"Accept-Encoding";
 static NSString *const kValueAcceptEncoding = @"gzip";
 static NSString *const kHeaderAcceptLanguage = @"Accept-Language";
 static NSString *const kValueAcceptLanguageDefault = @"ru";
+static NSString *const kValueContentTypePNG = @"image/png";
 
 NSString *const YMAValueUserAgentDefault = @"Yandex.Money.SDK/iOS";
 NSString *const YMAHeaderContentType = @"Content-Type";
@@ -50,7 +51,7 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
 #pragma mark -
 
 - (void)performRequestWithToken:(NSString *)token parameters:(NSDictionary *)parameters url:(NSURL *)url completion:(YMAConnectionHandler)block {
-    YMAConnection *connection = [self connectionWithUrl:url andToken:token];
+    YMAConnection *connection = [self connectionWithUrl:url contentType:YMAValueContentTypeDefault andToken:token];
     [connection addPostParams:parameters];
 
     [connection sendAsynchronousWithQueue:_requestQueue completionHandler:block];
@@ -62,8 +63,8 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
     }];
 }
 
-- (void)performAndProcessRequestWithToken:(NSString *)token data:(NSData *)data url:(NSURL *)url completion:(YMAConnectionHandler)block {
-    [self performRequestWithToken:token data:data url:url andCompletionHandler:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
+- (void)performAndProcessRequestWithToken:(NSString *)token data:(NSData *)data contentType:(NSString *)contentType url:(NSURL *)url completion:(YMAConnectionHandler)block {
+    [self performRequestWithToken:token data:data contentType:contentType url:url andCompletionHandler:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
         [self processRequest:urlRequest response:urlResponse responseData:responseData error:error completion:block];
     }];
 }
@@ -72,8 +73,8 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
 #pragma mark *** Private methods ***
 #pragma mark -
 
-- (void)performRequestWithToken:(NSString *)token data:(NSData *)data url:(NSURL *)url andCompletionHandler:(YMAConnectionHandler)handler {
-    YMAConnection *connection = [self connectionWithUrl:url andToken:token];
+- (void)performRequestWithToken:(NSString *)token data:(NSData *)data contentType:(NSString *)contentType url:(NSURL *)url andCompletionHandler:(YMAConnectionHandler)handler {
+    YMAConnection *connection = [self connectionWithUrl:url contentType:contentType andToken:token];
     [connection addBodyData:data];
 
     [connection sendAsynchronousWithQueue:_requestQueue completionHandler:handler];
@@ -102,10 +103,10 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
     }
 }
 
-- (YMAConnection *)connectionWithUrl:(NSURL *)url andToken:(NSString *)token {
+- (YMAConnection *)connectionWithUrl:(NSURL *)url contentType:(NSString *)contentType andToken:(NSString *)token {
     YMAConnection *connection = [[YMAConnection alloc] initWithUrl:url];
     connection.requestMethod = YMAMethodPost;
-    [connection addValue:YMAValueContentTypeDefault forHeader:YMAHeaderContentType];
+    [connection addValue:contentType forHeader:YMAHeaderContentType];
     [connection addValue:_userAgent forHeader:YMAHeaderUserAgent];
     [connection addValue:kValueAcceptEncoding forHeader:kHeaderAcceptEncoding];
     [connection addValue:self.language forHeader:kHeaderAcceptLanguage];

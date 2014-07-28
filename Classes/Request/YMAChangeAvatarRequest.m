@@ -7,16 +7,19 @@
 #import "YMAHostsProvider.h"
 
 static NSString *const kUrlAvatar = @"api/avatar-set";
+static NSString *const kContentType = @"image/png";
 
 @implementation YMAChangeAvatarRequest
 
 @synthesize data = _data;
+@synthesize contentType = _contentType;
 
 - (id)initWithImageData:(NSData *)imageData {
     self = [super init];
 
     if (self) {
         _data = imageData;
+        _contentType = kContentType;
     }
 
     return self;

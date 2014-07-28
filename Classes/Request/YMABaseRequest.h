@@ -12,8 +12,10 @@
 
 @protocol YMADataPosting <NSObject>
 
-/// Request data.
+/// Request data
 @property(nonatomic, strong, readonly) NSData *data;
+/// Content type
+@property(nonatomic, copy, readonly) NSString *contentType;
 
 @end
 
