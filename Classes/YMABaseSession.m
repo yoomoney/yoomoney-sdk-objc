@@ -85,7 +85,9 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
         block(urlRequest, urlResponse, responseData, error);
         return;
     }
-
+    
+    NSLog(@"--------------------- Response data: %@", [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
+    
     NSInteger statusCode = ((NSHTTPURLResponse *) urlResponse).statusCode;
     NSError *technicalError = [NSError errorWithDomain:YMAErrorKeyUnknown code:statusCode userInfo:@{@"request" : urlRequest, @"response" : urlResponse}];
 
