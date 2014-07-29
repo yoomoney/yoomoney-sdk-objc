@@ -43,6 +43,8 @@ static NSString *const kHeaderContentLength = @"Content-Length";
 - (void)sendAsynchronousWithQueue:(NSOperationQueue *)queue completionHandler:(YMAConnectionHandler)handler {
 
     [self.request addValue:[NSString stringWithFormat:@"%lu", (unsigned long) [self.request.HTTPBody length]] forHTTPHeaderField:kHeaderContentLength];
+    
+    NSLog(@"<<<< Request to URL: %@ >>> %@",self.request.URL.absoluteString, [[NSString alloc] initWithData:self.request.HTTPBody encoding:NSUTF8StringEncoding]);
 
     [NSURLConnection sendAsynchronousRequest:self.request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         handler(self.request, response, data, connectionError);
