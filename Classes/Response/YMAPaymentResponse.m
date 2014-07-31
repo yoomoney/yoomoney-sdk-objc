@@ -29,7 +29,7 @@ static NSString *const kParameterMoneySourceCscRequired = @"csc_required";
 
 + (YMAMoneySourcesModel *)moneySourcesFromModel:(id)moneySourcesModel
 {
-    if (!moneySourcesModel)
+    if (moneySourcesModel == nil)
         return nil;
 
     YMAWalletSourceGroupModel *walletSourceGroup = nil;

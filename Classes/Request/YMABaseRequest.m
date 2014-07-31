@@ -20,7 +20,7 @@
             block(self, response, error);
         }];
 
-    if (!operation) {
+    if (operation == nil) {
         block(self, nil, [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:nil]);
         return;
     }

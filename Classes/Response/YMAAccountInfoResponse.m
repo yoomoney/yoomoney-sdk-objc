@@ -48,7 +48,7 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
     id avatarModel = [responseModel objectForKey:kParameterAvatar];
     YMAAvatarModel *avatar = nil;
 
-    if (avatarModel) {
+    if (avatarModel != nil) {
         NSString *avatarUrlString = [avatarModel objectForKey:kParameterAvatarUrl];
         NSURL *avatarUrl = [NSURL URLWithString:avatarUrlString];
         NSString *timeStampString = [avatarModel objectForKey:kParameterAvatarTs];
@@ -61,7 +61,7 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
     id balanceDetailsModel = [responseModel objectForKey:kParameterBalanceDetails];
     YMABalanceDetailsModel *balanceDetails = nil;
 
-    if (balanceDetailsModel) {
+    if (balanceDetailsModel != nil) {
         NSString *total = [balanceDetailsModel objectForKey:kParameterBalanceTotal];
         NSString *available = [balanceDetailsModel objectForKey:kParameterBalanceAvailable];
         NSString *depositionPending = [balanceDetailsModel objectForKey:kParameterBalanceDepositionPending];
@@ -78,7 +78,7 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
     id cardsLinkedModel = [responseModel objectForKey:kParameterCardsLinked];
     NSMutableArray *cardsLinked = nil;
 
-    if (cardsLinkedModel) {
+    if (cardsLinkedModel != nil) {
         cardsLinked = [NSMutableArray array];
 
         for (id card in cardsLinkedModel) {
@@ -95,7 +95,7 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
     id servicesAdditionalModel = [responseModel objectForKey:kParameterServicesAdditional];
     NSMutableArray *servicesAdditional = nil;
 
-    if (servicesAdditionalModel) {
+    if (servicesAdditionalModel != nil) {
         servicesAdditional = [NSMutableArray array];
 
         for (NSString *service in servicesAdditionalModel)
