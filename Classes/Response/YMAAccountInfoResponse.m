@@ -31,9 +31,7 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
 
 @implementation YMAAccountInfoResponse
 
-#pragma mark -
-#pragma mark *** Overridden methods ***
-#pragma mark -
+#pragma mark - Overridden methods
 
 - (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
 {

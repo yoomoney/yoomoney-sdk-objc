@@ -28,9 +28,7 @@ static NSString *const kParameterDigitalGoods = @"digital_goods";
 
 @implementation YMAOperationDetailsResponse
 
-#pragma mark -
-#pragma mark *** Overridden methods ***
-#pragma mark -
+#pragma mark - Overridden methods
 
 - (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
 {

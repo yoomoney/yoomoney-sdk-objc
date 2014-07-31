@@ -92,9 +92,7 @@ static NSString *const kHeaderContentLength = @"Content-Length";
     self.request.HTTPBody = bodyData;
 }
 
-#pragma mark -
-#pragma mark *** Getters and setters ***
-#pragma mark -
+#pragma mark - Getters and setters
 
 - (void)setRequestMethod:(NSString *)requestMethod
 {

@@ -62,9 +62,7 @@ static NSString *const kParameterOperationType = @"type";
                                                                 type:type];
 }
 
-#pragma mark -
-#pragma mark *** Overridden methods ***
-#pragma mark -
+#pragma mark - Overridden methods
 
 - (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
 {
