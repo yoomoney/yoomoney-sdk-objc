@@ -20,6 +20,8 @@ static NSString *const kKeyHistoryOperationTypeIncomingTransferProtected = @"inc
 
 @implementation YMAHistoryOperationModel
 
+#pragma mark - Object Lifecycle
+
 - (id)initWithOperationId:(NSString *)operationId
                    status:(YMAHistoryOperationStatus)status
                  datetime:(NSDate *)datetime
@@ -71,6 +73,8 @@ static NSString *const kKeyHistoryOperationTypeIncomingTransferProtected = @"inc
                                                        favourite:favourite
                                                             type:type];
 }
+
+#pragma mark - Public methods
 
 + (YMAHistoryOperationStatus)historyOperationStatusByString:(NSString *)historyOperationStatusString
 {

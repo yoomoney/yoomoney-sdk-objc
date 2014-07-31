@@ -14,6 +14,8 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
 
 @implementation YMAAccountInfoModel
 
+#pragma mark - Object Lifecycle
+
 - (id)initWithAccount:(NSString *)account
               balance:(NSString *)balance
              currency:(NSString *)currency
@@ -61,6 +63,8 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
                                             cardsLinked:cardsLinked
                                      servicesAdditional:servicesAdditional];
 }
+
+#pragma mark - Public methods
 
 + (YMAAccountStatus)accountStatusByString:(NSString *)accountStatusString
 {

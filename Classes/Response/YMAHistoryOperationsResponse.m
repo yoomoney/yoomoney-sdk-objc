@@ -23,6 +23,8 @@ static NSString *const kParameterOperationType = @"type";
 
 @implementation YMAHistoryOperationsResponse
 
+#pragma mark - Public methods
+
 + (YMAHistoryOperationModel *)historyOperationByModel:(id)historyOperationModel
 {
     NSString *operationId = [historyOperationModel objectForKey:kParameterOperationOperationId];

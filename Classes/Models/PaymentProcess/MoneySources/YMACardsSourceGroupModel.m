@@ -8,6 +8,8 @@
 
 @implementation YMACardsSourceGroupModel
 
+#pragma mark - Object Lifecycle
+
 - (id)initWithCards:(NSArray *)cards
         defaultCard:(YMAMoneySourceModel *)defaultCard
         cscRequired:(BOOL)cscRequired

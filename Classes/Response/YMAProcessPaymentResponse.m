@@ -25,6 +25,8 @@ static NSString *const kParameterDigitalGoodsSecret = @"secret";
 
 @implementation YMAProcessPaymentResponse
 
+#pragma mark - Public methods
+
 + (NSArray *)goodsByModel:(id)goodsModel
 {
     if (goodsModel == nil)

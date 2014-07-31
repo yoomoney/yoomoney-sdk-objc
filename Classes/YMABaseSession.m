@@ -23,6 +23,8 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
 
 @implementation YMABaseSession
 
+#pragma mark - Object Lifecycle
+
 - (id)init
 {
     self = [super init];

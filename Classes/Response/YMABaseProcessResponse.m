@@ -19,6 +19,8 @@ static NSString *const kParameterAccountUnblockUri = @"account_unblock_uri";
 
 @implementation YMABaseProcessResponse
 
+#pragma mark - Object Lifecycle
+
 - (id)init
 {
     self = [super init];
@@ -30,7 +32,7 @@ static NSString *const kParameterAccountUnblockUri = @"account_unblock_uri";
     return self;
 }
 
-#pragma mark - NSOperation
+#pragma mark - Overridden methods
 
 - (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
 {

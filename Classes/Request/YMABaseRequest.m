@@ -11,6 +11,8 @@
 
 @implementation YMABaseRequest
 
+#pragma mark - Overridden methods
+
 - (void)buildResponseWithData:(NSData *)data queue:(NSOperationQueue *)queue andCompletion:(YMARequestHandler)block
 {
     NSOperation *operation =

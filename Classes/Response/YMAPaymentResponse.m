@@ -25,6 +25,8 @@ static NSString *const kParameterMoneySourceCscRequired = @"csc_required";
 
 @implementation YMAPaymentResponse
 
+#pragma mark - Public methods
+
 + (YMAMoneySourcesModel *)moneySourcesFromModel:(id)moneySourcesModel
 {
     if (!moneySourcesModel)

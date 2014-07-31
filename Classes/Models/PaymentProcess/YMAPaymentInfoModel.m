@@ -8,6 +8,8 @@
 
 @implementation YMAPaymentInfoModel
 
+#pragma mark - Object Lifecycle
+
 - (id)initWithMoneySources:(YMAMoneySourcesModel *)moneySources
                  requestId:(NSString *)requestId
             contractAmount:(NSString *)contractAmount

@@ -8,6 +8,8 @@
 
 @implementation YMAAscModel
 
+#pragma mark - Object Lifecycle
+
 - (id)initWithUrl:(NSURL *)url andParams:(NSDictionary *)params
 {
     self = [super init];

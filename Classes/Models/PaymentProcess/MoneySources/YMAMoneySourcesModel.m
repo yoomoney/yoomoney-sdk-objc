@@ -7,6 +7,8 @@
 
 @implementation YMAMoneySourcesModel
 
+#pragma mark - Object Lifecycle
+
 - (id)initWithWallet:(YMAWalletSourceGroupModel *)walletSource cardsSource:(YMACardsSourceGroupModel *)cards
 {
     self = [super init];

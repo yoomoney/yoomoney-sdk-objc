@@ -18,6 +18,8 @@ static NSString *const kHeaderContentLength = @"Content-Length";
 
 @implementation YMAConnection
 
+#pragma mark - Object Lifecycle
+
 - (id)initWithUrl:(NSURL *)url
 {
     self = [super init];
@@ -35,6 +37,8 @@ static NSString *const kHeaderContentLength = @"Content-Length";
 {
     return [[YMAConnection alloc] initWithUrl:url];
 }
+
+#pragma mark - Public methods
 
 + (NSString *)addPercentEscapesForString:(NSString *)string
 {

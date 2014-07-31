@@ -8,6 +8,8 @@
 
 @implementation YMADigitalGoodsModel
 
+#pragma mark - Object Lifecycle
+
 - (id)initWithWithArticle:(NSArray *)article bonus:(NSArray *)bonus
 {
     self = [super init];

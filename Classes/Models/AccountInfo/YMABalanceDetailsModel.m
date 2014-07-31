@@ -7,6 +7,8 @@
 
 @implementation YMABalanceDetailsModel
 
+#pragma mark - Object Lifecycle
+
 - (id)initWithTotal:(NSString *)total
           available:(NSString *)available
   depositionPending:(NSString *)depositionPending

@@ -16,6 +16,8 @@ static NSInteger const kResponseParseErrorCode = 2503;
 
 @implementation YMABaseResponse
 
+#pragma mark - Object Lifecycle
+
 - (id)initWithData:(NSData *)data andCompletion:(YMAResponseHandler)block
 {
     self = [self init];
@@ -50,6 +52,8 @@ static NSInteger const kResponseParseErrorCode = 2503;
         _block(self, [NSError errorWithDomain:exception.name code:kResponseParseErrorCode userInfo:exception.userInfo]);
     }
 }
+
+#pragma mark - Public methods
 
 - (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
 {

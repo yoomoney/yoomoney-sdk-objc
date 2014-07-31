@@ -8,6 +8,8 @@
 
 @implementation YMAAvatarModel
 
+#pragma mark - Object Lifecycle
+
 - (id)initWithUrl:(NSURL *)url timeStamp:(NSDate *)timeStamp
 {
     self = [super init];

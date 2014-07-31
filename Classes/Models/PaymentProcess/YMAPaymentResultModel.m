@@ -7,6 +7,8 @@
 
 @implementation YMAPaymentResultModel
 
+#pragma mark - Object Lifecycle
+
 - (id)initWithPaymentId:(NSString *)paymentId
                 balance:(NSString *)balance
               invoiceId:(NSString *)invoiceId

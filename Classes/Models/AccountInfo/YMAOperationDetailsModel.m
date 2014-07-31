@@ -12,6 +12,8 @@ static NSString *const kKeyRecipientTypeEmail = @"email";
 
 @implementation YMAOperationDetailsModel
 
+#pragma mark - Object Lifecycle
+
 - (id)initWithOperation:(YMAHistoryOperationModel *)operation
               amountDue:(NSString *)amountDue
                     fee:(NSString *)fee
@@ -95,6 +97,8 @@ static NSString *const kKeyRecipientTypeEmail = @"email";
                                              paymentParameters:paymentParameters
                                                   digitalGoods:digitalGoods];
 }
+
+#pragma mark - Public methods
 
 + (YMARecipientType)recipientTypeByString:(NSString *)recipientTypeString
 {

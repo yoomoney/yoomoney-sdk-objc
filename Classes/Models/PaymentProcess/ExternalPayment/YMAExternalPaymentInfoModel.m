@@ -7,6 +7,8 @@
 
 @implementation YMAExternalPaymentInfoModel
 
+#pragma mark - Object Lifecycle
+
 - (id)initPaymentRequestInfoWithId:(NSString *)requestId amount:(NSString *)amount andTitle:(NSString *)title
 {
     self = [super init];

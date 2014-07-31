@@ -8,6 +8,8 @@
 
 @implementation YMAGoodsModel
 
+#pragma mark - Object Lifecycle
+
 - (id)initWithId:(NSString *)merchantArticleId serial:(NSString *)serial secret:(NSString *)secret
 {
     self = [super init];

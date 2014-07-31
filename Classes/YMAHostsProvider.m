@@ -10,7 +10,7 @@ static NSString *const kDefaultSpMoneyUrl = @"m.sp-money.yandex.ru";
 
 @implementation YMAHostsProvider
 
-#pragma mark Singleton Methods
+#pragma mark - Object Lifecycle
 
 + (instancetype)sharedManager
 {

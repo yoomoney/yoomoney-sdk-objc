@@ -12,6 +12,8 @@ static NSString *const kPaymentCardTypeJCB = @"JCB";
 
 @implementation YMAMoneySourceModel
 
+#pragma mark - Object Lifecycle
+
 - (id)initWithType:(YMAMoneySourceType)type
           cardType:(YMAPaymentCardType)cardType
        panFragment:(NSString *)panFragment
@@ -39,6 +41,8 @@ static NSString *const kPaymentCardTypeJCB = @"JCB";
                                          panFragment:panFragment
                                     moneySourceToken:moneySourceToken];
 }
+
+#pragma mark - Public methods
 
 + (YMAPaymentCardType)paymentCardTypeByString:(NSString *)string
 {
