@@ -23,10 +23,11 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
 
 @implementation YMABaseSession
 
-- (id)init {
+- (id)init
+{
     self = [super init];
 
-    if (self) {
+    if (self != nil) {
         _requestQueue = [[NSOperationQueue alloc] init];
         _responseQueue = [[NSOperationQueue alloc] init];
         _userAgent = YMAValueUserAgentDefault;
@@ -36,60 +37,102 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
     return self;
 }
 
-- (id)initWithUserAgent:(NSString *)userAgent {
+- (id)initWithUserAgent:(NSString *)userAgent
+{
     self = [self init];
 
-    if (self) {
+    if (self != nil) {
         _userAgent = [userAgent copy];
     }
 
     return self;
 }
 
-#pragma mark -
-#pragma mark *** Public methods ***
-#pragma mark -
+#pragma mark - Public methods
 
-- (void)performRequestWithToken:(NSString *)token parameters:(NSDictionary *)parameters url:(NSURL *)url completion:(YMAConnectionHandler)block {
+- (void)performRequestWithToken:(NSString *)token
+                     parameters:(NSDictionary *)parameters
+                            url:(NSURL *)url
+                     completion:(YMAConnectionHandler)block
+{
     YMAConnection *connection = [self connectionWithUrl:url contentType:YMAValueContentTypeDefault andToken:token];
     [connection addPostParams:parameters];
 
     [connection sendAsynchronousWithQueue:_requestQueue completionHandler:block];
 }
 
-- (void)performAndProcessRequestWithToken:(NSString *)token parameters:(NSDictionary *)parameters url:(NSURL *)url completion:(YMAConnectionHandler)block {
-    [self performRequestWithToken:token parameters:parameters url:url completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
-        [self processRequest:urlRequest response:urlResponse responseData:responseData error:error completion:block];
-    }];
+- (void)performAndProcessRequestWithToken:(NSString *)token
+                               parameters:(NSDictionary *)parameters
+                                      url:(NSURL *)url
+                               completion:(YMAConnectionHandler)block
+{
+    __weak YMABaseSession *bself = self;
+
+    [self performRequestWithToken:token
+                       parameters:parameters
+                              url:url
+                       completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
+                           [bself processRequest:urlRequest
+                                        response:urlResponse
+                                    responseData:responseData
+                                           error:error
+                                      completion:block];
+                       }];
 }
 
-- (void)performAndProcessRequestWithToken:(NSString *)token data:(NSData *)data contentType:(NSString *)contentType url:(NSURL *)url completion:(YMAConnectionHandler)block {
-    [self performRequestWithToken:token data:data contentType:contentType url:url andCompletionHandler:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
-        [self processRequest:urlRequest response:urlResponse responseData:responseData error:error completion:block];
-    }];
+- (void)performAndProcessRequestWithToken:(NSString *)token
+                                     data:(NSData *)data
+                              contentType:(NSString *)contentType
+                                      url:(NSURL *)url
+                               completion:(YMAConnectionHandler)block
+{
+    __weak YMABaseSession *bself = self;
+
+    [self performRequestWithToken:token
+                             data:data
+                      contentType:contentType
+                              url:url
+             andCompletionHandler:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
+                 [bself processRequest:urlRequest
+                              response:urlResponse
+                          responseData:responseData
+                                 error:error
+                            completion:block];
+             }];
 }
 
-#pragma mark -
-#pragma mark *** Private methods ***
-#pragma mark -
+#pragma mark - Private methods
 
-- (void)performRequestWithToken:(NSString *)token data:(NSData *)data contentType:(NSString *)contentType url:(NSURL *)url andCompletionHandler:(YMAConnectionHandler)handler {
+- (void)performRequestWithToken:(NSString *)token
+                           data:(NSData *)data
+                    contentType:(NSString *)contentType
+                            url:(NSURL *)url
+           andCompletionHandler:(YMAConnectionHandler)handler
+{
     YMAConnection *connection = [self connectionWithUrl:url contentType:contentType andToken:token];
     [connection addBodyData:data];
 
     [connection sendAsynchronousWithQueue:_requestQueue completionHandler:handler];
 }
 
-- (void)processRequest:(NSURLRequest *)urlRequest response:(NSURLResponse *)urlResponse responseData:(NSData *)responseData error:(NSError *)error completion:(YMAConnectionHandler)block {
-    if (error) {
+- (void)processRequest:(NSURLRequest *)urlRequest
+              response:(NSURLResponse *)urlResponse
+          responseData:(NSData *)responseData
+                 error:(NSError *)error
+            completion:(YMAConnectionHandler)block
+{
+    if (error != nil) {
         block(urlRequest, urlResponse, responseData, error);
         return;
     }
-    
-    NSLog(@"--------------------- Response data: %@", [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
-    
-    NSInteger statusCode = ((NSHTTPURLResponse *) urlResponse).statusCode;
-    NSError *technicalError = [NSError errorWithDomain:YMAErrorKeyUnknown code:statusCode userInfo:@{@"request" : urlRequest, @"response" : urlResponse}];
+
+    NSLog(@"--------------------- Response data: %@",
+          [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
+
+    NSInteger statusCode = ((NSHTTPURLResponse *)urlResponse).statusCode;
+    NSError *technicalError = [NSError errorWithDomain:YMAErrorKeyUnknown
+                                                  code:statusCode
+                                              userInfo:@{ @"request" : urlRequest, @"response" : urlResponse }];
 
     switch (statusCode) {
         case YMAStatusCodeOkHTTP:
@@ -97,7 +140,10 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
             break;
         case YMAStatusCodeInsufficientScopeHTTP:
         case YMAStatusCodeInvalidTokenHTTP:
-            block(urlRequest, urlResponse, responseData, [NSError errorWithDomain:[self valueOfHeader:kHeaderWWWAuthenticate forResponse:urlResponse] code:statusCode userInfo:@{@"request" : urlRequest, @"response" : urlResponse}]);
+            block(urlRequest, urlResponse, responseData,
+                  [NSError errorWithDomain:[self valueOfHeader:kHeaderWWWAuthenticate forResponse:urlResponse]
+                                      code:statusCode
+                                  userInfo:@{ @"request" : urlRequest, @"response" : urlResponse }]);
             break;
         default:
             block(urlRequest, urlResponse, responseData, technicalError);
@@ -105,7 +151,8 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
     }
 }
 
-- (YMAConnection *)connectionWithUrl:(NSURL *)url contentType:(NSString *)contentType andToken:(NSString *)token {
+- (YMAConnection *)connectionWithUrl:(NSURL *)url contentType:(NSString *)contentType andToken:(NSString *)token
+{
     YMAConnection *connection = [[YMAConnection alloc] initWithUrl:url];
     connection.requestMethod = YMAMethodPost;
     [connection addValue:contentType forHeader:YMAHeaderContentType];
@@ -114,17 +161,19 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
     [connection addValue:self.language forHeader:kHeaderAcceptLanguage];
 
     if (token)
-        [connection addValue:[NSString stringWithFormat:kValueHeaderAuthorizationFormat, token] forHeader:kHeaderAuthorization];
+        [connection addValue:[NSString stringWithFormat:kValueHeaderAuthorizationFormat, token]
+                   forHeader:kHeaderAuthorization];
 
     return connection;
 }
 
-- (NSString *)valueOfHeader:(NSString *)headerName forResponse:(NSURLResponse *)response {
-    NSDictionary *headers = [((NSHTTPURLResponse *) response) allHeaderFields];
+- (NSString *)valueOfHeader:(NSString *)headerName forResponse:(NSURLResponse *)response
+{
+    NSDictionary *headers = [((NSHTTPURLResponse *)response) allHeaderFields];
 
     for (NSString *header in headers.allKeys) {
         if ([header caseInsensitiveCompare:headerName] == NSOrderedSame)
-            return [headers objectForKey:header];
+            return headers[header];
     }
 
     return nil;

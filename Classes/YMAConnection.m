@@ -12,64 +12,70 @@ static NSString *const kHeaderContentLength = @"Content-Length";
 
 @interface YMAConnection ()
 
-@property(nonatomic, strong) NSMutableURLRequest *request;
+@property (nonatomic, strong) NSMutableURLRequest *request;
 
 @end
 
 @implementation YMAConnection
 
-- (id)initWithUrl:(NSURL *)url {
+- (id)initWithUrl:(NSURL *)url
+{
     self = [super init];
 
-    if (self) {
-        _request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:kRequestTimeoutIntervalDefault];
+    if (self != nil) {
+        _request = [[NSMutableURLRequest alloc] initWithURL:url
+                                                cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                            timeoutInterval:kRequestTimeoutIntervalDefault];
     }
 
     return self;
 }
 
-+ (instancetype)connectionWithUrl:(NSURL *)url {
++ (instancetype)connectionWithUrl:(NSURL *)url
+{
     return [[YMAConnection alloc] initWithUrl:url];
 }
 
-+ (NSString *)addPercentEscapesForString:(NSString *)string {
-    return (NSString *) CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
-            (__bridge CFStringRef) string,
-            NULL,
-            (CFStringRef) @";/?:@&=+$,",
-            kCFStringEncodingUTF8));
++ (NSString *)addPercentEscapesForString:(NSString *)string
+{
+    return (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
+        (__bridge CFStringRef)string,
+        NULL,
+        (CFStringRef)@";/?:@&=+$,",
+        kCFStringEncodingUTF8));
 }
 
-- (void)sendAsynchronousWithQueue:(NSOperationQueue *)queue completionHandler:(YMAConnectionHandler)handler {
+- (void)sendAsynchronousWithQueue:(NSOperationQueue *)queue completionHandler:(YMAConnectionHandler)handler
+{
 
-    [self.request addValue:[NSString stringWithFormat:@"%lu", (unsigned long) [self.request.HTTPBody length]] forHTTPHeaderField:kHeaderContentLength];
-    
-    NSLog(@"<<<< Request to URL: %@ >>> %@",self.request.URL.absoluteString, [[NSString alloc] initWithData:self.request.HTTPBody encoding:NSUTF8StringEncoding]);
+    [self.request addValue:[NSString stringWithFormat:@"%lu", (unsigned long)[self.request.HTTPBody length]]
+        forHTTPHeaderField:kHeaderContentLength];
 
-    [NSURLConnection sendAsynchronousRequest:self.request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        handler(self.request, response, data, connectionError);
-    }];
+    NSLog(@"<<<< Request to URL: %@ >>> %@", self.request.URL.absoluteString,
+          [[NSString alloc] initWithData:self.request.HTTPBody encoding:NSUTF8StringEncoding]);
+
+    [NSURLConnection sendAsynchronousRequest:self.request
+                                       queue:queue
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               handler(self.request, response, data, connectionError);
+                           }];
 }
 
-- (void)addValue:(NSString *)value forHeader:(NSString *)header {
+- (void)addValue:(NSString *)value forHeader:(NSString *)header
+{
     [self.request addValue:value forHTTPHeaderField:header];
 }
 
-- (void)addPostParams:(NSDictionary *)postParams {
+- (void)addPostParams:(NSDictionary *)postParams
+{
     if (!postParams)
         return;
 
     NSMutableArray *bodyParams = [[NSMutableArray alloc] init];
 
     for (NSString *key in postParams.allKeys) {
-
         id value = [postParams objectForKey:key];
-        NSString *paramValue = nil;
-
-        if ([value isKindOfClass:[NSNumber class]])
-            paramValue = [value stringValue];
-        else
-            paramValue = value;
+        NSString *paramValue = [value isKindOfClass:[NSNumber class]] ? [value stringValue] : value;
 
         NSString *encodedValue = [YMAConnection addPercentEscapesForString:paramValue];
         NSString *encodedKey = [YMAConnection addPercentEscapesForString:key];
@@ -81,7 +87,8 @@ static NSString *const kHeaderContentLength = @"Content-Length";
     self.request.HTTPBody = [bodyString dataUsingEncoding:NSUTF8StringEncoding];
 }
 
-- (void)addBodyData:(NSData *)bodyData {
+- (void)addBodyData:(NSData *)bodyData
+{
     self.request.HTTPBody = bodyData;
 }
 
@@ -89,11 +96,13 @@ static NSString *const kHeaderContentLength = @"Content-Length";
 #pragma mark *** Getters and setters ***
 #pragma mark -
 
-- (void)setRequestMethod:(NSString *)requestMethod {
+- (void)setRequestMethod:(NSString *)requestMethod
+{
     self.request.HTTPMethod = requestMethod;
 }
 
-- (NSString *)requestMethod {
+- (NSString *)requestMethod
+{
     return self.request.HTTPMethod;
 }
 

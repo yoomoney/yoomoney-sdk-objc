@@ -19,42 +19,43 @@ static NSString *const kParameterAccountUnblockUri = @"account_unblock_uri";
 
 @implementation YMABaseProcessResponse
 
-- (id)init {
+- (id)init
+{
     self = [super init];
 
-    if (self) {
+    if (self != nil) {
         _nextRetry = 0;
     }
 
     return self;
 }
 
-#pragma mark -
-#pragma mark *** NSOperation ***
-#pragma mark -
+#pragma mark - NSOperation
 
-- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error {
-    NSString *statusKey = [responseModel objectForKey:kParameterStatus];
-    NSString *accountUnblockUri = [responseModel objectForKey:kParameterAccountUnblockUri];
+- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
+{
+    NSString *statusKey = responseModel[kParameterStatus];
+    NSString *accountUnblockUri = responseModel[kParameterAccountUnblockUri];
     _accountUnblockUri = [accountUnblockUri copy];
 
     if ([statusKey isEqual:kKeyResponseStatusRefused]) {
-        NSString *errorKey = [responseModel objectForKey:kParameterError];
+        NSString *errorKey = responseModel[kParameterError];
         _status = YMAResponseStatusRefused;
 
         if (!error) return;
 
-        NSError *unknownError = [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:@{@"response" : self}];
-        *error = errorKey ? [NSError errorWithDomain:errorKey code:0 userInfo:@{@"response" : self}] : unknownError;
+        NSError *unknownError = [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:@{ @"response" : self }];
+        *error = errorKey ? [NSError errorWithDomain:errorKey code:0 userInfo:@{ @"response" : self }] : unknownError;
 
         return;
     }
 
     if ([statusKey isEqual:kKeyResponseStatusInProgress]) {
-        NSString *nextRetryString = [responseModel objectForKey:kParameterNextRetry];
-        _nextRetry = (NSUInteger) [nextRetryString integerValue];
+        NSString *nextRetryString = responseModel[kParameterNextRetry];
+        _nextRetry = (NSUInteger)[nextRetryString integerValue];
         _status = YMAResponseStatusInProgress;
-    } else if ([statusKey isEqual:kKeyResponseStatusHoldForPickup])
+    }
+    else if ([statusKey isEqual:kKeyResponseStatusHoldForPickup])
         _status = YMAResponseStatusHoldForPickup;
     else if ([statusKey isEqual:kKeyResponseStatusExtAuthRequired])
         _status = YMAResponseStatusExtAuthRequired;

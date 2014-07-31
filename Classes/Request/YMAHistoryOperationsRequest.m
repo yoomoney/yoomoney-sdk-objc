@@ -21,21 +21,29 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
 
 @interface YMAHistoryOperationsRequest ()
 
-@property(nonatomic, assign) YMAHistoryOperationFilter filter;
-@property(nonatomic, copy) NSString *label;
-@property(nonatomic, strong) NSDate *from;
-@property(nonatomic, strong) NSDate *till;
-@property(nonatomic, copy) NSString *startRecord;
-@property(nonatomic, copy) NSString *records;
+@property (nonatomic, assign) YMAHistoryOperationFilter filter;
+@property (nonatomic, copy) NSString *label;
+@property (nonatomic, strong) NSDate *from;
+@property (nonatomic, strong) NSDate *till;
+@property (nonatomic, copy) NSString *startRecord;
+@property (nonatomic, copy) NSString *records;
 
 @end
 
 @implementation YMAHistoryOperationsRequest
 
-- (id)initWithFilter:(YMAHistoryOperationFilter)filter label:(NSString *)label from:(NSDate *)from till:(NSDate *)till startRecord:(NSString *)startRecord records:(NSString *)records {
+#pragma mark - Object Lifecycle
+
+- (id)initWithFilter:(YMAHistoryOperationFilter)filter
+               label:(NSString *)label
+                from:(NSDate *)from
+                till:(NSDate *)till
+         startRecord:(NSString *)startRecord
+             records:(NSString *)records
+{
     self = [super self];
 
-    if (self) {
+    if (self != nil) {
         _filter = filter;
         _label = [label copy];
         _from = from;
@@ -47,20 +55,32 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
     return self;
 }
 
-+ (instancetype)operationHistoryWithFilter:(YMAHistoryOperationFilter)filter label:(NSString *)label from:(NSDate *)from till:(NSDate *)till startRecord:(NSString *)startRecord records:(NSString *)records {
-    return [[YMAHistoryOperationsRequest alloc] initWithFilter:filter label:label from:from till:till startRecord:startRecord records:records];
++ (instancetype)operationHistoryWithFilter:(YMAHistoryOperationFilter)filter
+                                     label:(NSString *)label
+                                      from:(NSDate *)from
+                                      till:(NSDate *)till
+                               startRecord:(NSString *)startRecord
+                                   records:(NSString *)records
+{
+    return [[YMAHistoryOperationsRequest alloc] initWithFilter:filter
+                                                         label:label
+                                                          from:from
+                                                          till:till
+                                                   startRecord:startRecord
+                                                       records:records];
 }
 
-#pragma mark -
-#pragma mark *** Overridden methods ***
-#pragma mark -
+#pragma mark - Overridden methods
 
-- (NSURL *)requestUrl {
-    NSString *urlString = [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, kUrlHistoryOperation];
+- (NSURL *)requestUrl
+{
+    NSString *urlString =
+        [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, kUrlHistoryOperation];
     return [NSURL URLWithString:urlString];
 }
 
-- (NSDictionary *)parameters {
+- (NSDictionary *)parameters
+{
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"];
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
@@ -76,20 +96,18 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
 
     [dictionary setValue:typeString forKey:kParameterType];
     [dictionary setValue:self.label forKey:kParameterLabel];
-
     NSString *fromString = [formatter stringFromDate:self.from];
     [dictionary setValue:fromString forKey:kParameterFrom];
-
     NSString *tillString = [formatter stringFromDate:self.till];
     [dictionary setValue:tillString forKey:kParameterTill];
-
     [dictionary setValue:self.startRecord forKey:kParameterStartRecord];
     [dictionary setValue:self.records forKey:kParameterRecords];
 
     return dictionary;
 }
 
-- (NSOperation *)buildResponseOperationWithData:(NSData *)data andCompletionHandler:(YMAResponseHandler)handler {
+- (NSOperation *)buildResponseOperationWithData:(NSData *)data andCompletionHandler:(YMAResponseHandler)handler
+{
     return [[YMAHistoryOperationsResponse alloc] initWithData:data andCompletion:handler];
 }
 

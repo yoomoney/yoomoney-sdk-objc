@@ -14,10 +14,13 @@ static NSString *const kContentType = @"image/png";
 @synthesize data = _data;
 @synthesize contentType = _contentType;
 
-- (id)initWithImageData:(NSData *)imageData {
+#pragma mark - Object Lifecycle
+
+- (id)initWithImageData:(NSData *)imageData
+{
     self = [super init];
 
-    if (self) {
+    if (self != nil) {
         _data = imageData;
         _contentType = kContentType;
     }
@@ -25,20 +28,22 @@ static NSString *const kContentType = @"image/png";
     return self;
 }
 
-+ (instancetype)changeAvatarWithImageData:(NSData *)imageData {
++ (instancetype)changeAvatarWithImageData:(NSData *)imageData
+{
     return [[YMAChangeAvatarRequest alloc] initWithImageData:imageData];
 }
 
-#pragma mark -
-#pragma mark *** Overridden methods ***
-#pragma mark -
+#pragma mark - Overridden methods
 
-- (NSURL *)requestUrl {
-    NSString *urlString = [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, kUrlAvatar];
+- (NSURL *)requestUrl
+{
+    NSString *urlString =
+        [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, kUrlAvatar];
     return [NSURL URLWithString:urlString];
 }
 
-- (NSOperation *)buildResponseOperationWithData:(NSData *)data andCompletionHandler:(YMAResponseHandler)handler {
+- (NSOperation *)buildResponseOperationWithData:(NSData *)data andCompletionHandler:(YMAResponseHandler)handler
+{
     return [[YMABaseProcessResponse alloc] initWithData:data andCompletion:handler];
 }
 

@@ -29,9 +29,27 @@ typedef NS_ENUM(NSInteger, YMAHistoryOperationType) {
 
 @interface YMAHistoryOperationModel : NSObject
 
-- (id)initWithOperationId:(NSString *)operationId status:(YMAHistoryOperationStatus)status datetime:(NSDate *)datetime title:(NSString *)title patternId:(NSString *)patternId direction:(YMAHistoryOperationDirection)direction amount:(NSString *)amount label:(NSString *)label favourite:(BOOL)favourite type:(YMAHistoryOperationType)type;
+- (id)initWithOperationId:(NSString *)operationId
+                   status:(YMAHistoryOperationStatus)status
+                 datetime:(NSDate *)datetime
+                    title:(NSString *)title
+                patternId:(NSString *)patternId
+                direction:(YMAHistoryOperationDirection)direction
+                   amount:(NSString *)amount
+                    label:(NSString *)label
+                favourite:(BOOL)favourite
+                     type:(YMAHistoryOperationType)type;
 
-+ (instancetype)historyOperationWithOperationId:(NSString *)operationId status:(YMAHistoryOperationStatus)status datetime:(NSDate *)datetime title:(NSString *)title patternId:(NSString *)patternId direction:(YMAHistoryOperationDirection)direction amount:(NSString *)amount label:(NSString *)label favourite:(BOOL)favourite type:(YMAHistoryOperationType)type;
++ (instancetype)historyOperationWithOperationId:(NSString *)operationId
+                                         status:(YMAHistoryOperationStatus)status
+                                       datetime:(NSDate *)datetime
+                                          title:(NSString *)title
+                                      patternId:(NSString *)patternId
+                                      direction:(YMAHistoryOperationDirection)direction
+                                         amount:(NSString *)amount
+                                          label:(NSString *)label
+                                      favourite:(BOOL)favourite
+                                           type:(YMAHistoryOperationType)type;
 
 + (YMAHistoryOperationStatus)historyOperationStatusByString:(NSString *)historyOperationStatusString;
 
@@ -41,15 +59,15 @@ typedef NS_ENUM(NSInteger, YMAHistoryOperationType) {
 
 - (NSComparisonResult)compare:(YMAHistoryOperationModel *)otherObject;
 
-@property(nonatomic, copy, readonly) NSString *operationId;
-@property(nonatomic, assign, readonly) YMAHistoryOperationStatus status;
-@property(nonatomic, strong, readonly) NSDate *datetime;
-@property(nonatomic, copy, readonly) NSString *title;
-@property(nonatomic, copy, readonly) NSString *patternId;
-@property(nonatomic, assign, readonly) YMAHistoryOperationDirection direction;
-@property(nonatomic, copy, readonly) NSString *amount;
-@property(nonatomic, copy, readonly) NSString *label;
-@property(nonatomic, assign, readonly) BOOL isFavourite;
-@property(nonatomic, assign, readonly) YMAHistoryOperationType type;
+@property (nonatomic, copy, readonly) NSString *operationId;
+@property (nonatomic, assign, readonly) YMAHistoryOperationStatus status;
+@property (nonatomic, strong, readonly) NSDate *datetime;
+@property (nonatomic, copy, readonly) NSString *title;
+@property (nonatomic, copy, readonly) NSString *patternId;
+@property (nonatomic, assign, readonly) YMAHistoryOperationDirection direction;
+@property (nonatomic, copy, readonly) NSString *amount;
+@property (nonatomic, copy, readonly) NSString *label;
+@property (nonatomic, assign, readonly) BOOL isFavourite;
+@property (nonatomic, assign, readonly) YMAHistoryOperationType type;
 
 @end

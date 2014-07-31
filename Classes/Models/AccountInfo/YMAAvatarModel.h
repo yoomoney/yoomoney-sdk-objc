@@ -9,7 +9,7 @@
 
 + (instancetype)avatarWithUrl:(NSURL *)url timeStamp:(NSDate *)timeStamp;
 
-@property(nonatomic, strong, readonly) NSURL *url;
-@property(nonatomic, strong, readonly) NSDate *timeStamp;
+@property (nonatomic, strong, readonly) NSURL *url;
+@property (nonatomic, strong, readonly) NSDate *timeStamp;
 
 @end

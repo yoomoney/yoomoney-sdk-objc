@@ -5,14 +5,15 @@
 
 #import "YMAHostsProvider.h"
 
-static NSString *const kDefaultModeyUrl = @"money.yandex.ru";
+static NSString *const kDefaultMoneyUrl = @"money.yandex.ru";
 static NSString *const kDefaultSpMoneyUrl = @"m.sp-money.yandex.ru";
 
 @implementation YMAHostsProvider
 
 #pragma mark Singleton Methods
 
-+ (instancetype)sharedManager {
++ (instancetype)sharedManager
+{
     static id sharedMyManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -22,11 +23,12 @@ static NSString *const kDefaultSpMoneyUrl = @"m.sp-money.yandex.ru";
     return sharedMyManager;
 }
 
-- (id)init {
+- (id)init
+{
     self = [super init];
 
-    if (self) {
-        _moneyUrl = [kDefaultModeyUrl copy];
+    if (self != nil) {
+        _moneyUrl = [kDefaultMoneyUrl copy];
         _spMoneyUrl = [kDefaultSpMoneyUrl copy];
     }
 

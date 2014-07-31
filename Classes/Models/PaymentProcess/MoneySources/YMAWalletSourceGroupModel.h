@@ -10,7 +10,7 @@
 
 + (instancetype)walletMoneySourceWithAllowed:(BOOL)allowed;
 
-@property(nonatomic, assign, readonly) BOOL isAllowed;
-@property(nonatomic, strong, readonly) YMAMoneySourceModel *moneySource;
+@property (nonatomic, assign, readonly) BOOL isAllowed;
+@property (nonatomic, strong, readonly) YMAMoneySourceModel *moneySource;
 
 @end

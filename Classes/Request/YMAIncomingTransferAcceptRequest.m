@@ -12,17 +12,20 @@ static NSString *const kParameterProtectionCode = @"protection_code";
 
 @interface YMAIncomingTransferAcceptRequest ()
 
-@property(nonatomic, copy) NSString *operationId;
-@property(nonatomic, copy) NSString *protectionCode;
+@property (nonatomic, copy) NSString *operationId;
+@property (nonatomic, copy) NSString *protectionCode;
 
 @end
 
 @implementation YMAIncomingTransferAcceptRequest
 
-- (id)initWithOperationId:(NSString *)operationId protectionCode:(NSString *)protectionCode {
+#pragma mark - Object Lifecycle
+
+- (id)initWithOperationId:(NSString *)operationId protectionCode:(NSString *)protectionCode
+{
     self = [super init];
 
-    if (self) {
+    if (self != nil) {
         _operationId = [operationId copy];
         _protectionCode = [protectionCode copy];
     }
@@ -30,27 +33,31 @@ static NSString *const kParameterProtectionCode = @"protection_code";
     return self;
 }
 
-+ (instancetype)acceptIncomingTransferWithOperationId:(NSString *)operationId protectionCode:(NSString *)protectionCode {
++ (instancetype)acceptIncomingTransferWithOperationId:(NSString *)operationId protectionCode:(NSString *)protectionCode
+{
     return [[YMAIncomingTransferAcceptRequest alloc] initWithOperationId:operationId protectionCode:protectionCode];
 }
 
-#pragma mark -
-#pragma mark *** Overridden methods ***
-#pragma mark -
+#pragma mark - Overridden methods
 
-- (NSURL *)requestUrl {
-    NSString *urlString = [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, kUrlIncomingTransferAccept];
+- (NSURL *)requestUrl
+{
+    NSString *urlString = [NSString stringWithFormat:@"https://%@/%@",
+                                                     [YMAHostsProvider sharedManager].moneyUrl,
+                                                     kUrlIncomingTransferAccept];
     return [NSURL URLWithString:urlString];
 }
 
-- (NSDictionary *)parameters {
+- (NSDictionary *)parameters
+{
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:self.operationId forKey:kParameterOperationId];
     [dictionary setValue:self.protectionCode forKey:kParameterProtectionCode];
     return dictionary;
 }
 
-- (NSOperation *)buildResponseOperationWithData:(NSData *)data andCompletionHandler:(YMAResponseHandler)handler {
+- (NSOperation *)buildResponseOperationWithData:(NSData *)data andCompletionHandler:(YMAResponseHandler)handler
+{
     return [[YMAIncomingTransferAcceptResponse alloc] initWithData:data andCompletion:handler];
 }
 

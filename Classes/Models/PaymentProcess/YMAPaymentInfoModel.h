@@ -9,15 +9,22 @@
 
 @interface YMAPaymentInfoModel : NSObject
 
-+ (instancetype)paymentInfoWithMoneySources:(YMAMoneySourcesModel *)moneySources requestId:(NSString *)requestId contractAmount:(NSString *)contractAmount balance:(NSString *)balance recipientAccountStatus:(YMAAccountStatus)recipientAccountStatus recipientAccountType:(YMAAccountType)recipientAccountType protectionCode:(NSString *)protectionCode extActionUri:(NSURL *)extActionUri;
++ (instancetype)paymentInfoWithMoneySources:(YMAMoneySourcesModel *)moneySources
+                                  requestId:(NSString *)requestId
+                             contractAmount:(NSString *)contractAmount
+                                    balance:(NSString *)balance
+                     recipientAccountStatus:(YMAAccountStatus)recipientAccountStatus
+                       recipientAccountType:(YMAAccountType)recipientAccountType
+                             protectionCode:(NSString *)protectionCode
+                               extActionUri:(NSURL *)extActionUri;
 
-@property(nonatomic, copy, readonly) NSString *requestId;
-@property(nonatomic, strong, readonly) YMAMoneySourcesModel *moneySources;
-@property(nonatomic, copy, readonly) NSString *contractAmount;
-@property(nonatomic, copy, readonly) NSString *balance;
-@property(nonatomic, assign, readonly) YMAAccountStatus recipientAccountStatus;
-@property(nonatomic, assign, readonly) YMAAccountType recipientAccountType;
-@property(nonatomic, copy, readonly) NSString *protectionCode;
-@property(nonatomic, strong, readonly) NSURL *extActionUri;
+@property (nonatomic, copy, readonly) NSString *requestId;
+@property (nonatomic, strong, readonly) YMAMoneySourcesModel *moneySources;
+@property (nonatomic, copy, readonly) NSString *contractAmount;
+@property (nonatomic, copy, readonly) NSString *balance;
+@property (nonatomic, assign, readonly) YMAAccountStatus recipientAccountStatus;
+@property (nonatomic, assign, readonly) YMAAccountType recipientAccountType;
+@property (nonatomic, copy, readonly) NSString *protectionCode;
+@property (nonatomic, strong, readonly) NSURL *extActionUri;
 
 @end

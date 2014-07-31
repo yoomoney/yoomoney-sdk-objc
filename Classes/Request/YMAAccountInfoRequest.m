@@ -12,20 +12,24 @@ static NSString *const kUrlAccountInfo = @"api/account-info";
 
 @synthesize parameters;
 
-+ (instancetype)accountInfoRequest {
+#pragma mark - Object Lifecycle
+
++ (instancetype)accountInfoRequest
+{
     return [[YMAAccountInfoRequest alloc] init];
 }
 
-#pragma mark -
-#pragma mark *** Overridden methods ***
-#pragma mark -
+#pragma mark - Overridden methods
 
-- (NSURL *)requestUrl {
-    NSString *urlString = [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, kUrlAccountInfo];
+- (NSURL *)requestUrl
+{
+    NSString *urlString =
+        [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, kUrlAccountInfo];
     return [NSURL URLWithString:urlString];
 }
 
-- (NSOperation *)buildResponseOperationWithData:(NSData *)data andCompletionHandler:(YMAResponseHandler)handler {
+- (NSOperation *)buildResponseOperationWithData:(NSData *)data andCompletionHandler:(YMAResponseHandler)handler
+{
     return [[YMAAccountInfoResponse alloc] initWithData:data andCompletion:handler];
 }
 

@@ -12,10 +12,14 @@ static NSString *const kPaymentCardTypeJCB = @"JCB";
 
 @implementation YMAMoneySourceModel
 
-- (id)initWithType:(YMAMoneySourceType)type cardType:(YMAPaymentCardType)cardType panFragment:(NSString *)panFragment moneySourceToken:(NSString *)moneySourceToken {
+- (id)initWithType:(YMAMoneySourceType)type
+          cardType:(YMAPaymentCardType)cardType
+       panFragment:(NSString *)panFragment
+  moneySourceToken:(NSString *)moneySourceToken
+{
     self = [super init];
 
-    if (self) {
+    if (self != nil) {
         _type = type;
         _cardType = cardType;
         _panFragment = [panFragment copy];
@@ -25,11 +29,19 @@ static NSString *const kPaymentCardTypeJCB = @"JCB";
     return self;
 }
 
-+ (instancetype)moneySourceWithType:(YMAMoneySourceType)type cardType:(YMAPaymentCardType)cardType panFragment:(NSString *)panFragment moneySourceToken:(NSString *)moneySourceToken {
-    return [[YMAMoneySourceModel alloc] initWithType:type cardType:cardType panFragment:panFragment moneySourceToken:moneySourceToken];
++ (instancetype)moneySourceWithType:(YMAMoneySourceType)type
+                           cardType:(YMAPaymentCardType)cardType
+                        panFragment:(NSString *)panFragment
+                   moneySourceToken:(NSString *)moneySourceToken
+{
+    return [[YMAMoneySourceModel alloc] initWithType:type
+                                            cardType:cardType
+                                         panFragment:panFragment
+                                    moneySourceToken:moneySourceToken];
 }
 
-+ (YMAPaymentCardType)paymentCardTypeByString:(NSString *)string {
++ (YMAPaymentCardType)paymentCardTypeByString:(NSString *)string
+{
     if ([string isEqual:kPaymentCardTypeVISA])
         return YMAPaymentCardTypeVISA;
 

@@ -26,21 +26,21 @@ static NSString *const kParameterRepeatable = @"repeatable";
 static NSString *const kParameterPaymentParameters = @"payment_parameters";
 static NSString *const kParameterDigitalGoods = @"digital_goods";
 
-
 @implementation YMAOperationDetailsResponse
 
 #pragma mark -
 #pragma mark *** Overridden methods ***
 #pragma mark -
 
-- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error {
+- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
+{
     NSString *errorKey = [responseModel objectForKey:kParameterError];
 
     if (errorKey) {
         if (!error) return;
 
-        NSError *unknownError = [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:@{@"response" : self}];
-        *error = errorKey ? [NSError errorWithDomain:errorKey code:0 userInfo:@{@"response" : self}] : unknownError;
+        NSError *unknownError = [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:@{ @"response" : self }];
+        *error = errorKey ? [NSError errorWithDomain:errorKey code:0 userInfo:@{ @"response" : self }] : unknownError;
 
         return;
     }
@@ -77,7 +77,22 @@ static NSString *const kParameterDigitalGoods = @"digital_goods";
     id digitalGoodsModel = [responseModel objectForKey:kParameterDigitalGoods];
     YMADigitalGoodsModel *digitalGoods = [YMAProcessPaymentResponse digitalGoodsByModel:digitalGoodsModel];
 
-    _operationDetails = [YMAOperationDetailsModel operationDetailsWithOperation:historyOperation amountDue:amountDue fee:fee sender:sender recipient:recipient recipientType:recipientType message:message comment:comment codepro:codePro protectionCode:protectionCode expires:expires answerDatetime:answerDatetime details:details repeatable:repeatable paymentParameters:paymentParameters digitalGoods:digitalGoods];
+    _operationDetails = [YMAOperationDetailsModel operationDetailsWithOperation:historyOperation
+                                                                      amountDue:amountDue
+                                                                            fee:fee
+                                                                         sender:sender
+                                                                      recipient:recipient
+                                                                  recipientType:recipientType
+                                                                        message:message
+                                                                        comment:comment
+                                                                        codepro:codePro
+                                                                 protectionCode:protectionCode
+                                                                        expires:expires
+                                                                 answerDatetime:answerDatetime
+                                                                        details:details
+                                                                     repeatable:repeatable
+                                                              paymentParameters:paymentParameters
+                                                                   digitalGoods:digitalGoods];
 }
 
 @end

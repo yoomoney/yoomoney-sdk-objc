@@ -18,7 +18,7 @@
 /// (form DC and / or 3D-Secure).
 + (instancetype)ascWithUrl:(NSURL *)url andParams:(NSDictionary *)params;
 
-@property(nonatomic, strong, readonly) NSURL *url;
-@property(nonatomic, strong, readonly) NSDictionary *params;
+@property (nonatomic, strong, readonly) NSURL *url;
+@property (nonatomic, strong, readonly) NSDictionary *params;
 
 @end

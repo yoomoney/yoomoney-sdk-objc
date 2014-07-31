@@ -9,6 +9,6 @@
 
 @interface YMAPaymentResponse : YMABaseProcessResponse
 
-@property(nonatomic, strong, readonly) YMAPaymentInfoModel *paymentInfo;
+@property (nonatomic, strong, readonly) YMAPaymentInfoModel *paymentInfo;
 
 @end

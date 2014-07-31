@@ -10,7 +10,7 @@
 
 + (instancetype)digitalGoodsWithArticle:(NSArray *)article bonus:(NSArray *)bonus;
 
-@property(nonatomic, strong, readonly) NSArray *article;
-@property(nonatomic, strong, readonly) NSArray *bonus;
+@property (nonatomic, strong, readonly) NSArray *article;
+@property (nonatomic, strong, readonly) NSArray *bonus;
 
 @end

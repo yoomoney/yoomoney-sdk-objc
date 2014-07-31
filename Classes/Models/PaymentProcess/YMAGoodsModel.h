@@ -9,8 +9,8 @@
 
 + (instancetype)goodsWithId:(NSString *)merchantArticleId serial:(NSString *)serial secret:(NSString *)secret;
 
-@property(nonatomic, copy, readonly) NSString *merchantArticleId;
-@property(nonatomic, copy, readonly) NSString *serial;
-@property(nonatomic, copy, readonly) NSString *secret;
+@property (nonatomic, copy, readonly) NSString *merchantArticleId;
+@property (nonatomic, copy, readonly) NSString *serial;
+@property (nonatomic, copy, readonly) NSString *secret;
 
 @end

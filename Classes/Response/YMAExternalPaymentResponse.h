@@ -14,6 +14,6 @@
 
 /// Info about the current payment request.
 /// The property is not equal to zero for status = YMAResponseStatusInProgress.
-@property(nonatomic, strong, readonly) YMAExternalPaymentInfoModel *paymentRequestInfo;
+@property (nonatomic, strong, readonly) YMAExternalPaymentInfoModel *paymentRequestInfo;
 
 @end

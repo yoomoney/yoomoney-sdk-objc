@@ -9,6 +9,6 @@
 
 @interface YMAAccountInfoResponse : YMABaseResponse
 
-@property(nonatomic, strong, readonly) YMAAccountInfoModel *accountInfo;
+@property (nonatomic, strong, readonly) YMAAccountInfoModel *accountInfo;
 
 @end

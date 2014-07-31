@@ -7,7 +7,7 @@
 #import "YMABaseRequest.h"
 #import "YMAOperationDetailsResponse.h"
 
-@interface YMAOperationDetailsRequest : YMABaseRequest <YMAParametersPosting>
+@interface YMAOperationDetailsRequest : YMABaseRequest<YMAParametersPosting>
 
 + (instancetype)operationDetailsWithRepeatInfoByOperationId:(NSString *)operationId;
 

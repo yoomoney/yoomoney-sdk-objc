@@ -11,7 +11,7 @@
 
 + (YMAHistoryOperationModel *)historyOperationByModel:(id)historyOperationModel;
 
-@property(nonatomic, copy, readonly) NSString *nextRecord;
-@property(nonatomic, strong, readonly) NSArray *operations;
+@property (nonatomic, copy, readonly) NSString *nextRecord;
+@property (nonatomic, strong, readonly) NSArray *operations;
 
 @end

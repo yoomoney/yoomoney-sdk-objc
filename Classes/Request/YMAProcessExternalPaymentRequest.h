@@ -13,7 +13,7 @@
 /// until the emergence of the final status of payment (YMAResponseStatusSuccess).
 /// If the processing of the payment is still not complete method will be responsible status - YMAResponseStatusInProgress;
 ///
-@interface YMAProcessExternalPaymentRequest : YMABaseRequest <YMAParametersPosting>
+@interface YMAProcessExternalPaymentRequest : YMABaseRequest<YMAParametersPosting>
 
 /// Constructor. Returns a YMAProcessExternalPaymentRequest with the specified requestId,
 /// successUri, failUri and requestToken.
@@ -21,7 +21,10 @@
 /// @param successUri - Return address of the page if successful payment authorization by credit card.
 /// @param failUri - Return address of the page with the refusal to authorize payment by credit card.
 /// @param requestToken - Parameter is set to YES - an application requests a token (YMAMoneySourceModel) for repeat payments.
-+ (instancetype)processExternalPaymentWithRequestId:(NSString *)requestId successUri:(NSString *)successUri failUri:(NSString *)failUri requestToken:(BOOL)requestToken;
++ (instancetype)processExternalPaymentWithRequestId:(NSString *)requestId
+                                         successUri:(NSString *)successUri
+                                            failUri:(NSString *)failUri
+                                       requestToken:(BOOL)requestToken;
 
 /// Constructor. Returns a YMAProcessExternalPaymentRequest with the specified requestId, successUri,
 /// failUri, moneySourceToken and csc.
@@ -30,6 +33,10 @@
 /// @param failUri - Return address of the page with the refusal to authorize payment by credit card.
 /// @param moneySourceToken - Token for repeating payments (YMAMoneySourceModel).
 /// @param csc -  Card Security Code, CVV2/CVC2.
-+ (instancetype)processExternalPaymentWithRequestId:(NSString *)requestId successUri:(NSString *)successUri failUri:(NSString *)failUri moneySourceToken:(NSString *)moneySourceToken andCsc:(NSString *)csc;
++ (instancetype)processExternalPaymentWithRequestId:(NSString *)requestId
+                                         successUri:(NSString *)successUri
+                                            failUri:(NSString *)failUri
+                                   moneySourceToken:(NSString *)moneySourceToken
+                                             andCsc:(NSString *)csc;
 
 @end

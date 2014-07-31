@@ -7,10 +7,15 @@
 
 @implementation YMABalanceDetailsModel
 
-- (id)initWithTotal:(NSString *)total available:(NSString *)available depositionPending:(NSString *)depositionPending blocked:(NSString *)blocked debt:(NSString *)debt {
+- (id)initWithTotal:(NSString *)total
+          available:(NSString *)available
+  depositionPending:(NSString *)depositionPending
+            blocked:(NSString *)blocked
+               debt:(NSString *)debt
+{
     self = [super init];
 
-    if (self) {
+    if (self != nil) {
         _total = [total copy];
         _available = [available copy];
         _depositionPending = [depositionPending copy];
@@ -21,8 +26,17 @@
     return self;
 }
 
-+ (instancetype)balanceDetailsWithTotal:(NSString *)total available:(NSString *)available depositionPending:(NSString *)depositionPending blocked:(NSString *)blocked debt:(NSString *)debt {
-    return [[YMABalanceDetailsModel alloc] initWithTotal:total available:available depositionPending:depositionPending blocked:blocked debt:debt];
++ (instancetype)balanceDetailsWithTotal:(NSString *)total
+                              available:(NSString *)available
+                      depositionPending:(NSString *)depositionPending
+                                blocked:(NSString *)blocked
+                                   debt:(NSString *)debt
+{
+    return [[YMABalanceDetailsModel alloc] initWithTotal:total
+                                               available:available
+                                       depositionPending:depositionPending
+                                                 blocked:blocked
+                                                    debt:debt];
 }
 
 @end

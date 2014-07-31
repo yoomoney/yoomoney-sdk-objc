@@ -4,8 +4,6 @@
 //
 
 #import "YMAAccountInfoModel.h"
-#import "YMAAvatarModel.h"
-#import "YMABalanceDetailsModel.h"
 
 static NSString *const kKeyAccountStatusAnonymous = @"anonymous";
 static NSString *const kKeyAccountStatusNamed = @"named";
@@ -16,10 +14,19 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
 
 @implementation YMAAccountInfoModel
 
-- (id)initWithAccount:(NSString *)account balance:(NSString *)balance currency:(NSString *)currency accountStatus:(YMAAccountStatus)accountStatus accountType:(YMAAccountType)accountType avatar:(YMAAvatarModel *)avatar balanceDetails:(YMABalanceDetailsModel *)balanceDetails cardsLinked:(NSArray *)cardsLinked servicesAdditional:(NSArray *)servicesAdditional {
+- (id)initWithAccount:(NSString *)account
+              balance:(NSString *)balance
+             currency:(NSString *)currency
+        accountStatus:(YMAAccountStatus)accountStatus
+          accountType:(YMAAccountType)accountType
+               avatar:(YMAAvatarModel *)avatar
+       balanceDetails:(YMABalanceDetailsModel *)balanceDetails
+          cardsLinked:(NSArray *)cardsLinked
+   servicesAdditional:(NSArray *)servicesAdditional
+{
     self = [super init];
 
-    if (self) {
+    if (self != nil) {
         _account = [account copy];
         _balance = [balance copy];
         _currency = [currency copy];
@@ -34,11 +41,29 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
     return self;
 }
 
-+ (instancetype)accountInfoWithAccount:(NSString *)account balance:(NSString *)balance currency:(NSString *)currency accountStatus:(YMAAccountStatus)accountStatus accountType:(YMAAccountType)accountType avatar:(YMAAvatarModel *)avatar balanceDetails:(YMABalanceDetailsModel *)balanceDetails cardsLinked:(NSArray *)cardsLinked servicesAdditional:(NSArray *)servicesAdditional {
-    return [[YMAAccountInfoModel alloc] initWithAccount:account balance:balance currency:currency accountStatus:accountStatus accountType:accountType avatar:avatar balanceDetails:balanceDetails cardsLinked:cardsLinked servicesAdditional:servicesAdditional];
++ (instancetype)accountInfoWithAccount:(NSString *)account
+                               balance:(NSString *)balance
+                              currency:(NSString *)currency
+                         accountStatus:(YMAAccountStatus)accountStatus
+                           accountType:(YMAAccountType)accountType
+                                avatar:(YMAAvatarModel *)avatar
+                        balanceDetails:(YMABalanceDetailsModel *)balanceDetails
+                           cardsLinked:(NSArray *)cardsLinked
+                    servicesAdditional:(NSArray *)servicesAdditional
+{
+    return [[YMAAccountInfoModel alloc] initWithAccount:account
+                                                balance:balance
+                                               currency:currency
+                                          accountStatus:accountStatus
+                                            accountType:accountType
+                                                 avatar:avatar
+                                         balanceDetails:balanceDetails
+                                            cardsLinked:cardsLinked
+                                     servicesAdditional:servicesAdditional];
 }
 
-+ (YMAAccountStatus)accountStatusByString:(NSString *)accountStatusString {
++ (YMAAccountStatus)accountStatusByString:(NSString *)accountStatusString
+{
     if ([accountStatusString isEqual:kKeyAccountStatusAnonymous])
         return YMAAccountStatusAnonymous;
     else if ([accountStatusString isEqual:kKeyAccountStatusIdentified])
@@ -49,7 +74,8 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
     return YMAAccountStatusUnknown;
 }
 
-+ (YMAAccountType)accountTypeByString:(NSString *)accountTypeString {
++ (YMAAccountType)accountTypeByString:(NSString *)accountTypeString
+{
     if ([accountTypeString isEqual:kKeyAccountTypePersonal])
         return YMAAccountTypePersonal;
     else if ([accountTypeString isEqual:kKeyAccountTypeProfessional])

@@ -4,15 +4,23 @@
 //
 
 #import "YMAPaymentResultModel.h"
-#import "YMAAscModel.h"
-#import "YMADigitalGoodsModel.h"
 
 @implementation YMAPaymentResultModel
 
-- (id)initWithPaymentId:(NSString *)paymentId balance:(NSString *)balance invoiceId:(NSString *)invoiceId payer:(NSString *)payer payee:(NSString *)payee creditAmount:(NSString *)creditAmount payeeUid:(NSString *)payeeUid holdForPickupLink:(NSURL *)holdForPickupLink asc:(YMAAscModel *)asc digitalGoods:(YMADigitalGoodsModel *)digitalGoods {
+- (id)initWithPaymentId:(NSString *)paymentId
+                balance:(NSString *)balance
+              invoiceId:(NSString *)invoiceId
+                  payer:(NSString *)payer
+                  payee:(NSString *)payee
+           creditAmount:(NSString *)creditAmount
+               payeeUid:(NSString *)payeeUid
+      holdForPickupLink:(NSURL *)holdForPickupLink
+                    asc:(YMAAscModel *)asc
+           digitalGoods:(YMADigitalGoodsModel *)digitalGoods
+{
     self = [super init];
 
-    if (self) {
+    if (self != nil) {
         _paymentId = [paymentId copy];
         _balance = [balance copy];
         _invoiceId = [invoiceId copy];
@@ -28,8 +36,27 @@
     return self;
 }
 
-+ (instancetype)paymentResultWithPaymentId:(NSString *)paymentId balance:(NSString *)balance invoiceId:(NSString *)invoiceId payer:(NSString *)payer payee:(NSString *)payee creditAmount:(NSString *)creditAmount payeeUid:(NSString *)payeeUid holdForPickupLink:(NSURL *)holdForPickupLink asc:(YMAAscModel *)asc digitalGoods:(YMADigitalGoodsModel *)digitalGoods {
-    return [[YMAPaymentResultModel alloc] initWithPaymentId:paymentId balance:balance invoiceId:invoiceId payer:payer payee:payee creditAmount:creditAmount payeeUid:payeeUid holdForPickupLink:holdForPickupLink asc:asc digitalGoods:digitalGoods];
++ (instancetype)paymentResultWithPaymentId:(NSString *)paymentId
+                                   balance:(NSString *)balance
+                                 invoiceId:(NSString *)invoiceId
+                                     payer:(NSString *)payer
+                                     payee:(NSString *)payee
+                              creditAmount:(NSString *)creditAmount
+                                  payeeUid:(NSString *)payeeUid
+                         holdForPickupLink:(NSURL *)holdForPickupLink
+                                       asc:(YMAAscModel *)asc
+                              digitalGoods:(YMADigitalGoodsModel *)digitalGoods
+{
+    return [[YMAPaymentResultModel alloc] initWithPaymentId:paymentId
+                                                    balance:balance
+                                                  invoiceId:invoiceId
+                                                      payer:payer
+                                                      payee:payee
+                                               creditAmount:creditAmount
+                                                   payeeUid:payeeUid
+                                          holdForPickupLink:holdForPickupLink
+                                                        asc:asc
+                                               digitalGoods:digitalGoods];
 }
 
 @end

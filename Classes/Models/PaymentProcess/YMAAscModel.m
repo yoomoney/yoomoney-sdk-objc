@@ -8,10 +8,11 @@
 
 @implementation YMAAscModel
 
-- (id)initWithUrl:(NSURL *)url andParams:(NSDictionary *)params {
+- (id)initWithUrl:(NSURL *)url andParams:(NSDictionary *)params
+{
     self = [super init];
 
-    if (self) {
+    if (self != nil) {
         _url = url;
         _params = params;
     }
@@ -19,7 +20,8 @@
     return self;
 }
 
-+ (instancetype)ascWithUrl:(NSURL *)url andParams:(NSDictionary *)params {
++ (instancetype)ascWithUrl:(NSURL *)url andParams:(NSDictionary *)params
+{
     return [[YMAAscModel alloc] initWithUrl:url andParams:params];
 }
 

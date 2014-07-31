@@ -7,7 +7,7 @@
 #import "YMABaseRequest.h"
 #import "YMABaseProcessResponse.h"
 
-@interface YMAChangeAvatarRequest : YMABaseRequest <YMADataPosting>
+@interface YMAChangeAvatarRequest : YMABaseRequest<YMADataPosting>
 
 /// use only image in PNG format!
 + (instancetype)changeAvatarWithImageData:(NSData *)imageData;

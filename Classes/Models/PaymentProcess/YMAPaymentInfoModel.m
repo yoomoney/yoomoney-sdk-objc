@@ -4,15 +4,22 @@
 //
 
 #import "YMAPaymentInfoModel.h"
-#import "YMAMoneySourcesModel.h"
 
 
 @implementation YMAPaymentInfoModel
 
-- (id)initWithMoneySources:(YMAMoneySourcesModel *)moneySources requestId:(NSString *)requestId contractAmount:(NSString *)contractAmount balance:(NSString *)balance recipientAccountStatus:(YMAAccountStatus)recipientAccountStatus recipientAccountType:(YMAAccountType)recipientAccountType protectionCode:(NSString *)protectionCode extActionUri:(NSURL *)extActionUri {
+- (id)initWithMoneySources:(YMAMoneySourcesModel *)moneySources
+                 requestId:(NSString *)requestId
+            contractAmount:(NSString *)contractAmount
+                   balance:(NSString *)balance
+    recipientAccountStatus:(YMAAccountStatus)recipientAccountStatus
+      recipientAccountType:(YMAAccountType)recipientAccountType
+            protectionCode:(NSString *)protectionCode
+              extActionUri:(NSURL *)extActionUri
+{
     self = [super init];
 
-    if (self) {
+    if (self != nil) {
         _moneySources = moneySources;
         _requestId = [requestId copy];
         _contractAmount = [contractAmount copy];
@@ -26,8 +33,23 @@
     return self;
 }
 
-+ (instancetype)paymentInfoWithMoneySources:(YMAMoneySourcesModel *)moneySources requestId:(NSString *)requestId contractAmount:(NSString *)contractAmount balance:(NSString *)balance recipientAccountStatus:(YMAAccountStatus)recipientAccountStatus recipientAccountType:(YMAAccountType)recipientAccountType protectionCode:(NSString *)protectionCode extActionUri:(NSURL *)extActionUri {
-    return [[YMAPaymentInfoModel alloc] initWithMoneySources:moneySources requestId:requestId contractAmount:contractAmount balance:balance recipientAccountStatus:recipientAccountStatus recipientAccountType:recipientAccountType protectionCode:protectionCode extActionUri:extActionUri];
++ (instancetype)paymentInfoWithMoneySources:(YMAMoneySourcesModel *)moneySources
+                                  requestId:(NSString *)requestId
+                             contractAmount:(NSString *)contractAmount
+                                    balance:(NSString *)balance
+                     recipientAccountStatus:(YMAAccountStatus)recipientAccountStatus
+                       recipientAccountType:(YMAAccountType)recipientAccountType
+                             protectionCode:(NSString *)protectionCode
+                               extActionUri:(NSURL *)extActionUri
+{
+    return [[YMAPaymentInfoModel alloc] initWithMoneySources:moneySources
+                                                   requestId:requestId
+                                              contractAmount:contractAmount
+                                                     balance:balance
+                                      recipientAccountStatus:recipientAccountStatus
+                                        recipientAccountType:recipientAccountType
+                                              protectionCode:protectionCode
+                                                extActionUri:extActionUri];
 }
 
 @end

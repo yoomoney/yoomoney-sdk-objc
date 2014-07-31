@@ -17,21 +17,27 @@ static NSString *const kUrlProcessPayment = @"api/process-payment";
 
 @interface YMAProcessPaymentRequest ()
 
-@property(nonatomic, copy) NSString *requestId;
-@property(nonatomic, strong) YMAMoneySourceModel *moneySource;
-@property(nonatomic, copy) NSString *csc;
-@property(nonatomic, copy) NSString *successUri;
-@property(nonatomic, copy) NSString *failUri;
+@property (nonatomic, copy) NSString *requestId;
+@property (nonatomic, strong) YMAMoneySourceModel *moneySource;
+@property (nonatomic, copy) NSString *csc;
+@property (nonatomic, copy) NSString *successUri;
+@property (nonatomic, copy) NSString *failUri;
 
 @end
 
-
 @implementation YMAProcessPaymentRequest
 
-- (id)initWithRequestId:(NSString *)requestId moneySource:(YMAMoneySourceModel *)moneySource csc:(NSString *)csc successUri:(NSString *)successUri failUri:(NSString *)failUri {
+#pragma mark - Object Lifecycle
+
+- (id)initWithRequestId:(NSString *)requestId
+            moneySource:(YMAMoneySourceModel *)moneySource
+                    csc:(NSString *)csc
+             successUri:(NSString *)successUri
+                failUri:(NSString *)failUri
+{
     self = [super init];
 
-    if (self) {
+    if (self != nil) {
         _requestId = [requestId copy];
         _moneySource = moneySource;
         _csc = [csc copy];
@@ -42,21 +48,30 @@ static NSString *const kUrlProcessPayment = @"api/process-payment";
     return self;
 }
 
-+ (instancetype)processPaymentRequestId:(NSString *)requestId moneySource:(YMAMoneySourceModel *)moneySource csc:(NSString *)csc successUri:(NSString *)successUri failUri:(NSString *)failUri {
-    return [[YMAProcessPaymentRequest alloc] initWithRequestId:requestId moneySource:moneySource csc:csc successUri:successUri failUri:failUri];
++ (instancetype)processPaymentRequestId:(NSString *)requestId
+                            moneySource:(YMAMoneySourceModel *)moneySource
+                                    csc:(NSString *)csc
+                             successUri:(NSString *)successUri
+                                failUri:(NSString *)failUri
+{
+    return [[YMAProcessPaymentRequest alloc] initWithRequestId:requestId
+                                                   moneySource:moneySource
+                                                           csc:csc
+                                                    successUri:successUri
+                                                       failUri:failUri];
 }
 
+#pragma mark - Overridden methods
 
-#pragma mark -
-#pragma mark *** Overridden methods ***
-#pragma mark -
-
-- (NSURL *)requestUrl {
-    NSString *urlString = [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, kUrlProcessPayment];
+- (NSURL *)requestUrl
+{
+    NSString *urlString =
+        [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, kUrlProcessPayment];
     return [NSURL URLWithString:urlString];
 }
 
-- (NSDictionary *)parameters {
+- (NSDictionary *)parameters
+{
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:self.requestId forKey:kParameterRequestId];
     [dictionary setValue:self.csc forKey:kParameterCsc];
@@ -67,11 +82,12 @@ static NSString *const kUrlProcessPayment = @"api/process-payment";
         [dictionary setValue:@"wallet" forKey:kParameterMoneySource];
     else if (self.moneySource.type == YMAMoneySourcePaymentCard)
         [dictionary setValue:[NSString stringWithFormat:@"%@", self.moneySource.moneySourceToken] forKey:kParameterMoneySource];
-
+    
     return dictionary;
 }
 
-- (NSOperation *)buildResponseOperationWithData:(NSData *)data andCompletionHandler:(YMAResponseHandler)handler {
+- (NSOperation *)buildResponseOperationWithData:(NSData *)data andCompletionHandler:(YMAResponseHandler)handler
+{
     return [[YMAProcessPaymentResponse alloc] initWithData:data andCompletion:handler];
 }
 

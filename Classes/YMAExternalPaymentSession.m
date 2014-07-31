@@ -15,75 +15,95 @@ static NSString *const kValueParameterStatusSuccess = @"success";
 
 @implementation YMAExternalPaymentSession
 
-#pragma mark -
-#pragma mark *** Public methods ***
-#pragma mark -
+#pragma mark - Public methods
 
-- (void)instanceWithClientId:(NSString *)clientId token:(NSString *)token completion:(YMAIdHandler)block {
+- (void)instanceWithClientId:(NSString *)clientId token:(NSString *)token completion:(YMAIdHandler)block
+{
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:clientId forKey:kParameterClientId];
+    [parameters setValue:clientId forKey:kParameterClientId];
 
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, kInstanceUrl]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://%@/%@",
+                                                                 [YMAHostsProvider sharedManager].moneyUrl,
+                                                                 kInstanceUrl]];
 
-    [self performRequestWithToken:token parameters:parameters url:url completion:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
-        if (error) {
-            block(nil, error);
-            return;
-        }
+    __weak YMAExternalPaymentSession *bself = self;
 
-        NSInteger statusCode = ((NSHTTPURLResponse *) response).statusCode;
+    [self performRequestWithToken:token
+                       parameters:parameters
+                              url:url
+                       completion:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
+                           if (error != nil) {
+                               block(nil, error);
+                               return;
+                           }
 
-        id responseModel = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
+                           NSInteger statusCode = ((NSHTTPURLResponse *)response).statusCode;
 
-        NSError *unknownError = [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:@{@"response" : response, @"request" : request}];
+                           id responseModel =
+                               [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
 
-        if (error || !responseModel) {
-            block(nil, (error) ? error : unknownError);
-            return;
-        }
+                           NSError *unknownError = [NSError errorWithDomain:YMAErrorKeyUnknown
+                                                                       code:0
+                                                                   userInfo:@{
+                                                                       @"response" : response,
+                                                                       @"request" : request
+                                                                   }];
 
-        if (statusCode == YMAStatusCodeOkHTTP) {
+                           if (error != nil || responseModel == nil) {
+                               block(nil, (error) ? error : unknownError);
+                               return;
+                           }
 
-            NSString *status = [responseModel objectForKey:kParameterStatus];
+                           if (statusCode == YMAStatusCodeOkHTTP) {
+                               NSString *status = responseModel[kParameterStatus];
 
-            if ([status isEqual:kValueParameterStatusSuccess]) {
+                               if ([status isEqual:kValueParameterStatusSuccess]) {
 
-                self.instanceId = [responseModel objectForKey:@"instance_id"];
+                                   bself.instanceId = responseModel[@"instance_id"];
 
-                block(self.instanceId, self.instanceId ? nil : unknownError);
+                                   block(bself.instanceId, bself.instanceId ? nil : unknownError);
 
-                return;
-            }
-        }
+                                   return;
+                               }
+                           }
 
-        NSString *errorKey = [responseModel objectForKey:@"error"];
+                           NSString *errorKey = responseModel[@"error"];
 
-        (errorKey) ? block(nil, [NSError errorWithDomain:errorKey code:statusCode userInfo:parameters]) : block(nil, unknownError);
-    }];
+                           if (errorKey == nil)
+                               block(nil, unknownError);
+                           else
+                               block(nil, [NSError errorWithDomain:errorKey code:statusCode userInfo:parameters]);
+                       }];
 }
 
-- (void)performRequest:(YMABaseRequest *)request token:(NSString *)token completion:(YMARequestHandler)block {
-    NSError *unknownError = [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:@{@"request" : request}];
+- (void)performRequest:(YMABaseRequest *)request token:(NSString *)token completion:(YMARequestHandler)block
+{
+    NSError *unknownError = [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:@{ @"request" : request }];
 
-    if (!request || !self.instanceId) {
+    if (request == nil || self.instanceId == nil) {
         block(request, nil, unknownError);
         return;
     }
 
     if ([request conformsToProtocol:@protocol(YMAParametersPosting)]) {
-        YMABaseRequest <YMAParametersPosting> *paramsRequest = (YMABaseRequest <YMAParametersPosting> *) request;
+        YMABaseRequest<YMAParametersPosting> *paramsRequest = (YMABaseRequest<YMAParametersPosting> *)request;
         NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:paramsRequest.parameters];
 
-        [parameters setObject:self.instanceId forKey:kParameterInstanceId];
+        [parameters setValue:self.instanceId forKey:kParameterInstanceId];
 
-        [self performAndProcessRequestWithToken:token parameters:parameters url:request.requestUrl completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
-            if (error) {
-                block(request, nil, error);
-                return;
-            }
+        [self performAndProcessRequestWithToken:token
+                                     parameters:parameters
+                                            url:request.requestUrl
+                                     completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
+                                         if (error != nil) {
+                                             block(request, nil, error);
+                                             return;
+                                         }
 
-            [request buildResponseWithData:responseData queue:_responseQueue andCompletion:block];
-        }];
+                                         [request buildResponseWithData:responseData
+                                                                  queue:_responseQueue
+                                                          andCompletion:block];
+                                     }];
     }
 }
 

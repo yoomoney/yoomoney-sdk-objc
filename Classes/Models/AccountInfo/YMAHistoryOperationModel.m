@@ -20,10 +20,20 @@ static NSString *const kKeyHistoryOperationTypeIncomingTransferProtected = @"inc
 
 @implementation YMAHistoryOperationModel
 
-- (id)initWithOperationId:(NSString *)operationId status:(YMAHistoryOperationStatus)status datetime:(NSDate *)datetime title:(NSString *)title patternId:(NSString *)patternId direction:(YMAHistoryOperationDirection)direction amount:(NSString *)amount label:(NSString *)label favourite:(BOOL)favourite type:(YMAHistoryOperationType)type {
+- (id)initWithOperationId:(NSString *)operationId
+                   status:(YMAHistoryOperationStatus)status
+                 datetime:(NSDate *)datetime
+                    title:(NSString *)title
+                patternId:(NSString *)patternId
+                direction:(YMAHistoryOperationDirection)direction
+                   amount:(NSString *)amount
+                    label:(NSString *)label
+                favourite:(BOOL)favourite
+                     type:(YMAHistoryOperationType)type
+{
     self = [super init];
 
-    if (self) {
+    if (self != nil) {
         _operationId = [operationId copy];
         _status = status;
         _datetime = datetime;
@@ -39,11 +49,31 @@ static NSString *const kKeyHistoryOperationTypeIncomingTransferProtected = @"inc
     return self;
 }
 
-+ (instancetype)historyOperationWithOperationId:(NSString *)operationId status:(YMAHistoryOperationStatus)status datetime:(NSDate *)datetime title:(NSString *)title patternId:(NSString *)patternId direction:(YMAHistoryOperationDirection)direction amount:(NSString *)amount label:(NSString *)label favourite:(BOOL)favourite type:(YMAHistoryOperationType)type {
-    return [[YMAHistoryOperationModel alloc] initWithOperationId:operationId status:status datetime:datetime title:title patternId:patternId direction:direction amount:amount label:label favourite:favourite type:type];
++ (instancetype)historyOperationWithOperationId:(NSString *)operationId
+                                         status:(YMAHistoryOperationStatus)status
+                                       datetime:(NSDate *)datetime
+                                          title:(NSString *)title
+                                      patternId:(NSString *)patternId
+                                      direction:(YMAHistoryOperationDirection)direction
+                                         amount:(NSString *)amount
+                                          label:(NSString *)label
+                                      favourite:(BOOL)favourite
+                                           type:(YMAHistoryOperationType)type
+{
+    return [[YMAHistoryOperationModel alloc] initWithOperationId:operationId
+                                                          status:status
+                                                        datetime:datetime
+                                                           title:title
+                                                       patternId:patternId
+                                                       direction:direction
+                                                          amount:amount
+                                                           label:label
+                                                       favourite:favourite
+                                                            type:type];
 }
 
-+ (YMAHistoryOperationStatus)historyOperationStatusByString:(NSString *)historyOperationStatusString {
++ (YMAHistoryOperationStatus)historyOperationStatusByString:(NSString *)historyOperationStatusString
+{
     if ([historyOperationStatusString isEqual:kKeyHistoryOperationStatusSuccess])
         return YMAHistoryOperationStatusSuccess;
     else if ([historyOperationStatusString isEqual:kKeyHistoryOperationStatusRefused])
@@ -54,7 +84,8 @@ static NSString *const kKeyHistoryOperationTypeIncomingTransferProtected = @"inc
     return YMAHistoryOperationStatusUnknown;
 }
 
-+ (YMAHistoryOperationDirection)historyOperationDirectionByString:(NSString *)historyOperationDirectionString {
++ (YMAHistoryOperationDirection)historyOperationDirectionByString:(NSString *)historyOperationDirectionString
+{
     if ([historyOperationDirectionString isEqual:kKeyHistoryOperationDirectionIn])
         return YMAHistoryOperationDirectionIn;
     else if ([historyOperationDirectionString isEqual:kKeyHistoryOperationDirectionOut])
@@ -63,7 +94,8 @@ static NSString *const kKeyHistoryOperationTypeIncomingTransferProtected = @"inc
     return YMAHistoryOperationDirectionUnknown;
 }
 
-+ (YMAHistoryOperationType)historyOperationTypeByString:(NSString *)historyOperationTypeString {
++ (YMAHistoryOperationType)historyOperationTypeByString:(NSString *)historyOperationTypeString
+{
     if ([historyOperationTypeString isEqual:kKeyHistoryOperationTypePaymentShop])
         return YMAHistoryOperationTypePaymentShop;
     else if ([historyOperationTypeString isEqual:kKeyHistoryOperationTypeOutgoingTransfer])
@@ -78,7 +110,8 @@ static NSString *const kKeyHistoryOperationTypeIncomingTransferProtected = @"inc
     return YMAHistoryOperationTypeUnknown;
 }
 
-- (NSComparisonResult)compare:(YMAHistoryOperationModel *)otherObject {
+- (NSComparisonResult)compare:(YMAHistoryOperationModel *)otherObject
+{
     return -[self.datetime compare:otherObject.datetime];
 }
 

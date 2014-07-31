@@ -4,7 +4,6 @@
 //
 
 #import "YMAExternalPaymentResponse.h"
-#import "YMAExternalPaymentInfoModel.h"
 
 static NSString *const kParameterRequestId = @"request_id";
 static NSString *const kParameterContractAmount = @"contract_amount";
@@ -12,18 +11,18 @@ static NSString *const kParameterTitle = @"title";
 
 @implementation YMAExternalPaymentResponse
 
-#pragma mark -
-#pragma mark *** Overridden methods ***
-#pragma mark -
+#pragma mark - Overridden methods
 
-- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error {
+- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
+{
     [super parseJSONModel:responseModel error:error];
 
-    NSString *requestId = [responseModel objectForKey:kParameterRequestId];
-    NSString *contractAmount = [[responseModel objectForKey:kParameterContractAmount] stringValue];
-    NSString *title = [responseModel objectForKey:kParameterTitle];
+    NSString *requestId = responseModel[kParameterRequestId];
+    NSString *contractAmount = [responseModel[kParameterContractAmount] stringValue];
+    NSString *title = responseModel[kParameterTitle];
 
-    _paymentRequestInfo = [YMAExternalPaymentInfoModel paymentRequestInfoWithId:requestId amount:contractAmount andTitle:title];
+    _paymentRequestInfo =
+        [YMAExternalPaymentInfoModel paymentRequestInfoWithId:requestId amount:contractAmount andTitle:title];
 }
 
 @end

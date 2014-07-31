@@ -12,7 +12,7 @@
 @interface YMAExternalPaymentSession : YMABaseSession
 
 /// ID of an installed copy of the application. Used when you perform requests as parameter.
-@property(nonatomic, copy) NSString *instanceId;
+@property (nonatomic, copy) NSString *instanceId;
 
 /// Register your application using clientId and obtaining instanceId.
 /// @param clientId - application Identifier.

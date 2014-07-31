@@ -55,14 +55,20 @@ typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
 /// @param parameters - request parameters.
 /// @param url -  request url.
 /// @param block - completion of block is used to get the response.
-- (void)performRequestWithToken:(NSString *)token parameters:(NSDictionary *)parameters url:(NSURL *)url completion:(YMAConnectionHandler)block;
+- (void)performRequestWithToken:(NSString *)token
+                     parameters:(NSDictionary *)parameters
+                            url:(NSURL *)url
+                     completion:(YMAConnectionHandler)block;
 
 /// Send request used token and analyzed HTTP status code of response.
 /// @param token - an access token is a string representing an authorization issued to the client (see OAuth 2.0)
 /// @param parameters - request parameters.
 /// @param url -  request url.
 /// @param block - completion of block is used to get the response.
-- (void)performAndProcessRequestWithToken:(NSString *)token parameters:(NSDictionary *)parameters url:(NSURL *)url completion:(YMAConnectionHandler)block;
+- (void)performAndProcessRequestWithToken:(NSString *)token
+                               parameters:(NSDictionary *)parameters
+                                      url:(NSURL *)url
+                               completion:(YMAConnectionHandler)block;
 
 /// Send request used token and analyzed HTTP status code of response.
 /// @param token - an access token is a string representing an authorization issued to the client (see OAuth 2.0)
@@ -70,7 +76,11 @@ typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
 /// @param contentType - content type.
 /// @param url -  request url.
 /// @param block - completion of block is used to get the response.
-- (void)performAndProcessRequestWithToken:(NSString *)token data:(NSData *)data contentType:(NSString *)contentType url:(NSURL *)url completion:(YMAConnectionHandler)block;
+- (void)performAndProcessRequestWithToken:(NSString *)token
+                                     data:(NSData *)data
+                              contentType:(NSString *)contentType
+                                      url:(NSURL *)url
+                               completion:(YMAConnectionHandler)block;
 
 /// Get the header value by name
 /// @param headerName - response header name
@@ -78,6 +88,6 @@ typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
 - (NSString *)valueOfHeader:(NSString *)headerName forResponse:(NSURLResponse *)response;
 
 /// You can set language for response data (for example: "en" - English, "ru" - Russian). Russian is default language.
-@property(nonatomic, copy) NSString *language;
+@property (nonatomic, copy) NSString *language;
 
 @end

@@ -8,10 +8,11 @@
 
 @implementation YMAGoodsModel
 
-- (id)initWithId:(NSString *)merchantArticleId serial:(NSString *)serial secret:(NSString *)secret {
+- (id)initWithId:(NSString *)merchantArticleId serial:(NSString *)serial secret:(NSString *)secret
+{
     self = [super init];
 
-    if (self) {
+    if (self != nil) {
         _merchantArticleId = [merchantArticleId copy];
         _secret = [secret copy];
         _serial = [serial copy];
@@ -20,7 +21,8 @@
     return self;
 }
 
-+ (instancetype)goodsWithId:(NSString *)merchantArticleId serial:(NSString *)serial secret:(NSString *)secret {
++ (instancetype)goodsWithId:(NSString *)merchantArticleId serial:(NSString *)serial secret:(NSString *)secret
+{
     return [[YMAGoodsModel alloc] initWithId:merchantArticleId serial:serial secret:secret];
 }
 

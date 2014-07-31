@@ -7,15 +7,20 @@
 #import "YMABaseRequest.h"
 #import "YMAHistoryOperationsResponse.h"
 
-typedef NS_ENUM(NSUInteger, YMAHistoryOperationFilter) {
+typedef NS_OPTIONS(NSUInteger, YMAHistoryOperationFilter) {
     YMAHistoryOperationFilterUnknown = 0,
     YMAHistoryOperationFilterDeposition = 1 << 0,
     YMAHistoryOperationFilterPayment = 1 << 1,
     YMAHistoryOperationFilterIncomingTransfersUnaccepted = 1 << 2
 };
 
-@interface YMAHistoryOperationsRequest : YMABaseRequest <YMAParametersPosting>
+@interface YMAHistoryOperationsRequest : YMABaseRequest<YMAParametersPosting>
 
-+ (instancetype)operationHistoryWithFilter:(YMAHistoryOperationFilter)filter label:(NSString *)label from:(NSDate *)from till:(NSDate *)till startRecord:(NSString *)startRecord records:(NSString *)records;
++ (instancetype)operationHistoryWithFilter:(YMAHistoryOperationFilter)filter
+                                     label:(NSString *)label
+                                      from:(NSDate *)from
+                                      till:(NSDate *)till
+                               startRecord:(NSString *)startRecord
+                                   records:(NSString *)records;
 
 @end

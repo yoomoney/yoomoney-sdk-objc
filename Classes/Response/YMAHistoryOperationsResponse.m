@@ -23,7 +23,8 @@ static NSString *const kParameterOperationType = @"type";
 
 @implementation YMAHistoryOperationsResponse
 
-+ (YMAHistoryOperationModel *)historyOperationByModel:(id)historyOperationModel {
++ (YMAHistoryOperationModel *)historyOperationByModel:(id)historyOperationModel
+{
     NSString *operationId = [historyOperationModel objectForKey:kParameterOperationOperationId];
     NSString *statusString = [historyOperationModel objectForKey:kParameterOperationStatus];
     YMAHistoryOperationStatus status = [YMAHistoryOperationModel historyOperationStatusByString:statusString];
@@ -38,7 +39,8 @@ static NSString *const kParameterOperationType = @"type";
     NSString *patternId = [historyOperationModel objectForKey:kParameterOperationPatternId];
 
     NSString *directionString = [historyOperationModel objectForKey:kParameterOperationDirection];
-    YMAHistoryOperationDirection direction = [YMAHistoryOperationModel historyOperationDirectionByString:directionString];
+    YMAHistoryOperationDirection
+        direction = [YMAHistoryOperationModel historyOperationDirectionByString:directionString];
 
     NSString *amount = [[historyOperationModel objectForKey:kParameterOperationAmount] stringValue];
     NSString *label = [historyOperationModel objectForKey:kParameterOperationLabel];
@@ -48,21 +50,31 @@ static NSString *const kParameterOperationType = @"type";
     NSString *typeString = [historyOperationModel objectForKey:kParameterOperationType];
     YMAHistoryOperationType type = [YMAHistoryOperationModel historyOperationTypeByString:typeString];
 
-    return [YMAHistoryOperationModel historyOperationWithOperationId:operationId status:status datetime:dateTime title:title patternId:patternId direction:direction amount:amount label:label favourite:favourite type:type];
+    return [YMAHistoryOperationModel historyOperationWithOperationId:operationId
+                                                              status:status
+                                                            datetime:dateTime
+                                                               title:title
+                                                           patternId:patternId
+                                                           direction:direction
+                                                              amount:amount
+                                                               label:label
+                                                           favourite:favourite
+                                                                type:type];
 }
 
 #pragma mark -
 #pragma mark *** Overridden methods ***
 #pragma mark -
 
-- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error {
+- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
+{
     NSString *errorKey = [responseModel objectForKey:kParameterError];
 
     if (errorKey) {
         if (!error) return;
 
-        NSError *unknownError = [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:@{@"response" : self}];
-        *error = errorKey ? [NSError errorWithDomain:errorKey code:0 userInfo:@{@"response" : self}] : unknownError;
+        NSError *unknownError = [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:@{ @"response" : self }];
+        *error = errorKey ? [NSError errorWithDomain:errorKey code:0 userInfo:@{ @"response" : self }] : unknownError;
 
         return;
     }
@@ -78,7 +90,8 @@ static NSString *const kParameterOperationType = @"type";
     NSMutableArray *historyOperations = [NSMutableArray array];
 
     for (id historyOperationModel in operationsModel) {
-        YMAHistoryOperationModel *operation = [YMAHistoryOperationsResponse historyOperationByModel:historyOperationModel];
+        YMAHistoryOperationModel
+            *operation = [YMAHistoryOperationsResponse historyOperationByModel:historyOperationModel];
         [historyOperations addObject:operation];
     }
 

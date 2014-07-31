@@ -7,7 +7,7 @@
 #import "YMABaseRequest.h"
 #import "YMAAccountInfoResponse.h"
 
-@interface YMAAccountInfoRequest : YMABaseRequest <YMAParametersPosting>
+@interface YMAAccountInfoRequest : YMABaseRequest<YMAParametersPosting>
 
 + (instancetype)accountInfoRequest;
 

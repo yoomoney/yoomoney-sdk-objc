@@ -11,42 +11,49 @@ static NSString *const kParameterOperationId = @"operation_id";
 
 @interface YMAIncomingTransferRejectRequest ()
 
-@property(nonatomic, copy) NSString *operationId;
+@property (nonatomic, copy) NSString *operationId;
 
 @end
 
 @implementation YMAIncomingTransferRejectRequest
 
-- (id)initWithOperationId:(NSString *)operationId {
+#pragma mark - Object Lifecycle
+
+- (id)initWithOperationId:(NSString *)operationId
+{
     self = [super init];
 
-    if (self) {
+    if (self != nil) {
         _operationId = [operationId copy];
     }
 
     return self;
 }
 
-+ (instancetype)rejectIncomingTransferWithOperationId:(NSString *)operationId {
++ (instancetype)rejectIncomingTransferWithOperationId:(NSString *)operationId
+{
     return [[YMAIncomingTransferRejectRequest alloc] initWithOperationId:operationId];
 }
 
-#pragma mark -
-#pragma mark *** Overridden methods ***
-#pragma mark -
+#pragma mark - Overridden methods
 
-- (NSURL *)requestUrl {
-    NSString *urlString = [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, kUrlIncomingTransferReject];
+- (NSURL *)requestUrl
+{
+    NSString *urlString = [NSString stringWithFormat:@"https://%@/%@",
+                                                     [YMAHostsProvider sharedManager].moneyUrl,
+                                                     kUrlIncomingTransferReject];
     return [NSURL URLWithString:urlString];
 }
 
-- (NSDictionary *)parameters {
+- (NSDictionary *)parameters
+{
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:self.operationId forKey:kParameterOperationId];
     return dictionary;
 }
 
-- (NSOperation *)buildResponseOperationWithData:(NSData *)data andCompletionHandler:(YMAResponseHandler)handler {
+- (NSOperation *)buildResponseOperationWithData:(NSData *)data andCompletionHandler:(YMAResponseHandler)handler
+{
     return [[YMABaseProcessResponse alloc] initWithData:data andCompletion:handler];
 }
 

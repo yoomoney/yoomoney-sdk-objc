@@ -7,7 +7,7 @@
 #import "YMABaseRequest.h"
 #import "YMAPaymentResponse.h"
 
-@interface YMAPaymentRequest : YMABaseRequest <YMAParametersPosting>
+@interface YMAPaymentRequest : YMABaseRequest<YMAParametersPosting>
 
 + (instancetype)paymentWithPatternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams;
 

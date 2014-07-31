@@ -14,18 +14,23 @@ static NSString *const kUrlOperationDetails = @"api/operation-details";
 
 @interface YMAOperationDetailsRequest ()
 
-@property(nonatomic, copy) NSString *operationId;
-@property(nonatomic, copy) NSString *favouriteId;
-@property(nonatomic, assign) BOOL requestRepeatInfo;
+@property (nonatomic, copy) NSString *operationId;
+@property (nonatomic, copy) NSString *favouriteId;
+@property (nonatomic, assign) BOOL requestRepeatInfo;
 
 @end
 
 @implementation YMAOperationDetailsRequest
 
-- (id)initWithOperationId:(NSString *)operationId favouriteId:(NSString *)favouriteId requestRepeatInfo:(BOOL)requestRepeatInfo {
+#pragma mark - Object Lifecycle
+
+- (id)initWithOperationId:(NSString *)operationId
+              favouriteId:(NSString *)favouriteId
+        requestRepeatInfo:(BOOL)requestRepeatInfo
+{
     self = [super init];
 
-    if (self) {
+    if (self != nil) {
         _operationId = [operationId copy];
         _favouriteId = [favouriteId copy];
         _requestRepeatInfo = requestRepeatInfo;
@@ -34,28 +39,32 @@ static NSString *const kUrlOperationDetails = @"api/operation-details";
     return self;
 }
 
-+ (instancetype)operationDetailsWithRepeatInfoByOperationId:(NSString *)operationId {
++ (instancetype)operationDetailsWithRepeatInfoByOperationId:(NSString *)operationId
+{
     return [[YMAOperationDetailsRequest alloc] initWithOperationId:operationId favouriteId:nil requestRepeatInfo:YES];
 }
 
-+ (instancetype)operationDetailsWithOperationId:(NSString *)operationId {
++ (instancetype)operationDetailsWithOperationId:(NSString *)operationId
+{
     return [[YMAOperationDetailsRequest alloc] initWithOperationId:operationId favouriteId:nil requestRepeatInfo:NO];
 }
 
-+ (instancetype)operationDetailsWithFavouriteId:(NSString *)favouriteId {
++ (instancetype)operationDetailsWithFavouriteId:(NSString *)favouriteId
+{
     return [[YMAOperationDetailsRequest alloc] initWithOperationId:nil favouriteId:favouriteId requestRepeatInfo:YES];
 }
 
-#pragma mark -
-#pragma mark *** Overridden methods ***
-#pragma mark -
+#pragma mark - Overridden methods
 
-- (NSURL *)requestUrl {
-    NSString *urlString = [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, kUrlOperationDetails];
+- (NSURL *)requestUrl
+{
+    NSString *urlString =
+        [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, kUrlOperationDetails];
     return [NSURL URLWithString:urlString];
 }
 
-- (NSDictionary *)parameters {
+- (NSDictionary *)parameters
+{
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:self.operationId forKey:kParameterOperationId];
     [dictionary setValue:self.favouriteId forKey:kParameterFavouriteId];
@@ -64,7 +73,8 @@ static NSString *const kUrlOperationDetails = @"api/operation-details";
     return dictionary;
 }
 
-- (NSOperation *)buildResponseOperationWithData:(NSData *)data andCompletionHandler:(YMAResponseHandler)handler {
+- (NSOperation *)buildResponseOperationWithData:(NSData *)data andCompletionHandler:(YMAResponseHandler)handler
+{
     return [[YMAOperationDetailsResponse alloc] initWithData:data andCompletion:handler];
 }
 

@@ -7,7 +7,7 @@
 #import "YMABaseRequest.h"
 #import "YMABaseProcessResponse.h"
 
-@interface YMAIncomingTransferRejectRequest : YMABaseRequest <YMAParametersPosting>
+@interface YMAIncomingTransferRejectRequest : YMABaseRequest<YMAParametersPosting>
 
 + (instancetype)rejectIncomingTransferWithOperationId:(NSString *)operationId;
 

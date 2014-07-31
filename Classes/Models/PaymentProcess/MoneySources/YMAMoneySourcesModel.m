@@ -4,15 +4,14 @@
 //
 
 #import "YMAMoneySourcesModel.h"
-#import "YMAWalletSourceGroupModel.h"
-#import "YMACardsSourceGroupModel.h"
 
 @implementation YMAMoneySourcesModel
 
-- (id)initWithWallet:(YMAWalletSourceGroupModel *)walletSource cardsSource:(YMACardsSourceGroupModel *)cards {
+- (id)initWithWallet:(YMAWalletSourceGroupModel *)walletSource cardsSource:(YMACardsSourceGroupModel *)cards
+{
     self = [super init];
 
-    if (self) {
+    if (self != nil) {
         _wallet = walletSource;
         _cards = cards;
     }
@@ -20,7 +19,9 @@
     return self;
 }
 
-+ (instancetype)moneySourcesWithWallet:(YMAWalletSourceGroupModel *)walletSource cardsSource:(YMACardsSourceGroupModel *)cards {
++ (instancetype)moneySourcesWithWallet:(YMAWalletSourceGroupModel *)walletSource
+                           cardsSource:(YMACardsSourceGroupModel *)cards
+{
     return [[YMAMoneySourcesModel alloc] initWithWallet:walletSource cardsSource:cards];
 }
 

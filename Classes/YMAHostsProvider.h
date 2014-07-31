@@ -7,8 +7,8 @@
 
 @interface YMAHostsProvider : NSObject
 
-@property(nonatomic, copy) NSString *moneyUrl;
-@property(nonatomic, copy) NSString *spMoneyUrl;
+@property (nonatomic, copy) NSString *moneyUrl;
+@property (nonatomic, copy) NSString *spMoneyUrl;
 
 + (instancetype)sharedManager;
 

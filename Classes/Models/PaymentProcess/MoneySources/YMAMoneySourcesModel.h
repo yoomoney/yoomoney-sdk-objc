@@ -10,9 +10,10 @@
 
 @interface YMAMoneySourcesModel : NSObject
 
-+ (instancetype)moneySourcesWithWallet:(YMAWalletSourceGroupModel *)walletSource cardsSource:(YMACardsSourceGroupModel *)cards;
++ (instancetype)moneySourcesWithWallet:(YMAWalletSourceGroupModel *)walletSource
+                           cardsSource:(YMACardsSourceGroupModel *)cards;
 
-@property(nonatomic, strong, readonly) YMAWalletSourceGroupModel *wallet;
-@property(nonatomic, strong, readonly) YMACardsSourceGroupModel *cards;
+@property (nonatomic, strong, readonly) YMAWalletSourceGroupModel *wallet;
+@property (nonatomic, strong, readonly) YMACardsSourceGroupModel *cards;
 
 @end

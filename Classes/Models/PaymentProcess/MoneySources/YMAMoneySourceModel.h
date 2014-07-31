@@ -9,26 +9,26 @@
 /// Values for YMAMoneySourceType
 typedef NS_ENUM(NSInteger, YMAMoneySourceType) {
     /// Unknown money source
-            YMAMoneySourceUnknown,
+        YMAMoneySourceUnknown,
     /// Credit card
-            YMAMoneySourcePaymentCard,
+        YMAMoneySourcePaymentCard,
     /// Wallet
-            YMAMoneySourceWallet
+        YMAMoneySourceWallet
 };
 
 /// Values for YMAPaymentCardType
 /// Credit card type
 typedef NS_ENUM(NSInteger, YMAPaymentCardType) {
     /// Unknown credit card
-            YMAPaymentCardUnknown,
+        YMAPaymentCardUnknown,
     /// VISA
-            YMAPaymentCardTypeVISA,
+        YMAPaymentCardTypeVISA,
     /// MasterCard
-            YMAPaymentCardTypeMasterCard,
+        YMAPaymentCardTypeMasterCard,
     /// American Express
-            YMAPaymentCardTypeAmericanExpress,
+        YMAPaymentCardTypeAmericanExpress,
     /// JCB
-            YMAPaymentCardTypeJCB
+        YMAPaymentCardTypeJCB
 };
 
 ///
@@ -42,13 +42,16 @@ typedef NS_ENUM(NSInteger, YMAPaymentCardType) {
 /// @param cardType - The type of the credit card.
 /// @param panFragment - PAN truncation.
 /// @param moneySourceToken - Token for repeating payments.
-+ (instancetype)moneySourceWithType:(YMAMoneySourceType)type cardType:(YMAPaymentCardType)cardType panFragment:(NSString *)panFragment moneySourceToken:(NSString *)moneySourceToken;
++ (instancetype)moneySourceWithType:(YMAMoneySourceType)type
+                           cardType:(YMAPaymentCardType)cardType
+                        panFragment:(NSString *)panFragment
+                   moneySourceToken:(NSString *)moneySourceToken;
 
 + (YMAPaymentCardType)paymentCardTypeByString:(NSString *)string;
 
-@property(nonatomic, assign, readonly) YMAPaymentCardType cardType;
-@property(nonatomic, copy, readonly) NSString *panFragment;
-@property(nonatomic, copy, readonly) NSString *moneySourceToken;
-@property(nonatomic, assign, readonly) YMAMoneySourceType type;
+@property (nonatomic, assign, readonly) YMAPaymentCardType cardType;
+@property (nonatomic, copy, readonly) NSString *panFragment;
+@property (nonatomic, copy, readonly) NSString *moneySourceToken;
+@property (nonatomic, assign, readonly) YMAMoneySourceType type;
 
 @end

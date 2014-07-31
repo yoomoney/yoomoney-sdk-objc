@@ -9,6 +9,6 @@
 
 @interface YMAOperationDetailsResponse : YMABaseResponse
 
-@property(nonatomic, strong, readonly) YMAOperationDetailsModel *operationDetails;
+@property (nonatomic, strong, readonly) YMAOperationDetailsModel *operationDetails;
 
 @end

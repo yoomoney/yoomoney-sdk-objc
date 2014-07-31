@@ -11,6 +11,6 @@
 
 + (YMADigitalGoodsModel *)digitalGoodsByModel:(id)digitalGoodsModel;
 
-@property(nonatomic, strong, readonly) YMAPaymentResultModel *paymentResultInfo;
+@property (nonatomic, strong, readonly) YMAPaymentResultModel *paymentResultInfo;
 
 @end

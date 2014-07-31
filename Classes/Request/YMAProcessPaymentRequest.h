@@ -9,8 +9,12 @@
 
 @class YMAMoneySourceModel;
 
-@interface YMAProcessPaymentRequest : YMABaseRequest <YMAParametersPosting>
+@interface YMAProcessPaymentRequest : YMABaseRequest<YMAParametersPosting>
 
-+ (instancetype)processPaymentRequestId:(NSString *)requestId moneySource:(YMAMoneySourceModel *)moneySource csc:(NSString *)csc successUri:(NSString *)successUri failUri:(NSString *)failUri;
++ (instancetype)processPaymentRequestId:(NSString *)requestId
+                            moneySource:(YMAMoneySourceModel *)moneySource
+                                    csc:(NSString *)csc
+                             successUri:(NSString *)successUri
+                                failUri:(NSString *)failUri;
 
 @end

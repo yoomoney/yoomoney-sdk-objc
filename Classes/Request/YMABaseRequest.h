@@ -10,19 +10,19 @@
 @class YMABaseRequest;
 @class YMABaseResponse;
 
-@protocol YMADataPosting <NSObject>
+@protocol YMADataPosting<NSObject>
 
 /// Request data
-@property(nonatomic, strong, readonly) NSData *data;
+@property (nonatomic, strong, readonly) NSData *data;
 /// Content type
-@property(nonatomic, copy, readonly) NSString *contentType;
+@property (nonatomic, copy, readonly) NSString *contentType;
 
 @end
 
-@protocol YMAParametersPosting <NSObject>
+@protocol YMAParametersPosting<NSObject>
 
 /// Request parameters.
-@property(nonatomic, strong, readonly) NSDictionary *parameters;
+@property (nonatomic, strong, readonly) NSDictionary *parameters;
 
 @end
 
@@ -38,8 +38,8 @@ typedef void (^YMARequestHandler)(YMABaseRequest *request, YMABaseResponse *resp
 @interface YMABaseRequest : NSObject
 
 /// Request url
-@property(nonatomic, strong, readonly) NSURL *requestUrl;
-@property(nonatomic, strong) id context;
+@property (nonatomic, strong, readonly) NSURL *requestUrl;
+@property (nonatomic, strong) id context;
 
 /// Method is used for parse response data.
 /// @param data - response data.

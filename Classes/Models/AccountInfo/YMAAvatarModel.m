@@ -8,10 +8,11 @@
 
 @implementation YMAAvatarModel
 
-- (id)initWithUrl:(NSURL *)url timeStamp:(NSDate *)timeStamp {
+- (id)initWithUrl:(NSURL *)url timeStamp:(NSDate *)timeStamp
+{
     self = [super init];
 
-    if (self) {
+    if (self != nil) {
         _url = url;
         _timeStamp = timeStamp;
     }
@@ -19,7 +20,8 @@
     return self;
 }
 
-+ (instancetype)avatarWithUrl:(NSURL *)url timeStamp:(NSDate *)timeStamp {
++ (instancetype)avatarWithUrl:(NSURL *)url timeStamp:(NSDate *)timeStamp
+{
     return [[YMAAvatarModel alloc] initWithUrl:url timeStamp:timeStamp];
 }
 

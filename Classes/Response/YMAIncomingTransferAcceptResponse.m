@@ -10,15 +10,13 @@ static NSString *const kParameterExtActionUri = @"ext_action_uri";
 
 @implementation YMAIncomingTransferAcceptResponse
 
-#pragma mark -
-#pragma mark *** Overridden methods ***
-#pragma mark -
+#pragma mark - Overridden methods
 
-- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error {
+- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
+{
     [super parseJSONModel:responseModel error:error];
-
-    _protectionCodeAttemptsAvailable = [[responseModel objectForKey:kParameterProtectionCodeAttemptsAvailable] integerValue];
-    NSString *extActionUriString = [responseModel objectForKey:kParameterExtActionUri];
+    _protectionCodeAttemptsAvailable = [responseModel[kParameterProtectionCodeAttemptsAvailable] integerValue];
+    NSString *extActionUriString = responseModel[kParameterExtActionUri];
     _extActionUri = [NSURL URLWithString:extActionUriString];
 }
 

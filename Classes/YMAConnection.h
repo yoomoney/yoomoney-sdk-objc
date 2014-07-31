@@ -7,11 +7,12 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^YMAConnectionHandler)(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error);
+typedef void
+(^YMAConnectionHandler)(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error);
 
 @interface YMAConnection : NSObject
 
-@property(nonatomic, copy) NSString *requestMethod;
+@property (nonatomic, copy) NSString *requestMethod;
 
 + (instancetype)connectionWithUrl:(NSURL *)url;
 

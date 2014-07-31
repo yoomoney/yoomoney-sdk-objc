@@ -4,8 +4,6 @@
 //
 
 #import "YMAProcessExternalPaymentResponse.h"
-#import "YMAAscModel.h"
-#import "YMAMoneySourceModel.h"
 
 static NSString *const kParameterAcsUrl = @"acs_uri";
 static NSString *const kParameterAcsParams = @"acs_params";
@@ -20,39 +18,45 @@ static NSString *const kMoneySourceTypePaymentCard = @"payment-card";
 
 @implementation YMAProcessExternalPaymentResponse
 
-#pragma mark -
-#pragma mark *** Overridden methods ***
-#pragma mark -
+#pragma mark - Overridden methods
 
-- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error {
+- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
+{
     [super parseJSONModel:responseModel error:error];
 
-    NSString *acsUrl = [responseModel objectForKey:kParameterAcsUrl];
+    NSString *acsUrl = responseModel[kParameterAcsUrl];
 
-    if (acsUrl) {
-        NSDictionary *acsParams = [responseModel objectForKey:kParameterAcsParams];
+    if (acsUrl != nil) {
+        NSDictionary *acsParams = responseModel[kParameterAcsParams];
         _asc = [YMAAscModel ascWithUrl:[NSURL URLWithString:acsUrl] andParams:acsParams];
     }
 
-    NSDictionary *moneySource = [responseModel objectForKey:kParameterMoneySource];
+    NSDictionary *moneySource = responseModel[kParameterMoneySource];
 
-    if (moneySource) {
-        NSString *type = [moneySource objectForKey:kParameterType];
+    if (moneySource != nil) {
+        NSString *type = moneySource[kParameterType];
 
         if ([type isEqual:kMoneySourceTypePaymentCard]) {
-            NSString *paymentCardTypeString = [moneySource objectForKey:kParameterPaymentCardType];
+            NSString *paymentCardTypeString = moneySource[kParameterPaymentCardType];
             YMAPaymentCardType paymentCardType = [YMAMoneySourceModel paymentCardTypeByString:paymentCardTypeString];
 
-            NSString *panFragment = [moneySource objectForKey:kParameterPanFragment];
-            NSString *moneySourceToken = [moneySource objectForKey:kParameterMoneySourceToken];
+            NSString *panFragment = moneySource[kParameterPanFragment];
+            NSString *moneySourceToken = moneySource[kParameterMoneySourceToken];
 
-            _moneySource = [YMAMoneySourceModel moneySourceWithType:YMAMoneySourcePaymentCard cardType:paymentCardType panFragment:panFragment moneySourceToken:moneySourceToken];
+            _moneySource = [YMAMoneySourceModel moneySourceWithType:YMAMoneySourcePaymentCard
+                                                           cardType:paymentCardType
+                                                        panFragment:panFragment
+                                                   moneySourceToken:moneySourceToken];
 
-        } else
-            _moneySource = [YMAMoneySourceModel moneySourceWithType:YMAMoneySourceUnknown cardType:YMAPaymentCardUnknown panFragment:nil moneySourceToken:nil];
+        }
+        else
+            _moneySource = [YMAMoneySourceModel moneySourceWithType:YMAMoneySourceUnknown
+                                                           cardType:YMAPaymentCardUnknown
+                                                        panFragment:nil
+                                                   moneySourceToken:nil];
     }
 
-    NSString *invoiceId = [responseModel objectForKey:kParameterInvoiceId];
+    NSString *invoiceId = responseModel[kParameterInvoiceId];
     _invoiceId = [invoiceId copy];
 }
 

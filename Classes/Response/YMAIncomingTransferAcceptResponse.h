@@ -8,7 +8,7 @@
 
 @interface YMAIncomingTransferAcceptResponse : YMABaseProcessResponse
 
-@property(nonatomic, assign, readonly) NSInteger protectionCodeAttemptsAvailable;
-@property(nonatomic, strong, readonly) NSURL *extActionUri;
+@property (nonatomic, assign, readonly) NSInteger protectionCodeAttemptsAvailable;
+@property (nonatomic, strong, readonly) NSURL *extActionUri;
 
 @end

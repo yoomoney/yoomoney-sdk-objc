@@ -12,11 +12,11 @@
 @interface YMABaseProcessResponse : YMABaseResponse
 
 /// Status of process payment.
-@property(nonatomic, assign, readonly) YMAResponseStatus status;
+@property (nonatomic, assign, readonly) YMAResponseStatus status;
 /// Recommended time later that you should repeat the request in milliseconds.
 /// The property is not equal to zero for status = YMAResponseStatusInProgress.
-@property(nonatomic, assign, readonly) NSUInteger nextRetry;
+@property (nonatomic, assign, readonly) NSUInteger nextRetry;
 
-@property(nonatomic, copy, readonly) NSString *accountUnblockUri;
+@property (nonatomic, copy, readonly) NSString *accountUnblockUri;
 
 @end

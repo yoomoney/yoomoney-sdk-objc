@@ -17,11 +17,15 @@ NSString *const YMAValueParameterResponseType = @"code";
 
 @implementation YMAAPISession
 
-- (NSURLRequest *)authorizationRequestWithClientId:(NSString *)clientId andAdditionalParams:(NSDictionary *)params {
+- (NSURLRequest *)authorizationRequestWithClientId:(NSString *)clientId andAdditionalParams:(NSDictionary *)params
+{
     return [self authorizationRequestWithUrl:kUrlAuthorize clientId:clientId andAdditionalParams:params];
 }
 
-- (NSURLRequest *)authorizationRequestWithUrl:(NSString *)relativeUrlString clientId:(NSString *)clientId andAdditionalParams:(NSDictionary *)params {
+- (NSURLRequest *)authorizationRequestWithUrl:(NSString *)relativeUrlString
+                                     clientId:(NSString *)clientId
+                          andAdditionalParams:(NSDictionary *)params
+{
     NSMutableString *post = [NSMutableString stringWithCapacity:0];
 
     NSString *clientIdParamKey = [YMAConnection addPercentEscapesForString:kParameterClientId];
@@ -37,13 +41,15 @@ NSString *const YMAValueParameterResponseType = @"code";
         [post appendString:[NSString stringWithFormat:@"%@=%@&", paramKey, paramValue]];
     }
 
-    NSString *urlString = [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].spMoneyUrl, relativeUrlString];
+    NSString *urlString =
+        [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].spMoneyUrl, relativeUrlString];
     NSURL *url = [NSURL URLWithString:urlString];
 
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
     [request setHTTPMethod:YMAMethodPost];
-    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long) [postData length]] forHTTPHeaderField:@"Content-Length"];
+    [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[postData length]]
+   forHTTPHeaderField:@"Content-Length"];
     [request setValue:YMAValueContentTypeDefault forHTTPHeaderField:YMAHeaderContentType];
     [request setValue:_userAgent forHTTPHeaderField:YMAHeaderUserAgent];
     [request setHTTPBody:postData];
@@ -51,7 +57,11 @@ NSString *const YMAValueParameterResponseType = @"code";
     return request;
 }
 
-- (BOOL)isRequest:(NSURLRequest *)request toRedirectUrl:(NSString *)redirectUrl authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo error:(NSError * __autoreleasing *)error {
+- (BOOL)isRequest:(NSURLRequest *)request
+    toRedirectUrl:(NSString *)redirectUrl
+authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
+            error:(NSError * __autoreleasing *)error
+{
     NSURL *requestUrl = request.URL;
 
     if (!requestUrl)
@@ -67,10 +77,11 @@ NSString *const YMAValueParameterResponseType = @"code";
 
         NSString *query = requestUrl.query;
 
-        if (!query || query.length == 0) {
+        if (query == nil || query.length == 0) {
             if (error)
-                *error = [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:@{@"requestUrl" : request.URL}];
-        } else if (authInfo) {
+                *error = [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:@{ @"requestUrl" : request.URL }];
+        }
+        else if (authInfo != nil) {
 
             *authInfo = [NSMutableDictionary dictionary];
 
@@ -86,103 +97,146 @@ NSString *const YMAValueParameterResponseType = @"code";
         }
 
         return YES;
-    } else
+    }
+    else
         return NO;
 }
 
-- (void)receiveTokenWithWithCode:(NSString *)code clientId:(NSString *)clientId andAdditionalParams:(NSDictionary *)params completion:(YMAIdHandler)block {
+- (void)receiveTokenWithWithCode:(NSString *)code
+                        clientId:(NSString *)clientId
+             andAdditionalParams:(NSDictionary *)params
+                      completion:(YMAIdHandler)block
+{
     [self receiveTokenWithWithUrl:kUrlToken code:code clientId:clientId andAdditionalParams:params completion:block];
 }
 
-- (void)receiveTokenWithWithUrl:(NSString *)relativeUrlString code:(NSString *)code clientId:(NSString *)clientId andAdditionalParams:(NSDictionary *)params completion:(YMAIdHandler)block {
+- (void)receiveTokenWithWithUrl:(NSString *)relativeUrlString
+                           code:(NSString *)code
+                       clientId:(NSString *)clientId
+            andAdditionalParams:(NSDictionary *)params
+                     completion:(YMAIdHandler)block
+{
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters setObject:code forKey:YMAValueParameterResponseType];
-    [parameters setObject:clientId forKey:kParameterClientId];
+    [parameters setValue:code forKey:YMAValueParameterResponseType];
+    [parameters setValue:clientId forKey:kParameterClientId];
     [parameters addEntriesFromDictionary:params];
 
-    NSString *urlString = [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].spMoneyUrl, relativeUrlString];
+    NSString *urlString =
+        [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].spMoneyUrl, relativeUrlString];
     NSURL *url = [NSURL URLWithString:urlString];
 
-    [self performRequestWithToken:nil parameters:parameters url:url completion:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
+    [self performRequestWithToken:nil
+                       parameters:parameters
+                              url:url
+                       completion:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
 
-        if (error) {
-            block(nil, error);
-            return;
-        }
+                           if (error != nil) {
+                               block(nil, error);
+                               return;
+                           }
 
-        NSInteger statusCode = ((NSHTTPURLResponse *) response).statusCode;
+                           NSInteger statusCode = ((NSHTTPURLResponse *)response).statusCode;
 
-        id responseModel = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
+                           id responseModel =
+                               [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
 
-        NSError *unknownError = [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:@{@"response" : response, @"request" : request}];
+                           NSError *unknownError = [NSError errorWithDomain:YMAErrorKeyUnknown
+                                                                       code:0
+                                                                   userInfo:@{
+                                                                       @"response" : response,
+                                                                       @"request" : request
+                                                                   }];
 
-        if (error || !responseModel) {
-            block(nil, (error) ? error : unknownError);
-            return;
-        }
+                           if (error != nil || responseModel == nil) {
+                               block(nil, (error) ? error : unknownError);
+                               return;
+                           }
 
-        if (statusCode == YMAStatusCodeOkHTTP) {
+                           if (statusCode == YMAStatusCodeOkHTTP) {
 
-            NSString *accessToken = [responseModel objectForKey:@"access_token"];
+                               NSString *accessToken = [responseModel objectForKey:@"access_token"];
 
-            if (accessToken) {
-                block(accessToken, nil);
-            } else
-                block(nil, unknownError);
+                               if (accessToken == nil)
+                                   block(nil, unknownError);
+                               else
+                                   block(accessToken, nil);
 
-            return;
-        }
+                               return;
+                           }
 
-        NSString *errorKey = [responseModel objectForKey:@"error"];
+                           NSString *errorKey = [responseModel objectForKey:@"error"];
 
-        (errorKey) ? block(nil, [NSError errorWithDomain:NSLocalizedString(errorKey, errorKey) code:statusCode userInfo:nil]) : block(nil, unknownError);
-    }];
+                           if (errorKey == nil)
+                               block(nil, unknownError);
+                           else
+                               block(nil, [NSError errorWithDomain:NSLocalizedString(errorKey, errorKey)
+                                                              code:statusCode
+                                                          userInfo:nil]);
+                       }];
 }
 
-- (void)revokeToken:(NSString *)token completion:(YMAHandler)block {
-    NSString *urlString = [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, kUrlRevoke];
+- (void)revokeToken:(NSString *)token completion:(YMAHandler)block
+{
+    NSString *urlString =
+        [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, kUrlRevoke];
     NSURL *url = [NSURL URLWithString:urlString];
 
-    [self performAndProcessRequestWithToken:token parameters:nil url:url completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
-        if (error) {
-            block(error);
-            return;
-        }
+    [self performAndProcessRequestWithToken:token
+                                 parameters:nil
+                                        url:url
+                                 completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
+                                     if (error != nil) {
+                                         block(error);
+                                         return;
+                                     }
 
-        block(nil);
-    }];
+                                     block(nil);
+                                 }];
 }
 
-- (void)performRequest:(YMABaseRequest *)request token:(NSString *)token completion:(YMARequestHandler)block {
-    NSError *unknownError = [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:@{@"request" : request}];
+- (void)performRequest:(YMABaseRequest *)request token:(NSString *)token completion:(YMARequestHandler)block
+{
+    NSError *unknownError = [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:@{ @"request" : request }];
 
-    if (!request) {
+    if (request == nil) {
         block(request, nil, unknownError);
         return;
     }
 
     if ([request conformsToProtocol:@protocol(YMAParametersPosting)]) {
-        YMABaseRequest <YMAParametersPosting> *paramsRequest = (YMABaseRequest <YMAParametersPosting> *) request;
+        YMABaseRequest<YMAParametersPosting> *paramsRequest = (YMABaseRequest<YMAParametersPosting> *)request;
 
-        [self performAndProcessRequestWithToken:token parameters:paramsRequest.parameters url:request.requestUrl completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
-            if (error) {
-                block(request, nil, error);
-                return;
-            }
+        [self performAndProcessRequestWithToken:token
+                                     parameters:paramsRequest.parameters
+                                            url:request.requestUrl
+                                     completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
+                                         if (error != nil) {
+                                             block(request, nil, error);
+                                             return;
+                                         }
 
-            [request buildResponseWithData:responseData queue:_responseQueue andCompletion:block];
-        }];
-    } else if ([request conformsToProtocol:@protocol(YMADataPosting)]) {
-        YMABaseRequest <YMADataPosting> *dataRequest = (YMABaseRequest <YMADataPosting> *) request;
+                                         [request buildResponseWithData:responseData
+                                                                  queue:_responseQueue
+                                                          andCompletion:block];
+                                     }];
+    }
+    else if ([request conformsToProtocol:@protocol(YMADataPosting)]) {
+        YMABaseRequest<YMADataPosting> *dataRequest = (YMABaseRequest<YMADataPosting> *)request;
 
-        [self performAndProcessRequestWithToken:token data:dataRequest.data contentType:dataRequest.contentType url:dataRequest.requestUrl completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
-            if (error) {
-                block(request, nil, error);
-                return;
-            }
-            
-            [request buildResponseWithData:responseData queue:_responseQueue andCompletion:block];
-        }];
+        [self performAndProcessRequestWithToken:token
+                                           data:dataRequest.data
+                                    contentType:dataRequest.contentType
+                                            url:dataRequest.requestUrl
+                                     completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
+                                         if (error != nil) {
+                                             block(request, nil, error);
+                                             return;
+                                         }
+
+                                         [request buildResponseWithData:responseData
+                                                                  queue:_responseQueue
+                                                          andCompletion:block];
+                                     }];
     }
 }
 
