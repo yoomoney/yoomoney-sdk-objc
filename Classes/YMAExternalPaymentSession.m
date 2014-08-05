@@ -26,12 +26,15 @@ static NSString *const kValueParameterStatusSuccess = @"success";
                                                                  [YMAHostsProvider sharedManager].moneyUrl,
                                                                  kInstanceUrl]];
 
-    __weak YMAExternalPaymentSession *bself = self;
+    __weak YMAExternalPaymentSession *weakSelf = self;
 
     [self performRequestWithToken:token
                        parameters:parameters
                               url:url
                        completion:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
+                           
+                           __strong YMAExternalPaymentSession *strongSelf = weakSelf;
+                           
                            if (error != nil) {
                                block(nil, error);
                                return;
@@ -58,11 +61,8 @@ static NSString *const kValueParameterStatusSuccess = @"success";
                                NSString *status = responseModel[kParameterStatus];
 
                                if ([status isEqual:kValueParameterStatusSuccess]) {
-
-                                   bself.instanceId = responseModel[@"instance_id"];
-
-                                   block(bself.instanceId, bself.instanceId ? nil : unknownError);
-
+                                   strongSelf.instanceId = responseModel[@"instance_id"];
+                                   block(strongSelf.instanceId, strongSelf.instanceId ? nil : unknownError);
                                    return;
                                }
                            }
@@ -75,6 +75,8 @@ static NSString *const kValueParameterStatusSuccess = @"success";
                                block(nil, [NSError errorWithDomain:errorKey code:statusCode userInfo:parameters]);
                        }];
 }
+
+
 
 - (void)performRequest:(YMABaseRequest *)request token:(NSString *)token completion:(YMARequestHandler)block
 {
