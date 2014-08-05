@@ -55,7 +55,7 @@ static NSInteger const kResponseParseErrorCode = 2503;
 
 #pragma mark - Public methods
 
-- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
+- (BOOL)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
 {
     NSString *reason = [NSString stringWithFormat:@"%@ must be ovverriden", NSStringFromSelector(_cmd)];
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];

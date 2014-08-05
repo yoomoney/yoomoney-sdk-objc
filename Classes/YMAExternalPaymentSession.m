@@ -43,7 +43,9 @@ static NSString *const kValueParameterStatusSuccess = @"success";
                            NSInteger statusCode = ((NSHTTPURLResponse *)response).statusCode;
 
                            id responseModel =
-                               [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
+                               [NSJSONSerialization JSONObjectWithData:responseData
+                                                               options:(NSJSONReadingOptions)kNilOptions
+                                                                 error:&error];
 
                            NSError *unknownError = [NSError errorWithDomain:YMAErrorKeyUnknown
                                                                        code:0

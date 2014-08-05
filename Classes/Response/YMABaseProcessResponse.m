@@ -34,7 +34,7 @@ static NSString *const kParameterAccountUnblockUri = @"account_unblock_uri";
 
 #pragma mark - Overridden methods
 
-- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
+- (BOOL)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
 {
     NSString *statusKey = responseModel[kParameterStatus];
     NSString *accountUnblockUri = responseModel[kParameterAccountUnblockUri];
@@ -44,12 +44,12 @@ static NSString *const kParameterAccountUnblockUri = @"account_unblock_uri";
         NSString *errorKey = responseModel[kParameterError];
         _status = YMAResponseStatusRefused;
 
-        if (!error) return;
+        if (!error) return NO;
 
         NSError *unknownError = [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:@{ @"response" : self }];
         *error = errorKey ? [NSError errorWithDomain:errorKey code:0 userInfo:@{ @"response" : self }] : unknownError;
 
-        return;
+        return NO;
     }
 
     if ([statusKey isEqual:kKeyResponseStatusInProgress]) {
@@ -65,6 +65,8 @@ static NSString *const kParameterAccountUnblockUri = @"account_unblock_uri";
         _status = YMAResponseStatusSuccess;
     else
         _status = YMAResponseStatusUnknown;
+
+    return YES;
 }
 
 @end

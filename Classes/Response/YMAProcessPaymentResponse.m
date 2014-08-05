@@ -60,9 +60,9 @@ static NSString *const kParameterDigitalGoodsSecret = @"secret";
 
 #pragma mark - Overridden methods
 
-- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
+- (BOOL)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
 {
-    [super parseJSONModel:responseModel error:error];
+    BOOL result = [super parseJSONModel:responseModel error:error];
 
     NSString *paymentId = responseModel[kParameterPaymentId];
     NSString *balance = [responseModel[kParameterBalance] stringValue];
@@ -95,6 +95,8 @@ static NSString *const kParameterDigitalGoodsSecret = @"secret";
                                                          holdForPickupLink:holdForPickupLink
                                                                        asc:asc
                                                               digitalGoods:digitalGoods];
+
+    return result;
 }
 
 @end

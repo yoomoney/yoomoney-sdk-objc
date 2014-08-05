@@ -66,17 +66,17 @@ static NSString *const kParameterOperationType = @"type";
 
 #pragma mark - Overridden methods
 
-- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
+- (BOOL)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
 {
     NSString *errorKey = [responseModel objectForKey:kParameterError];
 
     if (errorKey != nil) {
-        if (error == nil) return;
+        if (error == nil) return NO;
 
         NSError *unknownError = [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:@{ @"response" : self }];
         *error = errorKey ? [NSError errorWithDomain:errorKey code:0 userInfo:@{ @"response" : self }] : unknownError;
 
-        return;
+        return NO;
     }
 
     NSString *nextRecord = [responseModel objectForKey:kParameterNextRecord];
@@ -85,7 +85,7 @@ static NSString *const kParameterOperationType = @"type";
     id operationsModel = [responseModel objectForKey:kParameterOperations];
 
     if (!operationsModel)
-        return;
+        return YES;
 
     NSMutableArray *historyOperations = [NSMutableArray array];
 
@@ -96,6 +96,8 @@ static NSString *const kParameterOperationType = @"type";
     }
 
     _operations = historyOperations;
+
+    return YES;
 }
 
 @end

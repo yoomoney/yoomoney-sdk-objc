@@ -12,12 +12,13 @@ static NSString *const kParameterExtActionUri = @"ext_action_uri";
 
 #pragma mark - Overridden methods
 
-- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
+- (BOOL)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
 {
-    [super parseJSONModel:responseModel error:error];
+    BOOL result = [super parseJSONModel:responseModel error:error];
     _protectionCodeAttemptsAvailable = [responseModel[kParameterProtectionCodeAttemptsAvailable] integerValue];
     NSString *extActionUriString = responseModel[kParameterExtActionUri];
     _extActionUri = [NSURL URLWithString:extActionUriString];
+    return result;
 }
 
 @end

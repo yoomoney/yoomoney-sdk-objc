@@ -87,9 +87,9 @@ static NSString *const kParameterMoneySourceCscRequired = @"csc_required";
 
 #pragma mark - Overridden methods
 
-- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
+- (BOOL)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
 {
-    [super parseJSONModel:responseModel error:error];
+    BOOL result = [super parseJSONModel:responseModel error:error];
 
     NSString *requestId = responseModel[kParameterRequestId];
     NSString *contractAmount = [responseModel[kParameterContractAmount] stringValue];
@@ -116,6 +116,8 @@ static NSString *const kParameterMoneySourceCscRequired = @"csc_required";
                                                recipientAccountType:accountType
                                                      protectionCode:protectionCode
                                                        extActionUri:extActionUri];
+
+    return result;
 }
 
 @end

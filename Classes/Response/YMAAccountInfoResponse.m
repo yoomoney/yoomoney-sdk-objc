@@ -5,6 +5,9 @@
 
 #import "YMAAccountInfoResponse.h"
 #import "YMAMoneySourceModel.h"
+#import "YMAConstants.h"
+
+static NSString *const kParameterError = @"error";
 
 static NSString *const kParameterAccount = @"account";
 static NSString *const kParameterBalance = @"balance";
@@ -33,8 +36,19 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
 
 #pragma mark - Overridden methods
 
-- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
+- (BOOL)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
 {
+    NSString *errorKey = [responseModel objectForKey:kParameterError];
+
+    if (errorKey != nil) {
+        if (error == nil) return NO;
+
+        NSError *unknownError = [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:@{ @"response" : self }];
+        *error = errorKey ? [NSError errorWithDomain:errorKey code:0 userInfo:@{ @"response" : self }] : unknownError;
+
+        return NO;
+    }
+
     NSString *account = [responseModel objectForKey:kParameterAccount];
     NSString *balance = [[responseModel objectForKey:kParameterBalance] stringValue];
     NSString *currency = [responseModel objectForKey:kParameterCurrency];
@@ -111,6 +125,8 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
                                                 balanceDetails:balanceDetails
                                                    cardsLinked:cardsLinked
                                             servicesAdditional:servicesAdditional];
+
+    return YES;
 }
 
 @end

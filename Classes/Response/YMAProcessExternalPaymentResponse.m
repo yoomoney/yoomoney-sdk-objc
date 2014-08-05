@@ -20,9 +20,9 @@ static NSString *const kMoneySourceTypePaymentCard = @"payment-card";
 
 #pragma mark - Overridden methods
 
-- (void)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
+- (BOOL)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
 {
-    [super parseJSONModel:responseModel error:error];
+    BOOL result = [super parseJSONModel:responseModel error:error];
 
     NSString *acsUrl = responseModel[kParameterAcsUrl];
 
@@ -58,6 +58,8 @@ static NSString *const kMoneySourceTypePaymentCard = @"payment-card";
 
     NSString *invoiceId = responseModel[kParameterInvoiceId];
     _invoiceId = [invoiceId copy];
+
+    return result;
 }
 
 @end
