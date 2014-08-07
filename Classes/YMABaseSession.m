@@ -68,13 +68,11 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
                                       url:(NSURL *)url
                                completion:(YMAConnectionHandler)block
 {
-    __weak YMABaseSession *weakSelf = self;
-
     [self performRequestWithToken:token
                        parameters:parameters
                               url:url
                        completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
-                           [weakSelf processRequest:urlRequest
+                           [self processRequest:urlRequest
                                         response:urlResponse
                                     responseData:responseData
                                            error:error
@@ -88,14 +86,12 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
                                       url:(NSURL *)url
                                completion:(YMAConnectionHandler)block
 {
-    __weak YMABaseSession *weakSelf = self;
-
     [self performRequestWithToken:token
                              data:data
                       contentType:contentType
                               url:url
              andCompletionHandler:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
-                 [weakSelf processRequest:urlRequest
+                 [self processRequest:urlRequest
                               response:urlResponse
                           responseData:responseData
                                  error:error
