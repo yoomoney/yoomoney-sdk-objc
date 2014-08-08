@@ -127,6 +127,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
 
     [self performRequestWithToken:nil
                        parameters:parameters
+                    customHeaders:nil
                               url:url
                        completion:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
 
@@ -185,6 +186,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
 
     [self performAndProcessRequestWithToken:token
                                  parameters:nil
+                              customHeaders:nil
                                         url:url
                                  completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
                                      if (error != nil) {
@@ -210,6 +212,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
 
         [self performAndProcessRequestWithToken:token
                                      parameters:paramsRequest.parameters
+                                  customHeaders:paramsRequest.customHeaders
                                             url:request.requestUrl
                                      completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
                                          if (error != nil) {
@@ -227,7 +230,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
 
         [self performAndProcessRequestWithToken:token
                                            data:dataRequest.data
-                                    contentType:dataRequest.contentType
+                                  customHeaders:dataRequest.customHeaders
                                             url:dataRequest.requestUrl
                                      completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
                                          if (error != nil) {

@@ -15,8 +15,6 @@ typedef void (^YMAIdHandler)(NSString *Id, NSError *error);
 /// @param error - Error information or nil.
 typedef void (^YMAHandler)(NSError *error);
 
-// Header constant = "Content-Type".
-extern NSString *const YMAHeaderContentType;
 // Header constant = "User-Agent".
 extern NSString *const YMAHeaderUserAgent;
 // Method constant = "POST".
@@ -53,32 +51,36 @@ typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
 /// Send request used token.
 /// @param token - an access token is a string representing an authorization issued to the client (see OAuth 2.0)
 /// @param parameters - request parameters.
+/// @param customHeaders - used for define custom headers of request.
 /// @param url -  request url.
 /// @param block - completion of block is used to get the response.
 - (void)performRequestWithToken:(NSString *)token
                      parameters:(NSDictionary *)parameters
+                  customHeaders:(NSDictionary *)customHeaders
                             url:(NSURL *)url
                      completion:(YMAConnectionHandler)block;
 
 /// Send request used token and analyzed HTTP status code of response.
 /// @param token - an access token is a string representing an authorization issued to the client (see OAuth 2.0)
 /// @param parameters - request parameters.
+/// @param customHeaders - used for define custom headers of request.
 /// @param url -  request url.
 /// @param block - completion of block is used to get the response.
 - (void)performAndProcessRequestWithToken:(NSString *)token
                                parameters:(NSDictionary *)parameters
+                            customHeaders:(NSDictionary *)customHeaders
                                       url:(NSURL *)url
                                completion:(YMAConnectionHandler)block;
 
 /// Send request used token and analyzed HTTP status code of response.
 /// @param token - an access token is a string representing an authorization issued to the client (see OAuth 2.0)
 /// @param data - request data.
-/// @param contentType - content type.
+/// @param customHeaders - used for define custom headers of request.
 /// @param url -  request url.
 /// @param block - completion of block is used to get the response.
 - (void)performAndProcessRequestWithToken:(NSString *)token
                                      data:(NSData *)data
-                              contentType:(NSString *)contentType
+                            customHeaders:(NSDictionary *)customHeaders
                                       url:(NSURL *)url
                                completion:(YMAConnectionHandler)block;
 

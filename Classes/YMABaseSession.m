@@ -16,10 +16,15 @@ static NSString *const kValueAcceptLanguageDefault = @"ru";
 static NSString *const kValueContentTypePNG = @"image/png";
 
 NSString *const YMAValueUserAgentDefault = @"Yandex.Money.SDK/iOS";
-NSString *const YMAHeaderContentType = @"Content-Type";
 NSString *const YMAHeaderUserAgent = @"User-Agent";
 NSString *const YMAMethodPost = @"POST";
 NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded;charset=UTF-8";
+
+@interface YMABaseSession ()
+
+@property (nonatomic, strong) NSDictionary *defaultHeaders;
+
+@end
 
 @implementation YMABaseSession
 
@@ -54,10 +59,11 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
 
 - (void)performRequestWithToken:(NSString *)token
                      parameters:(NSDictionary *)parameters
+                  customHeaders:(NSDictionary *)customHeaders
                             url:(NSURL *)url
                      completion:(YMAConnectionHandler)block
 {
-    YMAConnection *connection = [self connectionWithUrl:url contentType:YMAValueContentTypeDefault andToken:token];
+    YMAConnection *connection = [self connectionWithUrl:url customHeaders:customHeaders andToken:token];
     [connection addPostParams:parameters];
 
     [connection sendAsynchronousWithQueue:_requestQueue completionHandler:block];
@@ -65,11 +71,13 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
 
 - (void)performAndProcessRequestWithToken:(NSString *)token
                                parameters:(NSDictionary *)parameters
+                            customHeaders:(NSDictionary *)customHeaders
                                       url:(NSURL *)url
                                completion:(YMAConnectionHandler)block
 {
     [self performRequestWithToken:token
                        parameters:parameters
+                    customHeaders:customHeaders
                               url:url
                        completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
                            [self processRequest:urlRequest
@@ -82,13 +90,13 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
 
 - (void)performAndProcessRequestWithToken:(NSString *)token
                                      data:(NSData *)data
-                              contentType:(NSString *)contentType
+                            customHeaders:(NSDictionary *)customHeaders
                                       url:(NSURL *)url
                                completion:(YMAConnectionHandler)block
 {
     [self performRequestWithToken:token
                              data:data
-                      contentType:contentType
+                    customHeaders:customHeaders
                               url:url
              andCompletionHandler:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
                  [self processRequest:urlRequest
@@ -103,11 +111,11 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
 
 - (void)performRequestWithToken:(NSString *)token
                            data:(NSData *)data
-                    contentType:(NSString *)contentType
+                  customHeaders:(NSDictionary *)customHeaders
                             url:(NSURL *)url
            andCompletionHandler:(YMAConnectionHandler)handler
 {
-    YMAConnection *connection = [self connectionWithUrl:url contentType:contentType andToken:token];
+    YMAConnection *connection = [self connectionWithUrl:url customHeaders:customHeaders andToken:token];
     [connection addBodyData:data];
 
     [connection sendAsynchronousWithQueue:_requestQueue completionHandler:handler];
@@ -149,19 +157,27 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
     }
 }
 
-- (YMAConnection *)connectionWithUrl:(NSURL *)url contentType:(NSString *)contentType andToken:(NSString *)token
+- (YMAConnection *)connectionWithUrl:(NSURL *)url customHeaders:(NSDictionary *)customHeaders andToken:(NSString *)token
 {
+    NSMutableDictionary *headers = [self.defaultHeaders mutableCopy];
+    
+    headers[YMAHeaderUserAgent] = _userAgent;
+    headers[kHeaderAcceptLanguage] = self.language;
+    
+    if (token)
+        headers[kHeaderAuthorization] = [NSString stringWithFormat:kValueHeaderAuthorizationFormat, token];
+
+    for (NSString *key in customHeaders.allKeys) {
+        headers[key] = customHeaders[key];
+    }
+
     YMAConnection *connection = [[YMAConnection alloc] initWithUrl:url];
     connection.requestMethod = YMAMethodPost;
-    [connection addValue:contentType forHeader:YMAHeaderContentType];
-    [connection addValue:_userAgent forHeader:YMAHeaderUserAgent];
-    [connection addValue:kValueAcceptEncoding forHeader:kHeaderAcceptEncoding];
-    [connection addValue:self.language forHeader:kHeaderAcceptLanguage];
-
-    if (token)
-        [connection addValue:[NSString stringWithFormat:kValueHeaderAuthorizationFormat, token]
-                   forHeader:kHeaderAuthorization];
-
+    
+    for (NSString *key in headers.allKeys) {
+        [connection addValue:headers[key] forHeader:key];
+    }
+    
     return connection;
 }
 
@@ -175,6 +191,16 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
     }
 
     return nil;
+}
+
+#pragma mark - Getters and setters
+
+- (NSDictionary *)defaultHeaders {
+    if (_defaultHeaders == nil) {
+        _defaultHeaders = @{YMAHeaderContentType: YMAValueContentTypeDefault, kHeaderAcceptEncoding: kValueAcceptEncoding};
+    }
+    
+    return _defaultHeaders;
 }
 
 @end

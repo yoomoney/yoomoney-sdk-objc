@@ -32,6 +32,7 @@ extern NSString *const YMAParameterRedirectUri;
 // Scope
 extern NSString *const YMAParameterScope;
 
-
+// Header constant = "Content-Type".
+extern NSString *const YMAHeaderContentType;
 
 

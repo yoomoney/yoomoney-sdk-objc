@@ -14,8 +14,6 @@
 
 /// Request data
 @property (nonatomic, strong, readonly) NSData *data;
-/// Content type
-@property (nonatomic, copy, readonly) NSString *contentType;
 
 @end
 
@@ -40,6 +38,9 @@ typedef void (^YMARequestHandler)(YMABaseRequest *request, YMABaseResponse *resp
 /// Request url
 @property (nonatomic, strong, readonly) NSURL *requestUrl;
 @property (nonatomic, strong) id context;
+
+/// Used for define custom headers of request.
+@property (nonatomic, strong, readonly) NSDictionary *customHeaders;
 
 /// Method is used for parse response data.
 /// @param data - response data.

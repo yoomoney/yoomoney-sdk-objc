@@ -28,6 +28,7 @@ static NSString *const kValueParameterStatusSuccess = @"success";
 
     [self performRequestWithToken:token
                        parameters:parameters
+                    customHeaders:nil
                               url:url
                        completion:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
                            
@@ -87,12 +88,13 @@ static NSString *const kValueParameterStatusSuccess = @"success";
 
     if ([request conformsToProtocol:@protocol(YMAParametersPosting)]) {
         YMABaseRequest<YMAParametersPosting> *paramsRequest = (YMABaseRequest<YMAParametersPosting> *)request;
-        NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:paramsRequest.parameters];
+        NSMutableDictionary *parameters = [paramsRequest.parameters mutableCopy];
 
         [parameters setValue:self.instanceId forKey:kParameterInstanceId];
 
         [self performAndProcessRequestWithToken:token
                                      parameters:parameters
+                                  customHeaders:paramsRequest.customHeaders
                                             url:request.requestUrl
                                      completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
                                          if (error != nil) {

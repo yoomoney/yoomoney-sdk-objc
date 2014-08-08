@@ -5,6 +5,7 @@
 
 #import "YMAChangeAvatarRequest.h"
 #import "YMAHostsProvider.h"
+#import "YMAConstants.h"
 
 static NSString *const kUrlAvatar = @"api/avatar-set";
 static NSString *const kContentType = @"image/png";
@@ -12,7 +13,6 @@ static NSString *const kContentType = @"image/png";
 @implementation YMAChangeAvatarRequest
 
 @synthesize data = _data;
-@synthesize contentType = _contentType;
 
 #pragma mark - Object Lifecycle
 
@@ -22,7 +22,6 @@ static NSString *const kContentType = @"image/png";
 
     if (self != nil) {
         _data = imageData;
-        _contentType = kContentType;
     }
 
     return self;
@@ -34,6 +33,10 @@ static NSString *const kContentType = @"image/png";
 }
 
 #pragma mark - Overridden methods
+
+- (NSDictionary *)customHeaders {
+    return @{YMAHeaderContentType:kContentType};
+}
 
 - (NSURL *)requestUrl
 {
