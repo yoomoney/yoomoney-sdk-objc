@@ -46,6 +46,6 @@ typedef void (^YMARequestHandler)(YMABaseRequest *request, YMABaseResponse *resp
 /// @param data - response data.
 /// @param queue - operation queue.
 /// @param block - completion of block is used to get the response.
-- (void)buildResponseWithData:(NSData *)data queue:(NSOperationQueue *)queue andCompletion:(YMARequestHandler)block;
+- (void)buildResponseWithData:(NSData *)data headers:(NSDictionary *)headers queue:(NSOperationQueue *)queue andCompletion:(YMARequestHandler)block;
 
 @end

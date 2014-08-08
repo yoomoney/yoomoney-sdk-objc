@@ -219,8 +219,12 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
                                              block(request, nil, error);
                                              return;
                                          }
-
+                                         
+                                         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)urlResponse;
+                                         NSDictionary *headers =  httpResponse.allHeaderFields;
+                                         
                                          [request buildResponseWithData:responseData
+                                                                headers:headers
                                                                   queue:_responseQueue
                                                           andCompletion:block];
                                      }];
@@ -237,8 +241,12 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
                                              block(request, nil, error);
                                              return;
                                          }
+                                         
+                                         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)urlResponse;
+                                         NSDictionary *headers =  httpResponse.allHeaderFields;
 
                                          [request buildResponseWithData:responseData
+                                                                headers:headers
                                                                   queue:_responseQueue
                                                           andCompletion:block];
                                      }];

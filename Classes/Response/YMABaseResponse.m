@@ -10,6 +10,7 @@ static NSInteger const kResponseParseErrorCode = 2503;
 @interface YMABaseResponse ()
 
 @property (nonatomic, strong) NSData *data;
+@property (nonatomic, copy) NSDictionary *headers;
 @property (nonatomic, copy) YMAResponseHandler block;
 
 @end
@@ -18,13 +19,14 @@ static NSInteger const kResponseParseErrorCode = 2503;
 
 #pragma mark - Object Lifecycle
 
-- (id)initWithData:(NSData *)data andCompletion:(YMAResponseHandler)block
+- (id)initWithData:(NSData *)data headers:(NSDictionary *)headers andCompletion:(YMAResponseHandler)block
 {
     self = [self init];
 
     if (self != nil) {
         _data = data;
         _block = [block copy];
+        _headers = [headers copy];
     }
 
     return self;
@@ -41,21 +43,21 @@ static NSInteger const kResponseParseErrorCode = 2503;
             [NSJSONSerialization JSONObjectWithData:_data options:(NSJSONReadingOptions)kNilOptions error:&error];
 
         if (error) {
-            _block(self, error);
+            self.block(self, error);
             return;
         }
 
-        [self parseJSONModel:responseModel error:&error];
-        _block(self, error);
+        [self parseJSONModel:responseModel headers:self.headers error:&error];
+        self.block(self, error);
     }
     @catch (NSException *exception) {
-        _block(self, [NSError errorWithDomain:exception.name code:kResponseParseErrorCode userInfo:exception.userInfo]);
+        self.block(self, [NSError errorWithDomain:exception.name code:kResponseParseErrorCode userInfo:exception.userInfo]);
     }
 }
 
 #pragma mark - Public methods
 
-- (BOOL)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
+- (BOOL)parseJSONModel:(id)responseModel headers:(NSDictionary *)headers error:(NSError * __autoreleasing *)error
 {
     NSString *reason = [NSString stringWithFormat:@"%@ must be ovverriden", NSStringFromSelector(_cmd)];
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];

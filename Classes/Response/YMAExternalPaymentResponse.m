@@ -13,9 +13,9 @@ static NSString *const kParameterTitle = @"title";
 
 #pragma mark - Overridden methods
 
-- (BOOL)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
+- (BOOL)parseJSONModel:(id)responseModel headers:(NSDictionary *)headers error:(NSError * __autoreleasing *)error
 {
-    BOOL result = [super parseJSONModel:responseModel error:error];
+    BOOL result = [super parseJSONModel:responseModel headers:headers error:error];
 
     NSString *requestId = responseModel[kParameterRequestId];
     NSString *contractAmount = [responseModel[kParameterContractAmount] stringValue];

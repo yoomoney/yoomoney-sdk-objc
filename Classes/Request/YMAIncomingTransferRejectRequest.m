@@ -52,9 +52,9 @@ static NSString *const kParameterOperationId = @"operation_id";
     return dictionary;
 }
 
-- (NSOperation *)buildResponseOperationWithData:(NSData *)data andCompletionHandler:(YMAResponseHandler)handler
+- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers andCompletionHandler:(YMAResponseHandler)handler
 {
-    return [[YMABaseProcessResponse alloc] initWithData:data andCompletion:handler];
+    return [[YMABaseProcessResponse alloc] initWithData:data headers:headers andCompletion:handler];
 }
 
 @end

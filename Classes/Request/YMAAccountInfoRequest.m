@@ -28,9 +28,9 @@ static NSString *const kUrlAccountInfo = @"api/account-info";
     return [NSURL URLWithString:urlString];
 }
 
-- (NSOperation *)buildResponseOperationWithData:(NSData *)data andCompletionHandler:(YMAResponseHandler)handler
+- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers andCompletionHandler:(YMAResponseHandler)handler
 {
-    return [[YMAAccountInfoResponse alloc] initWithData:data andCompletion:handler];
+    return [[YMAAccountInfoResponse alloc] initWithData:data headers:headers andCompletion:handler];
 }
 
 @end

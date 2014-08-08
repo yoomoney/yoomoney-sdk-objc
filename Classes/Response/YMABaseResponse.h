@@ -38,9 +38,10 @@ typedef void (^YMAResponseHandler)(YMABaseResponse *response, NSError *error);
 
 /// Constructor. Returns a YMABaseProcessResponse with the specified data and completion of block.
 /// @param data -
+/// @param headers -
 /// @param block -
-- (id)initWithData:(NSData *)data andCompletion:(YMAResponseHandler)block;
+- (id)initWithData:(NSData *)data headers:(NSDictionary *)headers andCompletion:(YMAResponseHandler)block;
 
-- (BOOL)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error;
+- (BOOL)parseJSONModel:(id)responseModel headers:(NSDictionary *)headers error:(NSError * __autoreleasing *)error;
 
 @end
