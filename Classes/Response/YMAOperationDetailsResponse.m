@@ -30,7 +30,7 @@ static NSString *const kParameterDigitalGoods = @"digital_goods";
 
 #pragma mark - Overridden methods
 
-- (BOOL)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
+- (BOOL)parseJSONModel:(id)responseModel headers:(NSDictionary *)headers error:(NSError * __autoreleasing *)error
 {
     NSString *errorKey = [responseModel objectForKey:kParameterError];
 

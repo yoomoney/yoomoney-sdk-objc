@@ -34,7 +34,7 @@ static NSString *const kParameterAccountUnblockUri = @"account_unblock_uri";
 
 #pragma mark - Overridden methods
 
-- (BOOL)parseJSONModel:(id)responseModel error:(NSError * __autoreleasing *)error
+- (BOOL)parseJSONModel:(id)responseModel headers:(NSDictionary *)headers error:(NSError * __autoreleasing *)error
 {
     NSString *statusKey = responseModel[kParameterStatus];
     NSString *accountUnblockUri = responseModel[kParameterAccountUnblockUri];
