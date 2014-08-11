@@ -172,9 +172,9 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
                            if (errorKey == nil)
                                block(nil, unknownError);
                            else
-                               block(nil, [NSError errorWithDomain:errorKey
+                               block(nil, [NSError errorWithDomain:YMAErrorDomainYaMoneyAPI
                                                               code:statusCode
-                                                          userInfo:nil]);
+                                                          userInfo:@{YMAErrorKey : errorKey}]);
                        }];
 }
 

@@ -23,11 +23,17 @@ extern NSString *const YMAP2PPaymentParameterAmount;
 // p2p parameter name. Amount to be credited to the account of Yandex.Money.
 extern NSString *const YMAP2PPaymentParameterAmountDue;
 
-// Unknown error code.
+// API error.
+extern NSString *const YMAErrorDomainYaMoneyAPI;
+
+// Unknown error.
 extern NSString *const YMAErrorDomainUnknown;
 
 // OAuth error.
 extern NSString *const YMAErrorDomainOAuth;
+
+// Error key.
+extern NSString *const YMAErrorKey;
 
 // Redirect uri
 extern NSString *const YMAParameterRedirectUri;

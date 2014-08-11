@@ -5,8 +5,6 @@
 
 #import "YMABaseResponse.h"
 
-static NSInteger const kResponseParseErrorCode = 2503;
-
 @interface YMABaseResponse ()
 
 @property (nonatomic, strong) NSData *data;
@@ -51,7 +49,7 @@ static NSInteger const kResponseParseErrorCode = 2503;
         self.block(self, error);
     }
     @catch (NSException *exception) {
-        self.block(self, [NSError errorWithDomain:exception.name code:kResponseParseErrorCode userInfo:exception.userInfo]);
+        self.block(self, [NSError errorWithDomain:exception.name code:0 userInfo:exception.userInfo]);
     }
 }
 

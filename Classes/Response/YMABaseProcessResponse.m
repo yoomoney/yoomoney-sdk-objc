@@ -47,7 +47,7 @@ static NSString *const kParameterAccountUnblockUri = @"account_unblock_uri";
         if (!error) return NO;
 
         NSError *unknownError = [NSError errorWithDomain:YMAErrorDomainUnknown code:0 userInfo:@{ @"response" : self }];
-        *error = errorKey ? [NSError errorWithDomain:errorKey code:0 userInfo:@{ @"response" : self }] : unknownError;
+        *error = errorKey ? [NSError errorWithDomain:YMAErrorDomainYaMoneyAPI code:0 userInfo:@{ YMAErrorKey : errorKey, @"response" : self }] : unknownError;
 
         return NO;
     }
