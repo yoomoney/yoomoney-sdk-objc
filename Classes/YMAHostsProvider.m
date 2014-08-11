@@ -35,4 +35,9 @@ static NSString *const kDefaultSpMoneyUrl = @"m.sp-money.yandex.ru";
     return self;
 }
 
+- (void)resetToDefaults {
+    self.moneyUrl = kDefaultMoneyUrl;
+    self.spMoneyUrl = kDefaultSpMoneyUrl;
+}
+
 @end
