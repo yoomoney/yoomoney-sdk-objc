@@ -79,7 +79,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
 
         if (query == nil || query.length == 0) {
             if (error)
-                *error = [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:@{ @"requestUrl" : request.URL }];
+                *error = [NSError errorWithDomain:YMAErrorDomainUnknown code:0 userInfo:@{ @"requestUrl" : request.URL }];
         }
         else if (authInfo != nil) {
 
@@ -143,8 +143,8 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
                                                                options:(NSJSONReadingOptions)kNilOptions
                                                                  error:&error];
 
-                           NSError *unknownError = [NSError errorWithDomain:YMAErrorKeyUnknown
-                                                                       code:0
+                           NSError *unknownError = [NSError errorWithDomain:YMAErrorDomainUnknown
+                                                                       code:statusCode
                                                                    userInfo:@{
                                                                        @"response" : response,
                                                                        @"request" : request
@@ -172,7 +172,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
                            if (errorKey == nil)
                                block(nil, unknownError);
                            else
-                               block(nil, [NSError errorWithDomain:NSLocalizedString(errorKey, errorKey)
+                               block(nil, [NSError errorWithDomain:errorKey
                                                               code:statusCode
                                                           userInfo:nil]);
                        }];
@@ -200,7 +200,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
 
 - (void)performRequest:(YMABaseRequest *)request token:(NSString *)token completion:(YMARequestHandler)block
 {
-    NSError *unknownError = [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:@{ @"request" : request }];
+    NSError *unknownError = [NSError errorWithDomain:YMAErrorDomainUnknown code:0 userInfo:@{ @"request" : request }];
 
     if (request == nil) {
         block(request, nil, unknownError);

@@ -21,7 +21,7 @@
         }];
 
     if (operation == nil) {
-        block(self, nil, [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:nil]);
+        block(self, nil, [NSError errorWithDomain:YMAErrorDomainUnknown code:0 userInfo:nil]);
         return;
     }
 

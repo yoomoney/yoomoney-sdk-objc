@@ -73,7 +73,7 @@ static NSString *const kParameterOperationType = @"type";
     if (errorKey != nil) {
         if (error == nil) return NO;
 
-        NSError *unknownError = [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:@{ @"response" : self }];
+        NSError *unknownError = [NSError errorWithDomain:YMAErrorDomainUnknown code:0 userInfo:@{ @"response" : self }];
         *error = errorKey ? [NSError errorWithDomain:errorKey code:0 userInfo:@{ @"response" : self }] : unknownError;
 
         return NO;

@@ -81,10 +81,10 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
                               url:url
                        completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
                            [self processRequest:urlRequest
-                                        response:urlResponse
-                                    responseData:responseData
-                                           error:error
-                                      completion:block];
+                                       response:urlResponse
+                                   responseData:responseData
+                                          error:error
+                                     completion:block];
                        }];
 }
 
@@ -100,10 +100,10 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
                               url:url
              andCompletionHandler:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
                  [self processRequest:urlRequest
-                              response:urlResponse
-                          responseData:responseData
-                                 error:error
-                            completion:block];
+                             response:urlResponse
+                         responseData:responseData
+                                error:error
+                           completion:block];
              }];
 }
 
@@ -136,23 +136,28 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
           [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
 
     NSInteger statusCode = ((NSHTTPURLResponse *)urlResponse).statusCode;
-    NSError *technicalError = [NSError errorWithDomain:YMAErrorKeyUnknown
-                                                  code:statusCode
-                                              userInfo:@{ @"request" : urlRequest, @"response" : urlResponse }];
+
 
     switch (statusCode) {
         case YMAStatusCodeOkHTTP:
             block(urlRequest, urlResponse, responseData, nil);
             break;
         case YMAStatusCodeInsufficientScopeHTTP:
-        case YMAStatusCodeInvalidTokenHTTP:
-            block(urlRequest, urlResponse, responseData,
-                  [NSError errorWithDomain:[self valueOfHeader:kHeaderWWWAuthenticate forResponse:urlResponse]
-                                      code:statusCode
-                                  userInfo:@{ @"request" : urlRequest, @"response" : urlResponse }]);
+        case YMAStatusCodeInvalidTokenHTTP: {
+            NSError *oAuthError = [NSError errorWithDomain:YMAErrorDomainOAuth
+                                                      code:statusCode
+                                                  userInfo:@{ @"request" : urlRequest, @"response" : urlResponse }];
+
+            block(urlRequest, urlResponse, responseData, oAuthError);
+        }
             break;
-        default:
+        default: {
+            NSError *technicalError = [NSError errorWithDomain:YMAErrorDomainUnknown
+                                                          code:statusCode
+                                                      userInfo:@{ @"request" : urlRequest, @"response" : urlResponse }];
+
             block(urlRequest, urlResponse, responseData, technicalError);
+        }
             break;
     }
 }
@@ -160,10 +165,10 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
 - (YMAConnection *)connectionWithUrl:(NSURL *)url customHeaders:(NSDictionary *)customHeaders andToken:(NSString *)token
 {
     NSMutableDictionary *headers = [self.defaultHeaders mutableCopy];
-    
+
     headers[YMAHeaderUserAgent] = _userAgent;
     headers[kHeaderAcceptLanguage] = self.language;
-    
+
     if (token)
         headers[kHeaderAuthorization] = [NSString stringWithFormat:kValueHeaderAuthorizationFormat, token];
 
@@ -173,11 +178,11 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
 
     YMAConnection *connection = [[YMAConnection alloc] initWithUrl:url];
     connection.requestMethod = YMAMethodPost;
-    
+
     for (NSString *key in headers.allKeys) {
         [connection addValue:headers[key] forHeader:key];
     }
-    
+
     return connection;
 }
 
@@ -195,11 +200,13 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
 
 #pragma mark - Getters and setters
 
-- (NSDictionary *)defaultHeaders {
+- (NSDictionary *)defaultHeaders
+{
     if (_defaultHeaders == nil) {
-        _defaultHeaders = @{YMAHeaderContentType: YMAValueContentTypeDefault, kHeaderAcceptEncoding: kValueAcceptEncoding};
+        _defaultHeaders =
+            @{ YMAHeaderContentType : YMAValueContentTypeDefault, kHeaderAcceptEncoding : kValueAcceptEncoding };
     }
-    
+
     return _defaultHeaders;
 }
 

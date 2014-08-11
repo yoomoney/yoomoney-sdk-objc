@@ -24,7 +24,10 @@ extern NSString *const YMAP2PPaymentParameterAmount;
 extern NSString *const YMAP2PPaymentParameterAmountDue;
 
 // Unknown error code.
-extern NSString *const YMAErrorKeyUnknown;
+extern NSString *const YMAErrorDomainUnknown;
+
+// OAuth error.
+extern NSString *const YMAErrorDomainOAuth;
 
 // Redirect uri
 extern NSString *const YMAParameterRedirectUri;

@@ -44,7 +44,7 @@ static NSString *const kValueParameterStatusSuccess = @"success";
                                                                options:(NSJSONReadingOptions)kNilOptions
                                                                  error:&error];
 
-                           NSError *unknownError = [NSError errorWithDomain:YMAErrorKeyUnknown
+                           NSError *unknownError = [NSError errorWithDomain:YMAErrorDomainUnknown
                                                                        code:0
                                                                    userInfo:@{
                                                                        @"response" : response,
@@ -79,7 +79,7 @@ static NSString *const kValueParameterStatusSuccess = @"success";
 
 - (void)performRequest:(YMABaseRequest *)request token:(NSString *)token completion:(YMARequestHandler)block
 {
-    NSError *unknownError = [NSError errorWithDomain:YMAErrorKeyUnknown code:0 userInfo:@{ @"request" : request }];
+    NSError *unknownError = [NSError errorWithDomain:YMAErrorDomainUnknown code:0 userInfo:@{ @"request" : request }];
 
     if (request == nil || self.instanceId == nil) {
         block(request, nil, unknownError);
