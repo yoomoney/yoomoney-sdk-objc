@@ -71,7 +71,7 @@ static NSString *const kValueParameterStatusSuccess = @"success";
                            if (errorKey == nil)
                                block(nil, unknownError);
                            else {
-                               NSDictionary *userInfo = [parameters mutableCopy];
+                               NSMutableDictionary *userInfo = [parameters mutableCopy];
                                userInfo[YMAErrorKey] = errorKey;
                                block(nil, [NSError errorWithDomain:YMAErrorDomainYaMoneyAPI code:statusCode userInfo:userInfo]);
                            }
