@@ -18,6 +18,8 @@ NSString *const YMAErrorDomainUnknown = @"technicalError";
 NSString *const YMAErrorDomainOAuth = @"oAuthError";
 
 NSString *const YMAErrorKey = @"YMAErrorKey";
+NSString *const YMAErrorKeyResponse = @"YMAErrorKeyResponse";
+NSString *const YMAErrorKeyRequest = @"YMAErrorKeyRequest";
 
 NSString *const YMAParameterRedirectUri = @"redirect_uri";
 NSString *const YMAParameterScope = @"scope";

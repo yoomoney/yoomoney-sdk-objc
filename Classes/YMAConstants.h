@@ -35,6 +35,12 @@ extern NSString *const YMAErrorDomainOAuth;
 // Error key.
 extern NSString *const YMAErrorKey;
 
+// Response error key.
+extern NSString *const YMAErrorKeyResponse;
+
+// Request error key.
+extern NSString *const YMAErrorKeyRequest;
+
 // Redirect uri
 extern NSString *const YMAParameterRedirectUri;
 

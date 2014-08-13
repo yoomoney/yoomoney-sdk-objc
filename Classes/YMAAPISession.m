@@ -146,8 +146,8 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
                            NSError *unknownError = [NSError errorWithDomain:YMAErrorDomainUnknown
                                                                        code:statusCode
                                                                    userInfo:@{
-                                                                       @"response" : response,
-                                                                       @"request" : request
+                                                                       YMAErrorKeyResponse : response,
+                                                                       YMAErrorKeyRequest : request
                                                                    }];
 
                            if (error != nil || responseModel == nil) {
@@ -174,7 +174,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
                            else
                                block(nil, [NSError errorWithDomain:YMAErrorDomainYaMoneyAPI
                                                               code:statusCode
-                                                          userInfo:@{YMAErrorKey : errorKey}]);
+                                                          userInfo:@{YMAErrorKey : errorKey, YMAErrorKeyResponse : response}]);
                        }];
 }
 
@@ -200,7 +200,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
 
 - (void)performRequest:(YMABaseRequest *)request token:(NSString *)token completion:(YMARequestHandler)block
 {
-    NSError *unknownError = [NSError errorWithDomain:YMAErrorDomainUnknown code:0 userInfo:@{ @"request" : request }];
+    NSError *unknownError = [NSError errorWithDomain:YMAErrorDomainUnknown code:0 userInfo:@{ YMAErrorKeyRequest : request }];
 
     if (request == nil) {
         block(request, nil, unknownError);

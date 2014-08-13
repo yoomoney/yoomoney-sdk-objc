@@ -146,7 +146,7 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
         case YMAStatusCodeInvalidTokenHTTP: {
             NSError *oAuthError = [NSError errorWithDomain:YMAErrorDomainOAuth
                                                       code:statusCode
-                                                  userInfo:@{ @"request" : urlRequest, @"response" : urlResponse }];
+                                                  userInfo:@{ YMAErrorKeyRequest : urlRequest, YMAErrorKeyResponse : urlResponse }];
 
             block(urlRequest, urlResponse, responseData, oAuthError);
         }
@@ -154,7 +154,7 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
         default: {
             NSError *technicalError = [NSError errorWithDomain:YMAErrorDomainUnknown
                                                           code:statusCode
-                                                      userInfo:@{ @"request" : urlRequest, @"response" : urlResponse }];
+                                                      userInfo:@{ YMAErrorKeyRequest : urlRequest, YMAErrorKeyResponse : urlResponse }];
 
             block(urlRequest, urlResponse, responseData, technicalError);
         }

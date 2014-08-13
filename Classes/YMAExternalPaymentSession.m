@@ -47,8 +47,8 @@ static NSString *const kValueParameterStatusSuccess = @"success";
                            NSError *unknownError = [NSError errorWithDomain:YMAErrorDomainUnknown
                                                                        code:0
                                                                    userInfo:@{
-                                                                       @"response" : response,
-                                                                       @"request" : request
+                                                                       YMAErrorKeyResponse : response,
+                                                                       YMAErrorKeyRequest : request
                                                                    }];
 
                            if (error != nil || responseModel == nil) {
@@ -71,9 +71,7 @@ static NSString *const kValueParameterStatusSuccess = @"success";
                            if (errorKey == nil)
                                block(nil, unknownError);
                            else {
-                               NSMutableDictionary *userInfo = [parameters mutableCopy];
-                               userInfo[YMAErrorKey] = errorKey;
-                               block(nil, [NSError errorWithDomain:YMAErrorDomainYaMoneyAPI code:statusCode userInfo:userInfo]);
+                               block(nil, [NSError errorWithDomain:YMAErrorDomainYaMoneyAPI code:statusCode userInfo:@{YMAErrorKey: errorKey, YMAErrorKeyResponse: response}]);
                            }
                        }];
 }
@@ -82,7 +80,7 @@ static NSString *const kValueParameterStatusSuccess = @"success";
 
 - (void)performRequest:(YMABaseRequest *)request token:(NSString *)token completion:(YMARequestHandler)block
 {
-    NSError *unknownError = [NSError errorWithDomain:YMAErrorDomainUnknown code:0 userInfo:@{ @"request" : request }];
+    NSError *unknownError = [NSError errorWithDomain:YMAErrorDomainUnknown code:0 userInfo:@{ YMAErrorKeyRequest : request }];
 
     if (request == nil || self.instanceId == nil) {
         block(request, nil, unknownError);
