@@ -7,11 +7,8 @@
 
 #import "YMABaseRequest.h"
 #import "YMABaseResponse.h"
-#import "YMAConstants.h"
 
 @implementation YMABaseRequest
-
-#pragma mark - Overridden methods
 
 - (void)buildResponseWithData:(NSData *)data headers:(NSDictionary *)headers queue:(NSOperationQueue *)queue andCompletion:(YMARequestHandler)block
 {
@@ -32,6 +29,11 @@
 {
     NSString *reason = [NSString stringWithFormat:@"%@ must be ovverriden", NSStringFromSelector(_cmd)];
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
+}
+
+- (YMARequestMethod)requestMethod
+{
+    return YMARequestMethodPost;
 }
 
 @end

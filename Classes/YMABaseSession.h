@@ -49,28 +49,32 @@ typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
 - (id)initWithUserAgent:(NSString *)userAgent;
 
 /// Send request used token.
+/// @param requestMethod - request method.
 /// @param token - an access token is a string representing an authorization issued to the client (see OAuth 2.0)
 /// @param parameters - request parameters.
 /// @param customHeaders - used for define custom headers of request.
 /// @param url -  request url.
 /// @param block - completion of block is used to get the response.
-- (void)performRequestWithToken:(NSString *)token
-                     parameters:(NSDictionary *)parameters
-                  customHeaders:(NSDictionary *)customHeaders
-                            url:(NSURL *)url
-                     completion:(YMAConnectionHandler)block;
+- (void)performRequestWithMethod:(YMARequestMethod)requestMethod
+                           token:(NSString *)token
+                      parameters:(NSDictionary *)parameters
+                   customHeaders:(NSDictionary *)customHeaders
+                             url:(NSURL *)url
+                      completion:(YMAConnectionHandler)block;
 
 /// Send request used token and analyzed HTTP status code of response.
+/// @param requestMethod - request method.
 /// @param token - an access token is a string representing an authorization issued to the client (see OAuth 2.0)
 /// @param parameters - request parameters.
 /// @param customHeaders - used for define custom headers of request.
 /// @param url -  request url.
 /// @param block - completion of block is used to get the response.
-- (void)performAndProcessRequestWithToken:(NSString *)token
-                               parameters:(NSDictionary *)parameters
-                            customHeaders:(NSDictionary *)customHeaders
-                                      url:(NSURL *)url
-                               completion:(YMAConnectionHandler)block;
+- (void)performAndProcessRequestWithMethod:(YMARequestMethod)requestMethod
+                                     token:(NSString *)token
+                                parameters:(NSDictionary *)parameters
+                             customHeaders:(NSDictionary *)customHeaders
+                                       url:(NSURL *)url
+                                completion:(YMAConnectionHandler)block;
 
 /// Send request used token and analyzed HTTP status code of response.
 /// @param token - an access token is a string representing an authorization issued to the client (see OAuth 2.0)

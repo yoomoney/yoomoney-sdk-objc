@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger, YMAResponseStatus) {
     /// (you should open the WebView and send the client to uri + params specified in YMAAscModel)
         YMAResponseStatusExtAuthRequired,
 
-    YMAResponseStatusHoldForPickup
+        YMAResponseStatusHoldForPickup
 };
 
 @class YMABaseResponse;
@@ -36,7 +36,7 @@ typedef void (^YMAResponseHandler)(YMABaseResponse *response, NSError *error);
 ///
 @interface YMABaseResponse : NSOperation
 
-/// Constructor. Returns a YMABaseProcessResponse with the specified data and completion of block.
+/// Constructor. Returns a YMABaseResponse with the specified data and completion of block.
 /// @param data -
 /// @param headers -
 /// @param block -

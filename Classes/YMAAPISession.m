@@ -125,7 +125,8 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
         [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].spMoneyUrl, relativeUrlString];
     NSURL *url = [NSURL URLWithString:urlString];
 
-    [self performRequestWithToken:nil
+    [self performRequestWithMethod:YMARequestMethodPost
+                             token:nil
                        parameters:parameters
                     customHeaders:nil
                               url:url
@@ -184,11 +185,12 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
         [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, kUrlRevoke];
     NSURL *url = [NSURL URLWithString:urlString];
 
-    [self performAndProcessRequestWithToken:token
-                                 parameters:nil
-                              customHeaders:nil
-                                        url:url
-                                 completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
+    [self performAndProcessRequestWithMethod:YMARequestMethodPost
+                                       token:token
+                                  parameters:nil
+                               customHeaders:nil
+                                         url:url
+                                  completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
                                      if (error != nil) {
                                          block(error);
                                          return;
@@ -210,18 +212,20 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
     if ([request conformsToProtocol:@protocol(YMAParametersPosting)]) {
         YMABaseRequest<YMAParametersPosting> *paramsRequest = (YMABaseRequest<YMAParametersPosting> *)request;
 
-        [self performAndProcessRequestWithToken:token
-                                     parameters:paramsRequest.parameters
-                                  customHeaders:paramsRequest.customHeaders
-                                            url:request.requestUrl
-                                     completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
+        [self performAndProcessRequestWithMethod:paramsRequest.requestMethod
+                                           token:token
+                                      parameters:paramsRequest.parameters
+                                   customHeaders:paramsRequest.customHeaders
+                                             url:request.requestUrl
+                                      completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
+                                         
                                          if (error != nil) {
                                              block(request, nil, error);
                                              return;
                                          }
                                          
                                          NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)urlResponse;
-                                         NSDictionary *headers =  httpResponse.allHeaderFields;
+                                         NSDictionary *headers = httpResponse.allHeaderFields;
                                          
                                          [request buildResponseWithData:responseData
                                                                 headers:headers

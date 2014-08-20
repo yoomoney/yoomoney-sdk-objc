@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "YMAConstants.h"
 
 @class YMABaseRequest;
 @class YMABaseResponse;
@@ -26,7 +27,7 @@
 
 /// Completion of block is used to get the response.
 /// @param request - request inherited from abstract class YMABaseRequest.
-/// @param response - response inherited from abstract class YMABaseProcessResponse.
+/// @param response - response inherited from abstract class YMABaseResponse.
 /// @param error - Error information or nil.
 typedef void (^YMARequestHandler)(YMABaseRequest *request, YMABaseResponse *response, NSError *error);
 
@@ -39,6 +40,7 @@ typedef void (^YMARequestHandler)(YMABaseRequest *request, YMABaseResponse *resp
 @property (nonatomic, strong, readonly) NSURL *requestUrl;
 @property (nonatomic, strong) id context;
 
+@property (nonatomic, assign, readonly) YMARequestMethod requestMethod;
 /// Used for define custom headers of request.
 @property (nonatomic, strong, readonly) NSDictionary *customHeaders;
 

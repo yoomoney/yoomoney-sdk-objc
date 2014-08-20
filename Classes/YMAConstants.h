@@ -11,6 +11,13 @@
 
 #import <Foundation/Foundation.h>
 
+/// Values for AXRequestMethod
+/// Request method
+typedef NS_ENUM(NSInteger, YMARequestMethod) {
+    YMARequestMethodPost,
+    YMARequestMethodGet
+};
+
 // p2p parameter name. Identifier the transfer recipient.
 extern NSString *const YMAP2PPaymentParameterTo;
 
@@ -41,10 +48,10 @@ extern NSString *const YMAErrorKeyResponse;
 // Request error key.
 extern NSString *const YMAErrorKeyRequest;
 
-// Redirect uri
+// Redirect uri.
 extern NSString *const YMAParameterRedirectUri;
 
-// Scope
+// Scope.
 extern NSString *const YMAParameterScope;
 
 // Header constant = "Content-Type".

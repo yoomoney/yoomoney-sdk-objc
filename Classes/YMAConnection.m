@@ -7,6 +7,9 @@
 
 #import "YMAConnection.h"
 
+static NSString *const kRequestMethodPost = @"POST";
+static NSString *const kRequestMethodGet = @"GET";
+
 static NSInteger const kRequestTimeoutIntervalDefault = 60;
 static NSString *const kHeaderContentLength = @"Content-Length";
 
@@ -20,22 +23,63 @@ static NSString *const kHeaderContentLength = @"Content-Length";
 
 #pragma mark - Object Lifecycle
 
-- (id)initWithUrl:(NSURL *)url
+- (id)initWithUrl:(NSURL *)url params:(NSDictionary *)params andRequestMethod:(NSString *)requestMethod
 {
     self = [super init];
-
+    
     if (self != nil) {
-        _request = [[NSMutableURLRequest alloc] initWithURL:url
+        NSURL *requestUrl = url;
+        NSString *paramString = [YMAConnection bodyStringWithParams:params];
+        
+        if ([requestMethod isEqualToString:kRequestMethodGet]) {
+            NSString *urlWithQuery = [NSString stringWithFormat:@"%@?%@", [url absoluteString], paramString];
+            requestUrl = [NSURL URLWithString:urlWithQuery];
+        }
+        
+        _request = [[NSMutableURLRequest alloc] initWithURL:requestUrl
                                                 cachePolicy:NSURLRequestUseProtocolCachePolicy
                                             timeoutInterval:kRequestTimeoutIntervalDefault];
+        _request.HTTPMethod = requestMethod;
+        
+        if ([requestMethod isEqualToString:kRequestMethodPost])
+            _request.HTTPBody = [paramString dataUsingEncoding:NSUTF8StringEncoding];
     }
-
+    
     return self;
 }
 
-+ (instancetype)connectionWithUrl:(NSURL *)url
+- (id)initWithUrl:(NSURL *)url bodyData:(NSData *)bodyData
 {
-    return [[YMAConnection alloc] initWithUrl:url];
+    self = [super init];
+    
+    if (self != nil) {
+        NSURL *requestUrl = url;
+        _request = [[NSMutableURLRequest alloc] initWithURL:requestUrl
+                                                cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                            timeoutInterval:kRequestTimeoutIntervalDefault];
+        _request.HTTPMethod = kRequestMethodPost;
+        self.request.HTTPBody = bodyData;
+    }
+    
+    return self;
+}
+
++ (instancetype)connectionForPostRequestWithUrl:(NSURL *)url
+                                      andParams:(NSDictionary *)postParams
+{
+    return [[YMAConnection alloc] initWithUrl:url params:postParams andRequestMethod:kRequestMethodPost];
+}
+
++ (instancetype)connectionForPostRequestWithUrl:(NSURL *)url
+                                         andDta:(NSData *)bodyData
+{
+    return [[YMAConnection alloc] initWithUrl:url bodyData:bodyData];
+}
+
++ (instancetype)connectionForGetRequestWithUrl:(NSURL *)url
+                                     andParams:(NSDictionary *)postParams
+{
+    return [[YMAConnection alloc] initWithUrl:url params:postParams andRequestMethod:kRequestMethodGet];
 }
 
 #pragma mark - Public methods
@@ -70,42 +114,24 @@ static NSString *const kHeaderContentLength = @"Content-Length";
     [self.request addValue:value forHTTPHeaderField:header];
 }
 
-- (void)addPostParams:(NSDictionary *)postParams
++ (NSString *)bodyStringWithParams:(NSDictionary *)postParams
 {
     if (!postParams)
-        return;
-
-    NSMutableArray *bodyParams = [[NSMutableArray alloc] init];
-
+        return [NSString string];
+    
+    NSMutableArray *bodyParams = [NSMutableArray array];
+    
     for (NSString *key in postParams.allKeys) {
         id value = [postParams objectForKey:key];
         NSString *paramValue = [value isKindOfClass:[NSNumber class]] ? [value stringValue] : value;
-
+        
         NSString *encodedValue = [YMAConnection addPercentEscapesForString:paramValue];
         NSString *encodedKey = [YMAConnection addPercentEscapesForString:key];
-
+        
         [bodyParams addObject:[NSString stringWithFormat:@"%@=%@", encodedKey, encodedValue]];
     }
-
-    NSString *bodyString = [bodyParams componentsJoinedByString:@"&"];
-    self.request.HTTPBody = [bodyString dataUsingEncoding:NSUTF8StringEncoding];
-}
-
-- (void)addBodyData:(NSData *)bodyData
-{
-    self.request.HTTPBody = bodyData;
-}
-
-#pragma mark - Getters and setters
-
-- (void)setRequestMethod:(NSString *)requestMethod
-{
-    self.request.HTTPMethod = requestMethod;
-}
-
-- (NSString *)requestMethod
-{
-    return self.request.HTTPMethod;
+    
+    return [bodyParams componentsJoinedByString:@"&"];
 }
 
 @end

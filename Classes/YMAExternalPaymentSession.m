@@ -26,11 +26,12 @@ static NSString *const kValueParameterStatusSuccess = @"success";
                                                                  [YMAHostsProvider sharedManager].moneyUrl,
                                                                  kInstanceUrl]];
 
-    [self performRequestWithToken:token
-                       parameters:parameters
-                    customHeaders:nil
-                              url:url
-                       completion:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
+    [self performRequestWithMethod:YMARequestMethodPost
+                             token:token
+                        parameters:parameters
+                     customHeaders:nil
+                               url:url
+                        completion:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
                            
                            if (error != nil) {
                                block(nil, error);
@@ -93,11 +94,12 @@ static NSString *const kValueParameterStatusSuccess = @"success";
 
         [parameters setValue:self.instanceId forKey:kParameterInstanceId];
 
-        [self performAndProcessRequestWithToken:token
-                                     parameters:parameters
-                                  customHeaders:paramsRequest.customHeaders
-                                            url:request.requestUrl
-                                     completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
+        [self performAndProcessRequestWithMethod:YMARequestMethodPost
+                                           token:token
+                                      parameters:parameters
+                                   customHeaders:paramsRequest.customHeaders
+                                             url:request.requestUrl
+                                      completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
                                          if (error != nil) {
                                              block(request, nil, error);
                                              return;
