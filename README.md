@@ -7,6 +7,10 @@
 
 To run the example project; clone the repo, and run `pod install` from the Example directory first.
 
+### App Registration
+
+To be able to use the library you: the first thing you need to do is to register your application and get your unique *client id*. To do that please follow the steps described on [this page][3] (also available in [Russian][4]).
+
 ## Links
 
 * Yandex.Money API page: [Ru](http://api.yandex.ru/money/), [En](http://api.yandex.com/money/)
