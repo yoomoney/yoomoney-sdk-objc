@@ -9,7 +9,7 @@ To run the example project; clone the repo, and run `pod install` from the Examp
 
 ### App Registration
 
-To be able to use the library you: the first thing you need to do is to register your application and get your unique *client id*. To do that please follow the steps described on [this page][3] (also available in [Russian][4]).
+To be able to use the library you: the first thing you need to do is to register your application and get your unique *client id*. To do that please follow the steps described on [this page][1] (also available in [Russian][2]).
 
 ## Links
 
@@ -27,3 +27,7 @@ it simply add the following line to your Podfile:
 
 YandexMoneySDKObjc is available under the MIT license. See the LICENSE file for more info.
 
+[1]: http://api.yandex.com/money/doc/dg/tasks/register-client.xml
+[2]: http://api.yandex.ru/money/doc/dg/tasks/register-client.xml
+[3]: http://api.yandex.com/money/
+[4]: http://api.yandex.ru/money/
