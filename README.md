@@ -33,14 +33,19 @@ Before making the first payment, you need to register a copy of the application 
 
 YMAExternalPaymentSession *session = [[YMAExternalPaymentSession alloc] init];
 
-[session instanceWithClientId:YMClientId token:self.secureStorage.token completion:^(NSString *Id, NSError *error) {
-    if (error != nil) {
-        // Process error 
-    } else {
-        instanceId = Id; // Do NOT request instance id every time you need to call API method. 
-                         // Obtain it once and reuse it.
-    }
-}];
+if (instanceId == nil) {
+    [session instanceWithClientId:YMClientId token:self.secureStorage.token completion:^(NSString *Id, NSError *error)     {
+        if (error != nil) {
+            // Process error 
+        } else {
+            instanceId = Id; // Do NOT request instance id every time you need to call API method. 
+                             // Obtain it once and reuse it.
+            session.instanceId = instanceId;
+        }
+    }];
+} else {
+    session.instanceId = instanceId;
+}
 
 ```
 #### Payment
