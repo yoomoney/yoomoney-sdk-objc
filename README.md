@@ -13,7 +13,7 @@ To be able to use the library you: the first thing you need to do is to register
 
 ### Payments from bank cards without authorization
 
-For payments from bank cards without authorization use YMAExternalPaymentSession class (API page: [Ru][5], [En][6])
+For payments from bank cards without authorization (API page: [Ru][5], [En][6]) use YMAExternalPaymentSession class.
 To perform a request (call of API method), use `performRequest` method of YMAExternalPaymentSession class:
 
 ```Objective-C
