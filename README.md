@@ -37,7 +37,8 @@ YMAExternalPaymentSession *session = [[YMAExternalPaymentSession alloc] init];
     if (error != nil) {
         // Process error 
     } else {
-        instanceId = Id; // Do NOT request instance id every time you need to call API method. Obtain it once and reuse it.
+        instanceId = Id; // Do NOT request instance id every time you need to call API method. 
+                         // Obtain it once and reuse it.
     }
 }];
 
