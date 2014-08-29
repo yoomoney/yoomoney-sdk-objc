@@ -1,0 +1,1 @@
+../../YandexMoneySDKObjc/Classes/Models/AccountInfo/YMAOperationDetailsModel.h

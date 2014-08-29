@@ -7,26 +7,33 @@
 
 #import "YMABaseRequest.h"
 #import "YMABaseResponse.h"
-#import "YMAConstants.h"
 
 @implementation YMABaseRequest
 
-- (void)buildResponseWithData:(NSData *)data queue:(NSOperationQueue *)queue andCompletion:(YMARequestHandler)block {
-    NSOperation *operation = [self buildResponseOperationWithData:data andCompletionHandler:^(YMABaseResponse *response, NSError *error) {
-        block(self, response, error);
-    }];
+- (void)buildResponseWithData:(NSData *)data headers:(NSDictionary *)headers queue:(NSOperationQueue *)queue andCompletion:(YMARequestHandler)block
+{
+    NSOperation *operation =
+        [self buildResponseOperationWithData:data headers:(NSDictionary *)headers andCompletionHandler:^(YMABaseResponse *response, NSError *error) {
+            block(self, response, error);
+        }];
 
-    if (!operation) {
-        block(self, nil, [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:nil]);
+    if (operation == nil) {
+        block(self, nil, [NSError errorWithDomain:YMAErrorDomainUnknown code:0 userInfo:nil]);
         return;
     }
 
     [queue addOperation:operation];
 }
 
-- (NSOperation *)buildResponseOperationWithData:(NSData *)data andCompletionHandler:(YMAResponseHandler)handler {
+- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers andCompletionHandler:(YMAResponseHandler)handler
+{
     NSString *reason = [NSString stringWithFormat:@"%@ must be ovverriden", NSStringFromSelector(_cmd)];
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
+}
+
+- (YMARequestMethod)requestMethod
+{
+    return YMARequestMethodPost;
 }
 
 @end

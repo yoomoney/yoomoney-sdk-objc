@@ -1,5 +1,9 @@
 #import "ViewController.h"
-#import <ymcpssdk.h>
+#import "YMAExternalPaymentInfoModel.h"
+#import "YMAExternalPaymentSession.h"
+#import "YMAExternalPaymentRequest.h"
+#import "YMAAscModel.h"
+#import "YMAProcessExternalPaymentRequest.h"
 
 static NSString *const kKeychainIdInstance = @"instanceKeychainId";
 static NSString *const kSuccessUrl = @"yandexmoneyapp://oauth/authorize/success";
@@ -10,7 +14,7 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
 
 @interface ViewController () {
     NSMutableDictionary *_instanceIdQuery;
-    YMASession *_session;
+    YMAExternalPaymentSession *_session;
 }
 
 @property(nonatomic, strong) UIButton *doPaymentButton;
@@ -19,10 +23,10 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
 @property(nonatomic, strong) UILabel *amountLabel;
 @property(nonatomic, strong) UITextField *amountTextField;
 @property(nonatomic, strong) UIWebView *webView;
-@property(nonatomic, strong) YMAPaymentRequestInfo *paymentRequestInfo;
+@property(nonatomic, strong) YMAExternalPaymentInfoModel *paymentRequestInfo;
 @property(nonatomic, strong, readonly) NSDictionary *instanceIdQuery;
 @property(nonatomic, copy) NSString *instanceId;
-@property(nonatomic, strong, readonly) YMASession *session;
+@property(nonatomic, strong, readonly) YMAExternalPaymentSession *session;
 
 @end
 
@@ -96,7 +100,7 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
             });
         else {
             // Payment request. First phase of payment is required to obtain payment info (YMAPaymentRequestInfo)
-            [self startPaymentWithPatternId:@"phone-topup" andPaymentParams:paymentParams completion:^(YMAPaymentRequestInfo *requestInfo, NSError *paymentRequestError) {
+            [self startPaymentWithPatternId:@"phone-topup" andPaymentParams:paymentParams completion:^(YMAExternalPaymentInfoModel *requestInfo, NSError *paymentRequestError) {
                 if (!paymentRequestError) {
                     self.paymentRequestInfo = requestInfo;
                     // Process payment request. Second phase of payment.
@@ -234,9 +238,9 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
 #pragma mark *** Payment process  ***
 #pragma mark -
 
-- (YMASession *)session {
+- (YMAExternalPaymentSession *)session {
     if (!_session) {
-        _session = [[YMASession alloc] init];
+        _session = [[YMAExternalPaymentSession alloc] init];
     }
     
     return _session;
@@ -246,15 +250,18 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
     NSString *instanceId = self.instanceId;
     
     if (!instanceId || [instanceId isEqual:@""]) {
-        [self.session authorizeWithClientId:kClientId completion:^(NSString *newInstanceId, NSError *error) {
-            if (error)
-                block(error);
-            else {
-                self.instanceId = newInstanceId;
-                block(nil);
-            }
-        }];
-        
+        [self.session instanceWithClientId:kClientId
+                                     token:nil
+                                completion:^(NSString *Id, NSError *error) {
+                                    if (error)
+                                        block(error);
+                                    else {
+                                        self.instanceId = Id;
+                                        self.session.instanceId = Id;
+                                        block(nil);
+                                    }
+                                }];
+
         return;
     }
     
@@ -262,21 +269,23 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
     block(nil);
 }
 
-- (void)startPaymentWithPatternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams completion:(void (^)(YMAPaymentRequestInfo *requestInfo, NSError *error))block {
+- (void)startPaymentWithPatternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams completion:(void (^)(YMAExternalPaymentInfoModel *requestInfo, NSError *error))block {
     YMABaseRequest *externalPaymentRequest = [YMAExternalPaymentRequest externalPaymentWithPatternId:patternId andPaymentParams:paymentParams];
-    
-    [self.session performRequest:externalPaymentRequest completion:^(YMABaseRequest *request, YMABaseResponse *response, NSError *error) {
-        if (error) {
-            block(nil, error);
-            return;
-        }
-        
-        YMAExternalPaymentResponse *externalPaymentResponse = (YMAExternalPaymentResponse *) response;
-        block(externalPaymentResponse.paymentRequestInfo, nil);
-    }];
+
+    [self.session performRequest:externalPaymentRequest
+                           token:nil
+                      completion:^(YMABaseRequest *request, YMABaseResponse *response, NSError *error) {
+                          if (error) {
+                              block(nil, error);
+                              return;
+                          }
+
+                          YMAExternalPaymentResponse *externalPaymentResponse = (YMAExternalPaymentResponse *) response;
+                          block(externalPaymentResponse.paymentRequestInfo, nil);
+                      }];
 }
 
-- (void)finishPaymentWithRequestId:(NSString *)requestId completion:(void (^)(YMAAsc *asc, NSError *error))block {
+- (void)finishPaymentWithRequestId:(NSString *)requestId completion:(void (^)(YMAAscModel *asc, NSError *error))block {
     YMABaseRequest *processExternalPaymentRequest = [YMAProcessExternalPaymentRequest processExternalPaymentWithRequestId:requestId successUri:kSuccessUrl failUri:kFailUrl requestToken:NO];
     
     [self processPaymentRequest:processExternalPaymentRequest completion:^(YMABaseRequest *request, YMABaseResponse *response, NSError *error) {
@@ -285,13 +294,15 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
             return;
         }
         
-        NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"request" : request, @"response" : response}];
-        
-        if (response.status == YMAResponseStatusSuccess)
+        NSError *unknownError = [NSError errorWithDomain:YMAErrorDomainUnknown code:0 userInfo:@{@"request" : request, @"response" : response}];
+
+        YMABaseProcessResponse *processResponse = (YMABaseProcessResponse *)response;
+
+        if (processResponse.status == YMAResponseStatusSuccess)
             block(nil, nil);
-        else if (response.status == YMAResponseStatusExtAuthRequired) {
+        else if (processResponse.status == YMAResponseStatusExtAuthRequired) {
             YMAProcessExternalPaymentResponse *processExternalPaymentResponse = (YMAProcessExternalPaymentResponse *) response;
-            YMAAsc *asc = processExternalPaymentResponse.asc;
+            YMAAscModel *asc = processExternalPaymentResponse.asc;
             
             block(asc, asc ? nil : unknownError);
         } else
@@ -300,26 +311,31 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
 }
 
 - (void)processPaymentRequest:(YMABaseRequest *)paymentRequest completion:(YMARequestHandler)block {
-    [self.session performRequest:paymentRequest completion:^(YMABaseRequest *request, YMABaseResponse *response, NSError *error) {
-        if (response.status == YMAResponseStatusInProgress) {
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, response.nextRetry);
-            dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
-                [self processPaymentRequest:request completion:block];
-            });
-        } else
-            block(request, response, error);
-    }];
+
+    [self.session performRequest:paymentRequest
+                           token:nil
+                      completion:^(YMABaseRequest *request, YMABaseResponse *response, NSError *error) {
+                          YMABaseProcessResponse *processResponse = (YMABaseProcessResponse *)response;
+
+                          if (processResponse.status == YMAResponseStatusInProgress) {
+                              dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, processResponse.nextRetry);
+                              dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
+                                  [self processPaymentRequest:request completion:block];
+                              });
+                          } else
+                              block(request, response, error);
+                      }];
 }
 
 - (void)finishPayment {
-    [self finishPaymentWithRequestId:self.paymentRequestInfo.requestId completion:^(YMAAsc *asc, NSError *error) {
+    [self finishPaymentWithRequestId:self.paymentRequestInfo.requestId completion:^(YMAAscModel *asc, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self processPaymentRequestWithAsc:asc andError:error];
         });
     }];
 }
 
-- (void)processPaymentRequestWithAsc:(YMAAsc *)asc andError:(NSError *)error {
+- (void)processPaymentRequestWithAsc:(YMAAscModel *)asc andError:(NSError *)error {
     if (error)
         [self showError:error];
     else if (asc) {

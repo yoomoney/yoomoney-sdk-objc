@@ -7,23 +7,25 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^YMAConnectionHandler)(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error);
+typedef void
+(^YMAConnectionHandler)(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error);
 
 @interface YMAConnection : NSObject
 
-@property(nonatomic, copy) NSString *requestMethod;
++ (instancetype)connectionForPostRequestWithUrl:(NSURL *)url
+                                      andParams:(NSDictionary *)postParams;
 
-+ (instancetype)connectionWithUrl:(NSURL *)url;
++ (instancetype)connectionForPostRequestWithUrl:(NSURL *)url
+                                      andDta:(NSData *)bodyData;
 
-- (id)initWithUrl:(NSURL *)url;
++ (instancetype)connectionForGetRequestWithUrl:(NSURL *)url
+                                     andParams:(NSDictionary *)postParams;
+
++ (NSString *)addPercentEscapesForString:(NSString *)string;
 
 - (void)sendAsynchronousWithQueue:(NSOperationQueue *)queue
                 completionHandler:(YMAConnectionHandler)handler;
 
 - (void)addValue:(NSString *)value forHeader:(NSString *)header;
-
-- (void)addPostParams:(NSDictionary *)postParams;
-
-- (void)addBodyData:(NSData *)bodyData;
 
 @end

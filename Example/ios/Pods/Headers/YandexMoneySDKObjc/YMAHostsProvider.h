@@ -1,0 +1,1 @@
+../../YandexMoneySDKObjc/Classes/YMAHostsProvider.h

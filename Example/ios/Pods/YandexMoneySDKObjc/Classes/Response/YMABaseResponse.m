@@ -1,87 +1,62 @@
 //
-//  YMABaseResponse.m
-//
-//  Created by Alexander Mertvetsov on 01.11.13.
-//  Copyright (c) 2013 Yandex.Money. All rights reserved.
+// Created by Alexander Mertvetsov on 20.05.14.
+// Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
 #import "YMABaseResponse.h"
-#import "YMAConstants.h"
-
-static NSInteger const kResponseParseErrorCode = 2503;
-static NSString *const kResponseStatusKeyRefused = @"refused";
-static NSString *const kResponseStatusKeyInProgress = @"in_progress";
-static NSString *const kResponseStatusKeyExtAuthRequired = @"ext_auth_required";
-static NSString *const kParameterStatus = @"status";
-static NSString *const kParameterError = @"error";
-static NSString *const kParameterNextRetry = @"next_retry";
 
 @interface YMABaseResponse ()
 
-@property(nonatomic, copy) YMAResponseHandler handler;
-@property(nonatomic, retain) NSData *data;
+@property (nonatomic, strong) NSData *data;
+@property (nonatomic, copy) NSDictionary *headers;
+@property (nonatomic, copy) YMAResponseHandler block;
 
 @end
 
 @implementation YMABaseResponse
 
-- (id)initWithData:(NSData *)data andCompletion:(YMAResponseHandler)block {
+#pragma mark - Object Lifecycle
+
+- (id)initWithData:(NSData *)data headers:(NSDictionary *)headers andCompletion:(YMAResponseHandler)block
+{
     self = [self init];
 
-    if (self) {
+    if (self != nil) {
         _data = data;
-        _handler = [block copy];
-        _nextRetry = 0;
+        _block = [block copy];
+        _headers = [headers copy];
     }
 
     return self;
 }
 
-#pragma mark -
-#pragma mark *** NSOperation ***
-#pragma mark -
+#pragma mark - NSOperation
 
-- (void)main {
-
+- (void)main
+{
     NSError *error;
 
     @try {
-
-        id responseModel = [NSJSONSerialization JSONObjectWithData:_data options:(NSJSONReadingOptions) kNilOptions error:&error];
+        id responseModel =
+            [NSJSONSerialization JSONObjectWithData:_data options:(NSJSONReadingOptions)kNilOptions error:&error];
 
         if (error) {
-            self.handler(self, error);
+            self.block(self, error);
             return;
         }
 
-        NSString *statusKey = [responseModel objectForKey:kParameterStatus];
-
-        if ([statusKey isEqual:kResponseStatusKeyRefused]) {
-            NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"response" : self}];
-
-            NSString *errorKey = [responseModel objectForKey:kParameterError];
-            _status = YMAResponseStatusRefused;
-
-            self.handler(self, errorKey ? [NSError errorWithDomain:errorKey code:0 userInfo:@{@"response" : self}] : unknownError);
-            return;
-        }
-
-        if ([statusKey isEqual:kResponseStatusKeyInProgress]) {
-            NSString *nextRetryString = [responseModel objectForKey:kParameterNextRetry];
-            _nextRetry = (NSUInteger) [nextRetryString integerValue];
-            _status = YMAResponseStatusInProgress;
-        } else
-            _status = [statusKey isEqual:kResponseStatusKeyExtAuthRequired] ? YMAResponseStatusExtAuthRequired : YMAResponseStatusSuccess;
-
-        [self parseJSONModel:responseModel];
-        self.handler(self, nil);
+        [self parseJSONModel:responseModel headers:self.headers error:&error];
+        self.block(self, error);
     }
     @catch (NSException *exception) {
-        self.handler(self, [NSError errorWithDomain:exception.name code:kResponseParseErrorCode userInfo:exception.userInfo]);
+        self.block(self, [NSError errorWithDomain:exception.name code:0 userInfo:exception.userInfo]);
     }
 }
 
-- (void)parseJSONModel:(id)responseModel {
+#pragma mark - Public methods
+
+- (BOOL)parseJSONModel:(id)responseModel headers:(NSDictionary *)headers error:(NSError * __autoreleasing *)error
+{
     NSString *reason = [NSString stringWithFormat:@"%@ must be ovverriden", NSStringFromSelector(_cmd)];
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 }
