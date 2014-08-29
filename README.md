@@ -57,7 +57,8 @@ YMABaseRequest *externalPaymentRequest = [YMAExternalPaymentRequest externalPaym
     
 // session - instance of YMAExternalPaymentSession class 
 // token - can be nil.
-[session performRequest:externalPaymentRequest token:token completion:^(YMABaseRequest *request,                        YMABaseResponse *response, NSError *error) {
+[session performRequest:externalPaymentRequest token:token completion:^(YMABaseRequest *request, 
+    YMABaseResponse *response, NSError *error) {
     if (error != nil) {
         // Process error
     } else {
@@ -80,7 +81,8 @@ YMABaseRequest *processExternalPaymentRequest = [YMAProcessExternalPaymentReques
     
 // session - instance of YMAExternalPaymentSession class 
 // token - can be nil.
-[session performRequest:paymentRequest token:token completion:^(YMABaseRequest *request, YMABaseResponse *response,     NSError *error) {
+[session performRequest:paymentRequest token:token completion:^(YMABaseRequest *request, YMABaseResponse *response,
+    NSError *error) {
     if (error != nil) {
         // Process error
         return;
