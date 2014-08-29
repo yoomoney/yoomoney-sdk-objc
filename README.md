@@ -97,7 +97,6 @@ YMABaseRequest *processExternalPaymentRequest = [YMAProcessExternalPaymentReques
     } else if (processResponse.status == YMAResponseStatusExtAuthRequired) {
         // Process AuthRequired status
     } 
-            
 }];
 
 ```
