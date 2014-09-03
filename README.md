@@ -34,7 +34,7 @@ Before making the first payment, you need to register a copy of the application 
 YMAExternalPaymentSession *session = [[YMAExternalPaymentSession alloc] init];
 
 if (instanceId == nil) {
-    [session instanceWithClientId:YMClientId token:self.secureStorage.token completion:^(NSString *Id, NSError *error)     {
+    [session instanceWithClientId:@"You cliectId" token:self.secureStorage.token completion:^(NSString *Id, NSError *error)     {
         if (error != nil) {
             // Process error 
         } else {
