@@ -110,7 +110,7 @@ static NSString *const kValueParameterStatusSuccess = @"success";
 
                                          [request buildResponseWithData:responseData
                                                                 headers:headers
-                                                                  queue:_responseQueue
+                                                                  queue:self.responseQueue
                                                           andCompletion:block];
                                      }];
     }
