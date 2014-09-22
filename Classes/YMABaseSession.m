@@ -205,33 +205,6 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
     return YES;
 }
 
-//- (YMAConnection *)connectionWithUrl:(NSURL *)url requestMethod:(YMARequestMethod)requestMethod
-
-
-//- (YMAConnection *)connectionWithUrl:(NSURL *)url customHeaders:(NSDictionary *)customHeaders andToken:(NSString *)token
-//{
-//    NSMutableDictionary *headers = [self.defaultHeaders mutableCopy];
-//
-//    headers[YMAHeaderUserAgent] = _userAgent;
-//    headers[kHeaderAcceptLanguage] = self.language;
-//
-//    if (token)
-//        headers[kHeaderAuthorization] = [NSString stringWithFormat:kValueHeaderAuthorizationFormat, token];
-//
-//    for (NSString *key in customHeaders.allKeys) {
-//        headers[key] = customHeaders[key];
-//    }
-//
-//    YMAConnection *connection = [[YMAConnection alloc] initWithUrl:url];
-//    connection.requestMethod = YMAMethodPost;
-//
-//    for (NSString *key in headers.allKeys) {
-//        [connection addValue:headers[key] forHeader:key];
-//    }
-//
-//    return connection;
-//}
-
 - (NSString *)valueOfHeader:(NSString *)headerName forResponse:(NSURLResponse *)response
 {
     NSDictionary *headers = [((NSHTTPURLResponse *)response) allHeaderFields];

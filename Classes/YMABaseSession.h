@@ -39,8 +39,6 @@ typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
 ///
 @interface YMABaseSession : NSObject {
 @protected
-    NSOperationQueue *_requestQueue;
-    NSOperationQueue *_responseQueue;
     NSString *_userAgent;
 }
 
@@ -95,5 +93,7 @@ typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
 
 /// You can set language for response data (for example: "en" - English, "ru" - Russian). Russian is default language.
 @property (nonatomic, copy) NSString *language;
+@property (nonatomic, strong) NSOperationQueue *requestQueue;
+@property (nonatomic, strong) NSOperationQueue *responseQueue;
 
 @end

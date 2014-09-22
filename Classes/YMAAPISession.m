@@ -229,7 +229,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
                                          
                                          [request buildResponseWithData:responseData
                                                                 headers:headers
-                                                                  queue:_responseQueue
+                                                                  queue:self.responseQueue
                                                           andCompletion:block];
                                      }];
     }
@@ -251,7 +251,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
 
                                          [request buildResponseWithData:responseData
                                                                 headers:headers
-                                                                  queue:_responseQueue
+                                                                  queue:self.responseQueue
                                                           andCompletion:block];
                                      }];
     }
