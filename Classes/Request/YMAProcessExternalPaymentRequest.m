@@ -61,13 +61,13 @@ static NSString *const kParameterCsc = @"csc";
 
 - (NSDictionary *)parameters {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setObject:self.requestId forKey:kParameterRequestId];
-    [dictionary setObject:self.successUri forKey:kParameterSuccessUri];
-    [dictionary setObject:self.failUri forKey:kParameterFailUri];
+    dictionary[kParameterRequestId] = self.requestId;
+    dictionary[kParameterSuccessUri] = self.successUri;
+    dictionary[kParameterFailUri] = self.failUri;
 
     if (!self.moneySourceToken) {
         if (self.requestToken)
-            [dictionary setObject:@"true"forKey:kParameterRequestToken];
+            dictionary[kParameterRequestToken] = @"true";
 
         return dictionary;
     }

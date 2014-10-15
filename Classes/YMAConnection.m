@@ -53,7 +53,7 @@ static NSString *const kHeaderContentLength = @"Content-Length";
     
     for (NSString *key in postParams.allKeys) {
         
-        id value = [postParams objectForKey:key];
+        id value = postParams[key];
         NSString *paramValue = nil;
         
         if ([value isKindOfClass:[NSNumber class]])

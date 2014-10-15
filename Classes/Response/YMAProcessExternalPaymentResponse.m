@@ -50,24 +50,24 @@ static NSString *const kPaymentCardTypeJCB = @"JCB";
 #pragma mark -
 
 - (void)parseJSONModel:(id)responseModel {
-    NSString *acsUrl = [responseModel objectForKey:kParameterAcsUrl];
+    NSString *acsUrl = responseModel[kParameterAcsUrl];
 
     if (acsUrl) {
-        NSDictionary *acsParams = [responseModel objectForKey:kParameterAcsParams];
+        NSDictionary *acsParams = responseModel[kParameterAcsParams];
         _asc = [YMAAsc ascWithUrl:[NSURL URLWithString:acsUrl] andParams:acsParams];
     }
 
-    NSDictionary *moneySource = [responseModel objectForKey:kParameterMoneySource];
+    NSDictionary *moneySource = responseModel[kParameterMoneySource];
 
     if (moneySource) {
-        NSString *type = [moneySource objectForKey:kParameterType];
+        NSString *type = moneySource[kParameterType];
 
         if ([type isEqual:kMoneySourceTypePaymentCard]) {
-            NSString *paymentCardTypeString = [moneySource objectForKey:kParameterPaymentCardType];
+            NSString *paymentCardTypeString = moneySource[kParameterPaymentCardType];
             YMAPaymentCardType paymentCardType = [self paymentCardTypeByString:paymentCardTypeString];
 
-            NSString *panFragment = [moneySource objectForKey:kParameterPanFragment];
-            NSString *moneySourceToken = [moneySource objectForKey:kParameterMoneySourceToken];
+            NSString *panFragment = moneySource[kParameterPanFragment];
+            NSString *moneySourceToken = moneySource[kParameterMoneySourceToken];
 
             _moneySource = [YMAMoneySource moneySourceWithType:YMAMoneySourcePaymentCard cardType:paymentCardType panFragment:panFragment moneySourceToken:moneySourceToken];
 
@@ -75,7 +75,7 @@ static NSString *const kPaymentCardTypeJCB = @"JCB";
             _moneySource = [YMAMoneySource moneySourceWithType:YMAMoneySourceUnknown cardType:YMAPaymentCardUnknown panFragment:nil moneySourceToken:nil];
     }
     
-    _invoiceId = [responseModel objectForKey:kParameterInvoceId];
+    _invoiceId = responseModel[kParameterInvoceId];
 }
 
 - (NSString *)description {

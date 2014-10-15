@@ -54,12 +54,12 @@ static NSString *const kParameterNextRetry = @"next_retry";
             return;
         }
 
-        NSString *statusKey = [responseModel objectForKey:kParameterStatus];
+        NSString *statusKey = responseModel[kParameterStatus];
 
         if ([statusKey isEqual:kResponseStatusKeyRefused]) {
             NSError *unknownError = [NSError errorWithDomain:kErrorKeyUnknown code:0 userInfo:@{@"response" : self}];
 
-            NSString *errorKey = [responseModel objectForKey:kParameterError];
+            NSString *errorKey = responseModel[kParameterError];
             _status = YMAResponseStatusRefused;
 
             self.handler(self, errorKey ? [NSError errorWithDomain:errorKey code:0 userInfo:@{@"response" : self}] : unknownError);
@@ -67,7 +67,7 @@ static NSString *const kParameterNextRetry = @"next_retry";
         }
 
         if ([statusKey isEqual:kResponseStatusKeyInProgress]) {
-            NSString *nextRetryString = [responseModel objectForKey:kParameterNextRetry];
+            NSString *nextRetryString = responseModel[kParameterNextRetry];
             _nextRetry = (NSUInteger) [nextRetryString integerValue];
             _status = YMAResponseStatusInProgress;
         } else

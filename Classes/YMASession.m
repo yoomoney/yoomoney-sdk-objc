@@ -54,7 +54,7 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
 
 - (void)authorizeWithClientId:(NSString *)clientId completion:(YMAInstanceHandler)block {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setObject:clientId forKey:kParameterClientId];
+    parameters[kParameterClientId] = clientId;
 
     NSURL *url = [NSURL URLWithString:kInstanceUrl];
 
@@ -77,11 +77,11 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
 
         if (statusCode == YMAStatusCodeOkHTTP) {
 
-            NSString *status = [responseModel objectForKey:kParameterStatus];
+            NSString *status = responseModel[kParameterStatus];
             
             if ([status isEqual:kValueParameterStatusSuccess]) {
                 
-                self.instanceId = [responseModel objectForKey:@"instance_id"];
+                self.instanceId = responseModel[@"instance_id"];
                 
                 block(self.instanceId, self.instanceId ? nil : unknownError);
                 
@@ -89,7 +89,7 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
             }
         }
 
-        NSString *errorKey = [responseModel objectForKey:@"error"];
+        NSString *errorKey = responseModel[@"error"];
 
         (errorKey) ? block(nil, [NSError errorWithDomain:errorKey code:statusCode userInfo:parameters]) : block(nil, unknownError);
     }];
@@ -105,7 +105,7 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
         
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:request.parameters];
    
-    [parameters setObject:self.instanceId forKey:kParameterInstanceId];
+    parameters[kParameterInstanceId] = self.instanceId;
 
     [self performRequestWithParameters:parameters useUrl:request.requestUrl andCompletionHandler:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
 
@@ -155,7 +155,7 @@ static NSString *const kValueContentTypeDefault = @"application/x-www-form-urlen
 
     for (NSString *header in headers.allKeys) {
         if ([header caseInsensitiveCompare:headerName] == NSOrderedSame)
-            return [headers objectForKey:header];
+            return headers[header];
     }
 
     return nil;

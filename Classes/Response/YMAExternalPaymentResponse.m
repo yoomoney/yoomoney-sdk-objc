@@ -17,9 +17,9 @@ static NSString *const kParameterTitle = @"title";
 #pragma mark -
 
 - (void)parseJSONModel:(id)responseModel {
-    NSString *requestId = [responseModel objectForKey:kParameterRequestId];
-    NSString *contractAmount = [[responseModel objectForKey:kParameterContractAmount] stringValue];
-    NSString *title = [responseModel objectForKey:kParameterTitle];
+    NSString *requestId = responseModel[kParameterRequestId];
+    NSString *contractAmount = [responseModel[kParameterContractAmount] stringValue];
+    NSString *title = responseModel[kParameterTitle];
     
     _paymentRequestInfo = [YMAPaymentRequestInfo paymentRequestInfoWithId:requestId amount:contractAmount andTitle:title];
 }
