@@ -76,11 +76,11 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
     YMABalanceDetailsModel *balanceDetails = nil;
 
     if (balanceDetailsModel != nil) {
-        NSString *total = [balanceDetailsModel objectForKey:kParameterBalanceTotal];
-        NSString *available = [balanceDetailsModel objectForKey:kParameterBalanceAvailable];
-        NSString *depositionPending = [balanceDetailsModel objectForKey:kParameterBalanceDepositionPending];
-        NSString *blocked = [balanceDetailsModel objectForKey:kParameterBalanceBlocked];
-        NSString *debt = [balanceDetailsModel objectForKey:kParameterBalanceDebt];
+        NSString *total = [[balanceDetailsModel objectForKey:kParameterBalanceTotal] stringValue];
+        NSString *available = [[balanceDetailsModel objectForKey:kParameterBalanceAvailable] stringValue];
+        NSString *depositionPending = [[balanceDetailsModel objectForKey:kParameterBalanceDepositionPending] stringValue];
+        NSString *blocked = [[balanceDetailsModel objectForKey:kParameterBalanceBlocked] stringValue];
+        NSString *debt = [[balanceDetailsModel objectForKey:kParameterBalanceDebt] stringValue];
 
         balanceDetails = [YMABalanceDetailsModel balanceDetailsWithTotal:total
                                                                available:available
