@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   s.summary          = "Yandex.Money SDK" 
   s.homepage         = "https://github.com/yandex-money/yandex-money-sdk-objc"
   s.license          = 'MIT'
-  s.author           = { "Yuriy Vyazov" => "vjazov@yamoney.ru" }
+  s.author           = { "Yuriy Vyazov" => "ymiapp@yandex.ru" }
   s.source           = { :git => "https://github.com/yandex-money/yandex-money-sdk-objc.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/yamoneynews'
   s.documentation_url = 'http://api.yandex.ru/money/'
