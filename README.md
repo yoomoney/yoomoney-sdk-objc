@@ -1,15 +1,77 @@
-# YandexMoneySDKObjc
+ ![Logo](http://api.yandex.com/money/money1.png) 
+# Objective-c Yandex.Money SDK  
 
 [![Version](http://cocoapod-badges.herokuapp.com/v/YandexMoneySDKObjc/badge.png)](http://api.yandex.ru/money/)
 [![Platform](http://cocoapod-badges.herokuapp.com/p/YandexMoneySDKObjc/badge.png)](http://api.yandex.ru/money/)
 
+## Overview
+This open-source library allows you to work with Yandex.Money API. Learn more about [Yandex.Money API][ENAPILink] (also available in [Russian][RUAPILink]).
+
+## Installation
+
+YandexMoneySDKObjc is available through [CocoaPods](http://cocoapods.org).  Install it simply add the following line to your Podfile:
+
+    pod "YandexMoneySDKObjc"
+
 ## Usage
-
-To run the example project; clone the repo, and run `pod install` from the Example directory first.
-
-### App registration
-
+#### App Registration
 To be able to use the library you: the first thing you need to do is to register your application and get your unique *client id*. To do that please follow the steps described on [this page][1] (also available in [Russian][2]).
+
+#### Payments from wallet
+##### Authorization
+First of all, you create authorization request using YMAAPISession class
+
+```Objective-C
+YMAAPISession *session = [[YMAAPISession alloc] init];
+NSDictionary *parameters = @{
+    YMAParameterResponseType    : YMAValueParameterResponseType,  //Constant value  
+    YMAParameterRedirectUri     : @"Your redirect_uri", //URI that the OAuth server sends the authorization result to.
+    YMAParameterScope           : @"payment-p2p"}; //A list of requested permissions.
+NSURLRequest *authorizationRequest =  [session authorizationRequestWithClientId:@"Your client_id" andAdditionalParams:parameters];
+```
+The next step, you use UIWebView or OS browser to send an Authorization Request to the Yandex.Money server.
+```Objective-C
+[webView loadRequest:authorizationRequest];
+```
+For the authorization request, the user is redirected to the Yandex.Money authorization page. The user enters his login and password, reviews the list of requested permissions and payment limits, and either approves or rejects the application's authorization request. The authorization result is returned as an "HTTP 302 Redirect" to your **redirect_uri**.<br>
+
+You should intercept a request to you **redirect_uri**, cancel the request and extract the verification code from the request query string.
+```Objective-C
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    BOOL shouldStartLoad = YES;
+    NSMutableDictionary *authInfo = nil;
+    NSError *error = nil;
+    if ([self.session isRequest:request toRedirectUrl:@"Your redirect_uri" authorizationInfo:&authInfo error:&error]) {
+        if (error == nil) {
+            self.authCode = authInfo[@"code"];
+        }
+    }
+    return shouldStartLoad;
+}
+```
+If authorization was completed successfully, the application should immediately exchange the temporary authorization code for an access token.
+```Objective-C
+NSDictionary *additionalParameters = @{
+    @"grant_type"           : @"authorization_code", // Constant value
+    YMAParameterRedirectUri : @"Your redirect_uri"};
+    
+[self.session receiveTokenWithWithCode:self.authCode clientId:@"Your client_id" andAdditionalParams:additionalParameters completion:^(NSString *Id, NSError *error) {
+if (error == nil && Id) {
+self.accessToken = Id;
+}
+}];
+```
+_The access_token is a symmetric authorization key, so the application developer must secure it - the token should be encrypted for storage, with access allowed only after the user authenticates within the application. For example, the token can be encrypted using the 3DES algorithm, where the encryption key is a 4-digit PIN code._
+
+#### Payment
+
+For more information about scenario of payment, please see API page: [Ru][5], [En][6].
+
+#### Request payment
+
+For creating a payment and checking its parameters (API page: [Ru][7], [En][8]) use YMAExternalPaymentRequest class:
+
 
 ### Payments from bank cards without authorization
 
@@ -111,16 +173,13 @@ YMABaseRequest *processExternalPaymentRequest = [YMAProcessExternalPaymentReques
 * Yandex.Money API page: [Ru](http://api.yandex.ru/money/), [En](http://api.yandex.com/money/)
 * [example projects](https://github.com/yandex-money/yandex-money-sdk-objc/tree/master/Example)
 
-## Installation
-
-YandexMoneySDKObjc is available through [CocoaPods](http://cocoapods.org), to install
-it simply add the following line to your Podfile:
-
-    pod "YandexMoneySDKObjc"
-
 ## License
 
 YandexMoneySDKObjc is available under the MIT license. See the LICENSE file for more info.
+
+[RUAPILink]:http://api.yandex.ru/money/
+[ENAPILink]:http://api.yandex.com/money/
+
 
 [1]: http://api.yandex.com/money/doc/dg/tasks/register-client.xml
 [2]: http://api.yandex.ru/money/doc/dg/tasks/register-client.xml
