@@ -21,9 +21,9 @@ To be able to use the library you: the first thing you need to do is to register
 
 ### Payments from the Yandex.Money wallet
 ##### Authorization
-Before making the first payment, an application must get authorized and recieved access token using the OAuth2 protocol, which makes authorization secure and convenient. (Learn more at this API page: [En][EN_API_Authorization], [Ru][RU_API_Authorization])
+Before making the first payment, an application must get authorized and recieved access token using the OAuth2 protocol, which makes authorization secure and convenient. (Learn more about it at this API page: [En][EN_API_Authorization], [Ru][RU_API_Authorization])
 
-First of all, you should create authorization request using YMAAPISession class.  Then, you use UIWebView or OS browser to send this authorization request to the Yandex.Money server (Learn more at this API page: [En][EN_API_Authorization_request], [Ru][RU_API_Authorization_request]):
+First of all, you should create authorization request using YMAAPISession class.  Then, you use UIWebView or OS browser to send this authorization request to the Yandex.Money server (Learn more about it at this API page: [En][EN_API_Authorization_request], [Ru][RU_API_Authorization_request]):
 
 
 ```Objective-C
@@ -61,7 +61,7 @@ You should intercept a request to your **redirect_uri**, cancel the request and 
     return shouldStartLoad;
 }
 ```
-If authorization was completed successfully, the application should immediately exchange the temporary authorization code for an access token (Learn more at this API page: [En][EN_API_Access_token], [Ru][RU_API_Access_token]):
+If authorization was completed successfully, the application should immediately exchange the temporary authorization code for an access token (Learn more about it at this API page: [En][EN_API_Access_token], [Ru][RU_API_Access_token]):
 
 
 
@@ -107,7 +107,7 @@ For more information about scenario of payment, please see API page: [En][EN_API
 
 #### Request payment
 
-For creating a payment and checking its parameters (Learn more at this API page: [En][EN_API_Request_payment], [Ru][RU_API_Request_payment]) use YMAPaymentRequest class:
+For creating a payment and checking its parameters (Learn more about it at this API page: [En][EN_API_Request_payment], [Ru][RU_API_Request_payment]) use YMAPaymentRequest class:
 
 
 ```Objective-C
@@ -140,7 +140,7 @@ YMAPaymentRequest *request = [YMAPaymentRequest paymentWithPatternId:patternId a
 #### Process payment
 
 Making a payment. The application calls the method up until the final payment status is known (status=success/refused).
-The recommended retry mode is determined by the "next_retry" response field (by default, 5 seconds). (Learn more at this API page: [En][EN_API_Process_payment], [Ru][EN_API_Process_payment])<br>
+The recommended retry mode is determined by the "next_retry" response field (by default, 5 seconds). (Learn more about it at this API page: [En][EN_API_Process_payment], [Ru][EN_API_Process_payment])<br>
 For making a payment use YMAPaymentRequest class:
 
 
@@ -158,7 +158,7 @@ For making a payment use YMAPaymentRequest class:
                                             failUri:failUri];
     
 // session - instance of YMAAPISession class 
-// token - access token
+// token   - access token
 [session performRequest:processPaymentRequest 
                   token:token 
              completion:^(YMABaseRequest *request, YMABaseResponse *response, NSError *error) {
@@ -186,7 +186,7 @@ For making a payment use YMAPaymentRequest class:
 ### Payments from bank cards without authorization
 #### Registering an instance of the application
 
-Before making the first payment, you need to register a copy of the application in Yandex.Money, that is installed on a device and get an identifier for the instance of the application — **instance_id**. To register an instance, call the instance-id method (Learn more at this API page: [En][EN_API_Instance_id], [Ru][RU_API_Instance_id]):
+Before making the first payment, you need to register a copy of the application in Yandex.Money, that is installed on a device and get an identifier for the instance of the application — **instance_id**. To register an instance, call the instance-id method (Learn more about it at this API page: [En][EN_API_Instance_id], [Ru][RU_API_Instance_id]):
 
 
 ```Objective-C
@@ -231,7 +231,7 @@ For more information about scenario of payment, please see API page: [En][EN_API
 
 #### Request external payment
 
-For creating a payment and checking its parameters (Learn more at this API page: [En][EN_API_Request_external_payment], [Ru][RU_API_Request_external_payment]) use YMAExternalPaymentRequest class:
+For creating a payment and checking its parameters (Learn more about it at this API page: [En][EN_API_Request_external_payment], [Ru][RU_API_Request_external_payment]) use YMAExternalPaymentRequest class:
 
 
 
@@ -255,8 +255,8 @@ YMAExternalPaymentRequest *externalPaymentRequest = [YMAExternalPaymentRequest e
 
 #### Process external payment
 
-Making a payment (Learn more at this API page: [En][EN_API_Process_external_payment], [Ru][RU_API_Process_external_payment]). The application calls the method up until the final payment status is known (status=success/refused).
-The recommended retry mode is determined by the "next_retry" response field (by default, 5 seconds).
+Making a payment. The application calls the method up until the final payment status is known (status=success/refused).
+The recommended retry mode is determined by the "next_retry" response field (by default, 5 seconds). (Learn more about it at this API page: [En][EN_API_Process_external_payment], [Ru][RU_API_Process_external_payment]) <br>
 For making a payment use YMAExternalPaymentRequest class:
 
 
@@ -314,7 +314,7 @@ Objective-c Yandex.Money SDK is available under the MIT license. See the LICENSE
 [EN_API_Authorization]:http://api.yandex.com/money/doc/dg/concepts/money-oauth-intro.xml
 [RU_API_Authorization]:https://tech.yandex.ru/money/doc/dg/concepts/money-oauth-intro-docpage/
 
-[EN_API_Authorization_request]:http://api.yandex.com/money/doc/dg/concepts/money-oauth-intro.xml
+[EN_API_Authorization_request]:http://api.yandex.com/money/doc/dg/reference/request-access-token.xml
 [RU_API_Authorization_request]:https://tech.yandex.ru/money/doc/dg/reference/request-access-token-docpage/
 
 [EN_API_Access_token]:http://api.yandex.com/money/doc/dg/reference/obtain-access-token.xml
