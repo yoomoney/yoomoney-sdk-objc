@@ -1,18 +1,18 @@
 
-# Objective-c Yandex.Money SDK  
+# Objective-C Yandex.Money SDK  
 
 [![Version](http://cocoapod-badges.herokuapp.com/v/YandexMoneySDKObjc/badge.png)](http://api.yandex.ru/money/)
 [![Platform](http://cocoapod-badges.herokuapp.com/p/YandexMoneySDKObjc/badge.png)](http://api.yandex.ru/money/)
 
 ## Overview
-This open-source library allows you to work with Yandex.Money API. Learn more about Yandex.Money API on this [page][EN_API_Main] (also available in [Russian][RU_API_Main]).
+This open-source library allows you to work with Yandex.Money API. You will learn more about Yandex.Money API on this [page][EN_API_Main] (also available in [Russian][RU_API_Main]).
 
 [RU_API_Main]:http://api.yandex.ru/money/
 [EN_API_Main]:http://api.yandex.com/money/
 
 ## Installation
 
-Objective-c Yandex.Money SDK is available through [CocoaPods](http://cocoapods.org).  For install it, simply add the following line to your Podfile:
+Objective-C Yandex.Money SDK is available through [CocoaPods](http://cocoapods.org).  For install it, simply add the following line to your Podfile:
 
     pod "YandexMoneySDKObjc"
 
@@ -24,7 +24,7 @@ To be able to use the library you: the first thing you need to do is to register
 [RU_API_Registration]:https://tech.yandex.ru/money/doc/dg/tasks/register-client-docpage/
 
 
-### Payments from the wallet
+### Payments from the Yandex.Money wallet
 ##### Authorization
 Before making the first payment, an application must get authorized and recieved access token using the OAuth2 protocol, which makes authorization secure and convenient. (Learn more at this API page: [En][EN_API_Authorization], [Ru][RU_API_Authorization])
 
@@ -45,7 +45,7 @@ NSDictionary *additionalParameters = @{
 // session - instance of YMAAPISession class 
 // webView - instance of UIWebView class
 NSURLRequest *authorizationRequest =  [session authorizationRequestWithClientId:@"Your client_id"
-             andAdditionalParams:additionalParameters];
+                                                            andAdditionalParams:additionalParameters];
 [webView loadRequest:authorizationRequest];
 ```
 For the authorization request, the user is redirected to the Yandex.Money authorization page. The user enters his login and password, reviews the list of requested permissions and payment limits, and either approves or rejects the application's authorization request. The authorization result is returned as an "HTTP 302 Redirect" to your **redirect_uri**.<br>
@@ -57,8 +57,11 @@ You should intercept a request to your **redirect_uri**, cancel the request and 
     BOOL shouldStartLoad = YES;
     NSMutableDictionary *authInfo = nil;
     NSError *error = nil;
-    // session - instance of YMAExternalPaymentSession class 
-    if ([session isRequest:request toRedirectUrl:@"Your redirect_uri" authorizationInfo:&authInfo error:&error]) {
+    // session - instance of YMAAPISession class 
+    if ([self.session isRequest:request 
+                  toRedirectUrl:@"Your redirect_uri" 
+              authorizationInfo:&authInfo 
+                          error:&error]) {
         shouldStartLoad = NO;
         if (error == nil) {
             NSString *authCode = authInfo[@"code"]; 
@@ -79,13 +82,15 @@ NSDictionary *additionalParameters = @{
     YMAParameterRedirectUri : @"Your redirect_uri"
 };
 
-// session - instance of YMAAPISession class
-[session receiveTokenWithWithCode:self.authCode 
+// session  - instance of YMAAPISession class
+// authCode - temporary authorization code
+[session receiveTokenWithWithCode:authCode 
                          clientId:@"Your client_id" 
               andAdditionalParams:additionalParameters 
                        completion:^(NSString *Id, NSError *error) {
                             if (error == nil && Id != nil && Id.length > 0) {
-                                NSString *accessToken = Id;
+                                NSString *accessToken = Id; // Do NOT request access_token every time, when you need to call API method. 
+                                                            // Obtain it once and reuse it.
                                 // Process access_token
                             } 
                             else {
@@ -97,7 +102,7 @@ NSDictionary *additionalParameters = @{
 
 #### Payment
 
-For payments from wallet use YMAAPISession class. There are two API methods you should call when performing a payment: request-payment and process-payment.
+For payments from Yandex.Money wallet use YMAAPISession class. There are two API methods you should call when performing a payment: request-payment and process-payment.
 
 To perform a request (call of API method), use `performRequest` method of YMAAPISession class:
 
@@ -106,9 +111,9 @@ To perform a request (call of API method), use `performRequest` method of YMAAPI
 
 ```Objective-C
 /// Perform some request and obtaining response in block.
-/// @param request - request inherited from YMABaseRequest.
-/// @param token - access token
-/// @param block - completion of block is used to get the response.
+/// @param request  - request inherited from YMABaseRequest.
+/// @param token    - access token
+/// @param block    - completion of block is used to get the response.
 - (void)performRequest:(YMABaseRequest *)request token:(NSString *)token completion:(YMARequestHandler)block;
 ```
 For more information about scenario of payment, please see API page: [En][EN_API_Payment_wallet], [Ru][RU_API_Payment_wallet].
@@ -125,8 +130,8 @@ NSDictionary *paymentParameters = ... // depends on your implementation
 NSString *patternId = ... // depends on your implementation
 YMAPaymentRequest *request = [YMAPaymentRequest paymentWithPatternId:patternId andPaymentParams:paymentParameters];
 
-// session - instance of YMAAPISession class 
-// token - access token
+// session  - instance of YMAAPISession class 
+// token    - access token
 [session performRequest:request token:token completion:^(YMABaseRequest *request, YMABaseResponse *response, NSError *error) {
 
     YMAPaymentResponse *paymentResponse = (YMAPaymentResponse *)processResponse;
@@ -149,8 +154,8 @@ YMAPaymentRequest *request = [YMAPaymentRequest paymentWithPatternId:patternId a
 
 #### Process payment
 
-Making a payment (Learn more at this API page: [En][EN_API_Process_payment], [Ru][EN_API_Process_payment]). The application calls the method up until the final payment status is known (status=success/refused).
-The recommended retry mode is determined by the "next_retry" response field (by default, 5 seconds).<br>
+Making a payment. The application calls the method up until the final payment status is known (status=success/refused).
+The recommended retry mode is determined by the "next_retry" response field (by default, 5 seconds). (Learn more at this API page: [En][EN_API_Process_payment], [Ru][EN_API_Process_payment])<br>
 For making a payment use YMAPaymentRequest class:
 
 [EN_API_Process_payment]:http://api.yandex.com/money/doc/dg/reference/process-payment.xml
@@ -159,7 +164,7 @@ For making a payment use YMAPaymentRequest class:
 ```Objective-C
 // paymentRequestId - requestId from instance of YMAPaymentInfoModel class
 // moneySourceModel - instance of YMAMoneySourceModel class
-// csc              - card security code, 
+// csc              - can be nil, if payment from wallet
 // successUri       - can be nil, if payment from wallet
 // failUri          - can be nil, if payment from wallet
  YMAProcessPaymentRequest *processPaymentRequest = [YMAProcessPaymentRequest   processPaymentRequestId:paymentRequestId 
@@ -215,7 +220,7 @@ if (instanceId == nil) {
             // Process error 
         } 
         else {
-            instanceId = Id; // Do NOT request instance id every time you need to call API method. 
+            instanceId = Id; // Do NOT request instance id every time you, when you need to call API method. 
                              // Obtain it once and reuse it.
             session.instanceId = instanceId;
         }
