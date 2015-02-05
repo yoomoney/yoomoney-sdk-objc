@@ -23,9 +23,7 @@ Replace string `YOU_CLIENT_ID` in file ViewController.m with your unique **clien
 
 ### iOS
 
-![Start](/ios/Screenshots/start.PNG)
-![Payment](/ios/Screenshots/payment.PNG)
-![End](/ios/Screenshots/success.PNG)
+![Start](ios/Screenshots/start.PNG?raw=true)  ![Payment](ios/Screenshots/payment.PNG?raw=true)  ![End](ios/Screenshots/success.PNG?raw=true)
 
 
 ## Links
