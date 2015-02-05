@@ -1,5 +1,5 @@
 
-# ![Logo](https://raw.githubusercontent.com/Exwell/yandex-money-sdk-objc/feature-changereadme/logo.png) Objective-c Yandex.Money SDK  
+# Objective-c Yandex.Money SDK  
 
 [![Version](http://cocoapod-badges.herokuapp.com/v/YandexMoneySDKObjc/badge.png)](http://api.yandex.ru/money/)
 [![Platform](http://cocoapod-badges.herokuapp.com/p/YandexMoneySDKObjc/badge.png)](http://api.yandex.ru/money/)
@@ -12,7 +12,7 @@ This open-source library allows you to work with Yandex.Money API. Learn more ab
 
 ## Installation
 
-Objective-c Yandex.Money SDK is available through [CocoaPods](http://cocoapods.org).  Install it simply add the following line to your Podfile:
+Objective-c Yandex.Money SDK is available through [CocoaPods](http://cocoapods.org).  For install it, simply add the following line to your Podfile:
 
     pod "YandexMoneySDKObjc"
 
@@ -26,12 +26,12 @@ To be able to use the library you: the first thing you need to do is to register
 
 ### Payments from the wallet
 ##### Authorization
-Before making the first payment, an application must get authorized and recieved access token using the OAuth2 protocol, which makes authorization secure and convenient. (API page: [En][EN_API_Authorization], [Ru][RU_API_Authorization])
+Before making the first payment, an application must get authorized and recieved access token using the OAuth2 protocol, which makes authorization secure and convenient. (Learn more at this API page: [En][EN_API_Authorization], [Ru][RU_API_Authorization])
 
 [EN_API_Authorization]:http://api.yandex.com/money/doc/dg/concepts/money-oauth-intro.xml
 [RU_API_Authorization]:https://tech.yandex.ru/money/doc/dg/concepts/money-oauth-intro-docpage/
 
-First of all, you should create authorization request (API page: [En][EN_API_Authorization_request], [Ru][RU_API_Authorization_request]) using YMAAPISession class. Then, you use UIWebView or OS browser to send this authorization request to the Yandex.Money server:
+First of all, you should create authorization request using YMAAPISession class.  Then, you use UIWebView or OS browser to send this authorization request to the Yandex.Money server (Learn more at this API page: [En][EN_API_Authorization_request], [Ru][RU_API_Authorization_request]):
 
 [EN_API_Authorization_request]:http://api.yandex.com/money/doc/dg/concepts/money-oauth-intro.xml
 [RU_API_Authorization_request]:https://tech.yandex.ru/money/doc/dg/reference/request-access-token-docpage/
@@ -44,12 +44,13 @@ NSDictionary *additionalParameters = @{
 }; 
 // session - instance of YMAAPISession class 
 // webView - instance of UIWebView class
-NSURLRequest *authorizationRequest =  [session authorizationRequestWithClientId:@"Your client_id" andAdditionalParams:additionalParameters];
+NSURLRequest *authorizationRequest =  [session authorizationRequestWithClientId:@"Your client_id"
+             andAdditionalParams:additionalParameters];
 [webView loadRequest:authorizationRequest];
 ```
 For the authorization request, the user is redirected to the Yandex.Money authorization page. The user enters his login and password, reviews the list of requested permissions and payment limits, and either approves or rejects the application's authorization request. The authorization result is returned as an "HTTP 302 Redirect" to your **redirect_uri**.<br>
 
-You should intercept a request to you **redirect_uri**, cancel the request and extract the verification code from the request query string.
+You should intercept a request to your **redirect_uri**, cancel the request and extract the verification code from the request query string:
 ```Objective-C
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
@@ -67,7 +68,7 @@ You should intercept a request to you **redirect_uri**, cancel the request and e
     return shouldStartLoad;
 }
 ```
-If authorization was completed successfully, the application should immediately exchange the temporary authorization code for an access token (API page: [En][EN_API_Access_token], [Ru][RU_API_Access_token]):
+If authorization was completed successfully, the application should immediately exchange the temporary authorization code for an access token (Learn more at this API page: [En][EN_API_Access_token], [Ru][RU_API_Access_token]):
 
 [EN_API_Access_token]:http://api.yandex.com/money/doc/dg/reference/obtain-access-token.xml
 [RU_API_Access_token]:https://tech.yandex.ru/money/doc/dg/reference/obtain-access-token-docpage/
@@ -77,18 +78,22 @@ NSDictionary *additionalParameters = @{
     @"grant_type"           : @"authorization_code", // Constant parameter
     YMAParameterRedirectUri : @"Your redirect_uri"
 };
+
 // session - instance of YMAAPISession class
-[session    receiveTokenWithWithCode:self.authCode 
-                            clientId:@"Your client_id" 
-                 andAdditionalParams:additionalParameters 
-                          completion:^(NSString *Id, NSError *error) {
-        if (error == nil && Id) {
-                NSString *accessToken = Id;
-                //Process access_token
-        }
+[session receiveTokenWithWithCode:self.authCode 
+                         clientId:@"Your client_id" 
+              andAdditionalParams:additionalParameters 
+                       completion:^(NSString *Id, NSError *error) {
+                            if (error == nil && Id != nil && Id.length > 0) {
+                                NSString *accessToken = Id;
+                                // Process access_token
+                            } 
+                            else {
+                                // Process error
+                            }
 }];
 ```
-*The **access_token** is a symmetric authorization key, so the application developer must secure it - the token should be encrypted for storage, with access allowed only after the user authenticates within the application. For example, the token can be encrypted using the 3DES algorithm, where the encryption key is a 4-digit PIN code.*
+*The __access_token__ is a symmetric authorization key, so the application developer must secure it - the token should be encrypted for storage, with access allowed only after the user authenticates within the application. For example, the token can be encrypted using the 3DES algorithm, where the encryption key is a 4-digit PIN code.*
 
 #### Payment
 
@@ -110,7 +115,7 @@ For more information about scenario of payment, please see API page: [En][EN_API
 
 #### Request payment
 
-For creating a payment and checking its parameters (API page: [En][EN_API_Request_payment], [RU][RU_API_Request_payment]) use YMAPaymentRequest class:
+For creating a payment and checking its parameters (Learn more at this API page: [En][EN_API_Request_payment], [Ru][RU_API_Request_payment]) use YMAPaymentRequest class:
 
 [EN_API_Request_payment]:http://api.yandex.com/money/doc/dg/reference/request-payment.xml
 [RU_API_Request_payment]:https://tech.yandex.ru/money/doc/dg/reference/request-payment-docpage/
@@ -123,7 +128,8 @@ YMAPaymentRequest *request = [YMAPaymentRequest paymentWithPatternId:patternId a
 // session - instance of YMAAPISession class 
 // token - access token
 [session performRequest:request token:token completion:^(YMABaseRequest *request, YMABaseResponse *response, NSError *error) {
-YMAPaymentResponse *paymentResponse = (YMAPaymentResponse *)processResponse;
+
+    YMAPaymentResponse *paymentResponse = (YMAPaymentResponse *)processResponse;
     
     switch (processResponse.status) {
         case YMAResponseStatusSuccess: {
@@ -143,8 +149,8 @@ YMAPaymentResponse *paymentResponse = (YMAPaymentResponse *)processResponse;
 
 #### Process payment
 
-Making a payment (API page: [Ru][11], [En][12]). The application calls the method up until the final payment status is known (status=success/refused).
-The recommended retry mode is determined by the "next_retry" response field (by default, 5 seconds).
+Making a payment (Learn more at this API page: [En][EN_API_Process_payment], [Ru][EN_API_Process_payment]). The application calls the method up until the final payment status is known (status=success/refused).
+The recommended retry mode is determined by the "next_retry" response field (by default, 5 seconds).<br>
 For making a payment use YMAPaymentRequest class:
 
 [EN_API_Process_payment]:http://api.yandex.com/money/doc/dg/reference/process-payment.xml
@@ -152,10 +158,10 @@ For making a payment use YMAPaymentRequest class:
 
 ```Objective-C
 // paymentRequestId - requestId from instance of YMAPaymentInfoModel class
-// moneySourceModel - instance of YMAMoneySourceModel class, get allowed and valid money sources from instance of YMAPaymentInfoModel class
-// csc - Card Security Code, the CVV2/CVC2 code of the user's linked bank card, may be nil if payment from wallet
-// successUri - address of the page to return to when card payment has been successfully authorized using 3-D Secure technology, may be nil if payment from wallet
-// failUri - address of the page to return to when authorization has been denied for card payment using 3-D Secure technology, may be nil if payment from wallet
+// moneySourceModel - instance of YMAMoneySourceModel class
+// csc              - card security code, 
+// successUri       - can be nil, if payment from wallet
+// failUri          - can be nil, if payment from wallet
  YMAProcessPaymentRequest *processPaymentRequest = [YMAProcessPaymentRequest   processPaymentRequestId:paymentRequestId 
                                         moneySource:moneySourceModel
                                                 csc:csc
@@ -164,23 +170,26 @@ For making a payment use YMAPaymentRequest class:
     
 // session - instance of YMAAPISession class 
 // token - access token
-[session performRequest:processPaymentRequest token:token completion:^(YMABaseRequest *request, YMABaseResponse *response, NSError *error) {
- YMAProcessPaymentResponse *processResponse = (YMAProcessPaymentResponse *)response;
+[session performRequest:processPaymentRequest 
+                  token:token 
+             completion:^(YMABaseRequest *request, YMABaseResponse *response, NSError *error) {
+             
+    YMAProcessPaymentResponse *processResponse = (YMAProcessPaymentResponse *)response;
 
-switch (processResponse.status) {
-    case YMAResponseStatusSuccess: {
-        // Process payment response
-        break;
+    switch (processResponse.status) {
+        case YMAResponseStatusSuccess: {
+            // Process payment response
+            break;
         }
-    case YMAResponseStatusExtAuthRequired: {
-        // Process payment response
-        break;
+        case YMAResponseStatusExtAuthRequired: {
+            // Process payment response
+            break;
         }
-    default: {
-        // Process error
-        break;
+        default: {
+            // Process error
+            break;
         }
-}
+    }
 }];
 
 ```
@@ -188,7 +197,7 @@ switch (processResponse.status) {
 ### Payments from bank cards without authorization
 #### Registering an instance of the application
 
-Before making the first payment, you need to register a copy of the application in Yandex.Money that is installed on a device and get an identifier for the instance of the application — **instance_id**. To register an instance, call the instance-id method (API page: [En][EN_API_Instance_id], [Ru][RU_API_Instance_id]):
+Before making the first payment, you need to register a copy of the application in Yandex.Money, that is installed on a device and get an identifier for the instance of the application — **instance_id**. To register an instance, call the instance-id method (Learn more at this API page: [En][EN_API_Instance_id], [Ru][RU_API_Instance_id]):
 
 [EN_API_Instance_id]:http://api.yandex.ru/money/doc/dg/reference/instance-id.xml
 [RU_API_Instance_id]:http://api.yandex.com/money/doc/dg/reference/instance-id.xml
@@ -198,10 +207,14 @@ Before making the first payment, you need to register a copy of the application 
 YMAExternalPaymentSession *session = [[YMAExternalPaymentSession alloc] init];
 
 if (instanceId == nil) {
-    [session instanceWithClientId:@"You ClientId" token:self.secureStorage.token completion:^(NSString *Id, NSError *error)     {
+    // token - can be nil
+    [session instanceWithClientId:@"You client_id" 
+                            token:token 
+                       completion:^(NSString *Id, NSError *error)     {
         if (error != nil) {
             // Process error 
-        } else {
+        } 
+        else {
             instanceId = Id; // Do NOT request instance id every time you need to call API method. 
                              // Obtain it once and reuse it.
             session.instanceId = instanceId;
@@ -233,7 +246,7 @@ For more information about scenario of payment, please see API page: [En][EN_API
 
 #### Request external payment
 
-For creating a payment and checking its parameters (API page: [En][EN_API_Request_external_payment], [Ru][RU_API_Request_external_payment]) use YMAExternalPaymentRequest class:
+For creating a payment and checking its parameters (Learn more at this API page: [En][EN_API_Request_external_payment], [Ru][RU_API_Request_external_payment]) use YMAExternalPaymentRequest class:
 
 [EN_API_Request_external_payment]: http://api.yandex.ru/money/doc/dg/reference/request-external-payment.xml
 [RU_API_Request_external_payment]: http://api.yandex.com/money/doc/dg/reference/request-external-payment.xml
@@ -242,8 +255,8 @@ For creating a payment and checking its parameters (API page: [En][EN_API_Reques
 
 YMAExternalPaymentRequest *externalPaymentRequest = [YMAExternalPaymentRequest externalPaymentWithPatternId:patternId andPaymentParams:paymentParams];
     
-// session - instance of YMAExternalPaymentSession class 
-// token - can be nil.
+// session  - instance of YMAExternalPaymentSession class 
+// token    - can be nil.
 [session performRequest:externalPaymentRequest token:token completion:^(YMABaseRequest *request, 
     YMABaseResponse *response, NSError *error) {
     if (error != nil) {
@@ -258,7 +271,7 @@ YMAExternalPaymentRequest *externalPaymentRequest = [YMAExternalPaymentRequest e
 
 #### Process external payment
 
-Making a payment (API page: [En][EN_API_Process_external_payment], [Ru][RU_API_Process_external_payment]). The application calls the method up until the final payment status is known (status=success/refused).
+Making a payment (Learn more at this API page: [En][EN_API_Process_external_payment], [Ru][RU_API_Process_external_payment]). The application calls the method up until the final payment status is known (status=success/refused).
 The recommended retry mode is determined by the "next_retry" response field (by default, 5 seconds).
 For making a payment use YMAExternalPaymentRequest class:
 
@@ -267,14 +280,18 @@ For making a payment use YMAExternalPaymentRequest class:
 
 ```Objective-C
 // paymentRequestId - requestId from instance of YMAExternalPaymentInfoModel class
-// successUri - address of the page to return to when the bank card was successfully authorized
-// failUri - address of the page to return to when the bank card was refused authorization
-YMABaseRequest *processExternalPaymentRequest = [YMAProcessExternalPaymentRequest processExternalPaymentWithRequestId:paymentRequestId successUri:successUri failUri:failUri requestToken:NO];
+// successUri       - address of the page to return to when the bank card was successfully authorized
+// failUri          - address of the page to return to when the bank card was refused authorization
+YMABaseRequest *processExternalPaymentRequest = [YMAProcessExternalPaymentRequest processExternalPaymentWithRequestId:paymentRequestId 
+                         successUri:successUri 
+                            failUri:failUri 
+                       requestToken:NO];
     
-// session - instance of YMAExternalPaymentSession class 
-// token - can be nil.
+// session  - instance of YMAExternalPaymentSession class 
+// token    - can be nil.
 [session performRequest:paymentRequest token:token completion:^(YMABaseRequest *request, YMABaseResponse *response,
     NSError *error) {
+    
     if (error != nil) {
         // Process error
         return;
@@ -284,9 +301,11 @@ YMABaseRequest *processExternalPaymentRequest = [YMAProcessExternalPaymentReques
         
     if (processResponse.status == YMAResponseStatusInProgress) {
         // Process InProgress status 
-    } else if (processResponse.status == YMAResponseStatusSuccess) {
+    } 
+    else if (processResponse.status == YMAResponseStatusSuccess) {
         // Process Success status
-    } else if (processResponse.status == YMAResponseStatusExtAuthRequired) {
+    } 
+    else if (processResponse.status == YMAResponseStatusExtAuthRequired) {
         // Process AuthRequired status
     } 
 }];
