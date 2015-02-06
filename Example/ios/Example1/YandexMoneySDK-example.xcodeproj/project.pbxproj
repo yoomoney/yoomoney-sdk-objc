@@ -213,7 +213,7 @@
 				555916A01A851A9900C92967 /* ymexternalpaymentsdk.h */,
 			);
 			name = Classes;
-			path = ../../Classes;
+			path = ../../../Classes;
 			sourceTree = "<group>";
 		};
 		555916451A851A9900C92967 /* Models */ = {
