@@ -9,8 +9,10 @@ static NSString *const kKeychainIdInstance = @"instanceKeychainId";
 static NSString *const kSuccessUrl = @"yandexmoneyapp://oauth/authorize/success";
 static NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
 
-//Use you application identifier
+// You must register your application and recieve unique "client_id".
+// More information: http://api.yandex.com/money/doc/dg/tasks/register-client.xml
 static NSString *const kClientId = @"YOU_CLIENT_ID";
+#error You must paste your unique client_id.
 
 @interface ViewController () {
     NSMutableDictionary *_instanceIdQuery;
