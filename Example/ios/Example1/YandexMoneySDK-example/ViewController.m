@@ -179,6 +179,10 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
         _webView = [[UIWebView alloc] initWithFrame:self.view.frame];
         _webView.scalesPageToFit = YES;
         _webView.delegate = self;
+        _webView.opaque = NO;
+        _webView.backgroundColor = [UIColor whiteColor];
+        _webView.scrollView.backgroundColor = [UIColor whiteColor];
+        _webView.scrollView.contentInset = UIEdgeInsetsMake(20.0, 0.0, 0.0, 0.0);
     }
     
     return _webView;
