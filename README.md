@@ -140,7 +140,7 @@ YMAPaymentRequest *request = [YMAPaymentRequest paymentWithPatternId:patternId a
 #### Process payment
 
 Making a payment. The application calls the method up until the final payment status is known (status=success/refused).
-The recommended retry mode is determined by the "next_retry" response field (by default, 5 seconds). (Learn more about it at this API page: [En][EN_API_Process_payment], [Ru][EN_API_Process_payment])<br>
+The recommended retry mode is determined by the "next_retry" response field (by default, 5 seconds). (Learn more about it at this API page: [En][EN_API_Process_payment], [Ru][RU_API_Process_payment])<br>
 For making a payment use YMAPaymentRequest class:
 
 
@@ -296,7 +296,7 @@ YMABaseRequest *processExternalPaymentRequest = [YMAProcessExternalPaymentReques
 
 ## Links
 
-* Yandex.Money API page: [En][EN_API_Main], [Ru](RU_API_Main)
+* Yandex.Money API page: [En][EN_API_Main], [Ru][RU_API_Main]
 * [example project](https://github.com/yandex-money/yandex-money-sdk-objc/tree/master/Example)
 
 ## License
@@ -329,14 +329,14 @@ Objective-c Yandex.Money SDK is available under the MIT license. See the LICENSE
 [EN_API_Process_payment]:http://api.yandex.com/money/doc/dg/reference/process-payment.xml
 [RU_API_Process_payment]:https://tech.yandex.ru/money/doc/dg/reference/process-payment-docpage/
 
-[EN_API_Instance_id]:http://api.yandex.ru/money/doc/dg/reference/instance-id.xml
-[RU_API_Instance_id]:http://api.yandex.com/money/doc/dg/reference/instance-id.xml
+[EN_API_Instance_id]:http://api.yandex.com/money/doc/dg/reference/instance-id.xml
+[RU_API_Instance_id]:http://api.yandex.ru/money/doc/dg/reference/instance-id.xml
 
 [EN_API_Payment_bank_card]:http://api.yandex.com/money/doc/dg/reference/process-external-payments.xml
 [RU_API_Payment_bank_card]:https://tech.yandex.ru/money/doc/dg/reference/process-external-payments-docpage/
 
-[EN_API_Request_external_payment]: http://api.yandex.ru/money/doc/dg/reference/request-external-payment.xml
-[RU_API_Request_external_payment]: http://api.yandex.com/money/doc/dg/reference/request-external-payment.xml
+[EN_API_Request_external_payment]:http://api.yandex.com/money/doc/dg/reference/request-external-payment.xml
+[RU_API_Request_external_payment]:http://api.yandex.ru/money/doc/dg/reference/request-external-payment.xml 
 
-[EN_API_Process_external_payment]: http://api.yandex.ru/money/doc/dg/reference/process-external-payment.xml
-[RU_API_Process_external_payment]: http://api.yandex.com/money/doc/dg/reference/process-external-payment.xml
+[EN_API_Process_external_payment]:http://api.yandex.com/money/doc/dg/reference/process-external-payment.xml
+[RU_API_Process_external_payment]:http://api.yandex.ru/money/doc/dg/reference/process-external-payment.xml
