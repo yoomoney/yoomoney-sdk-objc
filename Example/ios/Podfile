@@ -1,3 +1,0 @@
-platform :ios, '6.0'
-
-pod 'YandexMoneySDKObjc', '1.1.12'
