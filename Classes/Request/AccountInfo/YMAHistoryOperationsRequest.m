@@ -85,7 +85,7 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
     [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"];
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
 
-    NSString *typeString;
+    NSString *typeString = nil;
 
     if (self.filter & YMAHistoryOperationFilterPayment)
         typeString = kKeyTypePayment;
@@ -94,7 +94,9 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
     else if (self.filter & YMAHistoryOperationFilterIncomingTransfersUnaccepted)
         typeString = kKeyTypeIncomingTransfersUnaccepted;
 
-    [dictionary setValue:typeString forKey:kParameterType];
+    if (typeString) {
+        [dictionary setValue:typeString forKey:kParameterType];
+    }
     [dictionary setValue:self.label forKey:kParameterLabel];
     NSString *fromString = [formatter stringFromDate:self.from];
     [dictionary setValue:fromString forKey:kParameterFrom];
