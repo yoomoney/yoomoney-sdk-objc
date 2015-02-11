@@ -66,9 +66,10 @@ static NSString *const kUrlOperationDetails = @"api/operation-details";
 - (NSDictionary *)parameters
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setValue:self.operationId forKey:kParameterOperationId];
-    [dictionary setValue:self.favouriteId forKey:kParameterFavouriteId];
-    [dictionary setValue:self.requestRepeatInfo ? @"true" : @"false" forKey:kParameterRequestRepeatInfo];
+
+    dictionary[kParameterOperationId] = self.operationId;
+    dictionary[kParameterFavouriteId] = self.favouriteId;
+    dictionary[kParameterRequestRepeatInfo] = self.requestRepeatInfo ? @"true" : @"false";
 
     return dictionary;
 }

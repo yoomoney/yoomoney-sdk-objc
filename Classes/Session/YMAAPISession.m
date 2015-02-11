@@ -117,8 +117,8 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
           completionHandler:(YMAIdHandler)block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters setValue:code forKey:YMAValueParameterResponseType];
-    [parameters setValue:clientId forKey:kParameterClientId];
+    parameters[YMAValueParameterResponseType] = code;
+    parameters[kParameterClientId] = clientId;
     [parameters addEntriesFromDictionary:params];
 
     NSString *urlString =

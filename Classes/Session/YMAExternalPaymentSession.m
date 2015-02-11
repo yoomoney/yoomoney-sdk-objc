@@ -20,7 +20,7 @@ static NSString *const kValueParameterStatusSuccess = @"success";
 - (void)instanceWithClientId:(NSString *)clientId token:(NSString *)token completionHandler:(YMAIdHandler)block
 {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setValue:clientId forKey:kParameterClientId];
+    parameters[kParameterClientId] = clientId;
 
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://%@/%@",
                                                                  [YMAHostsProvider sharedManager].moneyUrl,
@@ -92,7 +92,7 @@ static NSString *const kValueParameterStatusSuccess = @"success";
         YMABaseRequest<YMAParametersPosting> *paramsRequest = (YMABaseRequest<YMAParametersPosting> *)request;
         NSMutableDictionary *parameters = [paramsRequest.parameters mutableCopy];
 
-        [parameters setValue:self.instanceId forKey:kParameterInstanceId];
+        parameters[kParameterInstanceId] = self.instanceId;
 
         [self performAndProcessRequestWithMethod:YMARequestMethodPost
                                            token:token

@@ -95,15 +95,16 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
         typeString = kKeyTypeIncomingTransfersUnaccepted;
 
     if (typeString) {
-        [dictionary setValue:typeString forKey:kParameterType];
+        dictionary[kParameterType] = typeString;
     }
-    [dictionary setValue:self.label forKey:kParameterLabel];
+    dictionary[kParameterLabel] = self.label;
     NSString *fromString = [formatter stringFromDate:self.from];
-    [dictionary setValue:fromString forKey:kParameterFrom];
+    dictionary[kParameterFrom] = fromString;
     NSString *tillString = [formatter stringFromDate:self.till];
-    [dictionary setValue:tillString forKey:kParameterTill];
-    [dictionary setValue:self.startRecord forKey:kParameterStartRecord];
-    [dictionary setValue:self.records forKey:kParameterRecords];
+
+    dictionary[kParameterTill] = tillString;
+    dictionary[kParameterStartRecord] = self.startRecord;
+    dictionary[kParameterStartRecord] = self.records;
 
     return dictionary;
 }

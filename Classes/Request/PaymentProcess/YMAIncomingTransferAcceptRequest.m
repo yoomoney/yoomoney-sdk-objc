@@ -51,8 +51,8 @@ static NSString *const kParameterProtectionCode = @"protection_code";
 - (NSDictionary *)parameters
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setValue:self.operationId forKey:kParameterOperationId];
-    [dictionary setValue:self.protectionCode forKey:kParameterProtectionCode];
+    dictionary[kParameterOperationId] = self.operationId;
+    dictionary[kParameterProtectionCode] = self.protectionCode;
     return dictionary;
 }
 
