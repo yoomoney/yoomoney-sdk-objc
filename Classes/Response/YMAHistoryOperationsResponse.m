@@ -27,29 +27,29 @@ static NSString *const kParameterOperationType = @"type";
 
 + (YMAHistoryOperationModel *)historyOperationByModel:(id)historyOperationModel
 {
-    NSString *operationId = [historyOperationModel objectForKey:kParameterOperationOperationId];
-    NSString *statusString = [historyOperationModel objectForKey:kParameterOperationStatus];
+    NSString *operationId = historyOperationModel[kParameterOperationOperationId];
+    NSString *statusString = historyOperationModel[kParameterOperationStatus];
     YMAHistoryOperationStatus status = [YMAHistoryOperationModel historyOperationStatusByString:statusString];
 
-    NSString *dateTimeString = [historyOperationModel objectForKey:kParameterOperationDatetime];
+    NSString *dateTimeString = historyOperationModel[kParameterOperationDatetime];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
     [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/Moscow"]];
     NSDate *dateTime = [formatter dateFromString:dateTimeString];
 
-    NSString *title = [historyOperationModel objectForKey:kParameterOperationTitle];
-    NSString *patternId = [historyOperationModel objectForKey:kParameterOperationPatternId];
+    NSString *title = historyOperationModel[kParameterOperationTitle];
+    NSString *patternId = historyOperationModel[kParameterOperationPatternId];
 
-    NSString *directionString = [historyOperationModel objectForKey:kParameterOperationDirection];
+    NSString *directionString = historyOperationModel[kParameterOperationDirection];
     YMAHistoryOperationDirection
         direction = [YMAHistoryOperationModel historyOperationDirectionByString:directionString];
 
-    NSString *amount = [[historyOperationModel objectForKey:kParameterOperationAmount] stringValue];
-    NSString *label = [historyOperationModel objectForKey:kParameterOperationLabel];
+    NSString *amount = [historyOperationModel[kParameterOperationAmount] stringValue];
+    NSString *label = historyOperationModel[kParameterOperationLabel];
 
-    BOOL favourite = [[historyOperationModel objectForKey:kParameterOperationFavourite] boolValue];
+    BOOL favourite = [historyOperationModel[kParameterOperationFavourite] boolValue];
 
-    NSString *typeString = [historyOperationModel objectForKey:kParameterOperationType];
+    NSString *typeString = historyOperationModel[kParameterOperationType];
     YMAHistoryOperationType type = [YMAHistoryOperationModel historyOperationTypeByString:typeString];
 
     return [YMAHistoryOperationModel historyOperationWithOperationId:operationId
@@ -68,7 +68,7 @@ static NSString *const kParameterOperationType = @"type";
 
 - (BOOL)parseJSONModel:(id)responseModel headers:(NSDictionary *)headers error:(NSError * __autoreleasing *)error
 {
-    NSString *errorKey = [responseModel objectForKey:kParameterError];
+    NSString *errorKey = responseModel[kParameterError];
 
     if (errorKey != nil) {
         if (error == nil) return NO;
@@ -79,10 +79,10 @@ static NSString *const kParameterOperationType = @"type";
         return NO;
     }
 
-    NSString *nextRecord = [responseModel objectForKey:kParameterNextRecord];
+    NSString *nextRecord = responseModel[kParameterNextRecord];
     _nextRecord = [nextRecord copy];
 
-    id operationsModel = [responseModel objectForKey:kParameterOperations];
+    id operationsModel = responseModel[kParameterOperations];
 
     if (!operationsModel)
         return YES;

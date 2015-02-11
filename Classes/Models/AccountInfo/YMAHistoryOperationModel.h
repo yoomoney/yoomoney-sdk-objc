@@ -38,7 +38,7 @@ typedef NS_ENUM(NSInteger, YMAHistoryOperationType) {
                              amount:(NSString *)amount
                               label:(NSString *)label
                           favourite:(BOOL)favourite
-                               type:(YMAHistoryOperationType)type;
+                               type:(YMAHistoryOperationType)type NS_DESIGNATED_INITIALIZER;
 
 + (instancetype)historyOperationWithOperationId:(NSString *)operationId
                                          status:(YMAHistoryOperationStatus)status

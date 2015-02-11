@@ -36,7 +36,7 @@ NSString *const YMAValueParameterResponseType = @"code";
     for (NSString *key in params.allKeys) {
 
         NSString *paramKey = [YMAConnection addPercentEscapesForString:key];
-        NSString *paramValue = [YMAConnection addPercentEscapesForString:[params objectForKey:key]];
+        NSString *paramValue = [YMAConnection addPercentEscapesForString:params[key]];
 
         [post appendString:[NSString stringWithFormat:@"%@=%@&", paramKey, paramValue]];
     }
@@ -89,10 +89,10 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
 
             for (NSString *keyValuePair in queryComponents) {
                 NSArray *pairComponents = [keyValuePair componentsSeparatedByString:@"="];
-                NSString *key = [pairComponents objectAtIndex:0];
-                NSString *value = [pairComponents objectAtIndex:1];
+                NSString *key = pairComponents[0];
+                NSString *value = pairComponents[1];
 
-                [*authInfo setObject:value forKey:key];
+                (*authInfo)[key] = value;
             }
         }
 
@@ -158,7 +158,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
 
                            if (statusCode == YMAStatusCodeOkHTTP) {
 
-                               NSString *accessToken = [responseModel objectForKey:@"access_token"];
+                               NSString *accessToken = responseModel[@"access_token"];
 
                                if (accessToken == nil)
                                    block(nil, unknownError);
@@ -168,7 +168,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
                                return;
                            }
 
-                           NSString *errorKey = [responseModel objectForKey:@"error"];
+                           NSString *errorKey = responseModel[@"error"];
 
                            if (errorKey == nil)
                                block(nil, unknownError);

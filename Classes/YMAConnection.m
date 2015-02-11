@@ -122,7 +122,7 @@ static NSString *const kHeaderContentLength = @"Content-Length";
     NSMutableArray *bodyParams = [NSMutableArray array];
     
     for (NSString *key in postParams.allKeys) {
-        id value = [postParams objectForKey:key];
+        id value = postParams[key];
         NSString *paramValue = [value isKindOfClass:[NSNumber class]] ? [value stringValue] : value;
         
         NSString *encodedValue = [YMAConnection addPercentEscapesForString:paramValue];
