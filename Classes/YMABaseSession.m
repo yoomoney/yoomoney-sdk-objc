@@ -30,7 +30,7 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
 
 #pragma mark - Object Lifecycle
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
 
@@ -44,7 +44,7 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
     return self;
 }
 
-- (id)initWithUserAgent:(NSString *)userAgent
+- (instancetype)initWithUserAgent:(NSString *)userAgent
 {
     self = [self init];
 
@@ -59,14 +59,14 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
 
 - (void)performRequestWithMethod:(YMARequestMethod)requestMethod
                            token:(NSString *)token
-                     parameters:(NSDictionary *)parameters
-                  customHeaders:(NSDictionary *)customHeaders
-                            url:(NSURL *)url
-                     completion:(YMAConnectionHandler)block
+                      parameters:(NSDictionary *)parameters
+                   customHeaders:(NSDictionary *)customHeaders
+                             url:(NSURL *)url
+               completionHandler:(YMAConnectionHandler)block
 {
-    YMAConnection *connection = requestMethod == YMARequestMethodGet ? [YMAConnection connectionForGetRequestWithUrl:url andParams:parameters] : [YMAConnection connectionForPostRequestWithUrl:url andParams:parameters];
+    YMAConnection *connection = requestMethod == YMARequestMethodGet ? [YMAConnection connectionForGetRequestWithUrl:url parameters:parameters] : [YMAConnection connectionForPostRequestWithUrl:url postParameters:parameters];
     
-    BOOL result = [self addHeadrs:customHeaders token:token forConnection:&connection];
+    BOOL result = [self addHeaders:customHeaders token:token forConnection:&connection];
     
     if (result) {
         [connection sendAsynchronousWithQueue:_requestQueue completionHandler:block];
@@ -84,18 +84,18 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
                                 parameters:(NSDictionary *)parameters
                              customHeaders:(NSDictionary *)customHeaders
                                        url:(NSURL *)url
-                                completion:(YMAConnectionHandler)block
+                         completionHandler:(YMAConnectionHandler)block
 {
     [self performRequestWithMethod:requestMethod token:token
                         parameters:parameters
                      customHeaders:customHeaders
                                url:url
-                        completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
+                 completionHandler:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
                             [self processRequest:urlRequest
                                         response:urlResponse
                                     responseData:responseData
                                            error:error
-                                      completion:block];
+                                      completionHandler:block];
                        }];
 }
 
@@ -103,18 +103,18 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
                                      data:(NSData *)data
                             customHeaders:(NSDictionary *)customHeaders
                                       url:(NSURL *)url
-                               completion:(YMAConnectionHandler)block
+                        completionHandler:(YMAConnectionHandler)block
 {
     [self performRequestWithToken:token
                              data:data
                     customHeaders:customHeaders
                               url:url
-             andCompletionHandler:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
+                completionHandler:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
                  [self processRequest:urlRequest
                              response:urlResponse
                          responseData:responseData
                                 error:error
-                           completion:block];
+                           completionHandler:block];
              }];
 }
 
@@ -124,11 +124,11 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
                            data:(NSData *)data
                   customHeaders:(NSDictionary *)customHeaders
                             url:(NSURL *)url
-           andCompletionHandler:(YMAConnectionHandler)block
+              completionHandler:(YMAConnectionHandler)block
 {
-    YMAConnection *connection = [YMAConnection connectionForPostRequestWithUrl:url andDta:data];
+    YMAConnection *connection = [YMAConnection connectionForPostRequestWithUrl:url bodyData:data];
     
-    BOOL result = [self addHeadrs:customHeaders token:token forConnection:&connection];
+    BOOL result = [self addHeaders:customHeaders token:token forConnection:&connection];
     
     if (result) {
         [connection sendAsynchronousWithQueue:_requestQueue completionHandler:block];
@@ -145,7 +145,7 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
               response:(NSURLResponse *)urlResponse
           responseData:(NSData *)responseData
                  error:(NSError *)error
-            completion:(YMAConnectionHandler)block
+     completionHandler:(YMAConnectionHandler)block
 {
     if (error != nil) {
         block(urlRequest, urlResponse, responseData, error);
@@ -182,7 +182,7 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
     }
 }
 
-- (BOOL)addHeadrs:(NSDictionary *)customHeaders token:(NSString *)token forConnection:(YMAConnection * __autoreleasing *)connection {
+- (BOOL)addHeaders:(NSDictionary *)customHeaders token:(NSString *)token forConnection:(YMAConnection * __autoreleasing *)connection {
     if (connection == nil || *connection == nil)
         return NO;
     

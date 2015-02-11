@@ -28,7 +28,7 @@ static NSString *const kMoneySourceTypePaymentCard = @"payment-card";
 
     if (acsUrl != nil) {
         NSDictionary *acsParams = responseModel[kParameterAcsParams];
-        _asc = [YMAAscModel ascWithUrl:[NSURL URLWithString:acsUrl] andParams:acsParams];
+        _asc = [YMAAscModel ascWithUrl:[NSURL URLWithString:acsUrl] parameters:acsParams];
     }
 
     NSDictionary *moneySource = responseModel[kParameterMoneySource];

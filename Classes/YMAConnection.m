@@ -23,7 +23,7 @@ static NSString *const kHeaderContentLength = @"Content-Length";
 
 #pragma mark - Object Lifecycle
 
-- (id)initWithUrl:(NSURL *)url params:(NSDictionary *)params andRequestMethod:(NSString *)requestMethod
+- (instancetype)initWithUrl:(NSURL *)url parameters:(NSDictionary *)params requestMethod:(NSString *)requestMethod
 {
     self = [super init];
     
@@ -48,7 +48,7 @@ static NSString *const kHeaderContentLength = @"Content-Length";
     return self;
 }
 
-- (id)initWithUrl:(NSURL *)url bodyData:(NSData *)bodyData
+- (instancetype)initWithUrl:(NSURL *)url bodyData:(NSData *)bodyData
 {
     self = [super init];
     
@@ -58,28 +58,28 @@ static NSString *const kHeaderContentLength = @"Content-Length";
                                                 cachePolicy:NSURLRequestUseProtocolCachePolicy
                                             timeoutInterval:kRequestTimeoutIntervalDefault];
         _request.HTTPMethod = kRequestMethodPost;
-        self.request.HTTPBody = bodyData;
+        _request.HTTPBody = bodyData;
     }
     
     return self;
 }
 
 + (instancetype)connectionForPostRequestWithUrl:(NSURL *)url
-                                      andParams:(NSDictionary *)postParams
+                                      postParameters:(NSDictionary *)postParams
 {
-    return [[YMAConnection alloc] initWithUrl:url params:postParams andRequestMethod:kRequestMethodPost];
+    return [[YMAConnection alloc] initWithUrl:url parameters:postParams requestMethod:kRequestMethodPost];
 }
 
 + (instancetype)connectionForPostRequestWithUrl:(NSURL *)url
-                                         andDta:(NSData *)bodyData
+                                         bodyData:(NSData *)bodyData
 {
     return [[YMAConnection alloc] initWithUrl:url bodyData:bodyData];
 }
 
 + (instancetype)connectionForGetRequestWithUrl:(NSURL *)url
-                                     andParams:(NSDictionary *)postParams
+                                     parameters:(NSDictionary *)postParams
 {
-    return [[YMAConnection alloc] initWithUrl:url params:postParams andRequestMethod:kRequestMethodGet];
+    return [[YMAConnection alloc] initWithUrl:url parameters:postParams requestMethod:kRequestMethodGet];
 }
 
 #pragma mark - Public methods

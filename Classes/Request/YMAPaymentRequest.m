@@ -20,7 +20,7 @@ static NSString *const kParameterPatternId = @"pattern_id";
 
 #pragma mark - Object Lifecycle
 
-- (id)initWithPatternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams
+- (instancetype)initWithPatternId:(NSString *)patternId paymentParameters:(NSDictionary *)paymentParams
 {
     self = [super init];
 
@@ -32,9 +32,9 @@ static NSString *const kParameterPatternId = @"pattern_id";
     return self;
 }
 
-+ (instancetype)paymentWithPatternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams
++ (instancetype)paymentWithPatternId:(NSString *)patternId paymentParameters:(NSDictionary *)paymentParams
 {
-    return [[YMAPaymentRequest alloc] initWithPatternId:patternId andPaymentParams:paymentParams];
+    return [[YMAPaymentRequest alloc] initWithPatternId:patternId paymentParameters:paymentParams];
 }
 
 #pragma mark - Overridden methods
@@ -53,9 +53,9 @@ static NSString *const kParameterPatternId = @"pattern_id";
     return dictionary;
 }
 
-- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers andCompletionHandler:(YMAResponseHandler)handler
+- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers completionHandler:(YMAResponseHandler)handler
 {
-    return [[YMAPaymentResponse alloc] initWithData:data headers:headers andCompletion:handler];
+    return [[YMAPaymentResponse alloc] initWithData:data headers:headers completionHandler:handler];
 }
 
 @end

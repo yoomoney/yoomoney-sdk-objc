@@ -22,16 +22,16 @@ static NSString *const kKeyHistoryOperationTypeIncomingTransferProtected = @"inc
 
 #pragma mark - Object Lifecycle
 
-- (id)initWithOperationId:(NSString *)operationId
-                   status:(YMAHistoryOperationStatus)status
-                 datetime:(NSDate *)datetime
-                    title:(NSString *)title
-                patternId:(NSString *)patternId
-                direction:(YMAHistoryOperationDirection)direction
-                   amount:(NSString *)amount
-                    label:(NSString *)label
-                favourite:(BOOL)favourite
-                     type:(YMAHistoryOperationType)type
+- (instancetype)initWithOperationId:(NSString *)operationId
+                             status:(YMAHistoryOperationStatus)status
+                           datetime:(NSDate *)datetime
+                              title:(NSString *)title
+                          patternId:(NSString *)patternId
+                          direction:(YMAHistoryOperationDirection)direction
+                             amount:(NSString *)amount
+                              label:(NSString *)label
+                          favourite:(BOOL)favourite
+                               type:(YMAHistoryOperationType)type
 {
     self = [super init];
 

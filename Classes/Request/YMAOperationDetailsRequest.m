@@ -24,9 +24,9 @@ static NSString *const kUrlOperationDetails = @"api/operation-details";
 
 #pragma mark - Object Lifecycle
 
-- (id)initWithOperationId:(NSString *)operationId
-              favouriteId:(NSString *)favouriteId
-        requestRepeatInfo:(BOOL)requestRepeatInfo
+- (instancetype)initWithOperationId:(NSString *)operationId
+                        favouriteId:(NSString *)favouriteId
+                  requestRepeatInfo:(BOOL)requestRepeatInfo
 {
     self = [super init];
 
@@ -73,9 +73,9 @@ static NSString *const kUrlOperationDetails = @"api/operation-details";
     return dictionary;
 }
 
-- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers andCompletionHandler:(YMAResponseHandler)handler
+- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers completionHandler:(YMAResponseHandler)handler
 {
-    return [[YMAOperationDetailsResponse alloc] initWithData:data headers:headers andCompletion:handler];
+    return [[YMAOperationDetailsResponse alloc] initWithData:data headers:headers completionHandler:handler];
 }
 
 @end

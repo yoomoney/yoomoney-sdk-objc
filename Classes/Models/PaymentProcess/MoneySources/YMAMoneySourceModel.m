@@ -14,10 +14,10 @@ static NSString *const kPaymentCardTypeJCB = @"JCB";
 
 #pragma mark - Object Lifecycle
 
-- (id)initWithType:(YMAMoneySourceType)type
-          cardType:(YMAPaymentCardType)cardType
-       panFragment:(NSString *)panFragment
-  moneySourceToken:(NSString *)moneySourceToken
+- (instancetype)initWithType:(YMAMoneySourceType)type
+                    cardType:(YMAPaymentCardType)cardType
+                 panFragment:(NSString *)panFragment
+            moneySourceToken:(NSString *)moneySourceToken
 {
     self = [super init];
 

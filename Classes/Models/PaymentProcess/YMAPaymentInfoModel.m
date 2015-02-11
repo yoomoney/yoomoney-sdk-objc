@@ -10,14 +10,14 @@
 
 #pragma mark - Object Lifecycle
 
-- (id)initWithMoneySources:(YMAMoneySourcesModel *)moneySources
-                 requestId:(NSString *)requestId
-            contractAmount:(NSString *)contractAmount
-                   balance:(NSString *)balance
-    recipientAccountStatus:(YMAAccountStatus)recipientAccountStatus
-      recipientAccountType:(YMAAccountType)recipientAccountType
-            protectionCode:(NSString *)protectionCode
-              extActionUri:(NSURL *)extActionUri
+- (instancetype)initWithMoneySources:(YMAMoneySourcesModel *)moneySources
+                           requestId:(NSString *)requestId
+                      contractAmount:(NSString *)contractAmount
+                             balance:(NSString *)balance
+              recipientAccountStatus:(YMAAccountStatus)recipientAccountStatus
+                recipientAccountType:(YMAAccountType)recipientAccountType
+                      protectionCode:(NSString *)protectionCode
+                        extActionUri:(NSURL *)extActionUri
 {
     self = [super init];
 

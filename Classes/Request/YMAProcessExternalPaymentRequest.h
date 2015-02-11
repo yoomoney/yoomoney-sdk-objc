@@ -37,6 +37,6 @@
                                          successUri:(NSString *)successUri
                                             failUri:(NSString *)failUri
                                    moneySourceToken:(NSString *)moneySourceToken
-                                             andCsc:(NSString *)csc;
+                                                csc:(NSString *)csc;
 
 @end

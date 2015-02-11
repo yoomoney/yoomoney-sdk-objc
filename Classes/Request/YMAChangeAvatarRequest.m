@@ -16,7 +16,7 @@ static NSString *const kContentType = @"image/png";
 
 #pragma mark - Object Lifecycle
 
-- (id)initWithImageData:(NSData *)imageData
+- (instancetype)initWithImageData:(NSData *)imageData
 {
     self = [super init];
 
@@ -45,9 +45,11 @@ static NSString *const kContentType = @"image/png";
     return [NSURL URLWithString:urlString];
 }
 
-- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers andCompletionHandler:(YMAResponseHandler)handler
+- (NSOperation *)buildResponseOperationWithData:(NSData *)data
+                                        headers:(NSDictionary *)headers
+                              completionHandler:(YMAResponseHandler)handler
 {
-    return [[YMABaseProcessResponse alloc] initWithData:data headers:headers andCompletion:handler];
+    return [[YMABaseProcessResponse alloc] initWithData:data headers:headers completionHandler:handler];
 }
 
 @end

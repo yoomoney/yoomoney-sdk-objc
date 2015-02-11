@@ -19,7 +19,7 @@ static NSString *const kParameterOperationId = @"operation_id";
 
 #pragma mark - Object Lifecycle
 
-- (id)initWithOperationId:(NSString *)operationId
+- (instancetype)initWithOperationId:(NSString *)operationId
 {
     self = [super init];
 
@@ -52,9 +52,11 @@ static NSString *const kParameterOperationId = @"operation_id";
     return dictionary;
 }
 
-- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers andCompletionHandler:(YMAResponseHandler)handler
+- (NSOperation *)buildResponseOperationWithData:(NSData *)data
+                                        headers:(NSDictionary *)headers
+                              completionHandler:(YMAResponseHandler)handler
 {
-    return [[YMABaseProcessResponse alloc] initWithData:data headers:headers andCompletion:handler];
+    return [[YMABaseProcessResponse alloc] initWithData:data headers:headers completionHandler:handler];
 }
 
 @end

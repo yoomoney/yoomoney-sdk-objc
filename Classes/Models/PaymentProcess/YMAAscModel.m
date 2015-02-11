@@ -10,7 +10,7 @@
 
 #pragma mark - Object Lifecycle
 
-- (id)initWithUrl:(NSURL *)url andParams:(NSDictionary *)params
+- (instancetype)initWithUrl:(NSURL *)url parameters:(NSDictionary *)params
 {
     self = [super init];
 
@@ -22,9 +22,9 @@
     return self;
 }
 
-+ (instancetype)ascWithUrl:(NSURL *)url andParams:(NSDictionary *)params
++ (instancetype)ascWithUrl:(NSURL *)url parameters:(NSDictionary *)params
 {
-    return [[YMAAscModel alloc] initWithUrl:url andParams:params];
+    return [[YMAAscModel alloc] initWithUrl:url parameters:params];
 }
 
 @end

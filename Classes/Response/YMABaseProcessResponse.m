@@ -21,7 +21,7 @@ static NSString *const kParameterAccountUnblockUri = @"account_unblock_uri";
 
 #pragma mark - Object Lifecycle
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
 

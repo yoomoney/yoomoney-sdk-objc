@@ -10,10 +10,10 @@
 
 #pragma mark - Object Lifecycle
 
-- (id)initWithCards:(NSArray *)cards
-        defaultCard:(YMAMoneySourceModel *)defaultCard
-        cscRequired:(BOOL)cscRequired
-            allowed:(BOOL)allowed
+- (instancetype)initWithCards:(NSArray *)cards
+                  defaultCard:(YMAMoneySourceModel *)defaultCard
+                  cscRequired:(BOOL)cscRequired
+                      allowed:(BOOL)allowed
 {
     self = [self init];
 

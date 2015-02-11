@@ -16,6 +16,6 @@
 /// Constructor. Returns a YMAExternalPaymentRequest with the specified patternId and paymentParams.
 /// @param patternId - ID of showcase on which payment is made.
 /// @param paymentParams - payment parameters.
-+ (instancetype)externalPaymentWithPatternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams;
++ (instancetype)externalPaymentWithPatternId:(NSString *)patternId paymentParameters:(NSDictionary *)paymentParams;
 
 @end

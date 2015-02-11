@@ -16,15 +16,15 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
 
 #pragma mark - Object Lifecycle
 
-- (id)initWithAccount:(NSString *)account
-              balance:(NSString *)balance
-             currency:(NSString *)currency
-        accountStatus:(YMAAccountStatus)accountStatus
-          accountType:(YMAAccountType)accountType
-               avatar:(YMAAvatarModel *)avatar
-       balanceDetails:(YMABalanceDetailsModel *)balanceDetails
-          cardsLinked:(NSArray *)cardsLinked
-   servicesAdditional:(NSArray *)servicesAdditional
+- (instancetype)initWithAccount:(NSString *)account
+                        balance:(NSString *)balance
+                       currency:(NSString *)currency
+                  accountStatus:(YMAAccountStatus)accountStatus
+                    accountType:(YMAAccountType)accountType
+                         avatar:(YMAAvatarModel *)avatar
+                 balanceDetails:(YMABalanceDetailsModel *)balanceDetails
+                    cardsLinked:(NSArray *)cardsLinked
+             servicesAdditional:(NSArray *)servicesAdditional
 {
     self = [super init];
 

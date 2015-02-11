@@ -21,7 +21,7 @@ static NSString *const kParameterProtectionCode = @"protection_code";
 
 #pragma mark - Object Lifecycle
 
-- (id)initWithOperationId:(NSString *)operationId protectionCode:(NSString *)protectionCode
+- (instancetype)initWithOperationId:(NSString *)operationId protectionCode:(NSString *)protectionCode
 {
     self = [super init];
 
@@ -56,9 +56,9 @@ static NSString *const kParameterProtectionCode = @"protection_code";
     return dictionary;
 }
 
-- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers andCompletionHandler:(YMAResponseHandler)handler
+- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers completionHandler:(YMAResponseHandler)handler
 {
-    return [[YMAIncomingTransferAcceptResponse alloc] initWithData:data headers:headers andCompletion:handler];
+    return [[YMAIncomingTransferAcceptResponse alloc] initWithData:data headers:headers completionHandler:handler];
 }
 
 @end

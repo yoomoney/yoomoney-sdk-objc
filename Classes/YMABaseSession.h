@@ -44,7 +44,7 @@ typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
 
 /// Initialize session object with specified user agent.
 /// @param userAgent - user agent (if you want to set default user agent you can use constructor - (id)init)
-- (id)initWithUserAgent:(NSString *)userAgent;
+- (instancetype)initWithUserAgent:(NSString *)userAgent;
 
 /// Send request used token.
 /// @param requestMethod - request method.
@@ -58,7 +58,7 @@ typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
                       parameters:(NSDictionary *)parameters
                    customHeaders:(NSDictionary *)customHeaders
                              url:(NSURL *)url
-                      completion:(YMAConnectionHandler)block;
+               completionHandler:(YMAConnectionHandler)block;
 
 /// Send request used token and analyzed HTTP status code of response.
 /// @param requestMethod - request method.
@@ -72,7 +72,7 @@ typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
                                 parameters:(NSDictionary *)parameters
                              customHeaders:(NSDictionary *)customHeaders
                                        url:(NSURL *)url
-                                completion:(YMAConnectionHandler)block;
+                         completionHandler:(YMAConnectionHandler)block;
 
 /// Send request used token and analyzed HTTP status code of response.
 /// @param token - an access token is a string representing an authorization issued to the client (see OAuth 2.0)
@@ -84,7 +84,7 @@ typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
                                      data:(NSData *)data
                             customHeaders:(NSDictionary *)customHeaders
                                       url:(NSURL *)url
-                               completion:(YMAConnectionHandler)block;
+                        completionHandler:(YMAConnectionHandler)block;
 
 /// Get the header value by name
 /// @param headerName - response header name

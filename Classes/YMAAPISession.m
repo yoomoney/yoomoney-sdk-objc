@@ -17,14 +17,14 @@ NSString *const YMAValueParameterResponseType = @"code";
 
 @implementation YMAAPISession
 
-- (NSURLRequest *)authorizationRequestWithClientId:(NSString *)clientId andAdditionalParams:(NSDictionary *)params
+- (NSURLRequest *)authorizationRequestWithClientId:(NSString *)clientId additionalParameters:(NSDictionary *)params
 {
-    return [self authorizationRequestWithUrl:kUrlAuthorize clientId:clientId andAdditionalParams:params];
+    return [self authorizationRequestWithUrl:kUrlAuthorize clientId:clientId additionalParameters:params];
 }
 
 - (NSURLRequest *)authorizationRequestWithUrl:(NSString *)relativeUrlString
                                      clientId:(NSString *)clientId
-                          andAdditionalParams:(NSDictionary *)params
+                         additionalParameters:(NSDictionary *)params
 {
     NSMutableString *post = [NSMutableString stringWithCapacity:0];
 
@@ -102,19 +102,19 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
         return NO;
 }
 
-- (void)receiveTokenWithWithCode:(NSString *)code
-                        clientId:(NSString *)clientId
-             andAdditionalParams:(NSDictionary *)params
-                      completion:(YMAIdHandler)block
+- (void)receiveTokenWithCode:(NSString *)code
+                    clientId:(NSString *)clientId
+        additionalParameters:(NSDictionary *)params
+           completionHandler:(YMAIdHandler)block
 {
-    [self receiveTokenWithWithUrl:kUrlToken code:code clientId:clientId andAdditionalParams:params completion:block];
+    [self receiveTokenWithUrl:kUrlToken code:code clientId:clientId additionalParameters:params completionHandler:block];
 }
 
-- (void)receiveTokenWithWithUrl:(NSString *)relativeUrlString
-                           code:(NSString *)code
-                       clientId:(NSString *)clientId
-            andAdditionalParams:(NSDictionary *)params
-                     completion:(YMAIdHandler)block
+- (void)receiveTokenWithUrl:(NSString *)relativeUrlString
+                       code:(NSString *)code
+                   clientId:(NSString *)clientId
+       additionalParameters:(NSDictionary *)params
+          completionHandler:(YMAIdHandler)block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setValue:code forKey:YMAValueParameterResponseType];
@@ -127,10 +127,10 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
 
     [self performRequestWithMethod:YMARequestMethodPost
                              token:nil
-                       parameters:parameters
-                    customHeaders:nil
-                              url:url
-                       completion:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
+                        parameters:parameters
+                     customHeaders:nil
+                               url:url
+                 completionHandler:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
 
                            if (error != nil) {
                                block(nil, error);
@@ -179,7 +179,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
                        }];
 }
 
-- (void)revokeToken:(NSString *)token completion:(YMAHandler)block
+- (void)revokeToken:(NSString *)token completionHandler:(YMAHandler)block
 {
     NSString *urlString =
         [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, kUrlRevoke];
@@ -190,7 +190,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
                                   parameters:nil
                                customHeaders:nil
                                          url:url
-                                  completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
+                           completionHandler:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
                                      if (error != nil) {
                                          block(error);
                                          return;
@@ -200,7 +200,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
                                  }];
 }
 
-- (void)performRequest:(YMABaseRequest *)request token:(NSString *)token completion:(YMARequestHandler)block
+- (void)performRequest:(YMABaseRequest *)request token:(NSString *)token completionHandler:(YMARequestHandler)block
 {
     NSError *unknownError = [NSError errorWithDomain:YMAErrorDomainUnknown code:0 userInfo:@{ YMAErrorKeyRequest : request }];
 
@@ -217,7 +217,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
                                       parameters:paramsRequest.parameters
                                    customHeaders:paramsRequest.customHeaders
                                              url:request.requestUrl
-                                      completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
+                               completionHandler:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
                                          
                                          if (error != nil) {
                                              block(request, nil, error);
@@ -230,7 +230,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
                                          [request buildResponseWithData:responseData
                                                                 headers:headers
                                                                   queue:self.responseQueue
-                                                          andCompletion:block];
+                                                          completionHandler:block];
                                      }];
     }
     else if ([request conformsToProtocol:@protocol(YMADataPosting)]) {
@@ -240,7 +240,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
                                            data:dataRequest.data
                                   customHeaders:dataRequest.customHeaders
                                             url:dataRequest.requestUrl
-                                     completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
+                              completionHandler:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
                                          if (error != nil) {
                                              block(request, nil, error);
                                              return;
@@ -252,7 +252,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
                                          [request buildResponseWithData:responseData
                                                                 headers:headers
                                                                   queue:self.responseQueue
-                                                          andCompletion:block];
+                                                          completionHandler:block];
                                      }];
     }
 }

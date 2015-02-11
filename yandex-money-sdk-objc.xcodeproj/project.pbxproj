@@ -313,12 +313,12 @@
 				608F75171907BC2B00F45D7F /* YMAExternalPaymentSession.h */,
 				608F75181907BC2B00F45D7F /* YMAExternalPaymentSession.m */,
 				608F75191907BC2B00F45D7F /* ymexternalpaymentsdk.h */,
-				8BFF28A12B37CD1CB6CCF148 /* YMABaseSession.m */,
 				8BFF2E6CD4060300AADD7F0E /* YMABaseSession.h */,
-				8BFF2B5D4A589E5C180D6B2B /* YMAAPISession.m */,
+				8BFF28A12B37CD1CB6CCF148 /* YMABaseSession.m */,
 				8BFF293904B8F1396C4DC49A /* YMAAPISession.h */,
-				8BFF2E7A681EE978480A5112 /* YMAHostsProvider.m */,
+				8BFF2B5D4A589E5C180D6B2B /* YMAAPISession.m */,
 				8BFF2AC3DB74FF9E507A51F3 /* YMAHostsProvider.h */,
+				8BFF2E7A681EE978480A5112 /* YMAHostsProvider.m */,
 			);
 			name = SDK;
 			path = Classes;
@@ -343,8 +343,8 @@
 				8BFF2231EE1A71A7183B3076 /* AccountInfo */,
 				606E80051938D7340090354C /* YMABaseProcessResponse.h */,
 				606E80061938D7340090354C /* YMABaseProcessResponse.m */,
-				608F7598192B916600F45D7F /* YMABaseResponse.m */,
 				608F758F192B912000F45D7F /* YMABaseResponse.h */,
+				608F7598192B916600F45D7F /* YMABaseResponse.m */,
 			);
 			name = Response;
 			path = SDK/Response;
@@ -353,16 +353,16 @@
 		8BFF21554E206EEE95AF9123 /* AccountInfo */ = {
 			isa = PBXGroup;
 			children = (
-				8BFF29406293FEA3A5090E81 /* YMAAccountInfoModel.m */,
 				8BFF205EC8608008B2A3D5E4 /* YMAAccountInfoModel.h */,
-				8BFF220B53BA9A164CAA13A3 /* YMAAvatarModel.m */,
+				8BFF29406293FEA3A5090E81 /* YMAAccountInfoModel.m */,
 				8BFF251C997D83C7C909A548 /* YMAAvatarModel.h */,
-				8BFF20FC566A3854252E808A /* YMABalanceDetailsModel.m */,
+				8BFF220B53BA9A164CAA13A3 /* YMAAvatarModel.m */,
 				8BFF2738ADE37FD40EA71164 /* YMABalanceDetailsModel.h */,
-				8BFF2DC406E943E144ECC1F7 /* YMAHistoryOperationModel.m */,
+				8BFF20FC566A3854252E808A /* YMABalanceDetailsModel.m */,
 				8BFF2A1255EDB62A48BF615D /* YMAHistoryOperationModel.h */,
-				2DE79556322AA7E70F71D29B /* YMAOperationDetailsModel.m */,
+				8BFF2DC406E943E144ECC1F7 /* YMAHistoryOperationModel.m */,
 				2DE794A649279376C6AB9585 /* YMAOperationDetailsModel.h */,
+				2DE79556322AA7E70F71D29B /* YMAOperationDetailsModel.m */,
 			);
 			path = AccountInfo;
 			sourceTree = "<group>";
@@ -374,8 +374,8 @@
 				4399F2D7192EDCAC00CB1B49 /* YMAHistoryOperationsResponse.m */,
 				608F75A3192E57F000F45D7F /* YMAAccountInfoResponse.h */,
 				608F75A4192E57F000F45D7F /* YMAAccountInfoResponse.m */,
-				8BFF252947D95AE8C4521E81 /* YMAOperationDetailsResponse.m */,
 				8BFF2AFBFA8940409B606723 /* YMAOperationDetailsResponse.h */,
+				8BFF252947D95AE8C4521E81 /* YMAOperationDetailsResponse.m */,
 			);
 			name = AccountInfo;
 			sourceTree = "<group>";
@@ -392,8 +392,8 @@
 		8BFF24F17B5E8D8E6C430AAD /* ExternalPayment */ = {
 			isa = PBXGroup;
 			children = (
-				8BFF24147E42C30AF6A216D7 /* YMAExternalPaymentInfoModel.m */,
 				8BFF2A5D8B81F1BFE8FB9295 /* YMAExternalPaymentInfoModel.h */,
+				8BFF24147E42C30AF6A216D7 /* YMAExternalPaymentInfoModel.m */,
 			);
 			path = ExternalPayment;
 			sourceTree = "<group>";
@@ -402,13 +402,13 @@
 			isa = PBXGroup;
 			children = (
 				8BFF2F991CE1638D7065AC80 /* YMAMoneySourcesModel.h */,
+				8BFF2C1961C4D2869E191D58 /* YMAMoneySourcesModel.m */,
 				8BFF2147199C0B51AC8ADAE4 /* YMAMoneySourceModel.h */,
 				8BFF2C7A1FD664BF6CEF70D0 /* YMAMoneySourceModel.m */,
 				8BFF26B74AADF64E399C5FB0 /* YMAWalletSourceGroupModel.h */,
-				8BFF2C1961C4D2869E191D58 /* YMAMoneySourcesModel.m */,
 				8BFF260DCBDCE8B93B526B91 /* YMAWalletSourceGroupModel.m */,
-				8BFF27308D5D7F3F6BDFD94C /* YMACardsSourceGroupModel.m */,
 				8BFF2B78CE66CA13661549AC /* YMACardsSourceGroupModel.h */,
+				8BFF27308D5D7F3F6BDFD94C /* YMACardsSourceGroupModel.m */,
 			);
 			path = MoneySources;
 			sourceTree = "<group>";
@@ -432,10 +432,10 @@
 		8BFF276461EC66E5BC036CF9 /* ExternalPayment */ = {
 			isa = PBXGroup;
 			children = (
-				8BFF2651BB40614B08F0EA81 /* YMAExternalPaymentResponse.m */,
 				8BFF2392162339352AEF8560 /* YMAProcessExternalPaymentResponse.h */,
-				8BFF225A804D6856B2C6572B /* YMAProcessExternalPaymentResponse.m */,
+				8BFF2651BB40614B08F0EA81 /* YMAExternalPaymentResponse.m */,
 				8BFF2A1B4124FDF065D762D2 /* YMAExternalPaymentResponse.h */,
+				8BFF225A804D6856B2C6572B /* YMAProcessExternalPaymentResponse.m */,
 			);
 			name = ExternalPayment;
 			sourceTree = "<group>";
@@ -445,8 +445,8 @@
 			children = (
 				8BFF27D40E844ABDA08CD23C /* YMAExternalPaymentRequest.h */,
 				8BFF2355AFDBC4EE55694230 /* YMAExternalPaymentRequest.m */,
-				8BFF2064E4C8C49AE00740BB /* YMAProcessExternalPaymentRequest.m */,
 				8BFF2FB63A4098F9B45021FF /* YMAProcessExternalPaymentRequest.h */,
+				8BFF2064E4C8C49AE00740BB /* YMAProcessExternalPaymentRequest.m */,
 			);
 			name = ExternalPayment;
 			sourceTree = "<group>";
@@ -471,16 +471,16 @@
 			children = (
 				8BFF24F17B5E8D8E6C430AAD /* ExternalPayment */,
 				8BFF25D28C751203D4E9A06E /* MoneySources */,
-				8BFF2E05AB79E8DA5846E199 /* YMAAscModel.m */,
 				8BFF26C28CA55AB0B45EAF2E /* YMAAscModel.h */,
-				8BFF22C79FB7D29467E25BE4 /* YMAPaymentInfoModel.m */,
+				8BFF2E05AB79E8DA5846E199 /* YMAAscModel.m */,
 				8BFF285F0C2C0D320C081AFE /* YMAPaymentInfoModel.h */,
-				8BFF211BFE1D637546E70B8D /* YMAPaymentResultModel.m */,
+				8BFF22C79FB7D29467E25BE4 /* YMAPaymentInfoModel.m */,
 				8BFF2B9E8D49F1420DF0DC6B /* YMAPaymentResultModel.h */,
+				8BFF211BFE1D637546E70B8D /* YMAPaymentResultModel.m */,
 				8BFF2C2E972359A9A4899BEE /* YMAGoodsModel.h */,
 				8BFF2255429905AC752DB520 /* YMAGoodsModel.m */,
-				8BFF2E3D8D565E4FB3D836B7 /* YMADigitalGoodsModel.m */,
 				8BFF2B770BDF473D870BF6C0 /* YMADigitalGoodsModel.h */,
+				8BFF2E3D8D565E4FB3D836B7 /* YMADigitalGoodsModel.m */,
 			);
 			path = PaymentProcess;
 			sourceTree = "<group>";

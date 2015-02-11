@@ -10,7 +10,7 @@
 
 #pragma mark - Object Lifecycle
 
-- (id)initWithUrl:(NSURL *)url timeStamp:(NSDate *)timeStamp
+- (instancetype)initWithUrl:(NSURL *)url timeStamp:(NSDate *)timeStamp
 {
     self = [super init];
 

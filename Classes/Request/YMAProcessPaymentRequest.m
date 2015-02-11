@@ -29,11 +29,11 @@ static NSString *const kUrlProcessPayment = @"api/process-payment";
 
 #pragma mark - Object Lifecycle
 
-- (id)initWithRequestId:(NSString *)requestId
-            moneySource:(YMAMoneySourceModel *)moneySource
-                    csc:(NSString *)csc
-             successUri:(NSString *)successUri
-                failUri:(NSString *)failUri
+- (instancetype)initWithRequestId:(NSString *)requestId
+                      moneySource:(YMAMoneySourceModel *)moneySource
+                              csc:(NSString *)csc
+                       successUri:(NSString *)successUri
+                          failUri:(NSString *)failUri
 {
     self = [super init];
 
@@ -86,9 +86,11 @@ static NSString *const kUrlProcessPayment = @"api/process-payment";
     return dictionary;
 }
 
-- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers andCompletionHandler:(YMAResponseHandler)handler
+- (NSOperation *)buildResponseOperationWithData:(NSData *)data
+                                        headers:(NSDictionary *)headers
+                              completionHandler:(YMAResponseHandler)handler
 {
-    return [[YMAProcessPaymentResponse alloc] initWithData:data headers:headers andCompletion:handler];
+    return [[YMAProcessPaymentResponse alloc] initWithData:data headers:headers completionHandler:handler];
 }
 
 @end

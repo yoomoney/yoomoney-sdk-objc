@@ -23,7 +23,7 @@ static NSString *const kDefaultSpMoneyUrl = @"m.sp-money.yandex.ru";
     return sharedMyManager;
 }
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
 

@@ -9,7 +9,7 @@
 
 #pragma mark - Object Lifecycle
 
-- (id)initPaymentRequestInfoWithId:(NSString *)requestId amount:(NSString *)amount andTitle:(NSString *)title
+- (instancetype)initPaymentRequestInfoWithId:(NSString *)requestId amount:(NSString *)amount title:(NSString *)title
 {
     self = [super init];
 
@@ -22,9 +22,9 @@
     return self;
 }
 
-+ (instancetype)paymentRequestInfoWithId:(NSString *)requestId amount:(NSString *)amount andTitle:(NSString *)title
++ (instancetype)paymentRequestInfoWithId:(NSString *)requestId amount:(NSString *)amount title:(NSString *)title
 {
-    return [[YMAExternalPaymentInfoModel alloc] initPaymentRequestInfoWithId:requestId amount:amount andTitle:title];
+    return [[YMAExternalPaymentInfoModel alloc] initPaymentRequestInfoWithId:requestId amount:amount title:title];
 }
 
 @end

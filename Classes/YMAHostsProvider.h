@@ -10,6 +10,7 @@
 @property (nonatomic, copy) NSString *moneyUrl;
 @property (nonatomic, copy) NSString *spMoneyUrl;
 
+
 + (instancetype)sharedManager;
 
 - (void)resetToDefaults;

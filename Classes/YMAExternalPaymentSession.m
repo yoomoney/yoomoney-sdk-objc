@@ -17,7 +17,7 @@ static NSString *const kValueParameterStatusSuccess = @"success";
 
 #pragma mark - Public methods
 
-- (void)instanceWithClientId:(NSString *)clientId token:(NSString *)token completion:(YMAIdHandler)block
+- (void)instanceWithClientId:(NSString *)clientId token:(NSString *)token completionHandler:(YMAIdHandler)block
 {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setValue:clientId forKey:kParameterClientId];
@@ -31,7 +31,7 @@ static NSString *const kValueParameterStatusSuccess = @"success";
                         parameters:parameters
                      customHeaders:nil
                                url:url
-                        completion:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
+                 completionHandler:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
                            
                            if (error != nil) {
                                block(nil, error);
@@ -79,7 +79,7 @@ static NSString *const kValueParameterStatusSuccess = @"success";
 
 
 
-- (void)performRequest:(YMABaseRequest *)request token:(NSString *)token completion:(YMARequestHandler)block
+- (void)performRequest:(YMABaseRequest *)request token:(NSString *)token completionHandler:(YMARequestHandler)block
 {
     NSError *unknownError = [NSError errorWithDomain:YMAErrorDomainUnknown code:0 userInfo:@{ YMAErrorKeyRequest : request }];
 
@@ -99,7 +99,7 @@ static NSString *const kValueParameterStatusSuccess = @"success";
                                       parameters:parameters
                                    customHeaders:paramsRequest.customHeaders
                                              url:request.requestUrl
-                                      completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
+                               completionHandler:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
                                          if (error != nil) {
                                              block(request, nil, error);
                                              return;
@@ -111,7 +111,7 @@ static NSString *const kValueParameterStatusSuccess = @"success";
                                          [request buildResponseWithData:responseData
                                                                 headers:headers
                                                                   queue:self.responseQueue
-                                                          andCompletion:block];
+                                                          completionHandler:block];
                                      }];
     }
 }

@@ -9,11 +9,11 @@
 
 #pragma mark - Object Lifecycle
 
-- (id)initWithTotal:(NSString *)total
-          available:(NSString *)available
-  depositionPending:(NSString *)depositionPending
-            blocked:(NSString *)blocked
-               debt:(NSString *)debt
+- (instancetype)initWithTotal:(NSString *)total
+                    available:(NSString *)available
+            depositionPending:(NSString *)depositionPending
+                      blocked:(NSString *)blocked
+                         debt:(NSString *)debt
 {
     self = [super init];
 

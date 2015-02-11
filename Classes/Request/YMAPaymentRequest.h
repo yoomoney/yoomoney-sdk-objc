@@ -9,6 +9,6 @@
 
 @interface YMAPaymentRequest : YMABaseRequest<YMAParametersPosting>
 
-+ (instancetype)paymentWithPatternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams;
++ (instancetype)paymentWithPatternId:(NSString *)patternId paymentParameters:(NSDictionary *)paymentParams;
 
 @end
