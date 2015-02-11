@@ -8,8 +8,8 @@
 #import "YMAConstants.h"
 
 /// Completion of block is used to get the ID of an installed copy of the application.
-/// @param Id - ID of an installed copy of the application.
-typedef void (^YMAIdHandler)(NSString *Id, NSError *error);
+/// @param instanceId - ID of an installed copy of the application.
+typedef void (^YMAIdHandler)(NSString *instanceId, NSError *error);
 
 /// Completion block used by several methods of YMAExternalPaymentSession.
 /// @param error - Error information or nil.
