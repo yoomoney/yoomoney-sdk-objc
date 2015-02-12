@@ -36,7 +36,7 @@ static NSString *const kMoneySourceTypePaymentCard = @"payment-card";
     if (moneySource != nil) {
         NSString *type = moneySource[kParameterType];
 
-        if ([type isEqual:kMoneySourceTypePaymentCard]) {
+        if ([type isEqualToString:kMoneySourceTypePaymentCard]) {
             NSString *paymentCardTypeString = moneySource[kParameterPaymentCardType];
             YMAPaymentCardType paymentCardType = [YMAMoneySourceModel paymentCardTypeByString:paymentCardTypeString];
 

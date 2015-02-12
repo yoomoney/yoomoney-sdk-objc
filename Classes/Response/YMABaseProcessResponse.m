@@ -40,7 +40,7 @@ static NSString *const kParameterAccountUnblockUri = @"account_unblock_uri";
     NSString *accountUnblockUri = responseModel[kParameterAccountUnblockUri];
     _accountUnblockUri = [accountUnblockUri copy];
 
-    if ([statusKey isEqual:kKeyResponseStatusRefused]) {
+    if ([statusKey isEqualToString:kKeyResponseStatusRefused]) {
         NSString *errorKey = responseModel[kParameterError];
         _status = YMAResponseStatusRefused;
 
@@ -52,16 +52,16 @@ static NSString *const kParameterAccountUnblockUri = @"account_unblock_uri";
         return NO;
     }
 
-    if ([statusKey isEqual:kKeyResponseStatusInProgress]) {
+    if ([statusKey isEqualToString:kKeyResponseStatusInProgress]) {
         NSString *nextRetryString = responseModel[kParameterNextRetry];
         _nextRetry = (NSUInteger)[nextRetryString integerValue];
         _status = YMAResponseStatusInProgress;
     }
-    else if ([statusKey isEqual:kKeyResponseStatusHoldForPickup])
+    else if ([statusKey isEqualToString:kKeyResponseStatusHoldForPickup])
         _status = YMAResponseStatusHoldForPickup;
-    else if ([statusKey isEqual:kKeyResponseStatusExtAuthRequired])
+    else if ([statusKey isEqualToString:kKeyResponseStatusExtAuthRequired])
         _status = YMAResponseStatusExtAuthRequired;
-    else if ([statusKey isEqual:kKeyResponseStatusSuccess])
+    else if ([statusKey isEqualToString:kKeyResponseStatusSuccess])
         _status = YMAResponseStatusSuccess;
     else
         _status = YMAResponseStatusUnknown;

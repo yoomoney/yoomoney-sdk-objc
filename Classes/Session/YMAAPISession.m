@@ -73,7 +73,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
 
     NSString *strippedURL = [NSString stringWithFormat:@"%@://%@%@", scheme, host, path];
 
-    if ([strippedURL isEqual:redirectUrl]) {
+    if ([strippedURL isEqualToString:redirectUrl]) {
 
         NSString *query = requestUrl.query;
 

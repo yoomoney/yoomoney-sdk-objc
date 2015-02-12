@@ -60,7 +60,7 @@ static NSString *const kValueParameterStatusSuccess = @"success";
                             if (statusCode == YMAStatusCodeOkHTTP) {
                                 NSString *status = responseModel[kParameterStatus];
 
-                                if ([status isEqual:kValueParameterStatusSuccess]) {
+                                if ([status isEqualToString:kValueParameterStatusSuccess]) {
                                     self.instanceId = responseModel[@"instance_id"];
                                     block(self.instanceId, self.instanceId ? nil : unknownError);
                                     return;

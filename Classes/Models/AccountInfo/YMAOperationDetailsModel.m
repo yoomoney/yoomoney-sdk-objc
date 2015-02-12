@@ -102,11 +102,11 @@ static NSString *const kKeyRecipientTypeEmail = @"email";
 
 + (YMARecipientType)recipientTypeByString:(NSString *)recipientTypeString
 {
-    if ([recipientTypeString isEqual:kKeyRecipientTypeAccount])
+    if ([recipientTypeString isEqualToString:kKeyRecipientTypeAccount])
         return YMARecipientTypeAccount;
-    else if ([recipientTypeString isEqual:kKeyRecipientTypePhone])
+    else if ([recipientTypeString isEqualToString:kKeyRecipientTypePhone])
         return YMARecipientTypePhone;
-    else if ([recipientTypeString isEqual:kKeyRecipientTypeEmail])
+    else if ([recipientTypeString isEqualToString:kKeyRecipientTypeEmail])
         return YMARecipientTypeEmail;
 
     return YMARecipientTypeUnknown;

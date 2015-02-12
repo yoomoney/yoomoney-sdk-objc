@@ -46,16 +46,16 @@ static NSString *const kPaymentCardTypeJCB = @"JCB";
 
 + (YMAPaymentCardType)paymentCardTypeByString:(NSString *)string
 {
-    if ([string isEqual:kPaymentCardTypeVISA])
+    if ([string isEqualToString:kPaymentCardTypeVISA])
         return YMAPaymentCardTypeVISA;
 
-    if ([string isEqual:kPaymentCardTypeMasterCard])
+    if ([string isEqualToString:kPaymentCardTypeMasterCard])
         return YMAPaymentCardTypeMasterCard;
 
-    if ([string isEqual:kPaymentCardTypeAmericanExpress])
+    if ([string isEqualToString:kPaymentCardTypeAmericanExpress])
         return YMAPaymentCardTypeAmericanExpress;
 
-    if ([string isEqual:kPaymentCardTypeJCB])
+    if ([string isEqualToString:kPaymentCardTypeJCB])
         return YMAPaymentCardTypeJCB;
 
     return YMAPaymentCardUnknown;

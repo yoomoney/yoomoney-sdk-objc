@@ -68,11 +68,11 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
 
 + (YMAAccountStatus)accountStatusByString:(NSString *)accountStatusString
 {
-    if ([accountStatusString isEqual:kKeyAccountStatusAnonymous])
+    if ([accountStatusString isEqualToString:kKeyAccountStatusAnonymous])
         return YMAAccountStatusAnonymous;
-    else if ([accountStatusString isEqual:kKeyAccountStatusIdentified])
+    else if ([accountStatusString isEqualToString:kKeyAccountStatusIdentified])
         return YMAAccountStatusIdentified;
-    else if ([accountStatusString isEqual:kKeyAccountStatusNamed])
+    else if ([accountStatusString isEqualToString:kKeyAccountStatusNamed])
         return YMAAccountStatusNamed;
 
     return YMAAccountStatusUnknown;
@@ -80,9 +80,9 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
 
 + (YMAAccountType)accountTypeByString:(NSString *)accountTypeString
 {
-    if ([accountTypeString isEqual:kKeyAccountTypePersonal])
+    if ([accountTypeString isEqualToString:kKeyAccountTypePersonal])
         return YMAAccountTypePersonal;
-    else if ([accountTypeString isEqual:kKeyAccountTypeProfessional])
+    else if ([accountTypeString isEqualToString:kKeyAccountTypeProfessional])
         return YMAAccountTypeProfessional;
 
     return YMAAccountTypeUnknown;
