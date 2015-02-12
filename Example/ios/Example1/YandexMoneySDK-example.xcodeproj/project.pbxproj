@@ -639,10 +639,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YandexMoneySDK-example/YandexMoneySDK-example-Prefix.pch";
 				INFOPLIST_FILE = "YandexMoneySDK-example/YandexMoneySDK-example-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/YandexMoneySDK-cfbbhmpxkhmtjraipjizskotjnuc/Build/Products/Debug-iphoneos",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "YandexMoneySDK-example";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -658,10 +655,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YandexMoneySDK-example/YandexMoneySDK-example-Prefix.pch";
 				INFOPLIST_FILE = "YandexMoneySDK-example/YandexMoneySDK-example-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/YandexMoneySDK-cfbbhmpxkhmtjraipjizskotjnuc/Build/Products/Debug-iphoneos",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "YandexMoneySDK-example";
 				USER_HEADER_SEARCH_PATHS = "";

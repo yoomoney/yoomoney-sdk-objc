@@ -258,7 +258,7 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
     if (!currentInstanceId || [currentInstanceId isEqual:@""]) {
         [self.session instanceWithClientId:kClientId
                                      token:nil
-                         completionHandler:^(NSString *instanceId, NSError *error) {
+                                completion:^(NSString *instanceId, NSError *error) {
                                     if (error)
                                         block(error);
                                     else {
@@ -280,7 +280,7 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
 
     [self.session performRequest:externalPaymentRequest
                            token:nil
-               completionHandler:^(YMABaseRequest *request, YMABaseResponse *response, NSError *error) {
+                      completion:^(YMABaseRequest *request, YMABaseResponse *response, NSError *error) {
                    if (error) {
                        block(nil, error);
                        return;
@@ -320,7 +320,7 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
 
     [self.session performRequest:paymentRequest
                            token:nil
-               completionHandler:^(YMABaseRequest *request, YMABaseResponse *response, NSError *error) {
+                      completion:^(YMABaseRequest *request, YMABaseResponse *response, NSError *error) {
                    YMABaseProcessResponse *processResponse = (YMABaseProcessResponse *)response;
 
                    if (processResponse.status == YMAResponseStatusInProgress) {
