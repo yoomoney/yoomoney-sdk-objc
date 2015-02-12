@@ -17,7 +17,7 @@ static NSString *const kValueParameterStatusSuccess = @"success";
 
 #pragma mark - Public methods
 
-- (void)instanceWithClientId:(NSString *)clientId token:(NSString *)token completionHandler:(YMAIdHandler)block
+- (void)instanceWithClientId:(NSString *)clientId token:(NSString *)token completion:(YMAIdHandler)block
 {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     parameters[kParameterClientId] = clientId;
@@ -31,55 +31,55 @@ static NSString *const kValueParameterStatusSuccess = @"success";
                         parameters:parameters
                      customHeaders:nil
                                url:url
-                 completionHandler:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
-                           
-                           if (error != nil) {
-                               block(nil, error);
-                               return;
-                           }
+                        completion:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
 
-                           NSInteger statusCode = ((NSHTTPURLResponse *)response).statusCode;
+                            if (error != nil) {
+                                block(nil, error);
+                                return;
+                            }
 
-                           id responseModel =
-                               [NSJSONSerialization JSONObjectWithData:responseData
-                                                               options:(NSJSONReadingOptions)kNilOptions
-                                                                 error:&error];
+                            NSInteger statusCode = ((NSHTTPURLResponse *)response).statusCode;
 
-                           NSError *unknownError = [NSError errorWithDomain:YMAErrorDomainUnknown
-                                                                       code:0
-                                                                   userInfo:@{
-                                                                       YMAErrorKeyResponse : response,
-                                                                       YMAErrorKeyRequest : request
-                                                                   }];
+                            id responseModel =
+                            [NSJSONSerialization JSONObjectWithData:responseData
+                                                            options:(NSJSONReadingOptions)kNilOptions
+                                                              error:&error];
 
-                           if (error != nil || responseModel == nil) {
-                               block(nil, (error) ? error : unknownError);
-                               return;
-                           }
+                            NSError *unknownError = [NSError errorWithDomain:YMAErrorDomainUnknown
+                                                                        code:0
+                                                                    userInfo:@{
+                                                                               YMAErrorKeyResponse : response,
+                                                                               YMAErrorKeyRequest : request
+                                                                               }];
 
-                           if (statusCode == YMAStatusCodeOkHTTP) {
-                               NSString *status = responseModel[kParameterStatus];
+                            if (error != nil || responseModel == nil) {
+                                block(nil, (error) ? error : unknownError);
+                                return;
+                            }
 
-                               if ([status isEqual:kValueParameterStatusSuccess]) {
-                                   self.instanceId = responseModel[@"instance_id"];
-                                   block(self.instanceId, self.instanceId ? nil : unknownError);
-                                   return;
-                               }
-                           }
+                            if (statusCode == YMAStatusCodeOkHTTP) {
+                                NSString *status = responseModel[kParameterStatus];
 
-                           NSString *errorKey = responseModel[@"error"];
+                                if ([status isEqual:kValueParameterStatusSuccess]) {
+                                    self.instanceId = responseModel[@"instance_id"];
+                                    block(self.instanceId, self.instanceId ? nil : unknownError);
+                                    return;
+                                }
+                            }
 
-                           if (errorKey == nil)
-                               block(nil, unknownError);
-                           else {
-                               block(nil, [NSError errorWithDomain:YMAErrorDomainYaMoneyAPI code:statusCode userInfo:@{YMAErrorKey: errorKey, YMAErrorKeyResponse: response}]);
-                           }
-                       }];
+                            NSString *errorKey = responseModel[@"error"];
+
+                            if (errorKey == nil)
+                                block(nil, unknownError);
+                            else {
+                                block(nil, [NSError errorWithDomain:YMAErrorDomainYaMoneyAPI code:statusCode userInfo:@{YMAErrorKey: errorKey, YMAErrorKeyResponse: response}]);
+                            }
+                        }];
 }
 
 
 
-- (void)performRequest:(YMABaseRequest *)request token:(NSString *)token completionHandler:(YMARequestHandler)block
+- (void)performRequest:(YMABaseRequest *)request token:(NSString *)token completion:(YMARequestHandler)block
 {
     NSError *unknownError = [NSError errorWithDomain:YMAErrorDomainUnknown code:0 userInfo:@{ YMAErrorKeyRequest : request }];
 
@@ -99,20 +99,20 @@ static NSString *const kValueParameterStatusSuccess = @"success";
                                       parameters:parameters
                                    customHeaders:paramsRequest.customHeaders
                                              url:request.requestUrl
-                               completionHandler:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
-                                         if (error != nil) {
-                                             block(request, nil, error);
-                                             return;
-                                         }
-                                         
-                                         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)urlResponse;
-                                         NSDictionary *headers =  httpResponse.allHeaderFields;
+                                      completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
+                                          if (error != nil) {
+                                              block(request, nil, error);
+                                              return;
+                                          }
 
-                                         [request buildResponseWithData:responseData
-                                                                headers:headers
-                                                                  queue:self.responseQueue
-                                                          completionHandler:block];
-                                     }];
+                                          NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)urlResponse;
+                                          NSDictionary *headers =  httpResponse.allHeaderFields;
+
+                                          [request buildResponseWithData:responseData
+                                                                 headers:headers
+                                                                   queue:self.responseQueue
+                                                              completion:block];
+                                      }];
     }
 }
 

@@ -93,7 +93,7 @@ static NSString *const kHeaderContentLength = @"Content-Length";
         kCFStringEncodingUTF8));
 }
 
-- (void)sendAsynchronousWithQueue:(NSOperationQueue *)queue completionHandler:(YMAConnectionHandler)handler
+- (void)sendAsynchronousWithQueue:(NSOperationQueue *)queue completion:(YMAConnectionHandler)handler
 {
 
     [self.request addValue:[NSString stringWithFormat:@"%lu", (unsigned long)[self.request.HTTPBody length]]

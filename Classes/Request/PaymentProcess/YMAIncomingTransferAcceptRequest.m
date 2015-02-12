@@ -56,9 +56,9 @@ static NSString *const kParameterProtectionCode = @"protection_code";
     return dictionary;
 }
 
-- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers completionHandler:(YMAResponseHandler)handler
+- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers completion:(YMAResponseHandler)handler
 {
-    return [[YMAIncomingTransferAcceptResponse alloc] initWithData:data headers:headers completionHandler:handler];
+    return [[YMAIncomingTransferAcceptResponse alloc] initWithData:data headers:headers completion:handler];
 }
 
 @end

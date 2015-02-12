@@ -53,9 +53,9 @@ static NSString *const kParameterPatternId = @"pattern_id";
     return dictionary;
 }
 
-- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers completionHandler:(YMAResponseHandler)handler
+- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers completion:(YMAResponseHandler)handler
 {
-    return [[YMAPaymentResponse alloc] initWithData:data headers:headers completionHandler:handler];
+    return [[YMAPaymentResponse alloc] initWithData:data headers:headers completion:handler];
 }
 
 @end

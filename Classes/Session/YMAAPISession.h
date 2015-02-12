@@ -37,16 +37,16 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
 - (void)receiveTokenWithCode:(NSString *)code
                     clientId:(NSString *)clientId
         additionalParameters:(NSDictionary *)params
-           completionHandler:(YMAIdHandler)block;
+                  completion:(YMAIdHandler)block;
 
 - (void)receiveTokenWithUrl:(NSString *)relativeUrlString
                        code:(NSString *)code
                    clientId:(NSString *)clientId
        additionalParameters:(NSDictionary *)params
-          completionHandler:(YMAIdHandler)block;
+                 completion:(YMAIdHandler)block;
 
-- (void)revokeToken:(NSString *)token completionHandler:(YMAHandler)block;
+- (void)revokeToken:(NSString *)token completion:(YMAHandler)block;
 
-- (void)performRequest:(YMABaseRequest *)request token:(NSString *)token completionHandler:(YMARequestHandler)block;
+- (void)performRequest:(YMABaseRequest *)request token:(NSString *)token completion:(YMARequestHandler)block;
 
 @end

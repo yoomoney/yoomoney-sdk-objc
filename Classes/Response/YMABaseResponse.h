@@ -40,7 +40,7 @@ typedef void (^YMAResponseHandler)(YMABaseResponse *response, NSError *error);
 /// @param data -
 /// @param headers -
 /// @param block -
-- (instancetype)initWithData:(NSData *)data headers:(NSDictionary *)headers completionHandler:(YMAResponseHandler)block;
+- (instancetype)initWithData:(NSData *)data headers:(NSDictionary *)headers completion:(YMAResponseHandler)block;
 
 - (BOOL)parseJSONModel:(id)responseModel headers:(NSDictionary *)headers error:(NSError * __autoreleasing *)error;
 

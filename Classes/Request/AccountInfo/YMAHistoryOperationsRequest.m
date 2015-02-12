@@ -109,9 +109,9 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
     return dictionary;
 }
 
-- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers completionHandler:(YMAResponseHandler)handler
+- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers completion:(YMAResponseHandler)handler
 {
-    return [[YMAHistoryOperationsResponse alloc] initWithData:data headers:headers completionHandler:handler];
+    return [[YMAHistoryOperationsResponse alloc] initWithData:data headers:headers completion:handler];
 }
 
 @end

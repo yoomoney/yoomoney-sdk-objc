@@ -110,9 +110,9 @@ static NSString *const kParameterCsc = @"csc";
     return dictionary;
 }
 
-- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers completionHandler:(YMAResponseHandler)handler
+- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers completion:(YMAResponseHandler)handler
 {
-    return [[YMAProcessExternalPaymentResponse alloc] initWithData:data headers:headers completionHandler:handler];
+    return [[YMAProcessExternalPaymentResponse alloc] initWithData:data headers:headers completion:handler];
 }
 
 @end

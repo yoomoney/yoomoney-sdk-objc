@@ -24,7 +24,7 @@ typedef void
 + (NSString *)addPercentEscapesForString:(NSString *)string;
 
 - (void)sendAsynchronousWithQueue:(NSOperationQueue *)queue
-                completionHandler:(YMAConnectionHandler)handler;
+                       completion:(YMAConnectionHandler)handler;
 
 - (void)addValue:(NSString *)value forHeader:(NSString *)header;
 

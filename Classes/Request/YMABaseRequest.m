@@ -13,13 +13,13 @@
 - (void)buildResponseWithData:(NSData *)data
                       headers:(NSDictionary *)headers
                         queue:(NSOperationQueue *)queue
-            completionHandler:(YMARequestHandler)block
+                   completion:(YMARequestHandler)block
 {
     NSOperation *operation =
     [self buildResponseOperationWithData:data
                                  headers:(NSDictionary *)headers
-                       completionHandler:^(YMABaseResponse *response, NSError *error) {
-                           block(self, response, error);
+                              completion:^(YMABaseResponse *response, NSError *error) {
+                                  block(self, response, error);
         }];
 
     if (operation == nil) {
@@ -32,7 +32,7 @@
 
 - (NSOperation *)buildResponseOperationWithData:(NSData *)data
                                         headers:(NSDictionary *)headers
-                              completionHandler:(YMAResponseHandler)handler
+                                     completion:(YMAResponseHandler)handler
 {
     NSString *reason = [NSString stringWithFormat:@"%@ must be ovverriden", NSStringFromSelector(_cmd)];
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];

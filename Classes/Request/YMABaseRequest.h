@@ -51,6 +51,6 @@ typedef void (^YMARequestHandler)(YMABaseRequest *request, YMABaseResponse *resp
 - (void)buildResponseWithData:(NSData *)data
                       headers:(NSDictionary *)headers
                         queue:(NSOperationQueue *)queue
-            completionHandler:(YMARequestHandler)block;
+                   completion:(YMARequestHandler)block;
 
 @end

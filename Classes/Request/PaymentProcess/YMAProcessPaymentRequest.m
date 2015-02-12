@@ -91,9 +91,9 @@ static NSString *const kUrlProcessPayment = @"api/process-payment";
 
 - (NSOperation *)buildResponseOperationWithData:(NSData *)data
                                         headers:(NSDictionary *)headers
-                              completionHandler:(YMAResponseHandler)handler
+                                     completion:(YMAResponseHandler)handler
 {
-    return [[YMAProcessPaymentResponse alloc] initWithData:data headers:headers completionHandler:handler];
+    return [[YMAProcessPaymentResponse alloc] initWithData:data headers:headers completion:handler];
 }
 
 @end

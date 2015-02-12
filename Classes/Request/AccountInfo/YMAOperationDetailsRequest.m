@@ -74,9 +74,9 @@ static NSString *const kUrlOperationDetails = @"api/operation-details";
     return dictionary;
 }
 
-- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers completionHandler:(YMAResponseHandler)handler
+- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers completion:(YMAResponseHandler)handler
 {
-    return [[YMAOperationDetailsResponse alloc] initWithData:data headers:headers completionHandler:handler];
+    return [[YMAOperationDetailsResponse alloc] initWithData:data headers:headers completion:handler];
 }
 
 @end
