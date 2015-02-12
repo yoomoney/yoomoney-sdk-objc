@@ -16,11 +16,11 @@ extern NSString *const YMAValueParameterResponseType;
 /// get authorization request
 /// @param clientId - your client Id.
 /// @param params - additional authorization params (response type, redirect url, scope etc.)
-- (NSURLRequest *)authorizationRequestWithClientId:(NSString *)clientId andAdditionalParams:(NSDictionary *)params;
+- (NSURLRequest *)authorizationRequestWithClientId:(NSString *)clientId additionalParameters:(NSDictionary *)params;
 
 - (NSURLRequest *)authorizationRequestWithUrl:(NSString *)relativeUrlString
                                      clientId:(NSString *)clientId
-                          andAdditionalParams:(NSDictionary *)params;
+                          additionalParameters:(NSDictionary *)params;
 
 /// This method used, when WebView is redirected to request, for check redirect url.
 /// If the received redirect url matches the url you passed in the request authorization we obtain authorization info.
@@ -34,16 +34,16 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
             error:(NSError * __autoreleasing *)error;
 
 // get authorization token
-- (void)receiveTokenWithWithCode:(NSString *)code
-                        clientId:(NSString *)clientId
-             andAdditionalParams:(NSDictionary *)params
-                      completion:(YMAIdHandler)block;
+- (void)receiveTokenWithCode:(NSString *)code
+                    clientId:(NSString *)clientId
+        additionalParameters:(NSDictionary *)params
+                  completion:(YMAIdHandler)block;
 
-- (void)receiveTokenWithWithUrl:(NSString *)relativeUrlString
-                           code:(NSString *)code
-                       clientId:(NSString *)clientId
-            andAdditionalParams:(NSDictionary *)params
-                     completion:(YMAIdHandler)block;
+- (void)receiveTokenWithUrl:(NSString *)relativeUrlString
+                       code:(NSString *)code
+                   clientId:(NSString *)clientId
+       additionalParameters:(NSDictionary *)params
+                 completion:(YMAIdHandler)block;
 
 - (void)revokeToken:(NSString *)token completion:(YMAHandler)block;
 

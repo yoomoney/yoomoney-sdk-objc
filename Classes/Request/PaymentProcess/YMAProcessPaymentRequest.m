@@ -29,11 +29,11 @@ static NSString *const kUrlProcessPayment = @"api/process-payment";
 
 #pragma mark - Object Lifecycle
 
-- (id)initWithRequestId:(NSString *)requestId
-            moneySource:(YMAMoneySourceModel *)moneySource
-                    csc:(NSString *)csc
-             successUri:(NSString *)successUri
-                failUri:(NSString *)failUri
+- (instancetype)initWithRequestId:(NSString *)requestId
+                      moneySource:(YMAMoneySourceModel *)moneySource
+                              csc:(NSString *)csc
+                       successUri:(NSString *)successUri
+                          failUri:(NSString *)failUri
 {
     self = [super init];
 
@@ -73,22 +73,27 @@ static NSString *const kUrlProcessPayment = @"api/process-payment";
 - (NSDictionary *)parameters
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setValue:self.requestId forKey:kParameterRequestId];
-    [dictionary setValue:self.csc forKey:kParameterCsc];
-    [dictionary setValue:self.successUri forKey:kParameterExtAuthSuccessUri];
-    [dictionary setValue:self.failUri forKey:kParameterExtAuthFailUri];
 
-    if (self.moneySource.type == YMAMoneySourceWallet)
-        [dictionary setValue:@"wallet" forKey:kParameterMoneySource];
-    else if (self.moneySource.type == YMAMoneySourcePaymentCard)
-        [dictionary setValue:[NSString stringWithFormat:@"%@", self.moneySource.moneySourceToken] forKey:kParameterMoneySource];
+    dictionary[kParameterRequestId] = self.requestId;
+    dictionary[kParameterCsc] = self.csc;
+    dictionary[kParameterExtAuthSuccessUri] = self.successUri;
+    dictionary[kParameterExtAuthFailUri] = self.failUri;
+
+    if (self.moneySource.type == YMAMoneySourceWallet) {
+        dictionary[kParameterMoneySource] = @"wallet";
+    }
+    else if (self.moneySource.type == YMAMoneySourcePaymentCard) {
+        dictionary[kParameterMoneySource] = [NSString stringWithFormat:@"%@", self.moneySource.moneySourceToken];
+    }
     
     return dictionary;
 }
 
-- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers andCompletionHandler:(YMAResponseHandler)handler
+- (NSOperation *)buildResponseOperationWithData:(NSData *)data
+                                        headers:(NSDictionary *)headers
+                                     completion:(YMAResponseHandler)handler
 {
-    return [[YMAProcessPaymentResponse alloc] initWithData:data headers:headers andCompletion:handler];
+    return [[YMAProcessPaymentResponse alloc] initWithData:data headers:headers completion:handler];
 }
 
 @end

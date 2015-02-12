@@ -34,7 +34,7 @@ static NSString *const kParameterMoneySourceCscRequired = @"csc_required";
 
     YMAWalletSourceGroupModel *walletSourceGroup = nil;
 
-    id walletModel = [moneySourcesModel objectForKey:kParameterMoneySourceWallet];
+    id walletModel = moneySourcesModel[kParameterMoneySourceWallet];
 
     if (walletModel != nil) {
         BOOL walletAllowed = [walletModel[kParameterMoneySourceAllowed] boolValue];

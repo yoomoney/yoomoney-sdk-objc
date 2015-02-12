@@ -32,7 +32,7 @@ static NSString *const kParameterDigitalGoods = @"digital_goods";
 
 - (BOOL)parseJSONModel:(id)responseModel headers:(NSDictionary *)headers error:(NSError * __autoreleasing *)error
 {
-    NSString *errorKey = [responseModel objectForKey:kParameterError];
+    NSString *errorKey = responseModel[kParameterError];
 
     if (errorKey != nil) {
         if (error == nil) return NO;
@@ -48,31 +48,31 @@ static NSString *const kParameterDigitalGoods = @"digital_goods";
 
     YMAHistoryOperationModel *historyOperation = [YMAHistoryOperationsResponse historyOperationByModel:responseModel];
 
-    NSString *amountDue = [[responseModel objectForKey:kParameterAmountDue] stringValue];
-    NSString *fee = [[responseModel objectForKey:kParameterFee] stringValue];
-    NSString *sender = [responseModel objectForKey:kParameterSender];
-    NSString *recipient = [responseModel objectForKey:kParameterRecipient];
+    NSString *amountDue = [responseModel[kParameterAmountDue] stringValue];
+    NSString *fee = [responseModel[kParameterFee] stringValue];
+    NSString *sender = responseModel[kParameterSender];
+    NSString *recipient = responseModel[kParameterRecipient];
 
-    NSString *recipientTypeString = [responseModel objectForKey:kParameterRecipientType];
+    NSString *recipientTypeString = responseModel[kParameterRecipientType];
     YMARecipientType recipientType = [YMAOperationDetailsModel recipientTypeByString:recipientTypeString];
 
-    NSString *message = [responseModel objectForKey:kParameterMessage];
-    NSString *comment = [responseModel objectForKey:kParameterComment];
-    BOOL codePro = [[responseModel objectForKey:kParameterCodePro] boolValue];
-    NSString *protectionCode = [responseModel objectForKey:kParameterProtectionCode];
+    NSString *message = responseModel[kParameterMessage];
+    NSString *comment = responseModel[kParameterComment];
+    BOOL codePro = [responseModel[kParameterCodePro] boolValue];
+    NSString *protectionCode = responseModel[kParameterProtectionCode];
 
-    NSString *expiresString = [responseModel objectForKey:kParameterExpires];
+    NSString *expiresString = responseModel[kParameterExpires];
     NSDate *expires = [formatter dateFromString:expiresString];
 
-    NSString *answerDatetimeString = [responseModel objectForKey:kParameterAnswerDatetime];
+    NSString *answerDatetimeString = responseModel[kParameterAnswerDatetime];
     NSDate *answerDatetime = [formatter dateFromString:answerDatetimeString];
 
-    NSString *details = [responseModel objectForKey:kParameterDetails];
-    BOOL repeatable = [[responseModel objectForKey:kParameterRepeatable] boolValue];
+    NSString *details = responseModel[kParameterDetails];
+    BOOL repeatable = [responseModel[kParameterRepeatable] boolValue];
 
-    NSDictionary *paymentParameters = [responseModel objectForKey:kParameterPaymentParameters];
+    NSDictionary *paymentParameters = responseModel[kParameterPaymentParameters];
 
-    id digitalGoodsModel = [responseModel objectForKey:kParameterDigitalGoods];
+    id digitalGoodsModel = responseModel[kParameterDigitalGoods];
     YMADigitalGoodsModel *digitalGoods = [YMAProcessPaymentResponse digitalGoodsByModel:digitalGoodsModel];
 
     _operationDetails = [YMAOperationDetailsModel operationDetailsWithOperation:historyOperation

@@ -48,12 +48,12 @@ static CGFloat const kAnimationSpeed = 0.7;
 
 @implementation YMAResultView
 
-- (id)initWithFrame:(CGRect)frame state:(YMAPaymentResultState)state description:(NSString *)description {
+- (instancetype)initWithFrame:(CGRect)frame state:(YMAPaymentResultState)state resultDescription:(NSString *)resultDescription {
     self = [super initWithFrame:frame];
 
     if (self) {
         _state = state;
-        _resultDescription = [description copy];
+        _resultDescription = [resultDescription copy];
         [self setupControls];
     }
 

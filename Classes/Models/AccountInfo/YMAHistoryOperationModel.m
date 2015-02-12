@@ -22,16 +22,16 @@ static NSString *const kKeyHistoryOperationTypeIncomingTransferProtected = @"inc
 
 #pragma mark - Object Lifecycle
 
-- (id)initWithOperationId:(NSString *)operationId
-                   status:(YMAHistoryOperationStatus)status
-                 datetime:(NSDate *)datetime
-                    title:(NSString *)title
-                patternId:(NSString *)patternId
-                direction:(YMAHistoryOperationDirection)direction
-                   amount:(NSString *)amount
-                    label:(NSString *)label
-                favourite:(BOOL)favourite
-                     type:(YMAHistoryOperationType)type
+- (instancetype)initWithOperationId:(NSString *)operationId
+                             status:(YMAHistoryOperationStatus)status
+                           datetime:(NSDate *)datetime
+                              title:(NSString *)title
+                          patternId:(NSString *)patternId
+                          direction:(YMAHistoryOperationDirection)direction
+                             amount:(NSString *)amount
+                              label:(NSString *)label
+                          favourite:(BOOL)favourite
+                               type:(YMAHistoryOperationType)type
 {
     self = [super init];
 
@@ -78,11 +78,11 @@ static NSString *const kKeyHistoryOperationTypeIncomingTransferProtected = @"inc
 
 + (YMAHistoryOperationStatus)historyOperationStatusByString:(NSString *)historyOperationStatusString
 {
-    if ([historyOperationStatusString isEqual:kKeyHistoryOperationStatusSuccess])
+    if ([historyOperationStatusString isEqualToString:kKeyHistoryOperationStatusSuccess])
         return YMAHistoryOperationStatusSuccess;
-    else if ([historyOperationStatusString isEqual:kKeyHistoryOperationStatusRefused])
+    else if ([historyOperationStatusString isEqualToString:kKeyHistoryOperationStatusRefused])
         return YMAHistoryOperationStatusRefused;
-    else if ([historyOperationStatusString isEqual:kKeyHistoryOperationStatusInProgress])
+    else if ([historyOperationStatusString isEqualToString:kKeyHistoryOperationStatusInProgress])
         return YMAHistoryOperationStatusInProgress;
 
     return YMAHistoryOperationStatusUnknown;
@@ -90,9 +90,9 @@ static NSString *const kKeyHistoryOperationTypeIncomingTransferProtected = @"inc
 
 + (YMAHistoryOperationDirection)historyOperationDirectionByString:(NSString *)historyOperationDirectionString
 {
-    if ([historyOperationDirectionString isEqual:kKeyHistoryOperationDirectionIn])
+    if ([historyOperationDirectionString isEqualToString:kKeyHistoryOperationDirectionIn])
         return YMAHistoryOperationDirectionIn;
-    else if ([historyOperationDirectionString isEqual:kKeyHistoryOperationDirectionOut])
+    else if ([historyOperationDirectionString isEqualToString:kKeyHistoryOperationDirectionOut])
         return YMAHistoryOperationDirectionOut;
 
     return YMAHistoryOperationDirectionUnknown;
@@ -100,15 +100,15 @@ static NSString *const kKeyHistoryOperationTypeIncomingTransferProtected = @"inc
 
 + (YMAHistoryOperationType)historyOperationTypeByString:(NSString *)historyOperationTypeString
 {
-    if ([historyOperationTypeString isEqual:kKeyHistoryOperationTypePaymentShop])
+    if ([historyOperationTypeString isEqualToString:kKeyHistoryOperationTypePaymentShop])
         return YMAHistoryOperationTypePaymentShop;
-    else if ([historyOperationTypeString isEqual:kKeyHistoryOperationTypeOutgoingTransfer])
+    else if ([historyOperationTypeString isEqualToString:kKeyHistoryOperationTypeOutgoingTransfer])
         return YMAHistoryOperationTypeOutgoingTransfer;
-    else if ([historyOperationTypeString isEqual:kKeyHistoryOperationTypeDeposition])
+    else if ([historyOperationTypeString isEqualToString:kKeyHistoryOperationTypeDeposition])
         return YMAHistoryOperationTypeDeposition;
-    else if ([historyOperationTypeString isEqual:kKeyHistoryOperationTypeIncomingTransfer])
+    else if ([historyOperationTypeString isEqualToString:kKeyHistoryOperationTypeIncomingTransfer])
         return YMAHistoryOperationTypeIncomingTransfer;
-    else if ([historyOperationTypeString isEqual:kKeyHistoryOperationTypeIncomingTransferProtected])
+    else if ([historyOperationTypeString isEqualToString:kKeyHistoryOperationTypeIncomingTransferProtected])
         return YMAHistoryOperationTypeIncomingTransferProtected;
 
     return YMAHistoryOperationTypeUnknown;

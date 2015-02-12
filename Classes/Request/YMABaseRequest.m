@@ -10,11 +10,16 @@
 
 @implementation YMABaseRequest
 
-- (void)buildResponseWithData:(NSData *)data headers:(NSDictionary *)headers queue:(NSOperationQueue *)queue andCompletion:(YMARequestHandler)block
+- (void)buildResponseWithData:(NSData *)data
+                      headers:(NSDictionary *)headers
+                        queue:(NSOperationQueue *)queue
+                   completion:(YMARequestHandler)block
 {
     NSOperation *operation =
-        [self buildResponseOperationWithData:data headers:(NSDictionary *)headers andCompletionHandler:^(YMABaseResponse *response, NSError *error) {
-            block(self, response, error);
+    [self buildResponseOperationWithData:data
+                                 headers:(NSDictionary *)headers
+                              completion:^(YMABaseResponse *response, NSError *error) {
+                                  block(self, response, error);
         }];
 
     if (operation == nil) {
@@ -25,7 +30,9 @@
     [queue addOperation:operation];
 }
 
-- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers andCompletionHandler:(YMAResponseHandler)handler
+- (NSOperation *)buildResponseOperationWithData:(NSData *)data
+                                        headers:(NSDictionary *)headers
+                                     completion:(YMAResponseHandler)handler
 {
     NSString *reason = [NSString stringWithFormat:@"%@ must be ovverriden", NSStringFromSelector(_cmd)];
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];

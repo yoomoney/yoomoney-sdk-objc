@@ -16,7 +16,7 @@
 /// @param params - Authorization parameters in the format collection name-value pairs.
 /// If the field is present to complete the transaction requires authorization
 /// (form DC and / or 3D-Secure).
-+ (instancetype)ascWithUrl:(NSURL *)url andParams:(NSDictionary *)params;
++ (instancetype)ascWithUrl:(NSURL *)url parameters:(NSDictionary *)params;
 
 @property (nonatomic, strong, readonly) NSURL *url;
 @property (nonatomic, strong, readonly) NSDictionary *params;

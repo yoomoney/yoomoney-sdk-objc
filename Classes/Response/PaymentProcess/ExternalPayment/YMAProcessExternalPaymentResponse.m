@@ -28,7 +28,7 @@ static NSString *const kMoneySourceTypePaymentCard = @"payment-card";
 
     if (acsUrl != nil) {
         NSDictionary *acsParams = responseModel[kParameterAcsParams];
-        _asc = [YMAAscModel ascWithUrl:[NSURL URLWithString:acsUrl] andParams:acsParams];
+        _asc = [YMAAscModel ascWithUrl:[NSURL URLWithString:acsUrl] parameters:acsParams];
     }
 
     NSDictionary *moneySource = responseModel[kParameterMoneySource];
@@ -36,7 +36,7 @@ static NSString *const kMoneySourceTypePaymentCard = @"payment-card";
     if (moneySource != nil) {
         NSString *type = moneySource[kParameterType];
 
-        if ([type isEqual:kMoneySourceTypePaymentCard]) {
+        if ([type isEqualToString:kMoneySourceTypePaymentCard]) {
             NSString *paymentCardTypeString = moneySource[kParameterPaymentCardType];
             YMAPaymentCardType paymentCardType = [YMAMoneySourceModel paymentCardTypeByString:paymentCardTypeString];
 

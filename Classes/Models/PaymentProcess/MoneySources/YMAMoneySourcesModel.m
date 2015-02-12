@@ -9,7 +9,7 @@
 
 #pragma mark - Object Lifecycle
 
-- (id)initWithWallet:(YMAWalletSourceGroupModel *)walletSource cardsSource:(YMACardsSourceGroupModel *)cards
+- (instancetype)initWithWallet:(YMAWalletSourceGroupModel *)walletSource cardsSource:(YMACardsSourceGroupModel *)cards
 {
     self = [super init];
 

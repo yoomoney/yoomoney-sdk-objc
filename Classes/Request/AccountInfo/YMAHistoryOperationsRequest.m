@@ -34,12 +34,12 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
 
 #pragma mark - Object Lifecycle
 
-- (id)initWithFilter:(YMAHistoryOperationFilter)filter
-               label:(NSString *)label
-                from:(NSDate *)from
-                till:(NSDate *)till
-         startRecord:(NSString *)startRecord
-             records:(NSString *)records
+- (instancetype)initWithFilter:(YMAHistoryOperationFilter)filter
+                         label:(NSString *)label
+                          from:(NSDate *)from
+                          till:(NSDate *)till
+                   startRecord:(NSString *)startRecord
+                       records:(NSString *)records
 {
     self = [super self];
 
@@ -85,7 +85,7 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
     [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"];
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
 
-    NSString *typeString;
+    NSString *typeString = nil;
 
     if (self.filter & YMAHistoryOperationFilterPayment)
         typeString = kKeyTypePayment;
@@ -94,21 +94,24 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
     else if (self.filter & YMAHistoryOperationFilterIncomingTransfersUnaccepted)
         typeString = kKeyTypeIncomingTransfersUnaccepted;
 
-    [dictionary setValue:typeString forKey:kParameterType];
-    [dictionary setValue:self.label forKey:kParameterLabel];
+    if (typeString) {
+        dictionary[kParameterType] = typeString;
+    }
+    dictionary[kParameterLabel] = self.label;
     NSString *fromString = [formatter stringFromDate:self.from];
-    [dictionary setValue:fromString forKey:kParameterFrom];
+    dictionary[kParameterFrom] = fromString;
     NSString *tillString = [formatter stringFromDate:self.till];
-    [dictionary setValue:tillString forKey:kParameterTill];
-    [dictionary setValue:self.startRecord forKey:kParameterStartRecord];
-    [dictionary setValue:self.records forKey:kParameterRecords];
+
+    dictionary[kParameterTill] = tillString;
+    dictionary[kParameterStartRecord] = self.startRecord;
+    dictionary[kParameterStartRecord] = self.records;
 
     return dictionary;
 }
 
-- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers andCompletionHandler:(YMAResponseHandler)handler
+- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers completion:(YMAResponseHandler)handler
 {
-    return [[YMAHistoryOperationsResponse alloc] initWithData:data headers:headers andCompletion:handler];
+    return [[YMAHistoryOperationsResponse alloc] initWithData:data headers:headers completion:handler];
 }
 
 @end

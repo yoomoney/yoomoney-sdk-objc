@@ -7,7 +7,7 @@
 
 @implementation YMAWalletSourceGroupModel
 
-- (id)initWithMoneySource:(YMAMoneySourceModel *)moneySource allowed:(BOOL)allowed
+- (instancetype)initWithMoneySource:(YMAMoneySourceModel *)moneySource allowed:(BOOL)allowed
 {
     self = [super init];
 

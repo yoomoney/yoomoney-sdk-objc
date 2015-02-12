@@ -17,14 +17,14 @@ NSString *const YMAValueParameterResponseType = @"code";
 
 @implementation YMAAPISession
 
-- (NSURLRequest *)authorizationRequestWithClientId:(NSString *)clientId andAdditionalParams:(NSDictionary *)params
+- (NSURLRequest *)authorizationRequestWithClientId:(NSString *)clientId additionalParameters:(NSDictionary *)params
 {
-    return [self authorizationRequestWithUrl:kUrlAuthorize clientId:clientId andAdditionalParams:params];
+    return [self authorizationRequestWithUrl:kUrlAuthorize clientId:clientId additionalParameters:params];
 }
 
 - (NSURLRequest *)authorizationRequestWithUrl:(NSString *)relativeUrlString
                                      clientId:(NSString *)clientId
-                          andAdditionalParams:(NSDictionary *)params
+                         additionalParameters:(NSDictionary *)params
 {
     NSMutableString *post = [NSMutableString stringWithCapacity:0];
 
@@ -36,7 +36,7 @@ NSString *const YMAValueParameterResponseType = @"code";
     for (NSString *key in params.allKeys) {
 
         NSString *paramKey = [YMAConnection addPercentEscapesForString:key];
-        NSString *paramValue = [YMAConnection addPercentEscapesForString:[params objectForKey:key]];
+        NSString *paramValue = [YMAConnection addPercentEscapesForString:params[key]];
 
         [post appendString:[NSString stringWithFormat:@"%@=%@&", paramKey, paramValue]];
     }
@@ -73,7 +73,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
 
     NSString *strippedURL = [NSString stringWithFormat:@"%@://%@%@", scheme, host, path];
 
-    if ([strippedURL isEqual:redirectUrl]) {
+    if ([strippedURL isEqualToString:redirectUrl]) {
 
         NSString *query = requestUrl.query;
 
@@ -89,10 +89,10 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
 
             for (NSString *keyValuePair in queryComponents) {
                 NSArray *pairComponents = [keyValuePair componentsSeparatedByString:@"="];
-                NSString *key = [pairComponents objectAtIndex:0];
-                NSString *value = [pairComponents objectAtIndex:1];
+                NSString *key = pairComponents[0];
+                NSString *value = pairComponents[1];
 
-                [*authInfo setObject:value forKey:key];
+                (*authInfo)[key] = value;
             }
         }
 
@@ -102,23 +102,23 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
         return NO;
 }
 
-- (void)receiveTokenWithWithCode:(NSString *)code
-                        clientId:(NSString *)clientId
-             andAdditionalParams:(NSDictionary *)params
-                      completion:(YMAIdHandler)block
+- (void)receiveTokenWithCode:(NSString *)code
+                    clientId:(NSString *)clientId
+        additionalParameters:(NSDictionary *)params
+                  completion:(YMAIdHandler)block
 {
-    [self receiveTokenWithWithUrl:kUrlToken code:code clientId:clientId andAdditionalParams:params completion:block];
+    [self receiveTokenWithUrl:kUrlToken code:code clientId:clientId additionalParameters:params completion:block];
 }
 
-- (void)receiveTokenWithWithUrl:(NSString *)relativeUrlString
-                           code:(NSString *)code
-                       clientId:(NSString *)clientId
-            andAdditionalParams:(NSDictionary *)params
-                     completion:(YMAIdHandler)block
+- (void)receiveTokenWithUrl:(NSString *)relativeUrlString
+                       code:(NSString *)code
+                   clientId:(NSString *)clientId
+       additionalParameters:(NSDictionary *)params
+                 completion:(YMAIdHandler)block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters setValue:code forKey:YMAValueParameterResponseType];
-    [parameters setValue:clientId forKey:kParameterClientId];
+    parameters[YMAValueParameterResponseType] = code;
+    parameters[kParameterClientId] = clientId;
     [parameters addEntriesFromDictionary:params];
 
     NSString *urlString =
@@ -127,10 +127,10 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
 
     [self performRequestWithMethod:YMARequestMethodPost
                              token:nil
-                       parameters:parameters
-                    customHeaders:nil
-                              url:url
-                       completion:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
+                        parameters:parameters
+                     customHeaders:nil
+                               url:url
+                        completion:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
 
                            if (error != nil) {
                                block(nil, error);
@@ -158,7 +158,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
 
                            if (statusCode == YMAStatusCodeOkHTTP) {
 
-                               NSString *accessToken = [responseModel objectForKey:@"access_token"];
+                               NSString *accessToken = responseModel[@"access_token"];
 
                                if (accessToken == nil)
                                    block(nil, unknownError);
@@ -168,7 +168,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
                                return;
                            }
 
-                           NSString *errorKey = [responseModel objectForKey:@"error"];
+                           NSString *errorKey = responseModel[@"error"];
 
                            if (errorKey == nil)
                                block(nil, unknownError);
@@ -230,7 +230,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
                                          [request buildResponseWithData:responseData
                                                                 headers:headers
                                                                   queue:self.responseQueue
-                                                          andCompletion:block];
+                                                             completion:block];
                                      }];
     }
     else if ([request conformsToProtocol:@protocol(YMADataPosting)]) {
@@ -252,7 +252,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
                                          [request buildResponseWithData:responseData
                                                                 headers:headers
                                                                   queue:self.responseQueue
-                                                          andCompletion:block];
+                                                             completion:block];
                                      }];
     }
 }

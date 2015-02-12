@@ -118,14 +118,14 @@
 }
 
 - (YMABaseMoneySourcesView *)moneySourcesViewWithSources:(NSArray *)sources {
-    return [[YMAMoneySourcesView alloc] initWithFrame:self.view.frame paymentInfo:self.paymentRequestInfo andMoneySources:sources];;
+    return [[YMAMoneySourcesView alloc] initWithFrame:self.view.frame paymentInfo:self.paymentRequestInfo moneySources:sources];;
 }
 
 - (YMABaseCscView *)cscView {
     return [[YMACscView alloc] initWithFrame:self.view.frame];
 }
 
-- (YMABaseResultView *)resultViewWithState:(YMAPaymentResultState)state andDescription:(NSString *)description {
+- (YMABaseResultView *)resultViewWithState:(YMAPaymentResultState)state resultDescription:(NSString *)resultDescription {
     CGRect viewRect = self.view.frame;
     CGFloat y = 0.0;
     if ([UIDevice currentDevice].systemVersion.floatValue >= 7)
@@ -134,7 +134,7 @@
 
     self.scrollView.contentSize = viewRect.size;
 
-    return [[YMAResultView alloc] initWithFrame:viewRect state:state description:description];
+    return [[YMAResultView alloc] initWithFrame:viewRect state:state resultDescription:resultDescription];
 }
 
 #pragma mark -
