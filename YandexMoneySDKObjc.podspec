@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.source_files = 'Classes/*.{h,m}'
   
   s.subspec 'Response' do |ss|
-    ss.source_files = 'Classes/*.{h,m}'
+    ss.source_files = 'Classes/Response/*.{h,m}'
   end
 
 end
