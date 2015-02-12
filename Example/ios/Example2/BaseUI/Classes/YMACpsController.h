@@ -11,7 +11,7 @@
 
 @interface YMACpsController : UINavigationController
 
-- (id)initWithClientId:(NSString *)clientId patternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams;
+- (instancetype)initWithClientId:(NSString *)clientId patternId:(NSString *)patternId paymentParameters:(NSDictionary *)paymentParams NS_DESIGNATED_INITIALIZER;
 
 @property(nonatomic, strong, readonly) YMACpsViewController *cpsViewController;
 

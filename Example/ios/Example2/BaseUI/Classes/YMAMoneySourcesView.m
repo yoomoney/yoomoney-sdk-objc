@@ -24,7 +24,7 @@
 
 @implementation YMAMoneySourcesView
 
-- (id)initWithFrame:(CGRect)frame paymentInfo:(YMAExternalPaymentInfoModel *)paymentInfo andMoneySources:(NSArray *)moneySources {
+- (instancetype)initWithFrame:(CGRect)frame paymentInfo:(YMAExternalPaymentInfoModel *)paymentInfo moneySources:(NSArray *)moneySources {
     self = [super initWithFrame:frame];
 
     if (self) {
@@ -95,7 +95,7 @@
 
     if (indexPath.section) {
         if (indexPath.row < self.moneySources.count) {
-            YMAMoneySourceModel *moneySource = [self.moneySources objectAtIndex:(NSUInteger) indexPath.row];
+            YMAMoneySourceModel *moneySource = (self.moneySources)[(NSUInteger) indexPath.row];
 
             if (moneySource.cardType == YMAPaymentCardTypeVISA)
                 cell.imageView.image = YMALocalizedImage(kImageKeyCardVISA, nil);
@@ -147,7 +147,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        YMAMoneySourceModel *moneySource = [self.moneySources objectAtIndex:(NSUInteger) indexPath.row];
+        YMAMoneySourceModel *moneySource = (self.moneySources)[(NSUInteger) indexPath.row];
         [self.delegate removeMoneySource:moneySource];
         [self.moneySources removeObject:moneySource];
         [self.tableView reloadData];
@@ -166,7 +166,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     if (indexPath.row < self.moneySources.count) {
-        YMAMoneySourceModel *moneySource = [self.moneySources objectAtIndex:(NSUInteger) indexPath.row];
+        YMAMoneySourceModel *moneySource = (self.moneySources)[(NSUInteger) indexPath.row];
         [self.delegate didSelectedMoneySource:moneySource];
     } else if (indexPath.row == self.moneySources.count) {
 

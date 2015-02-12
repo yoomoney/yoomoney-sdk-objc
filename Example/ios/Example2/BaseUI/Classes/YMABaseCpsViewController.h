@@ -32,7 +32,7 @@
 
 @property(nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 
-- (id)initWithClientId:(NSString *)clientId patternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams;
+- (instancetype)initWithClientId:(NSString *)clientId patternId:(NSString *)patternId paymentParameters:(NSDictionary *)paymentParams NS_DESIGNATED_INITIALIZER;
 
 - (void)setupNavigationBar;
 
@@ -46,6 +46,6 @@
 
 - (YMABaseCscView *)cscView;
 
-- (YMABaseResultView *)resultViewWithState:(YMAPaymentResultState)state andDescription:(NSString *)description;
+- (YMABaseResultView *)resultViewWithState:(YMAPaymentResultState)state resultDescription:(NSString *)resultDescription;
 
 @end

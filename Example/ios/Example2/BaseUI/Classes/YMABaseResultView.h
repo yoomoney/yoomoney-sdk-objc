@@ -29,7 +29,7 @@ typedef NS_ENUM(NSInteger, YMAPaymentResultState) {
 
 @property(nonatomic, weak) id <YMABaseResultViewDelegate> delegate;
 
-- (id)initWithFrame:(CGRect)frame state:(YMAPaymentResultState)state description:(NSString *)description;
+- (instancetype)initWithFrame:(CGRect)frame state:(YMAPaymentResultState)state resultDescription:(NSString *)resultDescription;
 
 - (void)successSaveMoneySource:(YMAMoneySourceModel *)moneySource;
 

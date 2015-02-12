@@ -25,7 +25,7 @@ NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
 
 @implementation YMACpsManager
 
-- (id)initWithClientId:(NSString *)clientId {
+- (instancetype)initWithClientId:(NSString *)clientId {
     self = [super init];
 
     if (self) {
@@ -42,26 +42,29 @@ NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
 #pragma mark -
 
 - (void)updateInstanceWithCompletion:(YMAHandler)block {
-    NSString *instanceId = self.secureStorage.instanceId;
+    NSString *currentInstanceId = self.secureStorage.instanceId;
 
-    if (!instanceId || [instanceId isEqual:kKeychainItemValueEmpty]) {
-        [self.session instanceWithClientId:self.clientId token:nil completion:^(NSString *Id, NSError *error) {
+    if (!currentInstanceId || [currentInstanceId isEqual:kKeychainItemValueEmpty]) {
+        [self.session instanceWithClientId:self.clientId token:nil completion:^(NSString *instanceId, NSError *error) {
             if (error)
                 block(error);
             else {
-                self.secureStorage.instanceId = Id;
+                self.secureStorage.instanceId = instanceId;
                 block(nil);
             }
         }];
         return;
     }
 
-    self.session.instanceId = instanceId;
+    self.session.instanceId = currentInstanceId;
     block(nil);
 }
 
 - (void)saveMoneySourceWithRequestId:(NSString *)requestId completion:(YMAMoneySourceHandler)block {
-    YMABaseRequest *moneySourceRequest = [YMAProcessExternalPaymentRequest processExternalPaymentWithRequestId:requestId successUri:kSuccessUrl failUri:kFailUrl requestToken:YES];
+    YMABaseRequest *moneySourceRequest = [YMAProcessExternalPaymentRequest processExternalPaymentWithRequestId:requestId
+                                                                                                    successUri:kSuccessUrl
+                                                                                                       failUri:kFailUrl
+                                                                                                  requestToken:YES];
 
     [self processPaymentRequest:moneySourceRequest completion:^(YMABaseRequest *request, YMABaseResponse *response, NSError *error) {
         if (error) {
@@ -69,7 +72,9 @@ NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
             return;
         }
 
-        NSError *unknownError = [NSError errorWithDomain:YMAErrorDomainUnknown code:0 userInfo:@{@"request" : request, @"response" : response}];
+        NSError *unknownError = [NSError errorWithDomain:YMAErrorDomainUnknown
+                                                    code:0
+                                                userInfo:@{@"request" : request, @"response" : response}];
 
         YMABaseProcessResponse *processResponse = (YMABaseProcessResponse *) response;
 
@@ -91,8 +96,8 @@ NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
     [self.secureStorage removeMoneySource:moneySource];
 }
 
-- (void)startPaymentWithPatternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams completion:(YMAStartPaymentHandler)block {
-    YMABaseRequest *externalPaymentRequest = [YMAExternalPaymentRequest externalPaymentWithPatternId:patternId andPaymentParams:paymentParams];
+- (void)startPaymentWithPatternId:(NSString *)patternId paymentParameters:(NSDictionary *)paymentParams completion:(YMAStartPaymentHandler)block {
+    YMABaseRequest *externalPaymentRequest = [YMAExternalPaymentRequest externalPaymentWithPatternId:patternId paymentParameters:paymentParams];
 
     [self.session performRequest:externalPaymentRequest token:nil completion:^(YMABaseRequest *request, YMABaseResponse *response, NSError *error) {
         if (error) {
@@ -106,13 +111,23 @@ NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
 }
 
 - (void)finishPaymentWithRequestId:(NSString *)requestId completion:(YMAFinishPaymentHandler)block {
-    YMABaseRequest *processExternalPaymentRequest = [YMAProcessExternalPaymentRequest processExternalPaymentWithRequestId:requestId successUri:kSuccessUrl failUri:kFailUrl requestToken:NO];
+    YMABaseRequest *processExternalPaymentRequest = [YMAProcessExternalPaymentRequest processExternalPaymentWithRequestId:requestId
+                                                                                                               successUri:kSuccessUrl
+                                                                                                                  failUri:kFailUrl
+                                                                                                             requestToken:NO];
 
     [self finishPaymentWithRequest:processExternalPaymentRequest completion:block];
 }
 
-- (void)finishPaymentWithRequestId:(NSString *)requestId moneySourceToken:(NSString *)moneySourceToken andCsc:(NSString *)csc completion:(YMAFinishPaymentHandler)block {
-    YMABaseRequest *processExternalPaymentRequest = [YMAProcessExternalPaymentRequest processExternalPaymentWithRequestId:requestId successUri:kSuccessUrl failUri:kFailUrl moneySourceToken:moneySourceToken andCsc:csc];
+- (void)finishPaymentWithRequestId:(NSString *)requestId
+                  moneySourceToken:(NSString *)moneySourceToken
+                               csc:(NSString *)csc
+                        completion:(YMAFinishPaymentHandler)block {
+    YMABaseRequest *processExternalPaymentRequest = [YMAProcessExternalPaymentRequest processExternalPaymentWithRequestId:requestId
+                                                                                                               successUri:kSuccessUrl
+                                                                                                                  failUri:kFailUrl
+                                                                                                         moneySourceToken:moneySourceToken
+                                                                                                                      csc:csc];
 
     [self finishPaymentWithRequest:processExternalPaymentRequest completion:block];
 }
