@@ -32,11 +32,11 @@ static NSString *const kKeychainMoneySource = @"moneySourceKeychainId";
 
     NSMutableDictionary *newSource = [NSMutableDictionary dictionary];
 
-    [newSource setObject:kKeychainMoneySource forKey:(__bridge id) kSecAttrGeneric];
-    [newSource setObject:[NSString stringWithFormat:@"%li", (long)moneySource.type] forKey:(__bridge id) kSecAttrLabel];
-    [newSource setObject:[NSString stringWithFormat:@"%li", (long)moneySource.cardType] forKey:(__bridge id) kSecAttrDescription];
-    [newSource setObject:moneySource.moneySourceToken forKey:(__bridge id) kSecValueData];
-    [newSource setObject:moneySource.panFragment forKey:(__bridge id) kSecAttrAccount];
+    newSource[(__bridge id) kSecAttrGeneric]     = kKeychainMoneySource;
+    newSource[(__bridge id) kSecAttrLabel]       = [NSString stringWithFormat:@"%li", (long)moneySource.type];
+    newSource[(__bridge id) kSecAttrDescription] = [NSString stringWithFormat:@"%li", (long)moneySource.cardType];
+    newSource[(__bridge id) kSecValueData]       = moneySource.moneySourceToken;
+    newSource[(__bridge id) kSecAttrAccount]     = moneySource.panFragment;
 
     NSMutableDictionary *secItem = [self dictionaryToSecItemFormat:newSource];
     SecItemAdd((__bridge CFDictionaryRef) secItem, NULL);
@@ -45,18 +45,18 @@ static NSString *const kKeychainMoneySource = @"moneySourceKeychainId";
 - (void)removeMoneySource:(YMAMoneySourceModel *)moneySource {
     NSMutableDictionary *sourceToRemove = [NSMutableDictionary dictionary];
 
-    [sourceToRemove setObject:moneySource.panFragment forKey:(__bridge id) kSecAttrAccount];
-    [sourceToRemove setObject:[NSString stringWithFormat:@"%li", (long)moneySource.type] forKey:(__bridge id) kSecAttrLabel];
-    [sourceToRemove setObject:[NSString stringWithFormat:@"%li", (long)moneySource.cardType] forKey:(__bridge id) kSecAttrDescription];
-    [sourceToRemove setObject:kKeychainMoneySource forKey:(__bridge id) kSecAttrGeneric];
-    [sourceToRemove setObject:(__bridge id) kSecClassGenericPassword forKey:(__bridge id) kSecClass];
+    sourceToRemove[(__bridge id) kSecAttrAccount]     = moneySource.panFragment;
+    sourceToRemove[(__bridge id) kSecAttrLabel]       = [NSString stringWithFormat:@"%li", (long)moneySource.type];
+    sourceToRemove[(__bridge id) kSecAttrDescription] = [NSString stringWithFormat:@"%li", (long)moneySource.cardType];
+    sourceToRemove[(__bridge id) kSecAttrGeneric]     = kKeychainMoneySource;
+    sourceToRemove[(__bridge id) kSecClass]           = (__bridge id) kSecClassGenericPassword;
 
     SecItemDelete((__bridge CFDictionaryRef) sourceToRemove);
 }
 
 - (void)clearSecureStorage {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setObject:(__bridge id) kSecClassGenericPassword forKey:(__bridge id) kSecClass];
+    dict[(__bridge id) kSecClass] = (__bridge id) kSecClassGenericPassword;
     SecItemDelete((__bridge CFDictionaryRef) dict);
 }
 
@@ -66,8 +66,8 @@ static NSString *const kKeychainMoneySource = @"moneySourceKeychainId";
 
 - (NSMutableDictionary *)secItemFormatToDictionary:(NSDictionary *)dictionaryToConvert {
     NSMutableDictionary *returnDictionary = [NSMutableDictionary dictionaryWithDictionary:dictionaryToConvert];
-    [returnDictionary setObject:(__bridge id) kCFBooleanTrue forKey:(__bridge id) kSecReturnData];
-    [returnDictionary setObject:(__bridge id) kSecClassGenericPassword forKey:(__bridge id) kSecClass];
+    returnDictionary[(__bridge id) kSecReturnData] = (__bridge id) kCFBooleanTrue;
+    returnDictionary[(__bridge id) kSecClass] = (__bridge id) kSecClassGenericPassword;
 
     CFTypeRef itemDataRef = nil;
 
@@ -76,7 +76,7 @@ static NSString *const kKeychainMoneySource = @"moneySourceKeychainId";
 
         [returnDictionary removeObjectForKey:(__bridge id) kSecReturnData];
         NSString *itemData = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
-        [returnDictionary setObject:itemData forKey:(__bridge id) kSecValueData];
+        returnDictionary[(__bridge id) kSecValueData] = itemData;
     }
 
     return returnDictionary;
@@ -84,9 +84,9 @@ static NSString *const kKeychainMoneySource = @"moneySourceKeychainId";
 
 - (NSMutableDictionary *)dictionaryToSecItemFormat:(NSDictionary *)dictionaryToConvert {
     NSMutableDictionary *returnDictionary = [NSMutableDictionary dictionaryWithDictionary:dictionaryToConvert];
-    [returnDictionary setObject:(__bridge id) kSecClassGenericPassword forKey:(__bridge id) kSecClass];
-    NSString *secDataString = [dictionaryToConvert objectForKey:(__bridge id) kSecValueData];
-    [returnDictionary setObject:[secDataString dataUsingEncoding:NSUTF8StringEncoding] forKey:(__bridge id) kSecValueData];
+    returnDictionary[(__bridge id) kSecClass] = (__bridge id) kSecClassGenericPassword;
+    NSString *secDataString = dictionaryToConvert[(__bridge id) kSecValueData];
+    returnDictionary[(__bridge id) kSecValueData] = [secDataString dataUsingEncoding:NSUTF8StringEncoding];
 
     return returnDictionary;
 }
@@ -116,10 +116,10 @@ static NSString *const kKeychainMoneySource = @"moneySourceKeychainId";
 - (NSDictionary *)instanceIdQuery {
     if (!_instanceIdQuery) {
         _instanceIdQuery = [[NSMutableDictionary alloc] init];
-        [_instanceIdQuery setObject:(__bridge id) kSecClassGenericPassword forKey:(__bridge id) kSecClass];
-        [_instanceIdQuery setObject:kKeychainIdInstance forKey:(__bridge id) kSecAttrGeneric];
-        [_instanceIdQuery setObject:(__bridge id) kSecMatchLimitOne forKey:(__bridge id) kSecMatchLimit];
-        [_instanceIdQuery setObject:(__bridge id) kCFBooleanTrue forKey:(__bridge id) kSecReturnAttributes];
+        _instanceIdQuery[(__bridge id) kSecClass] = (__bridge id) kSecClassGenericPassword;
+        _instanceIdQuery[(__bridge id) kSecAttrGeneric] = kKeychainIdInstance;
+        _instanceIdQuery[(__bridge id) kSecMatchLimit] = (__bridge id) kSecMatchLimitOne;
+        _instanceIdQuery[(__bridge id) kSecReturnAttributes] = (__bridge id) kCFBooleanTrue;
     }
 
     return _instanceIdQuery;
@@ -128,11 +128,10 @@ static NSString *const kKeychainMoneySource = @"moneySourceKeychainId";
 - (NSDictionary *)moneySourceQuery {
     if (!_moneySourceQuery) {
         _moneySourceQuery = [[NSMutableDictionary alloc] init];
-        [_moneySourceQuery setObject:(__bridge id) kSecClassGenericPassword forKey:(__bridge id) kSecClass];
-        [_moneySourceQuery setObject:kKeychainMoneySource forKey:(__bridge id) kSecAttrGeneric];
-        [_moneySourceQuery setObject:(__bridge id) kSecMatchLimitAll
-                              forKey:(__bridge id) kSecMatchLimit];
-        [_moneySourceQuery setObject:(__bridge id) kCFBooleanTrue forKey:(__bridge id) kSecReturnAttributes];
+        _moneySourceQuery[(__bridge id) kSecClass] = (__bridge id) kSecClassGenericPassword;
+        _moneySourceQuery[(__bridge id) kSecAttrGeneric] = kKeychainMoneySource;
+        _moneySourceQuery[(__bridge id) kSecMatchLimit] = (__bridge id) kSecMatchLimitAll;
+        _moneySourceQuery[(__bridge id) kSecReturnAttributes] = (__bridge id) kCFBooleanTrue;
     }
 
     return _moneySourceQuery;
@@ -151,10 +150,10 @@ static NSString *const kKeychainMoneySource = @"moneySourceKeychainId";
         NSMutableDictionary *outDictionary = (__bridge_transfer NSMutableDictionary *) item;
         NSDictionary *queryResult = [self secItemFormatToDictionary:outDictionary];
 
-        NSString *panFragment = [queryResult objectForKey:(__bridge id) kSecAttrAccount];
-        NSString *sourceTypeString = [queryResult objectForKey:(__bridge id) kSecAttrLabel];
-        NSString *cardTypeString = [queryResult objectForKey:(__bridge id) kSecAttrDescription];
-        NSString *moneySourceToken = [queryResult objectForKey:(__bridge id) kSecValueData];
+        NSString *panFragment = queryResult[(__bridge id) kSecAttrAccount];
+        NSString *sourceTypeString = queryResult[(__bridge id) kSecAttrLabel];
+        NSString *cardTypeString = queryResult[(__bridge id) kSecAttrDescription];
+        NSString *moneySourceToken = queryResult[(__bridge id) kSecValueData];
         YMAMoneySourceType sourceType = (YMAMoneySourceType) [sourceTypeString integerValue];
         YMAPaymentCardType cardType = (YMAPaymentCardType) [cardTypeString integerValue];
 
@@ -173,7 +172,7 @@ static NSString *const kKeychainMoneySource = @"moneySourceKeychainId";
         NSMutableDictionary *outDictionary = (__bridge_transfer NSMutableDictionary *) outDictionaryRef;
         NSDictionary *queryResult = [self secItemFormatToDictionary:outDictionary];
 
-        return [queryResult objectForKey:(__bridge id) kSecValueData];
+        return queryResult[(__bridge id) kSecValueData];
     }
 
     return nil;
@@ -183,7 +182,7 @@ static NSString *const kKeychainMoneySource = @"moneySourceKeychainId";
     [self clearSecureStorage];
     
     NSMutableDictionary *secItem = [self dictionaryToSecItemFormat:@{(__bridge id) kSecValueData : instanceId}];
-    [secItem setObject:kKeychainIdInstance forKey:(__bridge id) kSecAttrGeneric];
+    secItem[(__bridge id) kSecAttrGeneric] = kKeychainIdInstance;
     SecItemAdd((__bridge CFDictionaryRef) secItem, NULL);
 }
 

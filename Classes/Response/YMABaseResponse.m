@@ -17,7 +17,7 @@
 
 #pragma mark - Object Lifecycle
 
-- (id)initWithData:(NSData *)data headers:(NSDictionary *)headers andCompletion:(YMAResponseHandler)block
+- (instancetype)initWithData:(NSData *)data headers:(NSDictionary *)headers completion:(YMAResponseHandler)block
 {
     self = [self init];
 

@@ -30,12 +30,12 @@ static NSString *const kParameterCsc = @"csc";
 
 #pragma mark - Object Lifecycle
 
-- (id)initWithRequestId:(NSString *)requestId
+- (instancetype)initWithRequestId:(NSString *)requestId
              successUri:(NSString *)successUri
                 failUri:(NSString *)failUri
            requestToken:(BOOL)requestToken
        moneySourceToken:(NSString *)moneySourceToken
-                 andCsc:(NSString *)csc
+                 csc:(NSString *)csc
 {
     self = [super init];
 
@@ -61,21 +61,21 @@ static NSString *const kParameterCsc = @"csc";
                                                                failUri:failUri
                                                           requestToken:requestToken
                                                       moneySourceToken:nil
-                                                                andCsc:nil];
+                                                                   csc:nil];
 }
 
 + (instancetype)processExternalPaymentWithRequestId:(NSString *)requestId
                                          successUri:(NSString *)successUri
                                             failUri:(NSString *)failUri
                                    moneySourceToken:(NSString *)moneySourceToken
-                                             andCsc:(NSString *)csc
+                                                csc:(NSString *)csc
 {
     return [[YMAProcessExternalPaymentRequest alloc] initWithRequestId:requestId
                                                             successUri:successUri
                                                                failUri:failUri
                                                           requestToken:NO
                                                       moneySourceToken:moneySourceToken
-                                                                andCsc:csc];
+                                                                csc:csc];
 }
 
 #pragma mark - Overridden methods
@@ -91,26 +91,37 @@ static NSString *const kParameterCsc = @"csc";
 - (NSDictionary *)parameters
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setValue:self.requestId forKey:kParameterRequestId];
-    [dictionary setValue:self.successUri forKey:kParameterSuccessUri];
-    [dictionary setValue:self.failUri forKey:kParameterFailUri];
+    if (self.requestId != nil) {
+        dictionary[kParameterRequestId] = self.requestId;
+    }
+    if (self.successUri != nil) {
+        dictionary[kParameterSuccessUri] = self.successUri;
+    }
+    if (self.failUri != nil) {
+        dictionary[kParameterFailUri] = self.failUri;
+    }
 
     if (self.moneySourceToken == nil) {
-        if (self.requestToken)
-            [dictionary setValue:@"true" forKey:kParameterRequestToken];
+        if (self.requestToken) {
+            dictionary[kParameterRequestToken] = @"true";
+        }
         
         return dictionary;
     }
 
-    [dictionary setValue:self.moneySourceToken forKey:kParameterMoneySourceToken];
-    [dictionary setValue:self.csc forKey:kParameterCsc];
-    
+    if (self.moneySourceToken != nil) {
+        dictionary[kParameterRequestToken] = self.moneySourceToken;
+    }
+    if (self.csc != nil) {
+        dictionary[kParameterCsc] = self.csc;
+    }
+
     return dictionary;
 }
 
-- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers andCompletionHandler:(YMAResponseHandler)handler
+- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers completion:(YMAResponseHandler)handler
 {
-    return [[YMAProcessExternalPaymentResponse alloc] initWithData:data headers:headers andCompletion:handler];
+    return [[YMAProcessExternalPaymentResponse alloc] initWithData:data headers:headers completion:handler];
 }
 
 @end

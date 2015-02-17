@@ -35,7 +35,7 @@ NSDictionary *additionalParameters = @{
 // session - instance of YMAAPISession class 
 // webView - instance of UIWebView class
 NSURLRequest *authorizationRequest =  [session authorizationRequestWithClientId:@"Your client_id"
-                                                            andAdditionalParams:additionalParameters];
+                                                               additionalParams:additionalParameters];
 [webView loadRequest:authorizationRequest];
 ```
 For the authorization request, the user is redirected to the Yandex.Money authorization page. The user enters his login and password, reviews the list of requested permissions and payment limits, and either approves or rejects the application's authorization request. The authorization result is returned as an "HTTP 302 Redirect" to your **redirect_uri**.<br>
@@ -73,18 +73,19 @@ NSDictionary *additionalParameters = @{
 
 // session  - instance of YMAAPISession class
 // authCode - temporary authorization code
-[session receiveTokenWithWithCode:authCode 
-                         clientId:@"Your client_id" 
-              andAdditionalParams:additionalParameters 
-                       completion:^(NSString *Id, NSError *error) {
-                            if (error == nil && Id != nil && Id.length > 0) {
-                                NSString *accessToken = Id; // Do NOT request access_token every time, when you need to call API method. 
-                                                            // Obtain it once and reuse it.
-                                // Process access_token
-                            } 
-                            else {
-                                // Process error
-                            }
+[session receiveTokenWithCode:authCode
+                     clientId:@"Your client_id"
+             additionalParams:additionalParameters
+                   completion:^(NSString *instanceId, NSError *error) {
+                           if (error == nil && Id != nil && Id.length > 0) {
+                               NSString *accessToken = instanceId; // Do NOT request access_token every time, when you need to call API method.
+                               // Obtain it once and reuse it.
+                               // Process access_token
+                           }
+                           else {
+                               // Process error
+                           }
+                       }];
 }];
 ```
 *The __access_token__ is a symmetric authorization key, so the application developer must secure it - the token should be encrypted for storage, with access allowed only after the user authenticates within the application. For example, the token can be encrypted using the 3DES algorithm, where the encryption key is a 4-digit PIN code.*
@@ -193,22 +194,22 @@ Before making the first payment, you need to register a copy of the application 
 
 YMAExternalPaymentSession *session = [[YMAExternalPaymentSession alloc] init];
 
-if (instanceId == nil) {
+if (currentInstanceId == nil) {
     // token - can be nil
     [session instanceWithClientId:@"You client_id" 
                             token:token 
-                       completion:^(NSString *Id, NSError *error)     {
+                       completion:^(NSString *instanceId, NSError *error)     {
         if (error != nil) {
             // Process error 
         } 
         else {
-            instanceId = Id; // Do NOT request instance id every time you, when you need to call API method. 
-                             // Obtain it once and reuse it.
-            session.instanceId = instanceId;
+            currentInstanceId = instanceId; // Do NOT request instance id every time you, when you need to call API method. 
+                             				// Obtain it once and reuse it.
+            session.instanceId = currentInstanceId;
         }
     }];
 } else {
-    session.instanceId = instanceId;
+    session.instanceId = currentInstanceId;
 }
 
 ```

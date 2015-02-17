@@ -79,7 +79,7 @@ static NSString *const kParameterDigitalGoodsSecret = @"secret";
 
     if (acsUrl != nil) {
         NSDictionary *acsParams = responseModel[kParameterAcsParams];
-        asc = [YMAAscModel ascWithUrl:[NSURL URLWithString:acsUrl] andParams:acsParams];
+        asc = [YMAAscModel ascWithUrl:[NSURL URLWithString:acsUrl] parameters:acsParams];
     }
 
     id digitalGoodsModel = responseModel[kParameterDigitalGoods];

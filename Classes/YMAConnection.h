@@ -13,18 +13,18 @@ typedef void
 @interface YMAConnection : NSObject
 
 + (instancetype)connectionForPostRequestWithUrl:(NSURL *)url
-                                      andParams:(NSDictionary *)postParams;
+                                 postParameters:(NSDictionary *)postParams;
 
 + (instancetype)connectionForPostRequestWithUrl:(NSURL *)url
-                                      andDta:(NSData *)bodyData;
+                                       bodyData:(NSData *)bodyData;
 
 + (instancetype)connectionForGetRequestWithUrl:(NSURL *)url
-                                     andParams:(NSDictionary *)postParams;
+                                     parameters:(NSDictionary *)postParams;
 
 + (NSString *)addPercentEscapesForString:(NSString *)string;
 
 - (void)sendAsynchronousWithQueue:(NSOperationQueue *)queue
-                completionHandler:(YMAConnectionHandler)handler;
+                       completion:(YMAConnectionHandler)handler;
 
 - (void)addValue:(NSString *)value forHeader:(NSString *)header;
 

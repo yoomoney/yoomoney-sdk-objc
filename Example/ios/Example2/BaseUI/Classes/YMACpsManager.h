@@ -38,7 +38,7 @@ typedef void (^YMAMoneySourceHandler)(YMAMoneySourceModel *moneySource, NSError 
 
 @property(nonatomic, strong, readonly) NSArray *moneySources;
 
-- (id)initWithClientId:(NSString *)clientId;
+- (instancetype)initWithClientId:(NSString *)clientId NS_DESIGNATED_INITIALIZER;
 
 - (void)updateInstanceWithCompletion:(YMAHandler)block;
 
@@ -46,10 +46,10 @@ typedef void (^YMAMoneySourceHandler)(YMAMoneySourceModel *moneySource, NSError 
 
 - (void)removeMoneySource:(YMAMoneySourceModel *)moneySource;
 
-- (void)startPaymentWithPatternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams completion:(YMAStartPaymentHandler)block;
+- (void)startPaymentWithPatternId:(NSString *)patternId paymentParameters:(NSDictionary *)paymentParams completion:(YMAStartPaymentHandler)block;
 
 - (void)finishPaymentWithRequestId:(NSString *)requestId completion:(YMAFinishPaymentHandler)block;
 
-- (void)finishPaymentWithRequestId:(NSString *)requestId moneySourceToken:(NSString *)moneySourceToken andCsc:(NSString *)csc completion:(YMAFinishPaymentHandler)block;
+- (void)finishPaymentWithRequestId:(NSString *)requestId moneySourceToken:(NSString *)moneySourceToken csc:(NSString *)csc completion:(YMAFinishPaymentHandler)block;
 
 @end

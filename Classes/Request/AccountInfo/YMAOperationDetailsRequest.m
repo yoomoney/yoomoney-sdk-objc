@@ -24,9 +24,9 @@ static NSString *const kUrlOperationDetails = @"api/operation-details";
 
 #pragma mark - Object Lifecycle
 
-- (id)initWithOperationId:(NSString *)operationId
-              favouriteId:(NSString *)favouriteId
-        requestRepeatInfo:(BOOL)requestRepeatInfo
+- (instancetype)initWithOperationId:(NSString *)operationId
+                        favouriteId:(NSString *)favouriteId
+                  requestRepeatInfo:(BOOL)requestRepeatInfo
 {
     self = [super init];
 
@@ -66,16 +66,21 @@ static NSString *const kUrlOperationDetails = @"api/operation-details";
 - (NSDictionary *)parameters
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setValue:self.operationId forKey:kParameterOperationId];
-    [dictionary setValue:self.favouriteId forKey:kParameterFavouriteId];
-    [dictionary setValue:self.requestRepeatInfo ? @"true" : @"false" forKey:kParameterRequestRepeatInfo];
+
+    if (self.operationId != nil) {
+        dictionary[kParameterOperationId] = self.operationId;
+    }
+    if (self.favouriteId != nil) {
+        dictionary[kParameterFavouriteId] = self.favouriteId;
+    }
+    dictionary[kParameterRequestRepeatInfo] = self.requestRepeatInfo ? @"true" : @"false";
 
     return dictionary;
 }
 
-- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers andCompletionHandler:(YMAResponseHandler)handler
+- (NSOperation *)buildResponseOperationWithData:(NSData *)data headers:(NSDictionary *)headers completion:(YMAResponseHandler)handler
 {
-    return [[YMAOperationDetailsResponse alloc] initWithData:data headers:headers andCompletion:handler];
+    return [[YMAOperationDetailsResponse alloc] initWithData:data headers:headers completion:handler];
 }
 
 @end

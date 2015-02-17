@@ -9,7 +9,7 @@
 
 #pragma mark - Object Lifecycle
 
-- (id)initWithPaymentId:(NSString *)paymentId
+- (instancetype)initWithPaymentId:(NSString *)paymentId
                 balance:(NSString *)balance
               invoiceId:(NSString *)invoiceId
                   payer:(NSString *)payer

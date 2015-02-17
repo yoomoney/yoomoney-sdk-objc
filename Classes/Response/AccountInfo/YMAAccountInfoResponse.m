@@ -38,7 +38,7 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
 
 - (BOOL)parseJSONModel:(id)responseModel headers:(NSDictionary *)headers error:(NSError * __autoreleasing *)error
 {
-    NSString *errorKey = [responseModel objectForKey:kParameterError];
+    NSString *errorKey = responseModel[kParameterError];
 
     if (errorKey != nil) {
         if (error == nil) return NO;
@@ -49,38 +49,38 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
         return NO;
     }
 
-    NSString *account = [responseModel objectForKey:kParameterAccount];
-    NSString *balance = [[responseModel objectForKey:kParameterBalance] stringValue];
-    NSString *currency = [responseModel objectForKey:kParameterCurrency];
+    NSString *account = responseModel[kParameterAccount];
+    NSString *balance = [responseModel[kParameterBalance] stringValue];
+    NSString *currency = responseModel[kParameterCurrency];
 
-    NSString *accountStatusString = [responseModel objectForKey:kParameterAccountStatus];
+    NSString *accountStatusString = responseModel[kParameterAccountStatus];
     YMAAccountStatus accountStatus = [YMAAccountInfoModel accountStatusByString:accountStatusString];
 
-    NSString *accountTypeString = [responseModel objectForKey:kParameterAccountType];
+    NSString *accountTypeString = responseModel[kParameterAccountType];
     YMAAccountType accountType = [YMAAccountInfoModel accountTypeByString:accountTypeString];
 
-    id avatarModel = [responseModel objectForKey:kParameterAvatar];
+    id avatarModel = responseModel[kParameterAvatar];
     YMAAvatarModel *avatar = nil;
 
     if (avatarModel != nil) {
-        NSString *avatarUrlString = [avatarModel objectForKey:kParameterAvatarUrl];
+        NSString *avatarUrlString = avatarModel[kParameterAvatarUrl];
         NSURL *avatarUrl = [NSURL URLWithString:avatarUrlString];
-        NSString *timeStampString = [avatarModel objectForKey:kParameterAvatarTs];
+        NSString *timeStampString = avatarModel[kParameterAvatarTs];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"];
         NSDate *timeStamp = [formatter dateFromString:timeStampString];
         avatar = [YMAAvatarModel avatarWithUrl:avatarUrl timeStamp:timeStamp];
     }
 
-    id balanceDetailsModel = [responseModel objectForKey:kParameterBalanceDetails];
+    id balanceDetailsModel = responseModel[kParameterBalanceDetails];
     YMABalanceDetailsModel *balanceDetails = nil;
 
     if (balanceDetailsModel != nil) {
-        NSString *total = [[balanceDetailsModel objectForKey:kParameterBalanceTotal] stringValue];
-        NSString *available = [[balanceDetailsModel objectForKey:kParameterBalanceAvailable] stringValue];
-        NSString *depositionPending = [[balanceDetailsModel objectForKey:kParameterBalanceDepositionPending] stringValue];
-        NSString *blocked = [[balanceDetailsModel objectForKey:kParameterBalanceBlocked] stringValue];
-        NSString *debt = [[balanceDetailsModel objectForKey:kParameterBalanceDebt] stringValue];
+        NSString *total = [balanceDetailsModel[kParameterBalanceTotal] stringValue];
+        NSString *available = [balanceDetailsModel[kParameterBalanceAvailable] stringValue];
+        NSString *depositionPending = [balanceDetailsModel[kParameterBalanceDepositionPending] stringValue];
+        NSString *blocked = [balanceDetailsModel[kParameterBalanceBlocked] stringValue];
+        NSString *debt = [balanceDetailsModel[kParameterBalanceDebt] stringValue];
 
         balanceDetails = [YMABalanceDetailsModel balanceDetailsWithTotal:total
                                                                available:available
@@ -89,15 +89,15 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
                                                                     debt:debt];
     }
 
-    id cardsLinkedModel = [responseModel objectForKey:kParameterCardsLinked];
+    id cardsLinkedModel = responseModel[kParameterCardsLinked];
     NSMutableArray *cardsLinked = nil;
 
     if (cardsLinkedModel != nil) {
         cardsLinked = [NSMutableArray array];
 
         for (id card in cardsLinkedModel) {
-            NSString *panFragment = [card objectForKey:kParameterCardsLinkedPanFragment];
-            NSString *cardTypeString = [card objectForKey:kParameterCardsLinkedType];
+            NSString *panFragment = card[kParameterCardsLinkedPanFragment];
+            NSString *cardTypeString = card[kParameterCardsLinkedType];
             YMAPaymentCardType cardType = [YMAMoneySourceModel paymentCardTypeByString:cardTypeString];
             [cardsLinked addObject:[YMAMoneySourceModel moneySourceWithType:YMAMoneySourcePaymentCard
                                                                    cardType:cardType
@@ -106,7 +106,7 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
         }
     }
 
-    id servicesAdditionalModel = [responseModel objectForKey:kParameterServicesAdditional];
+    id servicesAdditionalModel = responseModel[kParameterServicesAdditional];
     NSMutableArray *servicesAdditional = nil;
 
     if (servicesAdditionalModel != nil) {

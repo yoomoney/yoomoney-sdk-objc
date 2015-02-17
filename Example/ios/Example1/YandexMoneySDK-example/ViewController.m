@@ -9,7 +9,7 @@ static NSString *const kKeychainIdInstance = @"instanceKeychainId";
 static NSString *const kSuccessUrl = @"yandexmoneyapp://oauth/authorize/success";
 static NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
 
-// You must register your application and recieve unique "client_id".
+// You must register your application and receive unique "client_id".
 // More information: http://api.yandex.com/money/doc/dg/tasks/register-client.xml
 static NSString *const kClientId = @"YOU_CLIENT_ID";
 #error You must paste your unique client_id.
@@ -89,7 +89,7 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
 - (void)doTestPayment {
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setObject:(id) kSecClassGenericPassword forKey:(id) kSecClass];
+    dict[(id) kSecClass] = (id) kSecClassGenericPassword;
     SecItemDelete((CFDictionaryRef) dict);
     
     NSDictionary *paymentParams = @{@"amount" : self.amountTextField.text, @"phone-number" : self.phoneNumberTextField.text};
@@ -253,17 +253,17 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
 }
 
 - (void)updateInstanceWithCompletion:(YMAHandler)block {
-    NSString *instanceId = self.instanceId;
+    NSString *currentInstanceId = self.instanceId;
     
-    if (!instanceId || [instanceId isEqual:@""]) {
+    if (!currentInstanceId || [currentInstanceId isEqual:@""]) {
         [self.session instanceWithClientId:kClientId
                                      token:nil
-                                completion:^(NSString *Id, NSError *error) {
+                                completion:^(NSString *instanceId, NSError *error) {
                                     if (error)
                                         block(error);
                                     else {
-                                        self.instanceId = Id;
-                                        self.session.instanceId = Id;
+                                        self.instanceId = instanceId;
+                                        self.session.instanceId = instanceId;
                                         block(nil);
                                     }
                                 }];
@@ -271,24 +271,24 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
         return;
     }
     
-    self.session.instanceId = instanceId;
+    self.session.instanceId = currentInstanceId;
     block(nil);
 }
 
 - (void)startPaymentWithPatternId:(NSString *)patternId andPaymentParams:(NSDictionary *)paymentParams completion:(void (^)(YMAExternalPaymentInfoModel *requestInfo, NSError *error))block {
-    YMABaseRequest *externalPaymentRequest = [YMAExternalPaymentRequest externalPaymentWithPatternId:patternId andPaymentParams:paymentParams];
+    YMABaseRequest *externalPaymentRequest = [YMAExternalPaymentRequest externalPaymentWithPatternId:patternId paymentParameters:paymentParams];
 
     [self.session performRequest:externalPaymentRequest
                            token:nil
                       completion:^(YMABaseRequest *request, YMABaseResponse *response, NSError *error) {
-                          if (error) {
-                              block(nil, error);
-                              return;
-                          }
+                   if (error) {
+                       block(nil, error);
+                       return;
+                   }
 
-                          YMAExternalPaymentResponse *externalPaymentResponse = (YMAExternalPaymentResponse *) response;
-                          block(externalPaymentResponse.paymentRequestInfo, nil);
-                      }];
+                   YMAExternalPaymentResponse *externalPaymentResponse = (YMAExternalPaymentResponse *) response;
+                   block(externalPaymentResponse.paymentRequestInfo, nil);
+               }];
 }
 
 - (void)finishPaymentWithRequestId:(NSString *)requestId completion:(void (^)(YMAAscModel *asc, NSError *error))block {
@@ -321,16 +321,16 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
     [self.session performRequest:paymentRequest
                            token:nil
                       completion:^(YMABaseRequest *request, YMABaseResponse *response, NSError *error) {
-                          YMABaseProcessResponse *processResponse = (YMABaseProcessResponse *)response;
+                   YMABaseProcessResponse *processResponse = (YMABaseProcessResponse *)response;
 
-                          if (processResponse.status == YMAResponseStatusInProgress) {
-                              dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, processResponse.nextRetry);
-                              dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
-                                  [self processPaymentRequest:request completion:block];
-                              });
-                          } else
-                              block(request, response, error);
-                      }];
+                   if (processResponse.status == YMAResponseStatusInProgress) {
+                       dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, processResponse.nextRetry);
+                       dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
+                           [self processPaymentRequest:request completion:block];
+                       });
+                   } else
+                       block(request, response, error);
+               }];
 }
 
 - (void)finishPayment {
@@ -351,7 +351,7 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
         NSMutableString *post = [NSMutableString string];
         
         for (NSString *key in asc.params.allKeys) {
-            NSString *paramValue = [self addPercentEscapesToString:[asc.params objectForKey:key]];
+            NSString *paramValue = [self addPercentEscapesToString:(asc.params)[key]];
             NSString *paramKey = [self addPercentEscapesToString:key];
             
             [post appendString:[NSString stringWithFormat:@"%@=%@&", paramKey, paramValue]];
@@ -405,7 +405,7 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
         NSMutableDictionary *outDictionary = (NSMutableDictionary *) outDictionaryRef;
         NSDictionary *queryResult = [self secItemFormatToDictionary:outDictionary];
         
-        return [queryResult objectForKey:(id) kSecValueData];
+        return queryResult[(id) kSecValueData];
     }
     
     return nil;
@@ -419,7 +419,7 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
         NSMutableDictionary *outDictionary = (NSMutableDictionary *) outDictionaryRef;
         NSMutableDictionary *queryResult = [self secItemFormatToDictionary:outDictionary];
         
-        if (![[queryResult objectForKey:(id) kSecValueData] isEqual:instanceId]) {
+        if (![queryResult[(id) kSecValueData] isEqual:instanceId]) {
             secItem = [self dictionaryToSecItemFormat:@{(id) kSecValueData : instanceId}];
             SecItemUpdate((CFDictionaryRef) self.instanceIdQuery, (CFDictionaryRef) secItem);
         }
@@ -428,17 +428,17 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
     }
     
     secItem = [self dictionaryToSecItemFormat:@{(id) kSecValueData : instanceId}];
-    [secItem setObject:kKeychainIdInstance forKey:(id) kSecAttrGeneric];
+    secItem[(id) kSecAttrGeneric] = kKeychainIdInstance;
     SecItemAdd((CFDictionaryRef) secItem, NULL);
 }
 
 - (NSDictionary *)instanceIdQuery {
     if (!_instanceIdQuery) {
         _instanceIdQuery = [[NSMutableDictionary alloc] init];
-        [_instanceIdQuery setObject:(id) kSecClassGenericPassword forKey:(id) kSecClass];
-        [_instanceIdQuery setObject:kKeychainIdInstance forKey:(id) kSecAttrGeneric];
-        [_instanceIdQuery setObject:(id) kSecMatchLimitOne forKey:(id) kSecMatchLimit];
-        [_instanceIdQuery setObject:(id) kCFBooleanTrue forKey:(id) kSecReturnAttributes];
+        _instanceIdQuery[(id) kSecClass] = (id) kSecClassGenericPassword;
+        _instanceIdQuery[(id) kSecAttrGeneric] = kKeychainIdInstance;
+        _instanceIdQuery[(id) kSecMatchLimit] = (id) kSecMatchLimitOne;
+        _instanceIdQuery[(id) kSecReturnAttributes] = (id) kCFBooleanTrue;
     }
     
     return _instanceIdQuery;
@@ -446,8 +446,8 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
 
 - (NSMutableDictionary *)secItemFormatToDictionary:(NSDictionary *)dictionaryToConvert {
     NSMutableDictionary *returnDictionary = [NSMutableDictionary dictionaryWithDictionary:dictionaryToConvert];
-    [returnDictionary setObject:(id) kCFBooleanTrue forKey:(id) kSecReturnData];
-    [returnDictionary setObject:(id) kSecClassGenericPassword forKey:(id) kSecClass];
+    returnDictionary[(id) kSecReturnData] = (id) kCFBooleanTrue;
+    returnDictionary[(id) kSecClass] = (id) kSecClassGenericPassword;
     
     CFTypeRef itemDataRef = nil;
     
@@ -456,7 +456,7 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
         
         [returnDictionary removeObjectForKey:(id) kSecReturnData];
         NSString *itemData = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
-        [returnDictionary setObject:itemData forKey:(id) kSecValueData];
+        returnDictionary[(id) kSecValueData] = itemData;
         [itemData release];
     }
     
@@ -465,9 +465,9 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
 
 - (NSMutableDictionary *)dictionaryToSecItemFormat:(NSDictionary *)dictionaryToConvert {
     NSMutableDictionary *returnDictionary = [NSMutableDictionary dictionaryWithDictionary:dictionaryToConvert];
-    [returnDictionary setObject:(id) kSecClassGenericPassword forKey:(id) kSecClass];
-    NSString *secDataString = [dictionaryToConvert objectForKey:(id) kSecValueData];
-    [returnDictionary setObject:[secDataString dataUsingEncoding:NSUTF8StringEncoding] forKey:(id) kSecValueData];
+    returnDictionary[(id) kSecClass] = (id) kSecClassGenericPassword;
+    NSString *secDataString = dictionaryToConvert[(id) kSecValueData];
+    returnDictionary[(id) kSecValueData] = [secDataString dataUsingEncoding:NSUTF8StringEncoding];
     
     return returnDictionary;
 }

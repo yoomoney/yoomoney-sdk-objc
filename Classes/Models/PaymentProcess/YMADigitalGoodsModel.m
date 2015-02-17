@@ -10,7 +10,7 @@
 
 #pragma mark - Object Lifecycle
 
-- (id)initWithWithArticle:(NSArray *)article bonus:(NSArray *)bonus
+- (instancetype)initWithArticle:(NSArray *)article bonus:(NSArray *)bonus
 {
     self = [super init];
 
@@ -24,7 +24,7 @@
 
 + (instancetype)digitalGoodsWithArticle:(NSArray *)article bonus:(NSArray *)bonus
 {
-    return [[YMADigitalGoodsModel alloc] initWithWithArticle:article bonus:bonus];
+    return [[YMADigitalGoodsModel alloc] initWithArticle:article bonus:bonus];
 }
 
 @end

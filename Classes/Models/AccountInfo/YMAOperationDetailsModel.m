@@ -14,22 +14,22 @@ static NSString *const kKeyRecipientTypeEmail = @"email";
 
 #pragma mark - Object Lifecycle
 
-- (id)initWithOperation:(YMAHistoryOperationModel *)operation
-              amountDue:(NSString *)amountDue
-                    fee:(NSString *)fee
-                 sender:(NSString *)sender
-              recipient:(NSString *)recipient
-          recipientType:(YMARecipientType)recipientType
-                message:(NSString *)message
-                comment:(NSString *)comment
-                codepro:(BOOL)codePro
-         protectionCode:(NSString *)protectionCode
-                expires:(NSDate *)expires
-         answerDatetime:(NSDate *)answerDatetime
-                details:(NSString *)details
-             repeatable:(BOOL)repeatable
-      paymentParameters:(NSDictionary *)paymentParameters
-           digitalGoods:(YMADigitalGoodsModel *)digitalGoods
+- (instancetype)initWithOperation:(YMAHistoryOperationModel *)operation
+                        amountDue:(NSString *)amountDue
+                              fee:(NSString *)fee
+                           sender:(NSString *)sender
+                        recipient:(NSString *)recipient
+                    recipientType:(YMARecipientType)recipientType
+                          message:(NSString *)message
+                          comment:(NSString *)comment
+                          codepro:(BOOL)codePro
+                   protectionCode:(NSString *)protectionCode
+                          expires:(NSDate *)expires
+                   answerDatetime:(NSDate *)answerDatetime
+                          details:(NSString *)details
+                       repeatable:(BOOL)repeatable
+                paymentParameters:(NSDictionary *)paymentParameters
+                     digitalGoods:(YMADigitalGoodsModel *)digitalGoods
 {
     self = [super initWithOperationId:operation.operationId
                                status:operation.status
@@ -102,11 +102,11 @@ static NSString *const kKeyRecipientTypeEmail = @"email";
 
 + (YMARecipientType)recipientTypeByString:(NSString *)recipientTypeString
 {
-    if ([recipientTypeString isEqual:kKeyRecipientTypeAccount])
+    if ([recipientTypeString isEqualToString:kKeyRecipientTypeAccount])
         return YMARecipientTypeAccount;
-    else if ([recipientTypeString isEqual:kKeyRecipientTypePhone])
+    else if ([recipientTypeString isEqualToString:kKeyRecipientTypePhone])
         return YMARecipientTypePhone;
-    else if ([recipientTypeString isEqual:kKeyRecipientTypeEmail])
+    else if ([recipientTypeString isEqualToString:kKeyRecipientTypeEmail])
         return YMARecipientTypeEmail;
 
     return YMARecipientTypeUnknown;

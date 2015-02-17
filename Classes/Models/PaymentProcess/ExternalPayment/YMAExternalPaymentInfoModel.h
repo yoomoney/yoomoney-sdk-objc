@@ -14,7 +14,7 @@
 /// @param requestId - ID of the current payment request.
 /// @param amount - The amount of the payment.
 /// @param title - A title of the payment.
-+ (instancetype)paymentRequestInfoWithId:(NSString *)requestId amount:(NSString *)amount andTitle:(NSString *)title;
++ (instancetype)paymentRequestInfoWithId:(NSString *)requestId amount:(NSString *)amount title:(NSString *)title;
 
 @property (nonatomic, copy, readonly) NSString *requestId;
 @property (nonatomic, copy, readonly) NSString *amount;

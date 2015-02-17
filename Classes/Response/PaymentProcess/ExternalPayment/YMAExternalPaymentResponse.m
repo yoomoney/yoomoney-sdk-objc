@@ -22,7 +22,7 @@ static NSString *const kParameterTitle = @"title";
     NSString *title = responseModel[kParameterTitle];
 
     _paymentRequestInfo =
-        [YMAExternalPaymentInfoModel paymentRequestInfoWithId:requestId amount:contractAmount andTitle:title];
+        [YMAExternalPaymentInfoModel paymentRequestInfoWithId:requestId amount:contractAmount title:title];
 
     return result;
 }

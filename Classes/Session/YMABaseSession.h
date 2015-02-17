@@ -8,8 +8,8 @@
 #import "YMAConstants.h"
 
 /// Completion of block is used to get the ID of an installed copy of the application.
-/// @param Id - ID of an installed copy of the application.
-typedef void (^YMAIdHandler)(NSString *Id, NSError *error);
+/// @param instanceId - ID of an installed copy of the application.
+typedef void (^YMAIdHandler)(NSString *instanceId, NSError *error);
 
 /// Completion block used by several methods of YMAExternalPaymentSession.
 /// @param error - Error information or nil.
@@ -44,7 +44,7 @@ typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
 
 /// Initialize session object with specified user agent.
 /// @param userAgent - user agent (if you want to set default user agent you can use constructor - (id)init)
-- (id)initWithUserAgent:(NSString *)userAgent;
+- (instancetype)initWithUserAgent:(NSString *)userAgent;
 
 /// Send request used token.
 /// @param requestMethod - request method.

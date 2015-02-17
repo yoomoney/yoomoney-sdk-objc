@@ -21,7 +21,7 @@ static NSBundle *imageBundle = nil;
                                                                       ofType:@"bundle"];
 
         NSBundle *libraryBundle = [NSBundle bundleWithPath:libraryBundlePath];
-        NSString *langID = [[NSLocale preferredLanguages] objectAtIndex:0];
+        NSString *langID = [NSLocale preferredLanguages][0];
         NSString *path = [libraryBundle pathForResource:langID ofType:@"lproj"];
         stringBundle = [NSBundle bundleWithPath:path];
 
