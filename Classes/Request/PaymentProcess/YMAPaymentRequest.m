@@ -49,7 +49,9 @@ static NSString *const kParameterPatternId = @"pattern_id";
 - (NSDictionary *)parameters
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:self.paymentParams];
-    dictionary[kParameterPatternId] = self.patternId;
+    if (self.patternId != nil) {
+        dictionary[kParameterPatternId] = self.patternId;
+    }
     return dictionary;
 }
 

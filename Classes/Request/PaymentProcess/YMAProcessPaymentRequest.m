@@ -74,10 +74,18 @@ static NSString *const kUrlProcessPayment = @"api/process-payment";
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
 
-    dictionary[kParameterRequestId] = self.requestId;
-    dictionary[kParameterCsc] = self.csc;
-    dictionary[kParameterExtAuthSuccessUri] = self.successUri;
-    dictionary[kParameterExtAuthFailUri] = self.failUri;
+    if (self.requestId != nil) {
+        dictionary[kParameterRequestId] = self.requestId;
+    }
+    if (self.csc != nil) {
+        dictionary[kParameterCsc] = self.csc;
+    }
+    if (self.successUri != nil) {
+        dictionary[kParameterExtAuthSuccessUri] = self.successUri;
+    }
+    if (self.failUri != nil) {
+        dictionary[kParameterExtAuthFailUri] = self.failUri;
+    }
 
     if (self.moneySource.type == YMAMoneySourceWallet) {
         dictionary[kParameterMoneySource] = @"wallet";

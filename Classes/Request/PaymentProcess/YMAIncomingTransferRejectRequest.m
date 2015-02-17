@@ -48,7 +48,9 @@ static NSString *const kParameterOperationId = @"operation_id";
 - (NSDictionary *)parameters
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    dictionary[kParameterOperationId] = self.operationId;
+    if (self.operationId != nil) {
+        dictionary[kParameterOperationId] = self.operationId;
+    }
     return dictionary;
 }
 
