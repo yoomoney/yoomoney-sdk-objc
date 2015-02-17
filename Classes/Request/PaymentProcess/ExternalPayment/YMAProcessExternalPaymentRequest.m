@@ -91,10 +91,15 @@ static NSString *const kParameterCsc = @"csc";
 - (NSDictionary *)parameters
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-
-    dictionary[kParameterRequestId] = self.requestId;
-    dictionary[kParameterSuccessUri] = self.successUri;
-    dictionary[kParameterFailUri] = self.failUri;
+    if (self.requestId != nil) {
+        dictionary[kParameterRequestId] = self.requestId;
+    }
+    if (self.successUri != nil) {
+        dictionary[kParameterSuccessUri] = self.successUri;
+    }
+    if (self.failUri != nil) {
+        dictionary[kParameterFailUri] = self.failUri;
+    }
 
     if (self.moneySourceToken == nil) {
         if (self.requestToken) {
@@ -104,9 +109,13 @@ static NSString *const kParameterCsc = @"csc";
         return dictionary;
     }
 
-    dictionary[kParameterRequestToken] = self.moneySourceToken;
-    dictionary[kParameterCsc] = self.csc;
-    
+    if (self.moneySourceToken != nil) {
+        dictionary[kParameterRequestToken] = self.moneySourceToken;
+    }
+    if (self.csc != nil) {
+        dictionary[kParameterCsc] = self.csc;
+    }
+
     return dictionary;
 }
 

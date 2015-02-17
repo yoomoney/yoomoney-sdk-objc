@@ -89,10 +89,12 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
 
             for (NSString *keyValuePair in queryComponents) {
                 NSArray *pairComponents = [keyValuePair componentsSeparatedByString:@"="];
-                NSString *key = pairComponents[0];
-                NSString *value = pairComponents[1];
+                if (pairComponents.count > 1) {
+                    NSString *key = pairComponents[0];
+                    NSString *value = pairComponents[1];
 
-                (*authInfo)[key] = value;
+                    (*authInfo)[key] = value;
+                }
             }
         }
 
@@ -117,8 +119,12 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
                  completion:(YMAIdHandler)block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    parameters[YMAValueParameterResponseType] = code;
-    parameters[kParameterClientId] = clientId;
+    if (code != nil) {
+        parameters[YMAValueParameterResponseType] = code;
+    }
+    if (clientId != nil) {
+        parameters[kParameterClientId] = clientId;
+    }
     [parameters addEntriesFromDictionary:params];
 
     NSString *urlString =

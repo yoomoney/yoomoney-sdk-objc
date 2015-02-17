@@ -94,17 +94,27 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
     else if (self.filter & YMAHistoryOperationFilterIncomingTransfersUnaccepted)
         typeString = kKeyTypeIncomingTransfersUnaccepted;
 
-    if (typeString) {
+    if (typeString != nil) {
         dictionary[kParameterType] = typeString;
     }
-    dictionary[kParameterLabel] = self.label;
+    if (self.label != nil) {
+        dictionary[kParameterLabel] = self.label;
+    }
     NSString *fromString = [formatter stringFromDate:self.from];
-    dictionary[kParameterFrom] = fromString;
     NSString *tillString = [formatter stringFromDate:self.till];
 
-    dictionary[kParameterTill] = tillString;
-    dictionary[kParameterStartRecord] = self.startRecord;
-    dictionary[kParameterStartRecord] = self.records;
+    if (fromString != nil) {
+        dictionary[kParameterFrom] = fromString;
+    }
+    if (tillString != nil) {
+        dictionary[kParameterTill] = tillString;
+    }
+    if (self.startRecord != nil) {
+        dictionary[kParameterStartRecord] = self.startRecord;
+    }
+    if (self.records != nil) {
+        dictionary[kParameterStartRecord] = self.records;
+    }
 
     return dictionary;
 }

@@ -187,12 +187,17 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
         return NO;
     
     NSMutableDictionary *headers = [self.defaultHeaders mutableCopy];
-    
-    headers[YMAHeaderUserAgent] = _userAgent;
-    headers[kHeaderAcceptLanguage] = self.language;
-    
-    if (token)
+
+    if (_userAgent != nil) {
+        headers[YMAHeaderUserAgent] = _userAgent;
+    }
+    if (self.language != nil) {
+        headers[kHeaderAcceptLanguage] = self.language;
+    }
+
+    if (token != nil) {
         headers[kHeaderAuthorization] = [NSString stringWithFormat:kValueHeaderAuthorizationFormat, token];
+    }
     
     for (NSString *key in customHeaders.allKeys) {
         headers[key] = customHeaders[key];
