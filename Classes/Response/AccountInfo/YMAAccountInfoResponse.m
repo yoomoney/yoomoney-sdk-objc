@@ -25,6 +25,7 @@ static NSString *const kParameterBalanceAvailable = @"available";
 static NSString *const kParameterBalanceDepositionPending = @"deposition_pending";
 static NSString *const kParameterBalanceBlocked = @"blocked";
 static NSString *const kParameterBalanceDebt = @"debt";
+static NSString *const kParameterBalanceHold = @"hold";
 
 static NSString *const kParameterCardsLinked = @"cards_linked";
 static NSString *const kParameterCardsLinkedPanFragment = @"pan_fragment";
@@ -39,29 +40,29 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
 - (BOOL)parseJSONModel:(id)responseModel headers:(NSDictionary *)headers error:(NSError * __autoreleasing *)error
 {
     NSString *errorKey = responseModel[kParameterError];
-
+    
     if (errorKey != nil) {
         if (error == nil) return NO;
-
+        
         NSError *unknownError = [NSError errorWithDomain:YMAErrorDomainUnknown code:0 userInfo:@{ YMAErrorKeyResponse : self }];
         *error = errorKey ? [NSError errorWithDomain:YMAErrorDomainYaMoneyAPI code:0 userInfo:@{YMAErrorKey : errorKey, YMAErrorKeyResponse : self }] : unknownError;
-
+        
         return NO;
     }
-
+    
     NSString *account = responseModel[kParameterAccount];
     NSString *balance = [responseModel[kParameterBalance] stringValue];
     NSString *currency = responseModel[kParameterCurrency];
-
+    
     NSString *accountStatusString = responseModel[kParameterAccountStatus];
     YMAAccountStatus accountStatus = [YMAAccountInfoModel accountStatusByString:accountStatusString];
-
+    
     NSString *accountTypeString = responseModel[kParameterAccountType];
     YMAAccountType accountType = [YMAAccountInfoModel accountTypeByString:accountTypeString];
-
+    
     id avatarModel = responseModel[kParameterAvatar];
     YMAAvatarModel *avatar = nil;
-
+    
     if (avatarModel != nil) {
         NSString *avatarUrlString = avatarModel[kParameterAvatarUrl];
         NSURL *avatarUrl = [NSURL URLWithString:avatarUrlString];
@@ -71,30 +72,32 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
         NSDate *timeStamp = [formatter dateFromString:timeStampString];
         avatar = [YMAAvatarModel avatarWithUrl:avatarUrl timeStamp:timeStamp];
     }
-
+    
     id balanceDetailsModel = responseModel[kParameterBalanceDetails];
     YMABalanceDetailsModel *balanceDetails = nil;
-
+    
     if (balanceDetailsModel != nil) {
         NSString *total = [balanceDetailsModel[kParameterBalanceTotal] stringValue];
         NSString *available = [balanceDetailsModel[kParameterBalanceAvailable] stringValue];
         NSString *depositionPending = [balanceDetailsModel[kParameterBalanceDepositionPending] stringValue];
         NSString *blocked = [balanceDetailsModel[kParameterBalanceBlocked] stringValue];
         NSString *debt = [balanceDetailsModel[kParameterBalanceDebt] stringValue];
-
+        NSString *hold = [balanceDetailsModel[kParameterBalanceHold] stringValue];
+        
         balanceDetails = [YMABalanceDetailsModel balanceDetailsWithTotal:total
                                                                available:available
                                                        depositionPending:depositionPending
                                                                  blocked:blocked
-                                                                    debt:debt];
+                                                                    debt:debt
+                                                                    hold:hold];
     }
-
+    
     id cardsLinkedModel = responseModel[kParameterCardsLinked];
     NSMutableArray *cardsLinked = nil;
-
+    
     if (cardsLinkedModel != nil) {
         cardsLinked = [NSMutableArray array];
-
+        
         for (id card in cardsLinkedModel) {
             NSString *panFragment = card[kParameterCardsLinkedPanFragment];
             NSString *cardTypeString = card[kParameterCardsLinkedType];
@@ -105,17 +108,17 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
                                                            moneySourceToken:nil]];
         }
     }
-
+    
     id servicesAdditionalModel = responseModel[kParameterServicesAdditional];
     NSMutableArray *servicesAdditional = nil;
-
+    
     if (servicesAdditionalModel != nil) {
         servicesAdditional = [NSMutableArray array];
-
+        
         for (NSString *service in servicesAdditionalModel)
             [servicesAdditional addObject:service];
     }
-
+    
     _accountInfo = [YMAAccountInfoModel accountInfoWithAccount:account
                                                        balance:balance
                                                       currency:currency
@@ -125,7 +128,7 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
                                                 balanceDetails:balanceDetails
                                                    cardsLinked:cardsLinked
                                             servicesAdditional:servicesAdditional];
-
+    
     return YES;
 }
 
