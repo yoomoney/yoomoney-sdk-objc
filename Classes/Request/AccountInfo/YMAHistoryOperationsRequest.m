@@ -113,7 +113,7 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
         dictionary[kParameterStartRecord] = self.startRecord;
     }
     if (self.records != nil) {
-        dictionary[kParameterStartRecord] = self.records;
+        dictionary[kParameterRecords] = self.records;
     }
 
     return dictionary;
