@@ -151,10 +151,9 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
         block(urlRequest, urlResponse, responseData, error);
         return;
     }
-
-    NSLog(@"--------------------- Response data: %@",
-          [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
-
+#ifdef DEBUG
+    NSLog(@"--------------------- Response data: %@", [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
+#endif
     NSInteger statusCode = ((NSHTTPURLResponse *)urlResponse).statusCode;
 
 
