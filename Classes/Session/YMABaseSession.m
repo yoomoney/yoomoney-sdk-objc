@@ -64,17 +64,35 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
                              url:(NSURL *)url
                       completion:(YMAConnectionHandler)block
 {
-    YMAConnection *connection = requestMethod == YMARequestMethodGet ? [YMAConnection connectionForGetRequestWithUrl:url parameters:parameters] : [YMAConnection connectionForPostRequestWithUrl:url postParameters:parameters];
-    
+    [self performRequestWithMethod:requestMethod
+                             token:token
+                        parameters:parameters
+                     customHeaders:customHeaders
+                               url:url
+                   redirectHandler:NULL
+                        completion:block];
+}
+
+- (void)performRequestWithMethod:(YMARequestMethod)requestMethod
+                           token:(NSString *)token
+                      parameters:(NSDictionary *)parameters
+                   customHeaders:(NSDictionary *)customHeaders
+                             url:(NSURL *)url
+                 redirectHandler:(YMAConnectionRedirectHandler)redirectHandler
+                      completion:(YMAConnectionHandler)block
+{
+    YMAConnection *connection = (requestMethod == YMARequestMethodGet) ? [YMAConnection connectionForGetRequestWithUrl:url parameters:parameters] : [YMAConnection connectionForPostRequestWithUrl:url postParameters:parameters];
+
     BOOL result = [self addHeaders:customHeaders token:token forConnection:&connection];
-    
+
     if (result) {
-        [connection sendAsynchronousWithQueue:_requestQueue completion:block];
+        [connection sendAsynchronousWithQueue:self.requestQueue
+                              redirectHandler:redirectHandler
+                                   completion:block];
     } else {
         NSError *technicalError = [NSError errorWithDomain:YMAErrorDomainUnknown
                                                       code:0
                                                   userInfo:nil];
-        
         block(nil, nil, nil, technicalError);
     }
 }
@@ -86,10 +104,28 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
                                        url:(NSURL *)url
                                 completion:(YMAConnectionHandler)block
 {
+    [self performAndProcessRequestWithMethod:requestMethod
+                                       token:token
+                                  parameters:parameters
+                               customHeaders:customHeaders
+                                         url:url
+                             redirectHandler:NULL
+                                  completion:block];
+}
+
+- (void)performAndProcessRequestWithMethod:(YMARequestMethod)requestMethod
+                                     token:(NSString *)token
+                                parameters:(NSDictionary *)parameters
+                             customHeaders:(NSDictionary *)customHeaders
+                                       url:(NSURL *)url
+                            redirectHandler:(YMAConnectionRedirectHandler)redirectHandler
+                                completion:(YMAConnectionHandler)block
+{
     [self performRequestWithMethod:requestMethod token:token
                         parameters:parameters
                      customHeaders:customHeaders
                                url:url
+                   redirectHandler:redirectHandler
                         completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
                             [self processRequest:urlRequest
                                         response:urlResponse

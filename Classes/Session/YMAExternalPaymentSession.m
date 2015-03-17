@@ -83,6 +83,14 @@ static NSString *const kValueParameterStatusSuccess = @"success";
 
 - (void)performRequest:(YMABaseRequest *)request token:(NSString *)token completion:(YMARequestHandler)block
 {
+    [self performRequest:request token:token redirectHandler:NULL completion:block];
+}
+
+- (void)performRequest:(YMABaseRequest *)request
+                 token:(NSString *)token
+       redirectHandler:(YMARedirectHandler)redirectHandler
+            completion:(YMARequestHandler)block
+{
     NSError *unknownError = [NSError errorWithDomain:YMAErrorDomainUnknown code:0 userInfo:@{ YMAErrorKeyRequest : request }];
 
     if (request == nil || self.instanceId == nil) {
@@ -97,12 +105,24 @@ static NSString *const kValueParameterStatusSuccess = @"success";
 
         parameters[kParameterInstanceId] = self.instanceId;
 
+        YMAConnectionRedirectHandler connectionRedirectHandler = NULL;
+
+        if (redirectHandler != NULL) {
+            connectionRedirectHandler = ^(NSURLRequest *request, NSURLResponse *redirectResponse){
+                NSMutableURLRequest *resultRequest = [request mutableCopy];
+                if (redirectHandler(request, redirectResponse) == NO) {
+                    resultRequest = nil;
+                }
+                return resultRequest;
+            };
+        }
 
         [self performAndProcessRequestWithMethod:YMARequestMethodPost
                                            token:token
                                       parameters:parameters
                                    customHeaders:paramsRequest.customHeaders
                                              url:request.requestUrl
+                                 redirectHandler:connectionRedirectHandler
                                       completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
                                           if (error != nil) {
                                               block(request, nil, error);
