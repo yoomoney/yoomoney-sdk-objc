@@ -13,9 +13,16 @@ static NSString *const kRequestMethodGet = @"GET";
 static NSInteger const kRequestTimeoutIntervalDefault = 60;
 static NSString *const kHeaderContentLength = @"Content-Length";
 
-@interface YMAConnection ()
+@interface YMAConnection () <NSURLConnectionDataDelegate>
 
 @property (nonatomic, strong) NSMutableURLRequest *request;
+
+
+@property (nonatomic, copy) YMAConnectionRedirectHandler redirectHandler;
+@property (nonatomic, copy) YMAConnectionHandler completionHandler;
+
+@property (nonatomic, strong) NSMutableData *responseData;
+@property (nonatomic, strong) NSURLResponse *response;
 
 @end
 
@@ -95,7 +102,13 @@ static NSString *const kHeaderContentLength = @"Content-Length";
 
 - (void)sendAsynchronousWithQueue:(NSOperationQueue *)queue completion:(YMAConnectionHandler)handler
 {
+    [self sendAsynchronousWithQueue:queue redirectHandler:NULL completion:handler];
+}
 
+- (void)sendAsynchronousWithQueue:(NSOperationQueue *)queue
+                  redirectHandler:(YMAConnectionRedirectHandler)redirectHandler
+                       completion:(YMAConnectionHandler)completionHandler
+{
     NSString *value = [NSString stringWithFormat:@"%lu", (unsigned long)self.request.HTTPBody.length];
     [self.request addValue:value forHTTPHeaderField:kHeaderContentLength];
 
@@ -104,11 +117,25 @@ static NSString *const kHeaderContentLength = @"Content-Length";
           [[NSString alloc] initWithData:self.request.HTTPBody encoding:NSUTF8StringEncoding]);
 #endif
 
-    [NSURLConnection sendAsynchronousRequest:self.request
-                                       queue:queue
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-                               handler(self.request, response, data, connectionError);
-                           }];
+    if (redirectHandler == NULL) {
+        [NSURLConnection sendAsynchronousRequest:self.request
+                                           queue:queue
+                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                                   completionHandler(self.request, response, data, connectionError);
+                               }];
+    }
+    else {
+        self.redirectHandler   = redirectHandler;
+        self.completionHandler = completionHandler;
+
+        self.response = nil;
+        self.responseData = nil;
+
+        NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:self.request delegate:self startImmediately:NO];
+        [connection setDelegateQueue:queue];
+        [connection start];
+
+    }
 }
 
 - (void)addValue:(NSString *)value forHeader:(NSString *)header
@@ -134,6 +161,55 @@ static NSString *const kHeaderContentLength = @"Content-Length";
     }
     
     return [bodyParams componentsJoinedByString:@"&"];
+}
+
+#pragma mark - NSURLConnectionDataDelegate methods
+
+- (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response
+{
+    NSURLRequest *resultRequest = request;
+    if (self.redirectHandler != NULL) {
+        resultRequest = self.redirectHandler(request, response);
+        if (resultRequest == nil) {
+            [connection cancel];
+        }
+    }
+    return resultRequest;
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    self.response = response;
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [self.responseData appendData:data];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    if (self.completionHandler != NULL) {
+        self.completionHandler(self.request, self.response, self.responseData, nil);
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    if (self.completionHandler != NULL) {
+        self.completionHandler(self.request, self.response, self.responseData, error);
+    }
+}
+
+
+#pragma mark - Getters and setters
+
+- (NSMutableData *)responseData
+{
+    if (_responseData == nil) {
+        _responseData = [NSMutableData data];
+    }
+    return _responseData;
 }
 
 @end

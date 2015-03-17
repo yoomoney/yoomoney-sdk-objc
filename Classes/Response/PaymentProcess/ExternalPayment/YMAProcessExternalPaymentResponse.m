@@ -46,17 +46,22 @@ static NSString *const kMoneySourceTypePaymentCard = @"payment-card";
             _moneySource = [YMAMoneySourceModel moneySourceWithType:YMAMoneySourcePaymentCard
                                                            cardType:paymentCardType
                                                         panFragment:panFragment
-                                                   moneySourceToken:moneySourceToken];
+                                                   moneySourceToken:moneySourceToken
+                                                           external:YES];
 
         }
         else
             _moneySource = [YMAMoneySourceModel moneySourceWithType:YMAMoneySourceUnknown
                                                            cardType:YMAPaymentCardUnknown
                                                         panFragment:nil
-                                                   moneySourceToken:nil];
+                                                   moneySourceToken:nil
+                                                           external:YES];
     }
 
     NSString *invoiceId = responseModel[kParameterInvoiceId];
+    if ([invoiceId isKindOfClass:[NSNumber class]]) {
+        invoiceId = [((NSNumber *)invoiceId) stringValue];
+    }
     _invoiceId = [invoiceId copy];
 
     return result;
