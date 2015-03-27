@@ -152,12 +152,20 @@ static NSString *const kHeaderContentLength = @"Content-Length";
     
     for (NSString *key in postParams.allKeys) {
         id value = postParams[key];
-        NSString *paramValue = [value isKindOfClass:[NSNumber class]] ? [value stringValue] : value;
-        
-        NSString *encodedValue = [YMAConnection addPercentEscapesForString:paramValue];
-        NSString *encodedKey = [YMAConnection addPercentEscapesForString:key];
-        
-        [bodyParams addObject:[NSString stringWithFormat:@"%@=%@", encodedKey, encodedValue]];
+        NSString *paramValue = nil;
+        if ([value isKindOfClass:[NSNumber class]]) {
+            paramValue = [value stringValue];
+        }
+        else {
+            paramValue = value;
+        }
+
+        if (paramValue != nil && [paramValue isKindOfClass:[NSNull class]] == NO) {
+            NSString *encodedValue = [YMAConnection addPercentEscapesForString:paramValue];
+            NSString *encodedKey = [YMAConnection addPercentEscapesForString:key];
+
+            [bodyParams addObject:[NSString stringWithFormat:@"%@=%@", encodedKey, encodedValue]];
+        }
     }
     
     return [bodyParams componentsJoinedByString:@"&"];
