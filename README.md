@@ -119,9 +119,9 @@ YMAPaymentRequest *request = [YMAPaymentRequest paymentWithPatternId:patternId p
 // token    - access token
 [session performRequest:request token:token completion:^(YMABaseRequest *request, YMABaseResponse *response, NSError *error) {
 
-    YMAPaymentResponse *paymentResponse = (YMAPaymentResponse *)processResponse;
+    YMAPaymentResponse *paymentResponse = (YMAPaymentResponse *)response;
     
-    switch (processResponse.status) {
+    switch (paymentResponse.status) {
         case YMAResponseStatusSuccess: {
             // Process payment response
             break;
@@ -134,7 +134,8 @@ YMAPaymentRequest *request = [YMAPaymentRequest paymentWithPatternId:patternId p
             // Process error
             break;
         }
-}
+    }
+}];
 ```
 
 #### Process payment
