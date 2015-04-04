@@ -113,7 +113,7 @@ For creating a payment and checking its parameters (Learn more about it at this 
 ```Objective-C
 NSDictionary *paymentParameters = ... // depends on your implementation
 NSString *patternId = ... // depends on your implementation
-YMAPaymentRequest *request = [YMAPaymentRequest paymentWithPatternId:patternId andPaymentParams:paymentParameters];
+YMAPaymentRequest *request = [YMAPaymentRequest paymentWithPatternId:patternId paymentParameters:paymentParameters];
 
 // session  - instance of YMAAPISession class 
 // token    - access token
