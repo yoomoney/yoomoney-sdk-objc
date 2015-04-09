@@ -6,6 +6,8 @@
 #import "YMAAPISession.h"
 #import "YMAHostsProvider.h"
 
+static NSString *const kHttpsScheme = @"https";
+
 static NSString *const kUrlAuthorize = @"oauth/authorize";
 static NSString *const kUrlToken = @"oauth/token";
 static NSString *const kUrlRevoke = @"api/revoke";
@@ -64,16 +66,14 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
 {
     NSURL *requestUrl = request.URL;
 
-    if (!requestUrl)
+    if (requestUrl == nil) {
         return NO;
+    }
 
-    NSString *scheme = requestUrl.scheme;
-    NSString *path = requestUrl.path;
-    NSString *host = requestUrl.host;
+    NSString *strippedURL         = [self strippedURL:requestUrl];
+    NSString *strippedRedirectURL = [self strippedURL:[NSURL URLWithString:redirectUrl]];
 
-    NSString *strippedURL = [NSString stringWithFormat:@"%@://%@%@", scheme, host, path];
-
-    if ([strippedURL isEqualToString:redirectUrl]) {
+    if ([strippedURL isEqualToString:strippedRedirectURL]) {
 
         NSString *query = requestUrl.query;
 
@@ -261,6 +261,27 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
                                                              completion:block];
                                      }];
     }
+}
+
+
+#pragma mark - Private methods
+
+- (NSString *)strippedURL:(NSURL *)url
+{
+    NSString *scheme = [url.scheme lowercaseString];
+    NSString *path   = [url.path stringByTrimmingCharactersInSet:[NSCharacterSet punctuationCharacterSet]];
+    NSString *host   = url.host;
+    NSInteger port   = [url.port integerValue];
+    if (port == 0) {
+        if ([scheme isEqualToString:kHttpsScheme]) {
+            port = 443;
+        }
+        else {
+            port = 80;
+        }
+    }
+    NSString *strippedURL = [[NSString stringWithFormat:@"%@://%@:%ld/%@", scheme, host, port ,  path] lowercaseString];
+    return strippedURL;
 }
 
 @end
