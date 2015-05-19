@@ -33,4 +33,6 @@ typedef NSURLRequest * (^YMAConnectionRedirectHandler)(NSURLRequest *request, NS
 
 - (void)addValue:(NSString *)value forHeader:(NSString *)header;
 
+- (void)cancel;
+
 @end

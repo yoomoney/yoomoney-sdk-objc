@@ -24,6 +24,8 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
 
 @property (nonatomic, strong) NSDictionary *defaultHeaders;
 
+@property (nonatomic, strong) NSMutableArray *activeConnections;
+
 @end
 
 @implementation YMABaseSession
@@ -35,10 +37,11 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
     self = [super init];
 
     if (self != nil) {
-        _requestQueue = [[NSOperationQueue alloc] init];
-        _responseQueue = [[NSOperationQueue alloc] init];
-        _userAgent = YMAValueUserAgentDefault;
-        _language = kValueAcceptLanguageDefault;
+        _requestQueue      = [[NSOperationQueue alloc] init];
+        _responseQueue     = [[NSOperationQueue alloc] init];
+        _userAgent         = YMAValueUserAgentDefault;
+        _language          = kValueAcceptLanguageDefault;
+        _activeConnections = [[NSMutableArray alloc] init];
     }
 
     return self;
@@ -81,20 +84,15 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
                  redirectHandler:(YMAConnectionRedirectHandler)redirectHandler
                       completion:(YMAConnectionHandler)block
 {
-    YMAConnection *connection = (requestMethod == YMARequestMethodGet) ? [YMAConnection connectionForGetRequestWithUrl:url parameters:parameters] : [YMAConnection connectionForPostRequestWithUrl:url postParameters:parameters];
+    YMAConnection *connection = (requestMethod == YMARequestMethodGet) ?
+    [YMAConnection connectionForGetRequestWithUrl:url parameters:parameters] :
+    [YMAConnection connectionForPostRequestWithUrl:url postParameters:parameters];
 
-    BOOL result = [self addHeaders:customHeaders token:token forConnection:&connection];
-
-    if (result) {
-        [connection sendAsynchronousWithQueue:self.requestQueue
-                              redirectHandler:redirectHandler
-                                   completion:block];
-    } else {
-        NSError *technicalError = [NSError errorWithDomain:YMAErrorDomainUnknown
-                                                      code:0
-                                                  userInfo:nil];
-        block(nil, nil, nil, technicalError);
-    }
+    [self sendAsynchronousConnection:connection
+                               token:token
+                       customHeaders:customHeaders
+                     redirectHandler:redirectHandler
+                          completion:block];
 }
 
 - (void)performAndProcessRequestWithMethod:(YMARequestMethod)requestMethod
@@ -154,7 +152,42 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
                        }];
 }
 
+- (void)cancelActiveConnections
+{
+    [self.activeConnections makeObjectsPerformSelector:@selector(cancel)];
+    [self.activeConnections removeAllObjects];
+}
+
+
 #pragma mark - Private methods
+
+- (void)sendAsynchronousConnection:(YMAConnection *)connection
+                             token:(NSString *)token
+                     customHeaders:(NSDictionary *)customHeaders
+                   redirectHandler:(YMAConnectionRedirectHandler)redirectHandler
+                        completion:(YMAConnectionHandler)block
+{
+    BOOL result = [self addHeaders:customHeaders token:token forConnection:&connection];
+    if (result) {
+        __weak __typeof(self) weakSelf       = self;
+        __weak YMAConnection *weakConnection = connection;
+        [connection sendAsynchronousWithQueue:self.requestQueue
+                              redirectHandler:redirectHandler
+                                   completion:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
+                                       if (block != NULL) {
+                                           block(request, response, responseData, error);
+                                       }
+                                       [weakSelf.activeConnections removeObject:weakConnection];
+                                   }];
+        [self.activeConnections addObject:connection];
+    }
+    else if (block != NULL) {
+        NSError *technicalError = [NSError errorWithDomain:YMAErrorDomainUnknown
+                                                      code:0
+                                                  userInfo:nil];
+        block(nil, nil, nil, technicalError);
+    }
+}
 
 - (void)performRequestWithToken:(NSString *)token
                            data:(NSData *)data
@@ -163,18 +196,11 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
                      completion:(YMAConnectionHandler)block
 {
     YMAConnection *connection = [YMAConnection connectionForPostRequestWithUrl:url bodyData:data];
-    
-    BOOL result = [self addHeaders:customHeaders token:token forConnection:&connection];
-    
-    if (result) {
-        [connection sendAsynchronousWithQueue:_requestQueue completion:block];
-    } else {
-        NSError *technicalError = [NSError errorWithDomain:YMAErrorDomainUnknown
-                                                      code:0
-                                                  userInfo:nil];
-        
-        block(nil, nil, nil, technicalError);
-    }
+    [self sendAsynchronousConnection:connection
+                               token:token
+                       customHeaders:customHeaders
+                     redirectHandler:NULL
+                          completion:block];
 }
 
 - (void)processRequest:(NSURLRequest *)urlRequest
@@ -256,6 +282,7 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
 
     return nil;
 }
+
 
 #pragma mark - Getters and setters
 

@@ -99,6 +99,12 @@ typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
 /// @param response -
 - (NSString *)valueOfHeader:(NSString *)headerName forResponse:(NSURLResponse *)response;
 
+/**
+ *  Cancel all active network connections
+ */
+- (void)cancelActiveConnections;
+
+
 /// You can set language for response data (for example: "en" - English, "ru" - Russian). Russian is default language.
 @property (nonatomic, copy) NSString *language;
 @property (nonatomic, strong) NSOperationQueue *requestQueue;

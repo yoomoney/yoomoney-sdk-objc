@@ -23,6 +23,7 @@ static NSString *const kHeaderContentLength = @"Content-Length";
 
 @property (nonatomic, strong) NSMutableData *responseData;
 @property (nonatomic, strong) NSURLResponse *response;
+@property (nonatomic, strong) NSURLConnection *connection;
 
 @end
 
@@ -117,25 +118,15 @@ static NSString *const kHeaderContentLength = @"Content-Length";
           [[NSString alloc] initWithData:self.request.HTTPBody encoding:NSUTF8StringEncoding]);
 #endif
 
-    if (redirectHandler == NULL) {
-        [NSURLConnection sendAsynchronousRequest:self.request
-                                           queue:queue
-                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-                                   completionHandler(self.request, response, data, connectionError);
-                               }];
-    }
-    else {
         self.redirectHandler   = redirectHandler;
         self.completionHandler = completionHandler;
 
         self.response = nil;
         self.responseData = nil;
 
-        NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:self.request delegate:self startImmediately:NO];
-        [connection setDelegateQueue:queue];
-        [connection start];
-
-    }
+        self.connection = [[NSURLConnection alloc] initWithRequest:self.request delegate:self startImmediately:NO];
+        [self.connection setDelegateQueue:queue];
+        [self.connection start];
 }
 
 - (void)addValue:(NSString *)value forHeader:(NSString *)header
@@ -170,6 +161,12 @@ static NSString *const kHeaderContentLength = @"Content-Length";
     
     return [bodyParams componentsJoinedByString:@"&"];
 }
+
+- (void)cancel
+{
+    [self.connection cancel];
+}
+
 
 #pragma mark - NSURLConnectionDataDelegate methods
 

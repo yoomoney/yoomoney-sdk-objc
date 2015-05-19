@@ -280,7 +280,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
             port = 80;
         }
     }
-    NSString *strippedURL = [[NSString stringWithFormat:@"%@://%@:%ld/%@", scheme, host, port ,  path] lowercaseString];
+    NSString *strippedURL = [[NSString stringWithFormat:@"%@://%@:%ld/%@", scheme, host, (long)port ,  path] lowercaseString];
     return strippedURL;
 }
 
