@@ -74,6 +74,54 @@ static NSString *const kKeyHistoryOperationTypeIncomingTransferProtected = @"inc
                                                             type:type];
 }
 
+
+#pragma mark - NSCopying
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    id copy = [[YMAHistoryOperationModel alloc] initWithOperationId:self.operationId
+                                                             status:self.status
+                                                           datetime:self.datetime
+                                                              title:self.title
+                                                          patternId:self.patternId
+                                                          direction:self.direction
+                                                             amount:self.amount
+                                                              label:self.label
+                                                          favourite:self.isFavourite
+                                                               type:self.type];
+    return copy;
+}
+
+
+#pragma mark - Equality
+
+- (BOOL)isEqualToHistoryOperation:(YMAHistoryOperationModel *)historyOperation
+{
+    if (historyOperation == nil) {
+        return NO;
+    }
+    return [self.operationId isEqualToString:historyOperation.operationId];
+}
+
+- (BOOL)isEqual:(id)object
+{
+    if (self == object) {
+        return YES;
+    }
+
+    if ([object isKindOfClass:[self class]] == NO) {
+        return NO;
+    }
+
+    return [self isEqualToHistoryOperation:object];
+}
+
+- (NSUInteger)hash
+{
+    return [self.operationId hash];
+}
+
+
 #pragma mark - Public methods
 
 + (YMAHistoryOperationStatus)historyOperationStatusByString:(NSString *)historyOperationStatusString

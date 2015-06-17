@@ -27,7 +27,7 @@ typedef NS_ENUM(NSInteger, YMAHistoryOperationType) {
     YMAHistoryOperationTypeIncomingTransferProtected
 };
 
-@interface YMAHistoryOperationModel : NSObject
+@interface YMAHistoryOperationModel : NSObject <NSCopying>
 
 - (instancetype)initWithOperationId:(NSString *)operationId
                              status:(YMAHistoryOperationStatus)status
@@ -58,6 +58,8 @@ typedef NS_ENUM(NSInteger, YMAHistoryOperationType) {
 + (YMAHistoryOperationType)historyOperationTypeByString:(NSString *)historyOperationTypeString;
 
 - (NSComparisonResult)compare:(YMAHistoryOperationModel *)otherObject;
+
+- (BOOL)isEqualToHistoryOperation:(YMAHistoryOperationModel *)historyOperation;
 
 @property (nonatomic, copy, readonly) NSString *operationId;
 @property (nonatomic, assign, readonly) YMAHistoryOperationStatus status;
