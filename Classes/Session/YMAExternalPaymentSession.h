@@ -24,4 +24,9 @@
 /// @param block - completion of block is used to get the response.
 - (void)performRequest:(YMABaseRequest *)request token:(NSString *)token completion:(YMARequestHandler)block;
 
+- (void)performRequest:(YMABaseRequest *)request
+                 token:(NSString *)token
+       redirectHandler:(YMARedirectHandler)redirectHandler
+            completion:(YMARequestHandler)block;
+
 @end

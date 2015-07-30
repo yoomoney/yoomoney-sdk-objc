@@ -39,4 +39,20 @@
                                    moneySourceToken:(NSString *)moneySourceToken
                                                 csc:(NSString *)csc;
 
+
+/// Constructor. Returns a YMAProcessExternalPaymentRequest with the specified requestId, successUri,
+/// failUri, moneySourceToken and csc.
+/// @param requestId - ID of the current payment request.
+/// @param successUri - Return address of the page if successful payment authorization by credit card.
+/// @param failUri - Return address of the page with the refusal to authorize payment by credit card.
+/// @param requestToken - Parameter is set to YES - an application requests a token (YMAMoneySourceModel) for repeat payments.
+/// @param moneySourceToken - Token for repeating payments (YMAMoneySourceModel).
+/// @param csc -  Card Security Code, CVV2/CVC2.
++ (instancetype)processExternalPaymentWithRequestId:(NSString *)requestId
+                                         successUri:(NSString *)successUri
+                                            failUri:(NSString *)failUri
+                                       requestToken:(BOOL)requestToken
+                                   moneySourceToken:(NSString *)moneySourceToken
+                                                csc:(NSString *)csc;
+
 @end

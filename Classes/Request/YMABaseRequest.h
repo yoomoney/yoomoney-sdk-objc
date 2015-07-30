@@ -31,6 +31,8 @@
 /// @param error - Error information or nil.
 typedef void (^YMARequestHandler)(YMABaseRequest *request, YMABaseResponse *response, NSError *error);
 
+typedef BOOL (^YMARedirectHandler)(NSURLRequest *request, NSURLResponse *response);
+
 ///
 /// Abstract class of request. This class contains common info about the request (requestUrl, parameters).
 ///

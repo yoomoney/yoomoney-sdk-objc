@@ -5,6 +5,8 @@
 #import "YMAAscModel.h"
 #import "YMAProcessExternalPaymentRequest.h"
 
+static NSString *const kHttpsScheme = @"https";
+
 static NSString *const kKeychainIdInstance = @"instanceKeychainId";
 static NSString *const kSuccessUrl = @"yandexmoneyapp://oauth/authorize/success";
 static NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
@@ -198,17 +200,17 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
 #pragma mark *** UIWebViewDelegate ***
 #pragma mark -
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    if (![request URL])
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    if ([request URL] == nil) {
         return NO;
+    }
     
-    NSString *scheme = [[request URL] scheme];
-    NSString *path = [[request URL] path];
-    NSString *host = [[request URL] host];
+    NSString *strippedURL        = [self strippedURL:request.URL];
+    NSString *strippedSuccessURL = [self strippedURL:[NSURL URLWithString:kSuccessUrl]];
+    NSString *strippedFailURL    = [self strippedURL:[NSURL URLWithString:kFailUrl]];
     
-    NSString *strippedURL = [NSString stringWithFormat:@"%@://%@%@", scheme, host, path];
-    
-    if ([strippedURL isEqual:kSuccessUrl]) {
+    if ([strippedURL isEqualToString:strippedSuccessURL]) {
         
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2*NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
@@ -220,12 +222,12 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
         return NO;
     }
     
-    if ([strippedURL isEqual:kFailUrl]) {
+    if ([strippedURL isEqualToString:strippedFailURL]) {
         [self showError:nil];
         [webView removeFromSuperview];
         return NO;
     }
-    
+
     return YES;
 }
 
@@ -392,6 +394,24 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
                                                                                   NULL,
                                                                                   (CFStringRef)@";/?:@&=+$,",
                                                                                   kCFStringEncodingUTF8));
+}
+
+- (NSString *)strippedURL:(NSURL *)url
+{
+    NSString *scheme = [url.scheme lowercaseString];
+    NSString *path   = [url.path stringByTrimmingCharactersInSet:[NSCharacterSet punctuationCharacterSet]];
+    NSString *host   = url.host;
+    NSInteger port   = [url.port integerValue];
+    if (port == 0) {
+        if ([scheme isEqualToString:kHttpsScheme]) {
+            port = 443;
+        }
+        else {
+            port = 80;
+        }
+    }
+    NSString *strippedURL = [[NSString stringWithFormat:@"%@://%@:%ld/%@", scheme, host, port ,  path] lowercaseString];
+    return strippedURL;
 }
 
 #pragma mark -

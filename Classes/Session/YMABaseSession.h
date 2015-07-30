@@ -74,6 +74,14 @@ typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
                                        url:(NSURL *)url
                                 completion:(YMAConnectionHandler)block;
 
+- (void)performAndProcessRequestWithMethod:(YMARequestMethod)requestMethod
+                                     token:(NSString *)token
+                                parameters:(NSDictionary *)parameters
+                             customHeaders:(NSDictionary *)customHeaders
+                                       url:(NSURL *)url
+                           redirectHandler:(YMAConnectionRedirectHandler)redirectHandler
+                                completion:(YMAConnectionHandler)block;
+
 /// Send request used token and analyzed HTTP status code of response.
 /// @param token - an access token is a string representing an authorization issued to the client (see OAuth 2.0)
 /// @param data - request data.
@@ -90,6 +98,12 @@ typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
 /// @param headerName - response header name
 /// @param response -
 - (NSString *)valueOfHeader:(NSString *)headerName forResponse:(NSURLResponse *)response;
+
+/**
+ *  Cancel all active network connections
+ */
+- (void)cancelActiveConnections;
+
 
 /// You can set language for response data (for example: "en" - English, "ru" - Russian). Russian is default language.
 @property (nonatomic, copy) NSString *language;

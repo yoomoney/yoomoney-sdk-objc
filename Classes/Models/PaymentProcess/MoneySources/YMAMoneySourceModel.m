@@ -10,6 +10,12 @@ static NSString *const kPaymentCardTypeMasterCard = @"MasterCard";
 static NSString *const kPaymentCardTypeAmericanExpress = @"AmericanExpress";
 static NSString *const kPaymentCardTypeJCB = @"JCB";
 
+static NSString *const kTypeKey             = @"type";
+static NSString *const kCardTypeKey         = @"cardType";
+static NSString *const kPanFragmentKey      = @"panFragment";
+static NSString *const kMoneySourceTokenKey = @"moneySourceToken";
+static NSString *const kExternalKey         = @"external";
+
 @implementation YMAMoneySourceModel
 
 #pragma mark - Object Lifecycle
@@ -18,6 +24,7 @@ static NSString *const kPaymentCardTypeJCB = @"JCB";
                     cardType:(YMAPaymentCardType)cardType
                  panFragment:(NSString *)panFragment
             moneySourceToken:(NSString *)moneySourceToken
+                    external:(BOOL)external
 {
     self = [super init];
 
@@ -26,6 +33,7 @@ static NSString *const kPaymentCardTypeJCB = @"JCB";
         _cardType = cardType;
         _panFragment = [panFragment copy];
         _moneySourceToken = [moneySourceToken copy];
+        _external = external;
     }
 
     return self;
@@ -36,10 +44,52 @@ static NSString *const kPaymentCardTypeJCB = @"JCB";
                         panFragment:(NSString *)panFragment
                    moneySourceToken:(NSString *)moneySourceToken
 {
+    return [self moneySourceWithType:type
+                            cardType:cardType
+                         panFragment:panFragment
+                    moneySourceToken:moneySourceToken
+                            external:NO];
+}
+
++ (instancetype)moneySourceWithType:(YMAMoneySourceType)type
+                           cardType:(YMAPaymentCardType)cardType
+                        panFragment:(NSString *)panFragment
+                   moneySourceToken:(NSString *)moneySourceToken
+                           external:(BOOL)external
+{
     return [[YMAMoneySourceModel alloc] initWithType:type
                                             cardType:cardType
                                          panFragment:panFragment
-                                    moneySourceToken:moneySourceToken];
+                                    moneySourceToken:moneySourceToken
+                                            external:external];
+}
+
+
+#pragma mark - NSCoding
+
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    self = [super init];
+    if (self == nil) {
+        return nil;
+    }
+
+    _type             = (YMAMoneySourceType)[decoder decodeIntegerForKey:kTypeKey];
+    _cardType         = (YMAPaymentCardType)[decoder decodeIntegerForKey:kCardTypeKey];
+    _panFragment      = [decoder decodeObjectForKey:kPanFragmentKey];
+    _moneySourceToken = [decoder decodeObjectForKey:kMoneySourceTokenKey];
+    _external         = [decoder decodeBoolForKey:kExternalKey];
+
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder
+{
+    [encoder encodeInteger:(NSInteger)self.type     forKey:kTypeKey];
+    [encoder encodeInteger:(NSInteger)self.cardType forKey:kCardTypeKey];
+    [encoder encodeObject:self.panFragment          forKey:kPanFragmentKey];
+    [encoder encodeObject:self.moneySourceToken     forKey:kMoneySourceTokenKey];
+    [encoder encodeBool:[self isExternal]           forKey:kExternalKey];
 }
 
 #pragma mark - Public methods

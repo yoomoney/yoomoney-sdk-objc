@@ -56,7 +56,7 @@ static NSString *const kParameterCsc = @"csc";
                                             failUri:(NSString *)failUri
                                        requestToken:(BOOL)requestToken
 {
-    return [[YMAProcessExternalPaymentRequest alloc] initWithRequestId:requestId
+    return [[self alloc] initWithRequestId:requestId
                                                             successUri:successUri
                                                                failUri:failUri
                                                           requestToken:requestToken
@@ -70,12 +70,27 @@ static NSString *const kParameterCsc = @"csc";
                                    moneySourceToken:(NSString *)moneySourceToken
                                                 csc:(NSString *)csc
 {
-    return [[YMAProcessExternalPaymentRequest alloc] initWithRequestId:requestId
+    return [[self alloc] initWithRequestId:requestId
                                                             successUri:successUri
                                                                failUri:failUri
                                                           requestToken:NO
                                                       moneySourceToken:moneySourceToken
                                                                 csc:csc];
+}
+
++ (instancetype)processExternalPaymentWithRequestId:(NSString *)requestId
+                                         successUri:(NSString *)successUri
+                                            failUri:(NSString *)failUri
+                                       requestToken:(BOOL)requestToken
+                                   moneySourceToken:(NSString *)moneySourceToken
+                                                csc:(NSString *)csc
+{
+    return [[self alloc] initWithRequestId:requestId
+                                successUri:successUri
+                                   failUri:failUri
+                              requestToken:requestToken
+                          moneySourceToken:moneySourceToken
+                                       csc:csc];
 }
 
 #pragma mark - Overridden methods
@@ -110,7 +125,7 @@ static NSString *const kParameterCsc = @"csc";
     }
 
     if (self.moneySourceToken != nil) {
-        dictionary[kParameterRequestToken] = self.moneySourceToken;
+        dictionary[kParameterMoneySourceToken] = self.moneySourceToken;
     }
     if (self.csc != nil) {
         dictionary[kParameterCsc] = self.csc;
