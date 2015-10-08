@@ -10,7 +10,7 @@
 
 NSString *const YMAP2PPaymentParameterTo        = @"to";
 NSString *const YMAP2PPaymentParameterMessage   = @"message";
-NSString *const YMAP2PaymentParameterComment    = @"comment";
+NSString *const YMAP2PPaymentParameterComment    = @"comment";
 NSString *const YMAP2PPaymentParameterAmount    = @"amount";
 NSString *const YMAP2PPaymentParameterAmountDue = @"amount_due";
 NSString *const YMAP2PPaymentParameterLabel     = @"label";
