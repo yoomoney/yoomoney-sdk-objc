@@ -30,6 +30,9 @@ extern NSString *const YMAP2PPaymentParameterAmount;
 // p2p parameter name. Amount to be credited to the account of Yandex.Money.
 extern NSString *const YMAP2PPaymentParameterAmountDue;
 
+// p2p parameter name. Not required.
+extern NSString *const YMAP2PPaymentParameterLabel;
+
 // API error.
 extern NSString *const YMAErrorDomainYaMoneyAPI;
 
