@@ -28,6 +28,7 @@ extern NSString *const YMAValueUserAgentDefault;
 /// HTTP status codes
 typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
     YMAStatusCodeOkHTTP = 200,
+    YMAStatusCodeMultipleChoicesHTTP = 300,
     YMAStatusCodeInvalidRequestHTTP = 400,
     YMAStatusCodeInvalidTokenHTTP = 401,
     YMAStatusCodeInsufficientScopeHTTP = 403,
