@@ -749,6 +749,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YandexMoneySDK-example/YandexMoneySDK-example-Prefix.pch";
 				INFOPLIST_FILE = "YandexMoneySDK-example/YandexMoneySDK-example-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "YandexMoneySDK-example";
@@ -764,6 +765,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YandexMoneySDK-example/YandexMoneySDK-example-Prefix.pch";
 				INFOPLIST_FILE = "YandexMoneySDK-example/YandexMoneySDK-example-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "YandexMoneySDK-example";
