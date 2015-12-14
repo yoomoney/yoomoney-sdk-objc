@@ -6,14 +6,7 @@
 #import <Foundation/Foundation.h>
 #import "YMAConnection.h"
 #import "YMAConstants.h"
-
-/// Completion of block is used to get the ID of an installed copy of the application.
-/// @param instanceId - ID of an installed copy of the application.
-typedef void (^YMAIdHandler)(NSString *instanceId, NSError *error);
-
-/// Completion block used by several methods of YMAExternalPaymentSession.
-/// @param error - Error information or nil.
-typedef void (^YMAHandler)(NSError *error);
+#import "YMAHandlers.h"
 
 // Header constant = "User-Agent".
 extern NSString *const YMAHeaderUserAgent;
