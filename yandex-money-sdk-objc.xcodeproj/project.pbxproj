@@ -51,6 +51,7 @@
 		608F75C21934CB5600F45D7F /* YMAIncomingTransferRejectRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 608F75BE1934CB5600F45D7F /* YMAIncomingTransferRejectRequest.m */; };
 		60B6B4591965866E0042F682 /* YMABaseRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 60B6B4571965866E0042F682 /* YMABaseRequest.h */; };
 		60B6B45A1965866E0042F682 /* YMABaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B6B4581965866E0042F682 /* YMABaseRequest.m */; };
+		82C74E3F1C187AC900CF09F1 /* YMAHandlers.h in Headers */ = {isa = PBXBuildFile; fileRef = 82C74E3E1C187AC900CF09F1 /* YMAHandlers.h */; };
 		8BFF20088AE959020E56BE00 /* YMAProcessExternalPaymentResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF225A804D6856B2C6572B /* YMAProcessExternalPaymentResponse.m */; };
 		8BFF205B91D768277A380345 /* YMAExternalPaymentRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF27D40E844ABDA08CD23C /* YMAExternalPaymentRequest.h */; };
 		8BFF2080FCB88745F9E5C483 /* YMAAccountInfoModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF205EC8608008B2A3D5E4 /* YMAAccountInfoModel.h */; };
@@ -187,6 +188,7 @@
 		608F75BE1934CB5600F45D7F /* YMAIncomingTransferRejectRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = YMAIncomingTransferRejectRequest.m; path = Classes/Request/PaymentProcess/YMAIncomingTransferRejectRequest.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		60B6B4571965866E0042F682 /* YMABaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = YMABaseRequest.h; path = Classes/Request/YMABaseRequest.h; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		60B6B4581965866E0042F682 /* YMABaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = YMABaseRequest.m; path = Classes/Request/YMABaseRequest.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		82C74E3E1C187AC900CF09F1 /* YMAHandlers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAHandlers.h; sourceTree = "<group>"; };
 		8BFF205EC8608008B2A3D5E4 /* YMAAccountInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAAccountInfoModel.h; sourceTree = "<group>"; };
 		8BFF2064E4C8C49AE00740BB /* YMAProcessExternalPaymentRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = YMAProcessExternalPaymentRequest.m; path = Classes/Request/PaymentProcess/ExternalPayment/YMAProcessExternalPaymentRequest.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8BFF20FC566A3854252E808A /* YMABalanceDetailsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMABalanceDetailsModel.m; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 				608F75101907BC2B00F45D7F /* YMAConnection.m */,
 				608F75111907BC2B00F45D7F /* YMAConstants.h */,
 				608F75121907BC2B00F45D7F /* YMAConstants.m */,
+				82C74E3E1C187AC900CF09F1 /* YMAHandlers.h */,
 				8BFF2AC3DB74FF9E507A51F3 /* YMAHostsProvider.h */,
 				8BFF2E7A681EE978480A5112 /* YMAHostsProvider.m */,
 			);
@@ -531,6 +534,7 @@
 				8BFF21244B6772E785D51CB1 /* YMAHostsProvider.h in Headers */,
 				8BFF205B91D768277A380345 /* YMAExternalPaymentRequest.h in Headers */,
 				8BFF26BCA47DA2C2B590ED7C /* YMAProcessExternalPaymentRequest.h in Headers */,
+				82C74E3F1C187AC900CF09F1 /* YMAHandlers.h in Headers */,
 				4399F2E2192EDCD100CB1B49 /* YMAHistoryOperationsRequest.h in Headers */,
 				8BFF2942BEF6F7C531F6DDD6 /* YMAProcessExternalPaymentResponse.h in Headers */,
 				8BFF239E9F8240AB02E4758C /* YMAExternalPaymentResponse.h in Headers */,
@@ -748,6 +752,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -786,6 +791,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
