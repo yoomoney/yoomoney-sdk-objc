@@ -6,7 +6,6 @@
 #import "YMAHostsProvider.h"
 
 static NSString *const kDefaultMoneyUrl = @"money.yandex.ru";
-static NSString *const kDefaultSpMoneyUrl = @"m.sp-money.yandex.ru";
 
 @implementation YMAHostsProvider
 
@@ -28,8 +27,7 @@ static NSString *const kDefaultSpMoneyUrl = @"m.sp-money.yandex.ru";
     self = [super init];
 
     if (self != nil) {
-        _moneyUrl = [kDefaultMoneyUrl copy];
-        _spMoneyUrl = [kDefaultSpMoneyUrl copy];
+        _moneyUrl = kDefaultMoneyUrl;
     }
 
     return self;
@@ -37,7 +35,6 @@ static NSString *const kDefaultSpMoneyUrl = @"m.sp-money.yandex.ru";
 
 - (void)resetToDefaults {
     self.moneyUrl = kDefaultMoneyUrl;
-    self.spMoneyUrl = kDefaultSpMoneyUrl;
 }
 
 @end

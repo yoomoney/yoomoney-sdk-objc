@@ -44,7 +44,7 @@ NSString *const YMAValueParameterResponseType = @"code";
     }
 
     NSString *urlString =
-        [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].spMoneyUrl, relativeUrlString];
+        [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, relativeUrlString];
     NSURL *url = [NSURL URLWithString:urlString];
 
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -128,7 +128,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
     [parameters addEntriesFromDictionary:params];
 
     NSString *urlString =
-        [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].spMoneyUrl, relativeUrlString];
+        [NSString stringWithFormat:@"https://%@/%@", [YMAHostsProvider sharedManager].moneyUrl, relativeUrlString];
     NSURL *url = [NSURL URLWithString:urlString];
 
     [self performRequestWithMethod:YMARequestMethodPost
