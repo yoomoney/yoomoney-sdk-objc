@@ -222,8 +222,11 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
     switch (statusCode) {
         case YMAStatusCodeOkHTTP:
         case YMAStatusCodeMultipleChoicesHTTP:
+        case YMAStatusCodeMovedPermanentlyHTTP:
+        case YMAStatusCodeNotModifiedHTTP:
             block(urlRequest, urlResponse, responseData, nil);
             break;
+
         case YMAStatusCodeInsufficientScopeHTTP:
         case YMAStatusCodeInvalidTokenHTTP: {
             NSError *oAuthError = [NSError errorWithDomain:YMAErrorDomainOAuth
@@ -233,6 +236,7 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
             block(urlRequest, urlResponse, responseData, oAuthError);
         }
             break;
+            
         default: {
             NSError *technicalError = [NSError errorWithDomain:YMAErrorDomainUnknown
                                                           code:statusCode

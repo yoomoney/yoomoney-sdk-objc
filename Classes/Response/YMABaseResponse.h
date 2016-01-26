@@ -4,6 +4,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "YMABaseSession.h"
+
+NS_ASSUME_NONNULL_BEGIN
 
 /// Values for YMAResponseStatus
 /// Status of process payment
@@ -29,19 +32,34 @@ typedef NS_ENUM(NSInteger, YMAResponseStatus) {
 
 @class YMABaseResponse;
 
-typedef void (^YMAResponseHandler)(YMABaseResponse *response, NSError *error);
+
+typedef void (^YMAResponseHandler)(YMABaseResponse * _Nullable response, NSError * _Nullable error);
 
 ///
 /// Abstract class of response. This class contains common info about the response (status, nextRetry).
 ///
 @interface YMABaseResponse : NSOperation
 
-/// Constructor. Returns a YMABaseResponse with the specified data and completion of block.
-/// @param data -
-/// @param headers -
-/// @param block -
-- (instancetype)initWithData:(NSData *)data headers:(NSDictionary *)headers completion:(YMAResponseHandler)block;
+@property (nonatomic, assign, readonly) YMAConnectHTTPStatusCodes statusCode;
 
-- (BOOL)parseJSONModel:(id)responseModel headers:(NSDictionary *)headers error:(NSError * __autoreleasing *)error;
+/// Constructor. Returns a YMABaseResponse with the specified data and completion of block.
+/// @param data - response data.
+/// @param headers - response headers.
+/// @param httpStatusCode - response htttp status code.
+/// @param block - completion of block is used to get the response.
+- (instancetype)initWithData:(NSData * _Nullable)data
+                     headers:(NSDictionary * _Nullable)headers
+              httpStatusCode:(YMAConnectHTTPStatusCodes)statusCode
+                  completion:(YMAResponseHandler _Nullable)block;
+
+- (instancetype)initWithData:(NSData * _Nullable)data
+                     headers:(NSDictionary * _Nullable)headers
+                  completion:(YMAResponseHandler _Nullable)block;
+
+- (BOOL)parseJSONModel:(id _Nullable)responseModel
+               headers:(NSDictionary * _Nullable)headers
+                 error:(NSError * __autoreleasing * _Nullable)error;
 
 @end
+
+NS_ASSUME_NONNULL_END
