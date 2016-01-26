@@ -20,11 +20,16 @@ extern NSString *const YMAValueUserAgentDefault;
 /// Values for YMAConnectHTTPStatusCodes
 /// HTTP status codes
 typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
-    YMAStatusCodeOkHTTP = 200,
-    YMAStatusCodeMultipleChoicesHTTP = 300,
-    YMAStatusCodeInvalidRequestHTTP = 400,
-    YMAStatusCodeInvalidTokenHTTP = 401,
-    YMAStatusCodeInsufficientScopeHTTP = 403,
+    YMAStatusCodeUnkwownHTTP             = 0,
+    YMAStatusCodeOkHTTP                  = 200,
+    YMAStatusCodeAcceptedHTTP            = 202,
+    YMAStatusCodeMultipleChoicesHTTP     = 300,
+    YMAStatusCodeMovedPermanentlyHTTP    = 301,
+    YMAStatusCodeNotModifiedHTTP         = 304,
+    YMAStatusCodeInvalidRequestHTTP      = 400,
+    YMAStatusCodeInvalidTokenHTTP        = 401,
+    YMAStatusCodeInsufficientScopeHTTP   = 403,
+    YMAStatusCodeFileNotFoundHTTP        = 404,
     YMAStatusCodeInternalServerErrorHTTP = 500
 };
 
