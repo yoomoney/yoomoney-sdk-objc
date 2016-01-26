@@ -134,6 +134,7 @@ static NSString *const kValueParameterStatusSuccess = @"success";
 
                                           [request buildResponseWithData:responseData
                                                                  headers:headers
+                                                          httpStatusCode:httpResponse.statusCode
                                                                    queue:self.responseQueue
                                                               completion:block];
                                       }];
