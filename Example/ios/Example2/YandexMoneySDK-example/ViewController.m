@@ -49,7 +49,6 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
     UIView *bgPhoneView = [[UIView alloc] initWithFrame:CGRectMake(0, 84, self.view.frame.size.width, 44)];
     bgPhoneView.backgroundColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
     [self.view addSubview:bgPhoneView];
-    [bgPhoneView release];
     
     self.phoneNumberTextField.placeholder = @"7##########";
     [self.view addSubview:self.phoneNumberTextField];
@@ -60,21 +59,11 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
     UIView *bgAmountView = [[UIView alloc] initWithFrame:CGRectMake(0, 184, self.view.frame.size.width, 44)];
     bgAmountView.backgroundColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
     [self.view addSubview:bgAmountView];
-    [bgAmountView release];
     
     self.amountTextField.placeholder = @"0 rub.";
     [self.view addSubview:self.amountTextField];
 }
 
-- (void)dealloc {
-    [_doPaymentButton release];
-    [_phoneNumberLabel release];
-    [_phoneNumberTextField release];
-    [_amountLabel release];
-    [_amountTextField release];
-    
-    [super dealloc];
-}
 
 - (void)doTestPayment {
     NSDictionary *paymentParams = @{@"amount" : self.amountTextField.text, @"phone-number" : self.phoneNumberTextField.text};
@@ -83,8 +72,6 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
     YMACpsController *cpsController = [[YMACpsController alloc] initWithClientId:kClientId patternId:@"phone-topup" paymentParameters:paymentParams];
     
     [self presentViewController:cpsController animated:YES completion:NULL];
-    
-    [cpsController release];
 }
 
 #pragma mark -
