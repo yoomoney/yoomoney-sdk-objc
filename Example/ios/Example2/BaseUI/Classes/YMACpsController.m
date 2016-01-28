@@ -20,12 +20,5 @@
     return [super initWithRootViewController:_cpsViewController];
 }
 
-- (BOOL)shouldAutorotate {
-    return NO;
-}
-
-- (NSUInteger)supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskPortrait;
-}
 
 @end
