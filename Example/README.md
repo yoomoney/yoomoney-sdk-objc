@@ -17,7 +17,11 @@ To be able to use this example you: the first thing you need to do is to registe
 
 ### Run example
 
-Replace string `YOU_CLIENT_ID` in file ViewController.m with your unique **client_id**. Open YandexMoneySDK-example.xcworkspace from the Example directory, build and run it.  
+* Run **pod install** command from the Example directory
+* Open YandexMoneySDK-example.xcworkspace
+* Replace string `YOU_CLIENT_ID` in the ViewController.m with your unique **client_id**.  
+* Build and run it.  
+
 
 ## Screenshots
 
