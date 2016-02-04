@@ -16,7 +16,7 @@ static NSBundle *imageBundle = nil;
 
 + (NSString *)stringByKey:(NSString *)key {
 
-    if (!stringBundle) {
+    if (stringBundle == nil) {
         NSString *libraryBundlePath = [[NSBundle mainBundle] pathForResource:@"uiymcpssdkios"
                                                                       ofType:@"bundle"];
 
@@ -27,7 +27,12 @@ static NSBundle *imageBundle = nil;
 
     }
 
-    return [stringBundle localizedStringForKey:key value:@"" table:nil];
+    NSString *result = [stringBundle localizedStringForKey:key value:@"" table:nil];
+    if (result == nil) {
+        result = key;
+    }
+    
+    return result;
 }
 
 + (UIImage *)imageByKey:(NSString *)key {
