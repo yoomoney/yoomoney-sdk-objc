@@ -33,14 +33,13 @@
 #pragma mark *** Overridden methods ***
 #pragma mark -
 
-- (void)setupNavigationBar {
-    if ([self.navigationController.navigationBar respondsToSelector:@selector(setBarTintColor:)]) {
-        self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
-    }
-
+- (void)setupNavigationBar
+{
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     self.navigationItem.title = YMALocalizedString(@"NBTMainTitle", nil);
 
-    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBCancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissController)];
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBCancel", nil)
+                                                                  style:UIBarButtonItemStylePlain target:self action:@selector(dismissController)];
     barButton.tintColor = [YMAUIConstants accentTextColor];
 
     self.navigationItem.leftBarButtonItems = @[barButton];
