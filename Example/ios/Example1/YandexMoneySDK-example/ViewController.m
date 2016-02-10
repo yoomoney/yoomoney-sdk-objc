@@ -136,6 +136,7 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
         
         _phoneNumberTextField = [[UITextField alloc] initWithFrame:textFieldRect];
         _phoneNumberTextField.backgroundColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
+        _phoneNumberTextField.keyboardType = UIKeyboardTypePhonePad;
     }
     
     return _phoneNumberTextField;
@@ -157,6 +158,7 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
         
         _amountTextField = [[UITextField alloc] initWithFrame:textFieldRect];
         _amountTextField.backgroundColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
+        _amountTextField.keyboardType = UIKeyboardTypeDecimalPad;
     }
     
     return _amountTextField;
