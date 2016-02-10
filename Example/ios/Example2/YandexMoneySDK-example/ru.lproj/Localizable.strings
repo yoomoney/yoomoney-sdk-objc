@@ -1,0 +1,47 @@
+/* A single strings file, whose title is specified in your preferences schema. The strings files provide the localized content to display to the user for each of your preferences. */
+
+// *** Navigation bar ***
+
+"NBTMainTitle" = "Оплата с карты";
+"NBTMoneySourceTitle" = "Способы оплаты";
+"NBTResultSuccess" = "Платеж завершен";
+"NBBCancel" = "Отмена";
+"NBBPayment" = "Оплатить";
+"NBBSuccess" = "Готово";
+"NBBWait" = "Подождите";
+"NBBClose" = "Закрыть";
+
+// *** Cells ***
+
+"CTNewCard" = "Оплатить с другой карты";
+"CTCsc" = "Код CVV2";
+"CTPaymentName" = "Название платежа";
+"CTAmount" = "Сумма";
+"CTRub" = "руб.";
+
+// *** Buttons ***
+
+"BTSaveCard" = "Сохранить карту";
+"BTSavingCard" = "Сохраняю карту...";
+"BTRepeat" = "Повторить";
+
+// *** Text ***
+
+"TLSaveCardComment" = "Сохраните карту в приложении, чтобы не вводить данные заново.";
+"TLSavingCardComment" = "Секундочку.";
+"TLSavedCardComment" = "Отлично, карта сохранена, теперь больше не нужно вводить ее данные.";
+"TLThanks" = "Спасибо!";
+"TLAmount" = "Платёж на сумму %@ руб. успешно завершен.";
+"THMoneySources" = "Доступные способы оплаты";
+"TFCVVCode" = "Трехзначный код на оборотной стороне вашей банковской карты.";
+"TPRequired" = "Обязательно";
+"TLErrorTitle" = "Что-то не так";
+"TLFatalErrorTitle" = "Ничего не получится";
+
+// *** Errors ***
+
+"illegal_param_client_id" = "Возможность платить с банковской карты в этом приложении заблокирована.";
+"illegal_param_csc" = "Похоже, вы указали неверный код CVV.";
+"authorization_reject" = "Банк не разрешил снять деньги с вашей карты.";
+"payment_refused" = "Магазин не смог принять ваш платеж.";
+"unknownError" = "Операция не завершена: повторите попытку через пару минут.";

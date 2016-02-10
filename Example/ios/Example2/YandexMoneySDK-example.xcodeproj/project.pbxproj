@@ -29,11 +29,14 @@
 		60D4225218A51CBA0018E439 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 60D4225018A51CBA0018E439 /* InfoPlist.strings */; };
 		60D4225418A51CBA0018E439 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D4225318A51CBA0018E439 /* main.m */; };
 		60D4225818A51CBA0018E439 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D4225718A51CBA0018E439 /* AppDelegate.m */; };
-		60D4225A18A51CBA0018E439 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 60D4225918A51CBA0018E439 /* Default.png */; };
 		60D4225C18A51CBA0018E439 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60D4225B18A51CBA0018E439 /* Default@2x.png */; };
 		60D4225E18A51CBA0018E439 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60D4225D18A51CBA0018E439 /* Default-568h@2x.png */; };
 		60D4226118A51CBA0018E439 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D4226018A51CBA0018E439 /* ViewController.m */; };
 		60EEF90D18A5212600F72177 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60EEF90C18A5212600F72177 /* Security.framework */; };
+		7231BD401C6B6600003BA475 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7231BD421C6B6600003BA475 /* Localizable.strings */; };
+		7231BD521C6B7A9A003BA475 /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7231BD501C6B7A9A003BA475 /* Default-667h@2x.png */; };
+		7231BD531C6B7A9A003BA475 /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7231BD511C6B7A9A003BA475 /* Default-736h@3x.png */; };
+		7231BD551C6B7A9F003BA475 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7231BD541C6B7A9F003BA475 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,13 +81,18 @@
 		60D4225518A51CBA0018E439 /* YandexMoneySDK-example-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YandexMoneySDK-example-Prefix.pch"; sourceTree = "<group>"; };
 		60D4225618A51CBA0018E439 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		60D4225718A51CBA0018E439 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		60D4225918A51CBA0018E439 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		60D4225B18A51CBA0018E439 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		60D4225D18A51CBA0018E439 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		60D4225F18A51CBA0018E439 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		60D4226018A51CBA0018E439 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		60EEF90C18A5212600F72177 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		6972A36B28F1832D7E3AD2BC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		7231BD3D1C6B6548003BA475 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7231BD411C6B6600003BA475 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7231BD431C6B6601003BA475 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7231BD501C6B7A9A003BA475 /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
+		7231BD511C6B7A9A003BA475 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
+		7231BD541C6B7A9F003BA475 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C211CF568F49E9F0D5646329 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -196,6 +204,7 @@
 				60D4225718A51CBA0018E439 /* AppDelegate.m */,
 				60D4225F18A51CBA0018E439 /* ViewController.h */,
 				60D4226018A51CBA0018E439 /* ViewController.m */,
+				7231BD541C6B7A9F003BA475 /* Images.xcassets */,
 				60D4224E18A51CBA0018E439 /* Supporting Files */,
 			);
 			path = "YandexMoneySDK-example";
@@ -206,11 +215,13 @@
 			children = (
 				60D4224F18A51CBA0018E439 /* YandexMoneySDK-example-Info.plist */,
 				60D4225018A51CBA0018E439 /* InfoPlist.strings */,
+				7231BD421C6B6600003BA475 /* Localizable.strings */,
 				60D4225318A51CBA0018E439 /* main.m */,
 				60D4225518A51CBA0018E439 /* YandexMoneySDK-example-Prefix.pch */,
-				60D4225918A51CBA0018E439 /* Default.png */,
 				60D4225B18A51CBA0018E439 /* Default@2x.png */,
 				60D4225D18A51CBA0018E439 /* Default-568h@2x.png */,
+				7231BD501C6B7A9A003BA475 /* Default-667h@2x.png */,
+				7231BD511C6B7A9A003BA475 /* Default-736h@3x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -262,6 +273,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ru,
 			);
 			mainGroup = 60D4223B18A51CBA0018E439;
 			productRefGroup = 60D4224518A51CBA0018E439 /* Products */;
@@ -279,10 +291,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				60D4225218A51CBA0018E439 /* InfoPlist.strings in Resources */,
+				7231BD521C6B7A9A003BA475 /* Default-667h@2x.png in Resources */,
+				7231BD551C6B7A9F003BA475 /* Images.xcassets in Resources */,
+				7231BD401C6B6600003BA475 /* Localizable.strings in Resources */,
 				555916EB1A8897AF00C92967 /* uiymcpssdkios.bundle in Resources */,
-				60D4225A18A51CBA0018E439 /* Default.png in Resources */,
 				60D4225C18A51CBA0018E439 /* Default@2x.png in Resources */,
 				60D4225E18A51CBA0018E439 /* Default-568h@2x.png in Resources */,
+				7231BD531C6B7A9A003BA475 /* Default-736h@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,8 +382,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				60D4225118A51CBA0018E439 /* en */,
+				7231BD3D1C6B6548003BA475 /* ru */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7231BD421C6B6600003BA475 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7231BD411C6B6600003BA475 /* en */,
+				7231BD431C6B6601003BA475 /* ru */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -402,7 +427,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -428,7 +453,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -439,6 +464,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C211CF568F49E9F0D5646329 /* Pods.debug.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				ENABLE_BITCODE = NO;
@@ -458,6 +484,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6972A36B28F1832D7E3AD2BC /* Pods.release.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				ENABLE_BITCODE = NO;
