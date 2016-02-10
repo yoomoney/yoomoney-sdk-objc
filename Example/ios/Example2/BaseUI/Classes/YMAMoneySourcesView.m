@@ -56,10 +56,10 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
 
-    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBCancel", nil) style:UIBarButtonItemStylePlain target:self.delegate action:@selector(dismissController)];
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"NBBCancel", nil) style:UIBarButtonItemStylePlain target:self.delegate action:@selector(dismissController)];
     barButton.tintColor = [YMAUIConstants accentTextColor];
 
-    [self.delegate updateNavigationBarTitle:YMALocalizedString(@"NBTMoneySourceTitle", nil) leftButtons:@[barButton] rightButtons:@[]];
+    [self.delegate updateNavigationBarTitle:NSLocalizedString(@"NBTMoneySourceTitle", nil) leftButtons:@[barButton] rightButtons:@[]];
 }
 
 #pragma mark -
@@ -110,7 +110,7 @@
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
         } else if (indexPath.row == self.moneySources.count) {
-            cell.textLabel.text = YMALocalizedString(@"CTNewCard", nil);
+            cell.textLabel.text = NSLocalizedString(@"CTNewCard", nil);
             cell.textLabel.textColor = [YMAUIConstants accentTextColor];
             cell.imageView.image = YMALocalizedImage(kImageKeyCardNew, nil);
         }
@@ -127,12 +127,12 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
         if (indexPath.row == 0) {
-            paymentInfoTitle.text = YMALocalizedString(@"CTPaymentName", nil);
+            paymentInfoTitle.text = NSLocalizedString(@"CTPaymentName", nil);
             paymentInfoValue.text = self.paymentInfo.title;
 
         } else {
-            paymentInfoTitle.text = YMALocalizedString(@"CTAmount", nil);
-            paymentInfoValue.text = [NSString stringWithFormat:@"%@ %@", self.paymentInfo.amount, YMALocalizedString(@"CTRub", nil)];
+            paymentInfoTitle.text = NSLocalizedString(@"CTAmount", nil);
+            paymentInfoValue.text = [NSString stringWithFormat:@"%@ %@", self.paymentInfo.amount, NSLocalizedString(@"CTRub", nil)];
         }
 
         cell.separatorInset = UIEdgeInsetsMake(0, self.frame.size.width, 0, 0);
@@ -173,7 +173,7 @@
         UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithImage:YMALocalizedImage(@"back", nil) style:UIBarButtonItemStylePlain target:self.delegate action:@selector(showMoneySource)];
         leftBarButton.tintColor = [YMAUIConstants accentTextColor];
 
-        [self.delegate updateNavigationBarTitle:YMALocalizedString(@"NBTMainTitle", nil) leftButtons:@[leftBarButton] rightButtons:@[]];
+        [self.delegate updateNavigationBarTitle:NSLocalizedString(@"NBTMainTitle", nil) leftButtons:@[leftBarButton] rightButtons:@[]];
         [self.delegate paymentFromNewCard];
     }
 }
@@ -200,7 +200,7 @@
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, self.frame.size.width, kControlHeightDefault)];
         label.textColor = [YMAUIConstants commentColor];
         label.font = [YMAUIConstants commentFont];
-        label.text = YMALocalizedString(@"THMoneySources", nil);
+        label.text = NSLocalizedString(@"THMoneySources", nil);
 
         [_header addSubview:label];
     }

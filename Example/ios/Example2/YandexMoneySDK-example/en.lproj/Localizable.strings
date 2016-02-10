@@ -1,0 +1,47 @@
+/* A single strings file, whose title is specified in your preferences schema. The strings files provide the localized content to display to the user for each of your preferences. */
+
+// *** Navigation bar ***
+
+"NBTMainTitle" = "Payment";
+"NBTMoneySourceTitle" = "Payment methods";
+"NBTResultSuccess" = "Payment completed";
+"NBBCancel" = "Cancel";
+"NBBPayment" = "Payment";
+"NBBSuccess" = "Finish";
+"NBBWait" = "Wait";
+"NBBClose" = "Close";
+
+// *** Cells ***
+
+"CTNewCard" = "Pay with another card";
+"CTCsc" = "CVV2 code";
+"CTPaymentName" = "Name of payment";
+"CTAmount" = "Amount";
+"CTRub" = "rub.";
+
+// *** Buttons ***
+
+"BTSaveCard" = "Save card";
+"BTSavingCard" = "I save the card ...";
+"BTRepeat" = "Repeat";
+
+// *** Text ***
+
+"TLSaveCardComment" = "Save the credit card in the application to not enter the data again.";
+"TLSavingCardComment" = "Wait a second.";
+"TLSavedCardComment" = "Excellent, a card is saved, now no longer need to enter its data.";
+"TLThanks" = "Thanks!";
+"TLAmount" = "The payment in the amount of %@ RUR successfully completed.";
+"THMoneySources" = "Available money sources";
+"TFCVVCode" = "Three-digit code on the back of your credit card.";
+"TPRequired" = "Required";
+"TLErrorTitle" = "Something is wrong";
+"TLFatalErrorTitle" = "It will not work";
+
+// *** Errors ***
+
+"illegal_param_client_id" = "Option to pay with a credit card in this application is locked.";
+"illegal_param_csc" = "Looks like you entered an invalid code CVV.";
+"authorization_reject" = "Bank is not allowed to withdraw money from your card.";
+"payment_refused" = "Shop could not accept your payment.";
+"unknownError" = "The operation is not completed: Please try again in a few minutes.";

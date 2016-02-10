@@ -13,8 +13,8 @@ static NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
 
 // You must register your application and receive unique "client_id".
 // More information: http://api.yandex.com/money/doc/dg/tasks/register-client.xml
-static NSString *const kClientId = @"YOU_CLIENT_ID";
-#error You must paste your unique client_id.
+static NSString *const kClientId = @"CLIENT_ID";
+#error You should paste your unique client_id.
 
 @interface ViewController () {
     NSMutableDictionary *_instanceIdQuery;

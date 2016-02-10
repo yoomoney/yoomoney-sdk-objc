@@ -11,8 +11,8 @@
 
 // You must register your application and receive unique "client_id".
 // More information: http://api.yandex.com/money/doc/dg/tasks/register-client.xml
-static NSString *const kClientId = @"YOU_CLIENT_ID";
-#error You must paste your unique client_id.
+static NSString *const kClientId = @"CLIENT_ID";
+#error You should paste your unique client_id.
 
 @interface ViewController ()
 
@@ -69,7 +69,9 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
     NSDictionary *paymentParams = @{@"amount" : self.amountTextField.text, @"phone-number" : self.phoneNumberTextField.text};
     
     //Starting payment process
-    YMACpsController *cpsController = [[YMACpsController alloc] initWithClientId:kClientId patternId:@"phone-topup" paymentParameters:paymentParams];
+    YMACpsController *cpsController = [[YMACpsController alloc] initWithClientId:kClientId
+                                                                       patternId:@"phone-topup"
+                                                               paymentParameters:paymentParams];
     
     [self presentViewController:cpsController animated:YES completion:NULL];
 }
