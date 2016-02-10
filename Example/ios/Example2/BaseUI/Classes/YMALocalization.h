@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#define YMALocalizedString(key, comment) \
+#define NSLocalizedString(key, comment) \
         [YMALocalization stringByKey:(key)]
 
 #define YMALocalizedImage(key, comment) \

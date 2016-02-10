@@ -34,6 +34,7 @@
 		60D4225E18A51CBA0018E439 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60D4225D18A51CBA0018E439 /* Default-568h@2x.png */; };
 		60D4226118A51CBA0018E439 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D4226018A51CBA0018E439 /* ViewController.m */; };
 		60EEF90D18A5212600F72177 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60EEF90C18A5212600F72177 /* Security.framework */; };
+		7231BD401C6B6600003BA475 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7231BD421C6B6600003BA475 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +86,9 @@
 		60D4226018A51CBA0018E439 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		60EEF90C18A5212600F72177 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		6972A36B28F1832D7E3AD2BC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		7231BD3D1C6B6548003BA475 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7231BD411C6B6600003BA475 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7231BD431C6B6601003BA475 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C211CF568F49E9F0D5646329 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -206,6 +210,7 @@
 			children = (
 				60D4224F18A51CBA0018E439 /* YandexMoneySDK-example-Info.plist */,
 				60D4225018A51CBA0018E439 /* InfoPlist.strings */,
+				7231BD421C6B6600003BA475 /* Localizable.strings */,
 				60D4225318A51CBA0018E439 /* main.m */,
 				60D4225518A51CBA0018E439 /* YandexMoneySDK-example-Prefix.pch */,
 				60D4225918A51CBA0018E439 /* Default.png */,
@@ -262,6 +267,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ru,
 			);
 			mainGroup = 60D4223B18A51CBA0018E439;
 			productRefGroup = 60D4224518A51CBA0018E439 /* Products */;
@@ -279,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				60D4225218A51CBA0018E439 /* InfoPlist.strings in Resources */,
+				7231BD401C6B6600003BA475 /* Localizable.strings in Resources */,
 				555916EB1A8897AF00C92967 /* uiymcpssdkios.bundle in Resources */,
 				60D4225A18A51CBA0018E439 /* Default.png in Resources */,
 				60D4225C18A51CBA0018E439 /* Default@2x.png in Resources */,
@@ -367,8 +374,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				60D4225118A51CBA0018E439 /* en */,
+				7231BD3D1C6B6548003BA475 /* ru */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7231BD421C6B6600003BA475 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7231BD411C6B6600003BA475 /* en */,
+				7231BD431C6B6601003BA475 /* ru */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
