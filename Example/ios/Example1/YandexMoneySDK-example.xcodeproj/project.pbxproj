@@ -14,11 +14,13 @@
 		60D4225218A51CBA0018E439 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 60D4225018A51CBA0018E439 /* InfoPlist.strings */; };
 		60D4225418A51CBA0018E439 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D4225318A51CBA0018E439 /* main.m */; };
 		60D4225818A51CBA0018E439 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D4225718A51CBA0018E439 /* AppDelegate.m */; };
-		60D4225A18A51CBA0018E439 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 60D4225918A51CBA0018E439 /* Default.png */; };
 		60D4225C18A51CBA0018E439 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60D4225B18A51CBA0018E439 /* Default@2x.png */; };
 		60D4225E18A51CBA0018E439 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 60D4225D18A51CBA0018E439 /* Default-568h@2x.png */; };
 		60D4226118A51CBA0018E439 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D4226018A51CBA0018E439 /* ViewController.m */; };
 		60EEF90D18A5212600F72177 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60EEF90C18A5212600F72177 /* Security.framework */; };
+		7231BD4A1C6B73A5003BA475 /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7231BD481C6B73A5003BA475 /* Default-667h@2x.png */; };
+		7231BD4B1C6B73A5003BA475 /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7231BD491C6B73A5003BA475 /* Default-736h@3x.png */; };
+		7231BD4F1C6B781E003BA475 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7231BD4E1C6B781E003BA475 /* Images.xcassets */; };
 		DE34E1D80F5A3588029E9F59 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4A005CEDABB35070D5D8DF0 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -36,12 +38,14 @@
 		60D4225518A51CBA0018E439 /* YandexMoneySDK-example-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YandexMoneySDK-example-Prefix.pch"; sourceTree = "<group>"; };
 		60D4225618A51CBA0018E439 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		60D4225718A51CBA0018E439 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		60D4225918A51CBA0018E439 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		60D4225B18A51CBA0018E439 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		60D4225D18A51CBA0018E439 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		60D4225F18A51CBA0018E439 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		60D4226018A51CBA0018E439 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		60EEF90C18A5212600F72177 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		7231BD481C6B73A5003BA475 /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
+		7231BD491C6B73A5003BA475 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
+		7231BD4E1C6B781E003BA475 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A4A005CEDABB35070D5D8DF0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -100,6 +104,7 @@
 				60D4225718A51CBA0018E439 /* AppDelegate.m */,
 				60D4225F18A51CBA0018E439 /* ViewController.h */,
 				60D4226018A51CBA0018E439 /* ViewController.m */,
+				7231BD4E1C6B781E003BA475 /* Images.xcassets */,
 				60D4224E18A51CBA0018E439 /* Supporting Files */,
 			);
 			path = "YandexMoneySDK-example";
@@ -112,9 +117,10 @@
 				60D4225018A51CBA0018E439 /* InfoPlist.strings */,
 				60D4225318A51CBA0018E439 /* main.m */,
 				60D4225518A51CBA0018E439 /* YandexMoneySDK-example-Prefix.pch */,
-				60D4225918A51CBA0018E439 /* Default.png */,
 				60D4225B18A51CBA0018E439 /* Default@2x.png */,
 				60D4225D18A51CBA0018E439 /* Default-568h@2x.png */,
+				7231BD481C6B73A5003BA475 /* Default-667h@2x.png */,
+				7231BD491C6B73A5003BA475 /* Default-736h@3x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -183,7 +189,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				60D4225218A51CBA0018E439 /* InfoPlist.strings in Resources */,
-				60D4225A18A51CBA0018E439 /* Default.png in Resources */,
+				7231BD4A1C6B73A5003BA475 /* Default-667h@2x.png in Resources */,
+				7231BD4B1C6B73A5003BA475 /* Default-736h@3x.png in Resources */,
+				7231BD4F1C6B781E003BA475 /* Images.xcassets in Resources */,
 				60D4225C18A51CBA0018E439 /* Default@2x.png in Resources */,
 				60D4225E18A51CBA0018E439 /* Default-568h@2x.png in Resources */,
 			);
@@ -291,7 +299,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -316,7 +324,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -327,6 +335,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1170E1EE9BA5B3F2500C984A /* Pods.debug.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -346,6 +356,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 025AC5945EC9C174D5326758 /* Pods.release.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

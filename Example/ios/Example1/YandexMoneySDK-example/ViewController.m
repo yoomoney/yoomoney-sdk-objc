@@ -13,8 +13,8 @@ static NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
 
 // You must register your application and receive unique "client_id".
 // More information: http://api.yandex.com/money/doc/dg/tasks/register-client.xml
-static NSString *const kClientId = @"YOU_CLIENT_ID";
-#error You must paste your unique client_id.
+static NSString *const kClientId = @"CLIENT_ID";
+#error You should paste your unique client_id.
 
 @interface ViewController () {
     NSMutableDictionary *_instanceIdQuery;
@@ -136,6 +136,7 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
         
         _phoneNumberTextField = [[UITextField alloc] initWithFrame:textFieldRect];
         _phoneNumberTextField.backgroundColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
+        _phoneNumberTextField.keyboardType = UIKeyboardTypePhonePad;
     }
     
     return _phoneNumberTextField;
@@ -157,6 +158,7 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
         
         _amountTextField = [[UITextField alloc] initWithFrame:textFieldRect];
         _amountTextField.backgroundColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
+        _amountTextField.keyboardType = UIKeyboardTypeDecimalPad;
     }
     
     return _amountTextField;
