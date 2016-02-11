@@ -179,7 +179,6 @@ static NSString *const kKeychainMoneySource = @"moneySourceKeychainId";
 }
 
 - (void)setInstanceId:(NSString *)instanceId {
-    [self clearSecureStorage];
     
     NSMutableDictionary *secItem = [self dictionaryToSecItemFormat:@{(__bridge id) kSecValueData : instanceId}];
     secItem[(__bridge id) kSecAttrGeneric] = kKeychainIdInstance;
