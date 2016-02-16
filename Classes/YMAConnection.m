@@ -113,9 +113,16 @@ static NSString *const kHeaderContentLength = @"Content-Length";
     NSString *value = [NSString stringWithFormat:@"%lu", (unsigned long)self.request.HTTPBody.length];
     [self.request addValue:value forHTTPHeaderField:kHeaderContentLength];
 
-#ifdef DEBUG
-    NSLog(@"<<<< Request to URL: %@ >>> %@", self.request.URL.absoluteString,
-          [[NSString alloc] initWithData:self.request.HTTPBody encoding:NSUTF8StringEncoding]);
+#if defined(DEBUG) || defined(ADHOC)
+    NSMutableString *debugString = [NSMutableString stringWithFormat:@"Request to URL: %@\nHeaders:%@",
+                                    self.request.URL.absoluteString,
+                                    self.request.allHTTPHeaderFields];
+    
+    if (self.request.HTTPBody.length > 0) {
+        [debugString appendFormat:@"\nHTTP body:%@", [[NSString alloc] initWithData:self.request.HTTPBody
+                                                                           encoding:NSUTF8StringEncoding]];
+    }
+    NSLog(@"%@", debugString);
 #endif
 
     self.redirectHandler   = redirectHandler;

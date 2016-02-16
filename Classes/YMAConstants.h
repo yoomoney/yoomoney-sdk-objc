@@ -36,6 +36,9 @@ extern NSString *const YMAP2PPaymentParameterAmountDue;
 // p2p parameter name. Not required.
 extern NSString *const YMAP2PPaymentParameterLabel;
 
+// payment parameter patternId
+extern NSString *const YMAPaymentParameterPatternId;
+
 // API error.
 extern NSString *const YMAErrorDomainYaMoneyAPI;
 
