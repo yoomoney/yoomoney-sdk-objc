@@ -12,15 +12,17 @@
 
 - (void)buildResponseWithData:(NSData *)data
                       headers:(NSDictionary *)headers
+               httpStatusCode:(YMAConnectHTTPStatusCodes)statusCode
                         queue:(NSOperationQueue *)queue
                    completion:(YMARequestHandler)block
 {
     NSOperation *operation =
     [self buildResponseOperationWithData:data
-                                 headers:(NSDictionary *)headers
+                                 headers:headers
+                          httpStatusCode:statusCode
                               completion:^(YMABaseResponse *response, NSError *error) {
                                   block(self, response, error);
-        }];
+                              }];
 
     if (operation == nil) {
         block(self, nil, [NSError errorWithDomain:YMAErrorDomainUnknown code:0 userInfo:nil]);
@@ -32,9 +34,17 @@
 
 - (NSOperation *)buildResponseOperationWithData:(NSData *)data
                                         headers:(NSDictionary *)headers
+                                 httpStatusCode:(YMAConnectHTTPStatusCodes)statusCode
                                      completion:(YMAResponseHandler)handler
 {
-    NSString *reason = [NSString stringWithFormat:@"%@ must be ovverriden", NSStringFromSelector(_cmd)];
+    return [self buildResponseOperationWithData:data headers:headers completion:handler];
+}
+
+- (NSOperation *)buildResponseOperationWithData:(NSData *)data
+                                        headers:(NSDictionary *)headers
+                                     completion:(YMAResponseHandler)handler
+{
+    NSString *reason = [NSString stringWithFormat:@"%@ must be overridden", NSStringFromSelector(_cmd)];
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 }
 

@@ -80,13 +80,13 @@ static CGFloat const kAnimationSpeed = 0.7;
     amountLabel.textAlignment = NSTextAlignmentCenter;
 
     if (self.state == YMAPaymentResultStateFatalFail || self.state == YMAPaymentResultStateFail) {
-        NSString *errorText = YMALocalizedString(self.resultDescription, nil);
-        errorText = [errorText isEqualToString:self.resultDescription] ? YMALocalizedString(@"unknownError", nil) : errorText;
-        titleLabel.text = (self.state == YMAPaymentResultStateFatalFail) ? YMALocalizedString(@"TLFatalErrorTitle", nil) : YMALocalizedString(@"TLErrorTitle", nil);
-        amountLabel.text = YMALocalizedString(errorText, nil);
+        NSString *errorText = NSLocalizedString(self.resultDescription, nil);
+        errorText = [errorText isEqualToString:self.resultDescription] ? NSLocalizedString(@"unknownError", nil) : errorText;
+        titleLabel.text = (self.state == YMAPaymentResultStateFatalFail) ? NSLocalizedString(@"TLFatalErrorTitle", nil) : NSLocalizedString(@"TLErrorTitle", nil);
+        amountLabel.text = NSLocalizedString(errorText, nil);
     } else {
-        titleLabel.text = YMALocalizedString(@"TLThanks", nil);
-        amountLabel.text = [NSString stringWithFormat:YMALocalizedString(@"TLAmount", nil), self.resultDescription];
+        titleLabel.text = NSLocalizedString(@"TLThanks", nil);
+        amountLabel.text = [NSString stringWithFormat:NSLocalizedString(@"TLAmount", nil), self.resultDescription];
     }
 
     [self addSubview:amountLabel];
@@ -100,15 +100,15 @@ static CGFloat const kAnimationSpeed = 0.7;
 }
 
 - (void)addControlsForSuccessWithNewCardState {
-    [self.saveCardButton setTitle:YMALocalizedString(@"BTSaveCard", nil) forState:UIControlStateNormal];
-    [self.saveCardButton setTitle:YMALocalizedString(@"BTSavingCard", nil) forState:UIControlStateDisabled];
+    [self.saveCardButton setTitle:NSLocalizedString(@"BTSaveCard", nil) forState:UIControlStateNormal];
+    [self.saveCardButton setTitle:NSLocalizedString(@"BTSavingCard", nil) forState:UIControlStateDisabled];
     [self.saveCardButton setTitleColor:[YMAUIConstants accentTextColor] forState:UIControlStateNormal];
     [self.saveCardButton setTitleColor:[YMAUIConstants commentColor] forState:UIControlStateDisabled];
     self.saveCardButton.titleLabel.font = [YMAUIConstants buttonFont];
 
     [self addSubview:self.saveCardButton];
 
-    self.saveButtonComment.text = YMALocalizedString(@"TLSaveCardComment", nil);
+    self.saveButtonComment.text = NSLocalizedString(@"TLSaveCardComment", nil);
     self.saveButtonComment.font = [YMAUIConstants commentFont];
     self.saveButtonComment.textColor = [YMAUIConstants commentColor];
     self.saveButtonComment.numberOfLines = 2;
@@ -125,7 +125,7 @@ static CGFloat const kAnimationSpeed = 0.7;
 }
 
 - (void)addControlsForFailState {
-    [self.saveCardButton setTitle:YMALocalizedString(@"BTRepeat", nil) forState:UIControlStateNormal];
+    [self.saveCardButton setTitle:NSLocalizedString(@"BTRepeat", nil) forState:UIControlStateNormal];
     [self.saveCardButton setTitleColor:[YMAUIConstants accentTextColor] forState:UIControlStateNormal];
     [self.saveCardButton setTitleColor:[YMAUIConstants commentColor] forState:UIControlStateDisabled];
     self.saveCardButton.titleLabel.font = [YMAUIConstants buttonFont];
@@ -150,7 +150,7 @@ static CGFloat const kAnimationSpeed = 0.7;
     [super layoutSubviews];
 
     if (self.state == YMAPaymentResultStateFatalFail || self.state == YMAPaymentResultStateFail) {
-        self.rightBarButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBClose", nil) style:UIBarButtonItemStylePlain target:self.delegate action:@selector(dismissController)];
+        self.rightBarButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"NBBClose", nil) style:UIBarButtonItemStylePlain target:self.delegate action:@selector(dismissController)];
 
         self.rightBarButton.tintColor = [YMAUIConstants accentTextColor];
 
@@ -159,11 +159,11 @@ static CGFloat const kAnimationSpeed = 0.7;
         return;
     }
 
-    self.rightBarButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBSuccess", nil) style:UIBarButtonItemStylePlain target:self.delegate action:@selector(dismissController)];
+    self.rightBarButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"NBBSuccess", nil) style:UIBarButtonItemStylePlain target:self.delegate action:@selector(dismissController)];
 
     self.rightBarButton.tintColor = [YMAUIConstants accentTextColor];
 
-    [self.delegate updateNavigationBarTitle:YMALocalizedString(@"NBTResultSuccess", nil) leftButtons:@[] rightButtons:@[self.rightBarButton]];
+    [self.delegate updateNavigationBarTitle:NSLocalizedString(@"NBTResultSuccess", nil) leftButtons:@[] rightButtons:@[self.rightBarButton]];
 }
 
 - (void)successSaveMoneySource:(YMAMoneySourceModel *)moneySource {
@@ -172,7 +172,7 @@ static CGFloat const kAnimationSpeed = 0.7;
     
     [self showCheck];
     
-    self.saveButtonComment.text = YMALocalizedString(@"TLSavedCardComment", nil);
+    self.saveButtonComment.text = NSLocalizedString(@"TLSavedCardComment", nil);
     self.rightBarButton.enabled = YES;
 }
 
@@ -189,7 +189,7 @@ static CGFloat const kAnimationSpeed = 0.7;
     if (IS_IPHONE_5)
         [self enableCard];
     self.saveCardButton.enabled = YES;
-    self.saveButtonComment.text = YMALocalizedString(@"TLSaveCardComment", nil);
+    self.saveButtonComment.text = NSLocalizedString(@"TLSaveCardComment", nil);
     [self.activityIndicatorView removeFromSuperview];
     self.rightBarButton.enabled = YES;
 }
@@ -201,7 +201,7 @@ static CGFloat const kAnimationSpeed = 0.7;
         [self disableCard];
     
     self.saveCardButton.enabled = NO;
-    self.saveButtonComment.text = YMALocalizedString(@"TLSavingCardComment", nil);
+    self.saveButtonComment.text = NSLocalizedString(@"TLSavingCardComment", nil);
     self.activityIndicatorView.center = CGPointMake(65, self.saveCardButton.frame.size.height / 2);
     [self.saveCardButton addSubview:self.activityIndicatorView];
     self.rightBarButton.enabled = NO;

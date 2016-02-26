@@ -224,20 +224,21 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
                                    customHeaders:paramsRequest.customHeaders
                                              url:request.requestUrl
                                       completion:^(NSURLRequest *urlRequest, NSURLResponse *urlResponse, NSData *responseData, NSError *error) {
-                                         
-                                         if (error != nil) {
-                                             block(request, nil, error);
-                                             return;
-                                         }
-                                         
-                                         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)urlResponse;
-                                         NSDictionary *headers = httpResponse.allHeaderFields;
-                                         
-                                         [request buildResponseWithData:responseData
-                                                                headers:headers
-                                                                  queue:self.responseQueue
-                                                             completion:block];
-                                     }];
+
+                                          if (error != nil) {
+                                              block(request, nil, error);
+                                              return;
+                                          }
+
+                                          NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)urlResponse;
+                                          NSDictionary *headers = httpResponse.allHeaderFields;
+
+                                          [request buildResponseWithData:responseData
+                                                                 headers:headers
+                                                          httpStatusCode:httpResponse.statusCode
+                                                                   queue:self.responseQueue
+                                                              completion:block];
+                                      }];
     }
     else if ([request conformsToProtocol:@protocol(YMADataPosting)]) {
         YMABaseRequest<YMADataPosting> *dataRequest = (YMABaseRequest<YMADataPosting> *)request;
@@ -251,12 +252,13 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
                                              block(request, nil, error);
                                              return;
                                          }
-                                         
+
                                          NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)urlResponse;
                                          NSDictionary *headers =  httpResponse.allHeaderFields;
 
                                          [request buildResponseWithData:responseData
                                                                 headers:headers
+                                                         httpStatusCode:httpResponse.statusCode
                                                                   queue:self.responseQueue
                                                              completion:block];
                                      }];

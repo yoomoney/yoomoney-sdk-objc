@@ -14,7 +14,6 @@ static NSString *const kParameterOperationOperationId = @"operation_id";
 static NSString *const kParameterOperationStatus = @"status";
 static NSString *const kParameterOperationDatetime = @"datetime";
 static NSString *const kParameterOperationTitle = @"title";
-static NSString *const kParameterOperationPatternId = @"pattern_id";
 static NSString *const kParameterOperationDirection = @"direction";
 static NSString *const kParameterOperationAmount = @"amount";
 static NSString *const kParameterOperationLabel = @"label";
@@ -38,7 +37,7 @@ static NSString *const kParameterOperationType = @"type";
     NSDate *dateTime = [formatter dateFromString:dateTimeString];
 
     NSString *title = historyOperationModel[kParameterOperationTitle];
-    NSString *patternId = historyOperationModel[kParameterOperationPatternId];
+    NSString *patternId = historyOperationModel[YMAPaymentParameterPatternId];
 
     NSString *directionString = historyOperationModel[kParameterOperationDirection];
     YMAHistoryOperationDirection

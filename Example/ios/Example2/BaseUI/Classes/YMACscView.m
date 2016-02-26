@@ -60,7 +60,7 @@
     self.backBarButton.tintColor = [YMAUIConstants accentTextColor];
     self.backBarButton.enabled = YES;
 
-    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBPayment", nil) style:UIBarButtonItemStylePlain target:self action:@selector(startPayment)];
+    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"NBBPayment", nil) style:UIBarButtonItemStylePlain target:self action:@selector(startPayment)];
     rightBarButton.tintColor = [YMAUIConstants accentTextColor];
 
     [self.delegate updateNavigationBarTitle:@"" leftButtons:@[self.backBarButton] rightButtons:@[rightBarButton]];
@@ -150,7 +150,7 @@
         UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         [activity startAnimating];
         UIBarButtonItem *activityButton = [[UIBarButtonItem alloc] initWithCustomView:activity];
-        UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBWait", nil) style:UIBarButtonItemStylePlain target:nil action:NULL];
+        UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"NBBWait", nil) style:UIBarButtonItemStylePlain target:nil action:NULL];
         rightBarButton.tintColor = [YMAUIConstants commentColor];
         rightBarButton.enabled = NO;
         _waitBarButton = @[rightBarButton, activityButton];
@@ -180,7 +180,7 @@
 - (UITextField *)cscTextField {
     if (!_cscTextField) {
         _cscTextField = [[UITextField alloc] initWithFrame:CGRectMake(15, 20, self.frame.size.width - 10, 44)];
-        _cscTextField.placeholder = YMALocalizedString(@"TPRequired", nil);
+        _cscTextField.placeholder = NSLocalizedString(@"TPRequired", nil);
         _cscTextField.secureTextEntry = YES;
         _cscTextField.keyboardType = UIKeyboardTypeNumberPad;
     }
@@ -192,7 +192,7 @@
     if (!_cscLabel) {
         _cscLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 8, self.frame.size.width - 20, 20)];
         _cscLabel.font = [YMAUIConstants commentFont];
-        _cscLabel.text = YMALocalizedString(@"CTCsc", nil);
+        _cscLabel.text = NSLocalizedString(@"CTCsc", nil);
     }
 
     return _cscLabel;
@@ -207,7 +207,7 @@
         label.textColor = [YMAUIConstants commentColor];
         label.numberOfLines = 2;
         label.font = [YMAUIConstants commentFont];
-        label.text = YMALocalizedString(@"TFCVVCode", nil);
+        label.text = NSLocalizedString(@"TFCVVCode", nil);
 
         [_footer addSubview:label];
     }

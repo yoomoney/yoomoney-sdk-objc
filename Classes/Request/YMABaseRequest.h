@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "YMAConstants.h"
+#import "YMABaseSession.h"
 
 @class YMABaseRequest;
 @class YMABaseResponse;
@@ -48,10 +49,13 @@ typedef BOOL (^YMARedirectHandler)(NSURLRequest *request, NSURLResponse *respons
 
 /// Method is used for parse response data.
 /// @param data - response data.
+/// @param headers - response headers.
+/// @param httpStatusCode - response http status ceode.
 /// @param queue - operation queue.
 /// @param block - completion of block is used to get the response.
 - (void)buildResponseWithData:(NSData *)data
                       headers:(NSDictionary *)headers
+               httpStatusCode:(YMAConnectHTTPStatusCodes)statusCode
                         queue:(NSOperationQueue *)queue
                    completion:(YMARequestHandler)block;
 

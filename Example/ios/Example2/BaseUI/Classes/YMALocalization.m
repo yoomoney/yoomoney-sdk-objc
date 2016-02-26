@@ -16,18 +16,23 @@ static NSBundle *imageBundle = nil;
 
 + (NSString *)stringByKey:(NSString *)key {
 
-    if (!stringBundle) {
+    if (stringBundle == nil) {
         NSString *libraryBundlePath = [[NSBundle mainBundle] pathForResource:@"uiymcpssdkios"
                                                                       ofType:@"bundle"];
 
         NSBundle *libraryBundle = [NSBundle bundleWithPath:libraryBundlePath];
         NSString *langID = [NSLocale preferredLanguages][0];
-        NSString *path = [libraryBundle pathForResource:langID ofType:@"lproj"];
+        NSString *path = [libraryBundle pathForResource:[langID substringToIndex:2] ofType:@"lproj"];
         stringBundle = [NSBundle bundleWithPath:path];
 
     }
 
-    return [stringBundle localizedStringForKey:key value:@"" table:nil];
+    NSString *result = [stringBundle localizedStringForKey:key value:@"" table:nil];
+    if (result == nil) {
+        result = key;
+    }
+    
+    return result;
 }
 
 + (UIImage *)imageByKey:(NSString *)key {
