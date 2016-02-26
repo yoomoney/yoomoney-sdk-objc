@@ -27,11 +27,13 @@ static NSString *const kParameterBalanceBlocked = @"blocked";
 static NSString *const kParameterBalanceDebt = @"debt";
 static NSString *const kParameterBalanceHold = @"hold";
 
+static NSString *const kParameterYamoneyCards = @"ymoney_cards";
 static NSString *const kParameterCardsLinked = @"cards_linked";
 static NSString *const kParameterCardsLinkedPanFragment = @"pan_fragment";
 static NSString *const kParameterCardsLinkedType = @"type";
 
 static NSString *const kParameterServicesAdditional = @"services_additional";
+
 
 @implementation YMAAccountInfoResponse
 
@@ -109,15 +111,7 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
         }
     }
     
-    id servicesAdditionalModel = responseModel[kParameterServicesAdditional];
-    NSMutableArray *servicesAdditional = nil;
-    
-    if (servicesAdditionalModel != nil) {
-        servicesAdditional = [NSMutableArray array];
-        
-        for (NSString *service in servicesAdditionalModel)
-            [servicesAdditional addObject:service];
-    }
+
     
     _accountInfo = [YMAAccountInfoModel accountInfoWithAccount:account
                                                        balance:balance
@@ -127,7 +121,8 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
                                                         avatar:avatar
                                                 balanceDetails:balanceDetails
                                                    cardsLinked:cardsLinked
-                                            servicesAdditional:servicesAdditional];
+                                            servicesAdditional:responseModel[kParameterServicesAdditional]
+                                                  yamoneyCards:responseModel[kParameterYamoneyCards]];
     
     return YES;
 }

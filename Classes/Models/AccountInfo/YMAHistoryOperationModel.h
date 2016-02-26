@@ -29,6 +29,8 @@ typedef NS_ENUM(NSInteger, YMAHistoryOperationType) {
 
 @interface YMAHistoryOperationModel : NSObject <NSCopying>
 
+- (instancetype)init NS_UNAVAILABLE;
+
 - (instancetype)initWithOperationId:(NSString *)operationId
                              status:(YMAHistoryOperationStatus)status
                            datetime:(NSDate *)datetime

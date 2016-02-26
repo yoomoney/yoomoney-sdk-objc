@@ -13,8 +13,8 @@ static NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
 
 // You must register your application and receive unique "client_id".
 // More information: http://api.yandex.com/money/doc/dg/tasks/register-client.xml
-static NSString *const kClientId = @"YOU_CLIENT_ID";
-#error You must paste your unique client_id.
+static NSString *const kClientId = @"CLIENT_ID";
+#error You should paste your unique client_id.
 
 @interface ViewController () {
     NSMutableDictionary *_instanceIdQuery;
@@ -57,7 +57,6 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
     UIView *bgPhoneView = [[UIView alloc] initWithFrame:CGRectMake(0, 84, self.view.frame.size.width, 44)];
     bgPhoneView.backgroundColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
     [self.view addSubview:bgPhoneView];
-    [bgPhoneView release];
     
     self.phoneNumberTextField.placeholder = @"7##########";
     [self.view addSubview:self.phoneNumberTextField];
@@ -68,25 +67,12 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
     UIView *bgAmountView = [[UIView alloc] initWithFrame:CGRectMake(0, 184, self.view.frame.size.width, 44)];
     bgAmountView.backgroundColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
     [self.view addSubview:bgAmountView];
-    [bgAmountView release];
     
     self.amountTextField.placeholder = @"0 rub.";
     [self.view addSubview:self.amountTextField];
 }
 
-- (void)dealloc {
-    [_doPaymentButton release];
-    [_phoneNumberLabel release];
-    [_phoneNumberTextField release];
-    [_amountLabel release];
-    [_amountTextField release];
-    [_instanceIdQuery release];
-    [_webView release];
-    [_paymentRequestInfo release];
-    [_session release];
-    
-    [super dealloc];
-}
+
 
 - (void)doTestPayment {
     
@@ -150,6 +136,7 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
         
         _phoneNumberTextField = [[UITextField alloc] initWithFrame:textFieldRect];
         _phoneNumberTextField.backgroundColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
+        _phoneNumberTextField.keyboardType = UIKeyboardTypePhonePad;
     }
     
     return _phoneNumberTextField;
@@ -171,6 +158,7 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
         
         _amountTextField = [[UITextField alloc] initWithFrame:textFieldRect];
         _amountTextField.backgroundColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
+        _amountTextField.keyboardType = UIKeyboardTypeDecimalPad;
     }
     
     return _amountTextField;
@@ -191,7 +179,7 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
 }
 
 - (void)showError:(NSError *)error {
-    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Error" message:error ? error.domain : @"fail" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] autorelease];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:error ? error.domain : @"fail" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
     [alert show];
     
 }
@@ -383,7 +371,7 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
         
         // Success payment
         
-        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Success!" message:@"" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil] autorelease];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!" message:@"" delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
         [alert show];
     }
 }
@@ -422,7 +410,7 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
     CFTypeRef outDictionaryRef = [self performQuery:self.instanceIdQuery];
     
     if (outDictionaryRef != NULL) {
-        NSMutableDictionary *outDictionary = (NSMutableDictionary *) outDictionaryRef;
+        NSMutableDictionary *outDictionary = (__bridge NSMutableDictionary *) outDictionaryRef;
         NSDictionary *queryResult = [self secItemFormatToDictionary:outDictionary];
         
         return queryResult[(id) kSecValueData];
@@ -436,7 +424,7 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
     NSMutableDictionary *secItem;
     
     if (outDictionaryRef != NULL) {
-        NSMutableDictionary *outDictionary = (NSMutableDictionary *) outDictionaryRef;
+        NSMutableDictionary *outDictionary = (__bridge NSMutableDictionary *) outDictionaryRef;
         NSMutableDictionary *queryResult = [self secItemFormatToDictionary:outDictionary];
         
         if (![queryResult[(id) kSecValueData] isEqual:instanceId]) {
@@ -472,12 +460,11 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
     CFTypeRef itemDataRef = nil;
     
     if (!SecItemCopyMatching((CFDictionaryRef) returnDictionary, &itemDataRef)) {
-        NSData *data = (NSData *) itemDataRef;
+        NSData *data = (__bridge NSData *) itemDataRef;
         
         [returnDictionary removeObjectForKey:(id) kSecReturnData];
         NSString *itemData = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
         returnDictionary[(id) kSecValueData] = itemData;
-        [itemData release];
     }
     
     return returnDictionary;

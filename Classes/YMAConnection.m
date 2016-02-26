@@ -73,19 +73,19 @@ static NSString *const kHeaderContentLength = @"Content-Length";
 }
 
 + (instancetype)connectionForPostRequestWithUrl:(NSURL *)url
-                                      postParameters:(NSDictionary *)postParams
+                                 postParameters:(NSDictionary *)postParams
 {
     return [[YMAConnection alloc] initWithUrl:url parameters:postParams requestMethod:kRequestMethodPost];
 }
 
 + (instancetype)connectionForPostRequestWithUrl:(NSURL *)url
-                                         bodyData:(NSData *)bodyData
+                                       bodyData:(NSData *)bodyData
 {
     return [[YMAConnection alloc] initWithUrl:url bodyData:bodyData];
 }
 
 + (instancetype)connectionForGetRequestWithUrl:(NSURL *)url
-                                     parameters:(NSDictionary *)postParams
+                                    parameters:(NSDictionary *)postParams
 {
     return [[YMAConnection alloc] initWithUrl:url parameters:postParams requestMethod:kRequestMethodGet];
 }
@@ -95,10 +95,10 @@ static NSString *const kHeaderContentLength = @"Content-Length";
 + (NSString *)addPercentEscapesForString:(NSString *)string
 {
     return (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
-        (__bridge CFStringRef)string,
-        NULL,
-        (CFStringRef)@";/?:@&=+$,",
-        kCFStringEncodingUTF8));
+                                                                                 (__bridge CFStringRef)string,
+                                                                                 NULL,
+                                                                                 (CFStringRef)@";/?:@&=+$,",
+                                                                                 kCFStringEncodingUTF8));
 }
 
 - (void)sendAsynchronousWithQueue:(NSOperationQueue *)queue completion:(YMAConnectionHandler)handler
@@ -113,20 +113,27 @@ static NSString *const kHeaderContentLength = @"Content-Length";
     NSString *value = [NSString stringWithFormat:@"%lu", (unsigned long)self.request.HTTPBody.length];
     [self.request addValue:value forHTTPHeaderField:kHeaderContentLength];
 
-#ifdef DEBUG
-    NSLog(@"<<<< Request to URL: %@ >>> %@", self.request.URL.absoluteString,
-          [[NSString alloc] initWithData:self.request.HTTPBody encoding:NSUTF8StringEncoding]);
+#if defined(DEBUG) || defined(ADHOC)
+    NSMutableString *debugString = [NSMutableString stringWithFormat:@"Request to URL: %@\nHeaders:%@",
+                                    self.request.URL.absoluteString,
+                                    self.request.allHTTPHeaderFields];
+    
+    if (self.request.HTTPBody.length > 0) {
+        [debugString appendFormat:@"\nHTTP body:%@", [[NSString alloc] initWithData:self.request.HTTPBody
+                                                                           encoding:NSUTF8StringEncoding]];
+    }
+    NSLog(@"%@", debugString);
 #endif
 
-        self.redirectHandler   = redirectHandler;
-        self.completionHandler = completionHandler;
+    self.redirectHandler   = redirectHandler;
+    self.completionHandler = completionHandler;
 
-        self.response = nil;
-        self.responseData = nil;
+    self.response = nil;
+    self.responseData = nil;
 
-        self.connection = [[NSURLConnection alloc] initWithRequest:self.request delegate:self startImmediately:NO];
-        [self.connection setDelegateQueue:queue];
-        [self.connection start];
+    self.connection = [[NSURLConnection alloc] initWithRequest:self.request delegate:self startImmediately:NO];
+    [self.connection setDelegateQueue:queue];
+    [self.connection start];
 }
 
 - (void)addValue:(NSString *)value forHeader:(NSString *)header
@@ -136,30 +143,75 @@ static NSString *const kHeaderContentLength = @"Content-Length";
 
 + (NSString *)bodyStringWithParams:(NSDictionary *)postParams
 {
-    if (!postParams)
+    if (postParams == nil) {
         return [NSString string];
-    
+    }
+
     NSMutableArray *bodyParams = [NSMutableArray array];
-    
+
     for (NSString *key in postParams.allKeys) {
         id value = postParams[key];
-        NSString *paramValue = nil;
-        if ([value isKindOfClass:[NSNumber class]]) {
-            paramValue = [value stringValue];
-        }
-        else {
-            paramValue = value;
-        }
-
-        if (paramValue != nil && [paramValue isKindOfClass:[NSNull class]] == NO) {
-            NSString *encodedValue = [YMAConnection addPercentEscapesForString:paramValue];
+        NSString *stringValue = [self formatToStringValue:value];
+        if (stringValue != nil) {
+            NSString *encodedValue = [YMAConnection addPercentEscapesForString:stringValue];
             NSString *encodedKey = [YMAConnection addPercentEscapesForString:key];
 
             [bodyParams addObject:[NSString stringWithFormat:@"%@=%@", encodedKey, encodedValue]];
         }
     }
-    
+
     return [bodyParams componentsJoinedByString:@"&"];
+}
+
++ (NSString *)formatToStringValue:(id)value
+{
+    if (value == nil || [value isKindOfClass:[NSNull class]]) {
+        return nil;
+    }
+
+    NSString *stringValue = nil;
+    if ([value isKindOfClass:[NSString class]]) {
+        stringValue = value;
+    }
+    else if ([value isKindOfClass:[NSNumber class]]) {
+        stringValue = [value stringValue];
+    }
+    else if ([value isKindOfClass:[NSArray class]]) {
+
+        NSMutableString *mutableString = [NSMutableString string];
+        NSArray *array = value;
+
+        [mutableString appendString:@"["];
+        [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            if (idx > 0) {
+                [mutableString appendString:@","];
+            }
+            [mutableString appendString:[self formatToStringValue:obj]];
+        }];
+        [mutableString appendString:@"]"];
+
+        stringValue = [mutableString copy];
+    }
+    else if ([value isKindOfClass:[NSDictionary class]]) {
+
+        NSMutableString *mutableString = [NSMutableString string];
+        NSDictionary *dictionary = value;
+
+        [mutableString appendString:@"{"];
+        __block BOOL dictionaryHasValues = NO;
+        [dictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            if (dictionaryHasValues) {
+                [mutableString appendString:@","];
+            }
+            [mutableString appendString:[NSString stringWithFormat:@"%@:%@", key, [self formatToStringValue:obj]]];
+            dictionaryHasValues = YES;
+        }];
+        [mutableString appendString:@"}"];
+
+        stringValue = [mutableString copy];
+    }
+
+    return stringValue;
 }
 
 - (void)cancel

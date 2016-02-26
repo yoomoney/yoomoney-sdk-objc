@@ -70,6 +70,16 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
                                                        records:records];
 }
 
+- (NSString *)parameterValue:(NSString *)value addString:(NSString *)string
+{
+    if (string == nil) {
+        return value;
+    }
+
+    return value.length > 0 ? [NSString stringWithFormat:@"%@ %@", value, string] : string;
+}
+
+
 #pragma mark - Overridden methods
 
 - (NSURL *)requestUrl
@@ -87,12 +97,15 @@ static NSString *const kUrlHistoryOperation = @"api/operation-history";
 
     NSString *typeString = nil;
 
-    if (self.filter & YMAHistoryOperationFilterPayment)
-        typeString = kKeyTypePayment;
-    else if (self.filter & YMAHistoryOperationFilterDeposition)
-        typeString = kKeyTypeDeposition;
-    else if (self.filter & YMAHistoryOperationFilterIncomingTransfersUnaccepted)
-        typeString = kKeyTypeIncomingTransfersUnaccepted;
+    if (self.filter & YMAHistoryOperationFilterPayment) {
+        typeString = [self parameterValue:typeString addString:kKeyTypePayment];
+    }
+    if (self.filter & YMAHistoryOperationFilterDeposition) {
+        typeString = [self parameterValue:typeString addString:kKeyTypeDeposition];
+    }
+    if (self.filter & YMAHistoryOperationFilterIncomingTransfersUnaccepted) {
+        typeString = [self parameterValue:typeString addString:kKeyTypeIncomingTransfersUnaccepted];
+    }
 
     if (typeString != nil) {
         dictionary[kParameterType] = typeString;
