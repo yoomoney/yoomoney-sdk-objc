@@ -34,19 +34,15 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>yamoney.ru</key>
+			<key>money.yandex.ru</key>
 			<dict>
-				<key>NSExceptionRequiresForwardSecrecy</key>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
 				<false/>
-				<key>NSIncludesSubdomains</key>
-				<true/>
 			</dict>
-			<key>yastatic.net</key>
+			<key>passport.yandex.ru</key>
 			<dict>
-				<key>NSExceptionRequiresForwardSecrecy</key>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
 				<false/>
-				<key>NSIncludesSubdomains</key>
-				<true/>
 			</dict>
 		</dict>
 	</dict>
