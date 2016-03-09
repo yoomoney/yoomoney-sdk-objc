@@ -7,6 +7,7 @@
 #import "YMAConstants.h"
 #import "YMAHistoryOperationsResponse.h"
 #import "YMAProcessPaymentResponse.h"
+#import "YMAWesternUnionDetails.h"
 
 static NSString *const kParameterError = @"error";
 
@@ -25,6 +26,7 @@ static NSString *const kParameterDetails = @"details";
 static NSString *const kParameterRepeatable = @"repeatable";
 static NSString *const kParameterPaymentParameters = @"payment_parameters";
 static NSString *const kParameterDigitalGoods = @"digital_goods";
+static NSString *const kParameterWesternUnionDetails = @"western_union";
 
 @implementation YMAOperationDetailsResponse
 
@@ -75,6 +77,12 @@ static NSString *const kParameterDigitalGoods = @"digital_goods";
     id digitalGoodsModel = responseModel[kParameterDigitalGoods];
     YMADigitalGoodsModel *digitalGoods = [YMAProcessPaymentResponse digitalGoodsByModel:digitalGoodsModel];
 
+    id westernUnionDetailsResponseModel = responseModel[kParameterWesternUnionDetails];
+    YMAWesternUnionDetails *westernUnionDetails = nil;
+    if ([westernUnionDetailsResponseModel isKindOfClass:[NSDictionary class]]) {
+        westernUnionDetails = [YMAWesternUnionDetails westernUnionDetailsWithDictionary:westernUnionDetailsResponseModel];
+    }
+
     _operationDetails = [YMAOperationDetailsModel operationDetailsWithOperation:historyOperation
                                                                       amountDue:amountDue
                                                                             fee:fee
@@ -90,7 +98,8 @@ static NSString *const kParameterDigitalGoods = @"digital_goods";
                                                                         details:details
                                                                      repeatable:repeatable
                                                               paymentParameters:paymentParameters
-                                                                   digitalGoods:digitalGoods];
+                                                                   digitalGoods:digitalGoods
+                                                            westernUnionDetails:westernUnionDetails];
 
     return YES;
 }
