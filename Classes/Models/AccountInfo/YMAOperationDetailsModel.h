@@ -7,6 +7,7 @@
 #import "YMAHistoryOperationModel.h"
 
 @class YMADigitalGoodsModel;
+@class YMAWesternUnionDetails;
 
 typedef NS_ENUM(NSInteger, YMARecipientType) {
     YMARecipientTypeUnknown,
@@ -34,6 +35,24 @@ typedef NS_ENUM(NSInteger, YMARecipientType) {
                             paymentParameters:(NSDictionary *)paymentParameters
                                  digitalGoods:(YMADigitalGoodsModel *)digitalGoods;
 
++ (instancetype)operationDetailsWithOperation:(YMAHistoryOperationModel *)operation
+                                    amountDue:(NSString *)amountDue
+                                          fee:(NSString *)fee
+                                       sender:(NSString *)sender
+                                    recipient:(NSString *)recipient
+                                recipientType:(YMARecipientType)recipientType
+                                      message:(NSString *)message
+                                      comment:(NSString *)comment
+                                      codepro:(BOOL)codePro
+                               protectionCode:(NSString *)protectionCode
+                                      expires:(NSDate *)expires
+                               answerDatetime:(NSDate *)answerDatetime
+                                      details:(NSString *)details
+                                   repeatable:(BOOL)repeatable
+                            paymentParameters:(NSDictionary *)paymentParameters
+                                 digitalGoods:(YMADigitalGoodsModel *)digitalGoods
+                          westernUnionDetails:(YMAWesternUnionDetails *)westernUnionDetails;
+
 + (YMARecipientType)recipientTypeByString:(NSString *)recipientTypeString;
 
 @property (nonatomic, copy, readonly) NSString *amountDue;
@@ -51,5 +70,6 @@ typedef NS_ENUM(NSInteger, YMARecipientType) {
 @property (nonatomic, assign, readonly) BOOL repeatable;
 @property (nonatomic, strong, readonly) NSDictionary *paymentParameters;
 @property (nonatomic, strong, readonly) YMADigitalGoodsModel *digitalGoods;
+@property (nonatomic, strong, readonly) YMAWesternUnionDetails *westernUnionDetails;
 
 @end

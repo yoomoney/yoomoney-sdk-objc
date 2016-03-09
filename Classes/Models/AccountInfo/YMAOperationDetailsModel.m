@@ -5,6 +5,7 @@
 
 #import "YMAOperationDetailsModel.h"
 #import "YMADigitalGoodsModel.h"
+#import "YMAWesternUnionDetails.h"
 
 static NSString *const kKeyRecipientTypeAccount = @"account";
 static NSString *const kKeyRecipientTypePhone = @"phone";
@@ -30,6 +31,7 @@ static NSString *const kKeyRecipientTypeEmail = @"email";
                        repeatable:(BOOL)repeatable
                 paymentParameters:(NSDictionary *)paymentParameters
                      digitalGoods:(YMADigitalGoodsModel *)digitalGoods
+              westernUnionDetails:(YMAWesternUnionDetails *)westernUnionDetails
 {
     self = [super initWithOperationId:operation.operationId
                                status:operation.status
@@ -58,11 +60,11 @@ static NSString *const kKeyRecipientTypeEmail = @"email";
         _repeatable = repeatable;
         _paymentParameters = paymentParameters;
         _digitalGoods = digitalGoods;
+        _westernUnionDetails = westernUnionDetails;
     }
 
     return self;
 }
-
 + (instancetype)operationDetailsWithOperation:(YMAHistoryOperationModel *)operation
                                     amountDue:(NSString *)amountDue
                                           fee:(NSString *)fee
@@ -80,23 +82,62 @@ static NSString *const kKeyRecipientTypeEmail = @"email";
                             paymentParameters:(NSDictionary *)paymentParameters
                                  digitalGoods:(YMADigitalGoodsModel *)digitalGoods
 {
-    return [[YMAOperationDetailsModel alloc] initWithOperation:operation
-                                                     amountDue:amountDue
-                                                           fee:fee
-                                                        sender:sender
-                                                     recipient:recipient
-                                                 recipientType:recipientType
-                                                       message:message
-                                                       comment:comment
-                                                       codepro:codePro
-                                                protectionCode:protectionCode
-                                                       expires:expires
-                                                answerDatetime:answerDatetime
-                                                       details:details
-                                                    repeatable:repeatable
-                                             paymentParameters:paymentParameters
-                                                  digitalGoods:digitalGoods];
+    return [self operationDetailsWithOperation:operation
+                                     amountDue:amountDue
+                                           fee:fee
+                                        sender:sender
+                                     recipient:recipient
+                                 recipientType:recipientType
+                                       message:message
+                                       comment:comment
+                                       codepro:codePro
+                                protectionCode:protectionCode
+                                       expires:expires
+                                answerDatetime:answerDatetime
+                                       details:details
+                                    repeatable:repeatable
+                             paymentParameters:paymentParameters
+                                  digitalGoods:digitalGoods
+                           westernUnionDetails:nil];
+};
+
++ (instancetype)operationDetailsWithOperation:(YMAHistoryOperationModel *)operation
+                                    amountDue:(NSString *)amountDue
+                                          fee:(NSString *)fee
+                                       sender:(NSString *)sender
+                                    recipient:(NSString *)recipient
+                                recipientType:(YMARecipientType)recipientType
+                                      message:(NSString *)message
+                                      comment:(NSString *)comment
+                                      codepro:(BOOL)codePro
+                               protectionCode:(NSString *)protectionCode
+                                      expires:(NSDate *)expires
+                               answerDatetime:(NSDate *)answerDatetime
+                                      details:(NSString *)details
+                                   repeatable:(BOOL)repeatable
+                            paymentParameters:(NSDictionary *)paymentParameters
+                                 digitalGoods:(YMADigitalGoodsModel *)digitalGoods
+                          westernUnionDetails:(YMAWesternUnionDetails *)westernUnionDetails
+{
+    return [[self alloc] initWithOperation:operation
+                                 amountDue:amountDue
+                                       fee:fee
+                                    sender:sender
+                                 recipient:recipient
+                             recipientType:recipientType
+                                   message:message
+                                   comment:comment
+                                   codepro:codePro
+                            protectionCode:protectionCode
+                                   expires:expires
+                            answerDatetime:answerDatetime
+                                   details:details
+                                repeatable:repeatable
+                         paymentParameters:paymentParameters
+                              digitalGoods:digitalGoods
+                       westernUnionDetails:westernUnionDetails];
 }
+
 
 #pragma mark - Public methods
 
