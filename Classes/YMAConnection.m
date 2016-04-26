@@ -234,6 +234,7 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response
     if (self.redirectHandler != NULL) {
         resultRequest = self.redirectHandler(request, response);
         if (resultRequest == nil) {
+            self.completionHandler = NULL;
             [task cancel];
         }
     }
