@@ -17,6 +17,24 @@ typedef NS_ENUM(NSInteger, YMARecipientType) {
 
 @interface YMAOperationDetailsModel : YMAHistoryOperationModel
 
+
+- (instancetype)initWithOperation:(YMAHistoryOperationModel *)operation
+                        amountDue:(NSString *)amountDue
+                              fee:(NSString *)fee
+                           sender:(NSString *)sender
+                        recipient:(NSString *)recipient
+                    recipientType:(YMARecipientType)recipientType
+                          message:(NSString *)message
+                          comment:(NSString *)comment
+                          codepro:(BOOL)codePro
+                   protectionCode:(NSString *)protectionCode
+                          expires:(NSDate *)expires
+                   answerDatetime:(NSDate *)answerDatetime
+                          details:(NSString *)details
+                       repeatable:(BOOL)repeatable
+                paymentParameters:(NSDictionary *)paymentParameters
+                     digitalGoods:(YMADigitalGoodsModel *)digitalGoods NS_DESIGNATED_INITIALIZER;
+
 + (instancetype)operationDetailsWithOperation:(YMAHistoryOperationModel *)operation
                                     amountDue:(NSString *)amountDue
                                           fee:(NSString *)fee
