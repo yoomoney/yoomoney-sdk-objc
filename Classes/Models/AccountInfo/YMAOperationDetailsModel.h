@@ -17,6 +17,16 @@ typedef NS_ENUM(NSInteger, YMARecipientType) {
 
 @interface YMAOperationDetailsModel : YMAHistoryOperationModel
 
+- (instancetype)initWithOperationId:(NSString *)operationId
+                             status:(YMAHistoryOperationStatus)status
+                           datetime:(NSDate *)datetime
+                              title:(NSString *)title
+                          patternId:(NSString *)patternId
+                          direction:(YMAHistoryOperationDirection)direction
+                             amount:(NSString *)amount
+                              label:(NSString *)label
+                          favourite:(BOOL)favourite
+                               type:(YMAHistoryOperationType)type NS_UNAVAILABLE;
 
 - (instancetype)initWithOperation:(YMAHistoryOperationModel *)operation
                         amountDue:(NSString *)amountDue
