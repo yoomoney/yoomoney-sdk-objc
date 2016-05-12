@@ -21,14 +21,23 @@ typedef NS_ENUM(NSInteger, YMARequestMethod) {
 // p2p parameter name. Identifier the transfer recipient.
 extern NSString *const YMAP2PPaymentParameterTo;
 
-// p2p parameter name. Comments for payment, displayed to the recipient.
+// p2p parameter name. Payment message to the recipient.
 extern NSString *const YMAP2PPaymentParameterMessage;
+
+// p2p parameter name. Payment comment.
+extern NSString *const YMAP2PPaymentParameterComment;
 
 // p2p parameter name. Amount to be deducted from a credit card.
 extern NSString *const YMAP2PPaymentParameterAmount;
 
 // p2p parameter name. Amount to be credited to the account of Yandex.Money.
 extern NSString *const YMAP2PPaymentParameterAmountDue;
+
+// p2p parameter name. Not required.
+extern NSString *const YMAP2PPaymentParameterLabel;
+
+// payment parameter patternId
+extern NSString *const YMAPaymentParameterPatternId;
 
 // API error.
 extern NSString *const YMAErrorDomainYaMoneyAPI;

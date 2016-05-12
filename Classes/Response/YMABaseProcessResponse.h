@@ -19,4 +19,6 @@
 
 @property (nonatomic, copy, readonly) NSString *accountUnblockUri;
 
+- (YMAResponseStatus)statusFromString:(NSString *)statusString;
+
 @end

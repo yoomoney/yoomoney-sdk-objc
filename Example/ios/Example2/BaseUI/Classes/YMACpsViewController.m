@@ -38,9 +38,9 @@
         self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     }
 
-    self.navigationItem.title = YMALocalizedString(@"NBTMainTitle", nil);
+    self.navigationItem.title = NSLocalizedString(@"NBTMainTitle", nil);
 
-    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:YMALocalizedString(@"NBBCancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissController)];
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"NBBCancel", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dismissController)];
     barButton.tintColor = [YMAUIConstants accentTextColor];
 
     self.navigationItem.leftBarButtonItems = @[barButton];
@@ -73,15 +73,15 @@
     topSeparatorView.backgroundColor = [YMAUIConstants separatorColor];
     [self.errorText addSubview:topSeparatorView];
 
-    NSString *errorText = YMALocalizedString(error.domain, nil);
-    errorText = [errorText isEqualToString:error.domain] ? YMALocalizedString(@"unknownError", nil) : errorText;
+    NSString *errorText = NSLocalizedString(error.domain, nil);
+    errorText = [errorText isEqualToString:error.domain] ? NSLocalizedString(@"unknownError", nil) : errorText;
     self.errorText.text = errorText;
     [self.scrollView addSubview:self.errorText];
 
     if (!selector || !target)
         return;
 
-    [self.errorButton setTitle:YMALocalizedString(@"BTRepeat", nil) forState:UIControlStateNormal];
+    [self.errorButton setTitle:NSLocalizedString(@"BTRepeat", nil) forState:UIControlStateNormal];
     [self.errorButton setTitleColor:[YMAUIConstants accentTextColor] forState:UIControlStateNormal];
     [self.errorButton setTitleColor:[YMAUIConstants commentColor] forState:UIControlStateDisabled];
     self.errorButton.titleLabel.font = [YMAUIConstants buttonFont];

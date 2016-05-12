@@ -5,9 +5,10 @@
 
 #import "YMAPaymentRequest.h"
 #import "YMAHostsProvider.h"
+#import "YMAConstants.h"
 
 static NSString *const kUrlPayment = @"api/request-payment";
-static NSString *const kParameterPatternId = @"pattern_id";
+
 
 @interface YMAPaymentRequest ()
 
@@ -50,7 +51,7 @@ static NSString *const kParameterPatternId = @"pattern_id";
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:self.paymentParams];
     if (self.patternId != nil) {
-        dictionary[kParameterPatternId] = self.patternId;
+        dictionary[YMAPaymentParameterPatternId] = self.patternId;
     }
     return dictionary;
 }

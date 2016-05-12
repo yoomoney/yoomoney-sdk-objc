@@ -209,37 +209,54 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
                  error:(NSError *)error
             completion:(YMAConnectionHandler)block
 {
-    if (error != nil) {
-        block(urlRequest, urlResponse, responseData, error);
-        return;
-    }
-#ifdef DEBUG
-    NSLog(@"--------------------- Response data: %@", [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
-#endif
     NSInteger statusCode = ((NSHTTPURLResponse *)urlResponse).statusCode;
-
-
-    switch (statusCode) {
-        case YMAStatusCodeOkHTTP:
-            block(urlRequest, urlResponse, responseData, nil);
-            break;
-        case YMAStatusCodeInsufficientScopeHTTP:
-        case YMAStatusCodeInvalidTokenHTTP: {
-            NSError *oAuthError = [NSError errorWithDomain:YMAErrorDomainOAuth
-                                                      code:statusCode
-                                                  userInfo:@{ YMAErrorKeyRequest : urlRequest, YMAErrorKeyResponse : urlResponse }];
-
-            block(urlRequest, urlResponse, responseData, oAuthError);
+    
+#if defined(DEBUG) || defined(ADHOC)
+    NSMutableString *debugString = [NSMutableString stringWithFormat:@"Response URL: %@\nStatus code:%ld\nData: %@",
+                                    urlRequest.URL.absoluteString,
+                                    (long)statusCode,
+                                    [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]];
+    
+    if (error != nil) {
+        [debugString appendFormat:@"\nError:%@", error.localizedDescription];
+    }
+    NSLog(@"%@", debugString);
+#endif
+    
+    NSError *responseError = nil;
+    if (error != nil) {
+        responseError = error;
+    }
+    else {
+        switch (statusCode) {
+            case YMAStatusCodeOkHTTP:
+            case YMAStatusCodeMultipleChoicesHTTP:
+            case YMAStatusCodeMovedPermanentlyHTTP:
+            case YMAStatusCodeNotModifiedHTTP:
+                responseError = nil;
+                break;
+                
+            case YMAStatusCodeInsufficientScopeHTTP:
+            case YMAStatusCodeInvalidTokenHTTP: {
+                responseError = [NSError errorWithDomain:YMAErrorDomainOAuth
+                                                    code:statusCode
+                                                userInfo:@{ YMAErrorKeyRequest : urlRequest, YMAErrorKeyResponse : urlResponse }];
+                
+            }
+                break;
+                
+            default: {
+                responseError = [NSError errorWithDomain:YMAErrorDomainUnknown
+                                                    code:statusCode
+                                                userInfo:@{ YMAErrorKeyRequest : urlRequest, YMAErrorKeyResponse : urlResponse }];
+                
+            }
+                break;
         }
-            break;
-        default: {
-            NSError *technicalError = [NSError errorWithDomain:YMAErrorDomainUnknown
-                                                          code:statusCode
-                                                      userInfo:@{ YMAErrorKeyRequest : urlRequest, YMAErrorKeyResponse : urlResponse }];
+    }
 
-            block(urlRequest, urlResponse, responseData, technicalError);
-        }
-            break;
+    if (block != NULL) {
+        block(urlRequest, urlResponse, responseData, responseError);
     }
 }
 

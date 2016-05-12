@@ -6,14 +6,7 @@
 #import <Foundation/Foundation.h>
 #import "YMAConnection.h"
 #import "YMAConstants.h"
-
-/// Completion of block is used to get the ID of an installed copy of the application.
-/// @param instanceId - ID of an installed copy of the application.
-typedef void (^YMAIdHandler)(NSString *instanceId, NSError *error);
-
-/// Completion block used by several methods of YMAExternalPaymentSession.
-/// @param error - Error information or nil.
-typedef void (^YMAHandler)(NSError *error);
+#import "YMAHandlers.h"
 
 // Header constant = "User-Agent".
 extern NSString *const YMAHeaderUserAgent;
@@ -27,10 +20,16 @@ extern NSString *const YMAValueUserAgentDefault;
 /// Values for YMAConnectHTTPStatusCodes
 /// HTTP status codes
 typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
-    YMAStatusCodeOkHTTP = 200,
-    YMAStatusCodeInvalidRequestHTTP = 400,
-    YMAStatusCodeInvalidTokenHTTP = 401,
-    YMAStatusCodeInsufficientScopeHTTP = 403,
+    YMAStatusCodeUnkwownHTTP             = 0,
+    YMAStatusCodeOkHTTP                  = 200,
+    YMAStatusCodeAcceptedHTTP            = 202,
+    YMAStatusCodeMultipleChoicesHTTP     = 300,
+    YMAStatusCodeMovedPermanentlyHTTP    = 301,
+    YMAStatusCodeNotModifiedHTTP         = 304,
+    YMAStatusCodeInvalidRequestHTTP      = 400,
+    YMAStatusCodeInvalidTokenHTTP        = 401,
+    YMAStatusCodeInsufficientScopeHTTP   = 403,
+    YMAStatusCodeFileNotFoundHTTP        = 404,
     YMAStatusCodeInternalServerErrorHTTP = 500
 };
 

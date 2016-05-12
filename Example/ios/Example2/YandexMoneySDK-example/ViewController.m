@@ -11,8 +11,8 @@
 
 // You must register your application and receive unique "client_id".
 // More information: http://api.yandex.com/money/doc/dg/tasks/register-client.xml
-static NSString *const kClientId = @"YOU_CLIENT_ID";
-#error You must paste your unique client_id.
+static NSString *const kClientId = @"CLIENT_ID";
+#error You should paste your unique client_id.
 
 @interface ViewController ()
 
@@ -49,7 +49,6 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
     UIView *bgPhoneView = [[UIView alloc] initWithFrame:CGRectMake(0, 84, self.view.frame.size.width, 44)];
     bgPhoneView.backgroundColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
     [self.view addSubview:bgPhoneView];
-    [bgPhoneView release];
     
     self.phoneNumberTextField.placeholder = @"7##########";
     [self.view addSubview:self.phoneNumberTextField];
@@ -60,31 +59,21 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
     UIView *bgAmountView = [[UIView alloc] initWithFrame:CGRectMake(0, 184, self.view.frame.size.width, 44)];
     bgAmountView.backgroundColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
     [self.view addSubview:bgAmountView];
-    [bgAmountView release];
     
     self.amountTextField.placeholder = @"0 rub.";
     [self.view addSubview:self.amountTextField];
 }
 
-- (void)dealloc {
-    [_doPaymentButton release];
-    [_phoneNumberLabel release];
-    [_phoneNumberTextField release];
-    [_amountLabel release];
-    [_amountTextField release];
-    
-    [super dealloc];
-}
 
 - (void)doTestPayment {
     NSDictionary *paymentParams = @{@"amount" : self.amountTextField.text, @"phone-number" : self.phoneNumberTextField.text};
     
     //Starting payment process
-    YMACpsController *cpsController = [[YMACpsController alloc] initWithClientId:kClientId patternId:@"phone-topup" paymentParameters:paymentParams];
+    YMACpsController *cpsController = [[YMACpsController alloc] initWithClientId:kClientId
+                                                                       patternId:@"phone-topup"
+                                                               paymentParameters:paymentParams];
     
     [self presentViewController:cpsController animated:YES completion:NULL];
-    
-    [cpsController release];
 }
 
 #pragma mark -
@@ -118,6 +107,7 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
         
         _phoneNumberTextField = [[UITextField alloc] initWithFrame:textFieldRect];
         _phoneNumberTextField.backgroundColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
+        _phoneNumberTextField.keyboardType = UIKeyboardTypePhonePad;
     }
     
     return _phoneNumberTextField;
@@ -139,6 +129,7 @@ static NSString *const kClientId = @"YOU_CLIENT_ID";
         
         _amountTextField = [[UITextField alloc] initWithFrame:textFieldRect];
         _amountTextField.backgroundColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
+        _amountTextField.keyboardType = UIKeyboardTypeDecimalPad;
     }
     
     return _amountTextField;
