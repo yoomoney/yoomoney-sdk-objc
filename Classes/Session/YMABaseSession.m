@@ -26,7 +26,7 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
 
 @property (nonatomic, strong) NSURLSession *urlSession;
 
-@property (nonatomic, strong) NSMutableDictionary *taskDelegatesByIdentifier;
+@property (nonatomic, strong) NSMutableDictionary<NSNumber *, YMAConnection *> *taskDelegatesByIdentifier;
 @property (nonatomic, strong) NSLock *taskDelegateLock;
 
 @end
@@ -40,12 +40,12 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
     self = [super init];
 
     if (self != nil) {
-        _requestQueue      = [[NSOperationQueue alloc] init];
-        _responseQueue     = [[NSOperationQueue alloc] init];
-        _userAgent         = YMAValueUserAgentDefault;
-        _language          = kValueAcceptLanguageDefault;
-        _taskDelegatesByIdentifier = [[NSMutableDictionary alloc] init];
+        _requestQueue     = [[NSOperationQueue alloc] init];
+        _responseQueue    = [[NSOperationQueue alloc] init];
+        _userAgent        = YMAValueUserAgentDefault;
+        _language         = kValueAcceptLanguageDefault;
         _taskDelegateLock = [[NSLock alloc] init];
+        _taskDelegatesByIdentifier = [[NSMutableDictionary alloc] init];
     }
 
     return self;
