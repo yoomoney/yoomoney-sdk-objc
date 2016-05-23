@@ -94,11 +94,7 @@ static NSString *const kHeaderContentLength = @"Content-Length";
 
 + (NSString *)addPercentEscapesForString:(NSString *)string
 {
-    return (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
-                                                                                 (__bridge CFStringRef)string,
-                                                                                 NULL,
-                                                                                 (CFStringRef)@";/?:@&=+$,",
-                                                                                 kCFStringEncodingUTF8));
+    return [string stringByAddingPercentEncodingWithAllowedCharacters:nil];
 }
 
 - (NSURLSessionDataTask *)dataTaskWithQueue:(NSOperationQueue *)queue
