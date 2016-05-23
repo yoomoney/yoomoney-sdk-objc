@@ -162,6 +162,31 @@ static NSString *const kKeyHistoryOperationTypeIncomingTransferProtected = @"inc
     return YMAHistoryOperationTypeUnknown;
 }
 
++ (NSString *)historyOperationTypeStringByType:(YMAHistoryOperationType)type
+{
+    NSString *result = @"";
+    switch (type) {
+        case YMAHistoryOperationTypeUnknown:
+            break;
+        case YMAHistoryOperationTypePaymentShop:
+            result = kKeyHistoryOperationTypePaymentShop;
+            break;
+        case YMAHistoryOperationTypeOutgoingTransfer:
+            result = kKeyHistoryOperationTypeOutgoingTransfer;
+            break;
+        case YMAHistoryOperationTypeDeposition:
+            result = kKeyHistoryOperationTypeDeposition;
+            break;
+        case YMAHistoryOperationTypeIncomingTransfer:
+            result = kKeyHistoryOperationTypeIncomingTransfer;
+            break;
+        case YMAHistoryOperationTypeIncomingTransferProtected:
+            result = kKeyHistoryOperationTypeIncomingTransferProtected;
+            break;
+    }
+    return result;
+}
+
 - (NSComparisonResult)compare:(YMAHistoryOperationModel *)otherObject
 {
     return -[self.datetime compare:otherObject.datetime];

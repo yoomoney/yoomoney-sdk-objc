@@ -41,17 +41,17 @@ static NSString *const kUrlOperationDetails = @"api/operation-details";
 
 + (instancetype)operationDetailsWithRepeatInfoByOperationId:(NSString *)operationId
 {
-    return [[YMAOperationDetailsRequest alloc] initWithOperationId:operationId favouriteId:nil requestRepeatInfo:YES];
+    return [[self alloc] initWithOperationId:operationId favouriteId:nil requestRepeatInfo:YES];
 }
 
 + (instancetype)operationDetailsWithOperationId:(NSString *)operationId
 {
-    return [[YMAOperationDetailsRequest alloc] initWithOperationId:operationId favouriteId:nil requestRepeatInfo:NO];
+    return [[self alloc] initWithOperationId:operationId favouriteId:nil requestRepeatInfo:NO];
 }
 
 + (instancetype)operationDetailsWithFavouriteId:(NSString *)favouriteId
 {
-    return [[YMAOperationDetailsRequest alloc] initWithOperationId:nil favouriteId:favouriteId requestRepeatInfo:YES];
+    return [[self alloc] initWithOperationId:nil favouriteId:favouriteId requestRepeatInfo:YES];
 }
 
 #pragma mark - Overridden methods

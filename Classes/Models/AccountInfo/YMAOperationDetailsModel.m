@@ -80,22 +80,22 @@ static NSString *const kKeyRecipientTypeEmail = @"email";
                             paymentParameters:(NSDictionary *)paymentParameters
                                  digitalGoods:(YMADigitalGoodsModel *)digitalGoods
 {
-    return [[YMAOperationDetailsModel alloc] initWithOperation:operation
-                                                     amountDue:amountDue
-                                                           fee:fee
-                                                        sender:sender
-                                                     recipient:recipient
-                                                 recipientType:recipientType
-                                                       message:message
-                                                       comment:comment
-                                                       codepro:codePro
-                                                protectionCode:protectionCode
-                                                       expires:expires
-                                                answerDatetime:answerDatetime
-                                                       details:details
-                                                    repeatable:repeatable
-                                             paymentParameters:paymentParameters
-                                                  digitalGoods:digitalGoods];
+    return [[self alloc] initWithOperation:operation
+                                 amountDue:amountDue
+                                       fee:fee
+                                    sender:sender
+                                 recipient:recipient
+                             recipientType:recipientType
+                                   message:message
+                                   comment:comment
+                                   codepro:codePro
+                            protectionCode:protectionCode
+                                   expires:expires
+                            answerDatetime:answerDatetime
+                                   details:details
+                                repeatable:repeatable
+                         paymentParameters:paymentParameters
+                              digitalGoods:digitalGoods];
 }
 
 #pragma mark - Public methods
