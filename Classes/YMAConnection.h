@@ -11,7 +11,7 @@ typedef void
 (^YMAConnectionHandler)(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error);
 typedef NSURLRequest * (^YMAConnectionRedirectHandler)(NSURLRequest *request, NSURLResponse *redirectResponse);
 
-@interface YMAConnection : NSObject
+@interface YMAConnection : NSObject <NSURLSessionTaskDelegate, NSURLSessionDataDelegate>
 
 + (instancetype)connectionForPostRequestWithUrl:(NSURL *)url
                                  postParameters:(NSDictionary *)postParams;
@@ -24,12 +24,15 @@ typedef NSURLRequest * (^YMAConnectionRedirectHandler)(NSURLRequest *request, NS
 
 + (NSString *)addPercentEscapesForString:(NSString *)string;
 
-- (void)sendAsynchronousWithQueue:(NSOperationQueue *)queue
-                       completion:(YMAConnectionHandler)handler;
 
-- (void)sendAsynchronousWithQueue:(NSOperationQueue *)queue
-                  redirectHandler:(YMAConnectionRedirectHandler)redirectHandler
-                       completion:(YMAConnectionHandler)completionHandler;
+- (NSURLSessionDataTask *)dataTaskWithQueue:(NSOperationQueue *)queue
+                                    session:(NSURLSession *)session
+                                 completion:(YMAConnectionHandler)completionHandler;
+
+- (NSURLSessionDataTask *)dataTaskWithQueue:(NSOperationQueue *)queue
+                                    session:(NSURLSession *)session
+                            redirectHandler:(YMAConnectionRedirectHandler)redirectHandler
+                                 completion:(YMAConnectionHandler)completionHandler;
 
 - (void)addValue:(NSString *)value forHeader:(NSString *)header;
 
