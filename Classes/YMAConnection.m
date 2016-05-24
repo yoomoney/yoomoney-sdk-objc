@@ -94,7 +94,7 @@ static NSString *const kHeaderContentLength = @"Content-Length";
 
 + (NSString *)addPercentEscapesForString:(NSString *)string
 {
-    return [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    return [string stringByAddingPercentEncodingWithAllowedCharacters:[[NSCharacterSet alloc] init]];
 }
 
 - (NSURLSessionDataTask *)dataTaskWithQueue:(NSOperationQueue *)queue
