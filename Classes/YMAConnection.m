@@ -8,7 +8,7 @@
 #import "YMAConnection.h"
 #import <Foundation/NSObjCRuntime.h>
 
-#ifndef NSFoundationVersionNumber_iOS_8_0
+#ifndef NSFoundationVersionNumber_iOS_8_4
 #define iOS_VersionNumber_8_4 1144.17
 #else
 #define iOS_VersionNumber_8_4 NSFoundationVersionNumber_iOS_8_4
