@@ -101,14 +101,17 @@ static NSString *const kHeaderContentLength = @"Content-Length";
 
 + (NSString *)addPercentEscapesForString:(NSString *)string
 {
-    if (NSFoundationVersionNumber > iOS_VersionNumber_8_4) {
-        return [string stringByAddingPercentEncodingWithAllowedCharacters:[[NSCharacterSet alloc] init]];
-    }
+    #if !TARGET_OS_WATCH
+    if (NSFoundationVersionNumber <= iOS_VersionNumber_8_4) {
     return (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
                                                                                  (__bridge CFStringRef)string,
                                                                                  NULL,
                                                                                  (CFStringRef)@";/?:@&=+$,",
                                                                                  kCFStringEncodingUTF8));
+    }
+    #endif
+    return [string stringByAddingPercentEncodingWithAllowedCharacters:[[NSCharacterSet alloc] init]];
+    }
 }
 
 - (NSURLSessionDataTask *)dataTaskWithQueue:(NSOperationQueue *)queue
