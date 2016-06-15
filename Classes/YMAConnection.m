@@ -6,6 +6,13 @@
 //
 
 #import "YMAConnection.h"
+#import <Foundation/NSObjCRuntime.h>
+
+#ifndef NSFoundationVersionNumber_iOS_8_0
+#define iOS_VersionNumber_8_4 1144.17
+#else
+#define iOS_VersionNumber_8_4 NSFoundationVersionNumber_iOS_8_4
+#endif
 
 static NSString *const kRequestMethodPost = @"POST";
 static NSString *const kRequestMethodGet = @"GET";
@@ -94,7 +101,14 @@ static NSString *const kHeaderContentLength = @"Content-Length";
 
 + (NSString *)addPercentEscapesForString:(NSString *)string
 {
-    return [string stringByAddingPercentEncodingWithAllowedCharacters:[[NSCharacterSet alloc] init]];
+    if (NSFoundationVersionNumber > iOS_VersionNumber_8_4) {
+        return [string stringByAddingPercentEncodingWithAllowedCharacters:[[NSCharacterSet alloc] init]];
+    }
+    return (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
+                                                                                 (__bridge CFStringRef)string,
+                                                                                 NULL,
+                                                                                 (CFStringRef)@";/?:@&=+$,",
+                                                                                 kCFStringEncodingUTF8));
 }
 
 - (NSURLSessionDataTask *)dataTaskWithQueue:(NSOperationQueue *)queue
