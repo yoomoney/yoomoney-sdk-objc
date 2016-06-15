@@ -111,7 +111,6 @@ static NSString *const kHeaderContentLength = @"Content-Length";
     }
     #endif
     return [string stringByAddingPercentEncodingWithAllowedCharacters:[[NSCharacterSet alloc] init]];
-    }
 }
 
 - (NSURLSessionDataTask *)dataTaskWithQueue:(NSOperationQueue *)queue
