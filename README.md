@@ -295,16 +295,16 @@ YMABaseRequest *processExternalPaymentRequest = [YMAProcessExternalPaymentReques
 
 ```
 
-### Integration for eshop
+### Eshop integration
 
-Every eshop has specific payment parameters. Please contact us at this email for details: yamoney_shop@yamoney.ru [Contacts][Kassa_Contacts]
+Every eshop has specific payment parameters. Please feel free to contact us for any details: yamoney_shop@yamoney.ru [Contacts][Kassa_Contacts]
 
 
 ## Links
 
 * Yandex.Money API page: [En][EN_API_Main], [Ru][RU_API_Main]
 * [example project](https://github.com/yandex-money/yandex-money-sdk-objc/tree/master/Example)
-* [Contacts for details about integration for eshop][Kassa_Contacts]
+* [Contacts for eshop integration details][Kassa_Contacts]
 
 ## License
 
