@@ -295,10 +295,16 @@ YMABaseRequest *processExternalPaymentRequest = [YMAProcessExternalPaymentReques
 
 ```
 
+### Eshop integration
+
+Every eshop has specific payment parameters. Please feel free to contact us for any details: yamoney_shop@yamoney.ru [Contacts][Kassa_Contacts]
+
+
 ## Links
 
 * Yandex.Money API page: [En][EN_API_Main], [Ru][RU_API_Main]
 * [example project](https://github.com/yandex-money/yandex-money-sdk-objc/tree/master/Example)
+* [Contacts for eshop integration details][Kassa_Contacts]
 
 ## License
 
@@ -341,3 +347,5 @@ Objective-c Yandex.Money SDK is available under the MIT license. See the LICENSE
 
 [EN_API_Process_external_payment]:http://api.yandex.com/money/doc/dg/reference/process-external-payment.xml
 [RU_API_Process_external_payment]:http://api.yandex.ru/money/doc/dg/reference/process-external-payment.xml
+
+[Kassa_Contacts]:https://kassa.yandex.ru/contacts
