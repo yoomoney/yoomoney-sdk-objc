@@ -7,6 +7,7 @@
 #import "YMAConstants.h"
 #import "YMAHistoryOperationsResponse.h"
 #import "YMAProcessPaymentResponse.h"
+#import "YMABaseResponse+Protected.h"
 
 static NSString *const kParameterError = @"error";
 
@@ -43,9 +44,6 @@ static NSString *const kParameterDigitalGoods = @"digital_goods";
         return NO;
     }
 
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"];
-
     YMAHistoryOperationModel *historyOperation = [YMAHistoryOperationsResponse historyOperationByModel:responseModel];
 
     NSString *amountDue = [responseModel[kParameterAmountDue] stringValue];
@@ -62,10 +60,10 @@ static NSString *const kParameterDigitalGoods = @"digital_goods";
     NSString *protectionCode = responseModel[kParameterProtectionCode];
 
     NSString *expiresString = responseModel[kParameterExpires];
-    NSDate *expires = [formatter dateFromString:expiresString];
+    NSDate *expires = [[self class] dateFromIsoTimeStamp:expiresString];
 
     NSString *answerDatetimeString = responseModel[kParameterAnswerDatetime];
-    NSDate *answerDatetime = [formatter dateFromString:answerDatetimeString];
+    NSDate *answerDatetime = [[self class] dateFromIsoTimeStamp:answerDatetimeString];
 
     NSString *details = responseModel[kParameterDetails];
     BOOL repeatable = [responseModel[kParameterRepeatable] boolValue];

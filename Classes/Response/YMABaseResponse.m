@@ -80,4 +80,31 @@
     @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:reason userInfo:nil];
 }
 
+
+#pragma mark - Protected methods
+
++ (NSDate *)dateFromIsoTimeStamp:(NSString *)timeStamp
+{
+    NSDate *date = nil;
+
+    static NSDateFormatter *dateFormatter = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"Europe/Moscow"];
+    });
+
+    if (timeStamp != nil) {
+        for (NSString *format in @[@"yyyy-MM-dd'T'HH:mm:ssZ",
+                                   @"yyyy-MM-dd'T'HH:mm:ss.SZ"]) {
+            dateFormatter.dateFormat = format;
+            date = [dateFormatter dateFromString:timeStamp];
+            if (date != nil) {
+                break;
+            }
+        }
+    }
+    return date;
+}
+
 @end
