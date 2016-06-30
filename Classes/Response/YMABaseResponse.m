@@ -91,7 +91,6 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"Europe/Moscow"];
     });
 
     if (timeStamp != nil) {
