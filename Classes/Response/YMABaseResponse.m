@@ -87,16 +87,20 @@
 {
     NSDate *date = nil;
 
-    static NSDateFormatter *dateFormatter = nil;
+    static NSMutableArray<NSDateFormatter *> *dateFormatters = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatters = [NSMutableArray array];
+        for (NSString *format in @[@"yyyy-MM-dd'T'HH:mm:ssZ",
+                                   @"yyyy-MM-dd'T'HH:mm:ss.SZ"]) {
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            formatter.dateFormat = format;
+            [dateFormatters addObject:formatter];
+        }
     });
 
     if (timeStamp != nil) {
-        for (NSString *format in @[@"yyyy-MM-dd'T'HH:mm:ssZ",
-                                   @"yyyy-MM-dd'T'HH:mm:ss.SZ"]) {
-            dateFormatter.dateFormat = format;
+        for (NSDateFormatter *dateFormatter in dateFormatters) {
             date = [dateFormatter dateFromString:timeStamp];
             if (date != nil) {
                 break;
