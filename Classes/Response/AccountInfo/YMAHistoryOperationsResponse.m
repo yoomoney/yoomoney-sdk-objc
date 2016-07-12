@@ -5,6 +5,7 @@
 
 #import "YMAHistoryOperationsResponse.h"
 #import "YMAConstants.h"
+#import "YMABaseResponse+Protected.h"
 
 static NSString *const kParameterError = @"error";
 static NSString *const kParameterNextRecord = @"next_record";
@@ -30,11 +31,7 @@ static NSString *const kParameterOperationType = @"type";
     NSString *statusString = historyOperationModel[kParameterOperationStatus];
     YMAHistoryOperationStatus status = [YMAHistoryOperationModel historyOperationStatusByString:statusString];
 
-    NSString *dateTimeString = historyOperationModel[kParameterOperationDatetime];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
-    [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/Moscow"]];
-    NSDate *dateTime = [formatter dateFromString:dateTimeString];
+    NSDate *dateTime = [self dateFromIsoTimeStamp:historyOperationModel[kParameterOperationDatetime]];
 
     NSString *title = historyOperationModel[kParameterOperationTitle];
     NSString *patternId = historyOperationModel[YMAPaymentParameterPatternId];
