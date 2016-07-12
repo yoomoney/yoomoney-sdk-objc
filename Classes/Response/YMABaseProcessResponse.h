@@ -20,5 +20,6 @@
 @property (nonatomic, copy, readonly) NSString *accountUnblockUri;
 
 - (YMAResponseStatus)statusFromString:(NSString *)statusString;
+- (NSError *)errorWithApiErrorCode:(NSString *)errorCode;
 
 @end
