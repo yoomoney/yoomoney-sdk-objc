@@ -25,6 +25,9 @@ NSString *const YMAErrorKey         = @"YMAErrorKey";
 NSString *const YMAErrorKeyResponse = @"YMAErrorKeyResponse";
 NSString *const YMAErrorKeyRequest  = @"YMAErrorKeyRequest";
 
+NSString *const YMATechnicalErrorCode        = @"technical_error";
+NSString *const YMAIllegalParamRequestIdCode = @"illegal_param_request_id";
+
 NSString *const YMAParameterRedirectUri = @"redirect_uri";
 NSString *const YMAParameterScope       = @"scope";
 
