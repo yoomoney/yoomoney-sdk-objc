@@ -27,6 +27,11 @@ NSString *const YMAErrorKeyRequest  = @"YMAErrorKeyRequest";
 
 NSString *const YMATechnicalErrorCode        = @"technical_error";
 NSString *const YMAIllegalParamRequestIdCode = @"illegal_param_request_id";
+NSString *const YMAIllegalParamIdCode        = @"illegal_param_id";
+NSString *const YMAIllegalParams             = @"illegal_params";
+NSString *const YMAIllegalParamDeviceIdCode  = @"illegal_param_device_id";
+NSString *const YMAAlreadyExistsCode         = @"already_exists";
+NSString *const YMALimitExceededCode         = @"limit_exceeded";
 
 NSString *const YMAParameterRedirectUri = @"redirect_uri";
 NSString *const YMAParameterScope       = @"scope";
