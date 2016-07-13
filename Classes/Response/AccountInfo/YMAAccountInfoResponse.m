@@ -115,19 +115,21 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
 
 - (NSArray *)cardsFromResponse:(id)responseObject
 {
-    NSMutableArray *result = nil;
-    if (responseObject != nil) {
+    NSMutableArray *result = [NSMutableArray array];
+    if ([responseObject isKindOfClass:[NSArray class]]) {
         for (id card in responseObject) {
-            NSString *panFragment = card[kParameterCardsLinkedPanFragment];
-            NSString *cardTypeString = card[kParameterCardsLinkedType];
-            YMAPaymentCardType cardType = [YMAMoneySourceModel paymentCardTypeByString:cardTypeString];
-            [result addObject:[YMAMoneySourceModel moneySourceWithType:YMAMoneySourcePaymentCard
-                                                                   cardType:cardType
-                                                                panFragment:panFragment
-                                                           moneySourceToken:nil]];
+            if ([card isKindOfClass:[NSDictionary class]]) {
+                NSString *panFragment = card[kParameterCardsLinkedPanFragment];
+                NSString *cardTypeString = card[kParameterCardsLinkedType];
+                YMAPaymentCardType cardType = [YMAMoneySourceModel paymentCardTypeByString:cardTypeString];
+                [result addObject:[YMAMoneySourceModel moneySourceWithType:YMAMoneySourcePaymentCard
+                                                                  cardType:cardType
+                                                               panFragment:panFragment
+                                                          moneySourceToken:nil]];
+            }
         }
     }
-    return [result copy];
+    return result.count > 0 ? result : nil;
 }
 
 @end
