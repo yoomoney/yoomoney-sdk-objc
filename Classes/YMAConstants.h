@@ -65,24 +65,3 @@ extern NSString *const YMAParameterScope;
 
 // Header constant = "Content-Type".
 extern NSString *const YMAHeaderContentType;
-
-//API Error code - technical_error
-extern NSString *const YMATechnicalErrorCode;
-
-//API Error code - illegal_param_request_id
-extern NSString *const YMAIllegalParamRequestIdCode;
-
-//API Error code - illegal_param_id
-extern NSString *const YMAIllegalParamIdCode;
-
-//API Error code - illegal_params
-extern NSString *const YMAIllegalParams;
-
-//API Error code - illegal_param_device_id
-extern NSString *const YMAIllegalParamDeviceIdCode;
-
-//API Error code - already_exists
-extern NSString *const YMAAlreadyExistsCode;
-
-//API Error code - limit_exceeded
-extern NSString *const YMALimitExceededCode;
