@@ -20,11 +20,14 @@ NSString *const YMAHeaderUserAgent = @"User-Agent";
 NSString *const YMAMethodPost = @"POST";
 NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded;charset=UTF-8";
 
-@interface YMABaseSession ()
+@interface YMABaseSession () <NSURLSessionDelegate, NSURLSessionTaskDelegate>
 
 @property (nonatomic, strong) NSDictionary *defaultHeaders;
 
-@property (nonatomic, strong) NSMutableArray *activeConnections;
+@property (nonatomic, strong) NSURLSession *urlSession;
+
+@property (nonatomic, strong) NSMutableDictionary<NSNumber *, YMAConnection *> *taskDelegatesByIdentifier;
+@property (nonatomic, strong) NSLock *taskDelegateLock;
 
 @end
 
@@ -37,11 +40,12 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
     self = [super init];
 
     if (self != nil) {
-        _requestQueue      = [[NSOperationQueue alloc] init];
-        _responseQueue     = [[NSOperationQueue alloc] init];
-        _userAgent         = YMAValueUserAgentDefault;
-        _language          = kValueAcceptLanguageDefault;
-        _activeConnections = [[NSMutableArray alloc] init];
+        _requestQueue     = [[NSOperationQueue alloc] init];
+        _responseQueue    = [[NSOperationQueue alloc] init];
+        _userAgent        = YMAValueUserAgentDefault;
+        _language         = kValueAcceptLanguageDefault;
+        _taskDelegateLock = [[NSLock alloc] init];
+        _taskDelegatesByIdentifier = [[NSMutableDictionary alloc] init];
     }
 
     return self;
@@ -154,8 +158,15 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
 
 - (void)cancelActiveConnections
 {
-    [self.activeConnections makeObjectsPerformSelector:@selector(cancel)];
-    [self.activeConnections removeAllObjects];
+    [self.taskDelegateLock lock];
+    NSArray *connections = self.taskDelegatesByIdentifier.allValues;
+    [self.taskDelegatesByIdentifier removeAllObjects];
+    [connections enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj respondsToSelector:@selector(cancel)]) {
+            [obj cancel];
+        }
+    }];
+    [self.taskDelegateLock unlock];
 }
 
 
@@ -169,17 +180,16 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
 {
     BOOL result = [self addHeaders:customHeaders token:token forConnection:&connection];
     if (result) {
-        __weak __typeof(self) weakSelf       = self;
-        __weak YMAConnection *weakConnection = connection;
-        [connection sendAsynchronousWithQueue:self.requestQueue
-                              redirectHandler:redirectHandler
-                                   completion:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
-                                       if (block != NULL) {
-                                           block(request, response, responseData, error);
-                                       }
-                                       [weakSelf.activeConnections removeObject:weakConnection];
-                                   }];
-        [self.activeConnections addObject:connection];
+        NSURLSessionDataTask *dataTask = [connection dataTaskWithQueue:self.requestQueue
+                                                               session:self.urlSession
+                                                       redirectHandler:redirectHandler
+                                                            completion:^(NSURLRequest *request, NSURLResponse *response, NSData *responseData, NSError *error) {
+                                                                if (block != NULL) {
+                                                                    block(request, response, responseData, error);
+                                                                }
+                                                            }];
+        [self setConnection:connection forTask:dataTask];
+        [dataTask resume];
     }
     else if (block != NULL) {
         NSError *technicalError = [NSError errorWithDomain:YMAErrorDomainUnknown
@@ -209,42 +219,54 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
                  error:(NSError *)error
             completion:(YMAConnectionHandler)block
 {
-    if (error != nil) {
-        block(urlRequest, urlResponse, responseData, error);
-        return;
-    }
-#ifdef DEBUG
-    NSLog(@"--------------------- Response data: %@", [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
-#endif
     NSInteger statusCode = ((NSHTTPURLResponse *)urlResponse).statusCode;
-
-
-    switch (statusCode) {
-        case YMAStatusCodeOkHTTP:
-        case YMAStatusCodeMultipleChoicesHTTP:
-        case YMAStatusCodeMovedPermanentlyHTTP:
-        case YMAStatusCodeNotModifiedHTTP:
-            block(urlRequest, urlResponse, responseData, nil);
-            break;
-
-        case YMAStatusCodeInsufficientScopeHTTP:
-        case YMAStatusCodeInvalidTokenHTTP: {
-            NSError *oAuthError = [NSError errorWithDomain:YMAErrorDomainOAuth
-                                                      code:statusCode
-                                                  userInfo:@{ YMAErrorKeyRequest : urlRequest, YMAErrorKeyResponse : urlResponse }];
-
-            block(urlRequest, urlResponse, responseData, oAuthError);
+    
+#if defined(DEBUG) || defined(ADHOC)
+    NSMutableString *debugString = [NSMutableString stringWithFormat:@"Response URL: %@\nStatus code:%ld\nData: %@",
+                                    urlRequest.URL.absoluteString,
+                                    (long)statusCode,
+                                    [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]];
+    
+    if (error != nil) {
+        [debugString appendFormat:@"\nError:%@", error.localizedDescription];
+    }
+    NSLog(@"%@", debugString);
+#endif
+    
+    NSError *responseError = nil;
+    if (error != nil) {
+        responseError = error;
+    }
+    else {
+        switch (statusCode) {
+            case YMAStatusCodeOkHTTP:
+            case YMAStatusCodeMultipleChoicesHTTP:
+            case YMAStatusCodeMovedPermanentlyHTTP:
+            case YMAStatusCodeNotModifiedHTTP:
+                responseError = nil;
+                break;
+                
+            case YMAStatusCodeInsufficientScopeHTTP:
+            case YMAStatusCodeInvalidTokenHTTP: {
+                responseError = [NSError errorWithDomain:YMAErrorDomainOAuth
+                                                    code:statusCode
+                                                userInfo:@{ YMAErrorKeyRequest : urlRequest, YMAErrorKeyResponse : urlResponse }];
+                
+            }
+                break;
+                
+            default: {
+                responseError = [NSError errorWithDomain:YMAErrorDomainUnknown
+                                                    code:statusCode
+                                                userInfo:@{ YMAErrorKeyRequest : urlRequest, YMAErrorKeyResponse : urlResponse }];
+                
+            }
+                break;
         }
-            break;
-            
-        default: {
-            NSError *technicalError = [NSError errorWithDomain:YMAErrorDomainUnknown
-                                                          code:statusCode
-                                                      userInfo:@{ YMAErrorKeyRequest : urlRequest, YMAErrorKeyResponse : urlResponse }];
+    }
 
-            block(urlRequest, urlResponse, responseData, technicalError);
-        }
-            break;
+    if (block != NULL) {
+        block(urlRequest, urlResponse, responseData, responseError);
     }
 }
 
@@ -288,6 +310,81 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
     return nil;
 }
 
+- (void)setConnection:(YMAConnection *)connection
+              forTask:(NSURLSessionTask *)task
+{
+    NSParameterAssert(task);
+
+    [self.taskDelegateLock lock];
+    self.taskDelegatesByIdentifier[@(task.taskIdentifier)] = connection;
+    [self.taskDelegateLock unlock];
+}
+
+- (YMAConnection *)connectionForTask:(NSURLSessionTask *)task
+{
+    NSParameterAssert(task);
+
+    [self.taskDelegateLock lock];
+    YMAConnection *connection = self.taskDelegatesByIdentifier[@(task.taskIdentifier)];
+    [self.taskDelegateLock unlock];
+    return connection;
+}
+
+
+#pragma mark - NSURLSessionTaskDelegate
+
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
+willPerformHTTPRedirection:(NSHTTPURLResponse *)response
+        newRequest:(NSURLRequest *)request
+ completionHandler:(void (^)(NSURLRequest * __nullable))completionHandler
+{
+    YMAConnection *connection = [self connectionForTask:task];
+    if ([connection respondsToSelector:@selector(URLSession:task:willPerformHTTPRedirection:newRequest:completionHandler:)]) {
+        [connection URLSession:session
+                          task:task
+    willPerformHTTPRedirection:response
+                    newRequest:request
+             completionHandler:completionHandler];
+    } else if (completionHandler != NULL) {
+        completionHandler(request);
+    }
+}
+
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
+didCompleteWithError:(nullable NSError *)error
+{
+    YMAConnection *connection = [self connectionForTask:task];
+    if ([connection respondsToSelector:@selector(URLSession:task:didCompleteWithError:)]) {
+        [connection URLSession:session task:task didCompleteWithError:error];
+    }
+    [self setConnection:nil forTask:task];
+}
+
+
+#pragma mark - NSURLSessionDataDelegate
+
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
+didReceiveResponse:(NSURLResponse *)response
+ completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler
+{
+    YMAConnection *connection = [self connectionForTask:dataTask];
+    if ([connection respondsToSelector:@selector(URLSession:dataTask:didReceiveResponse:completionHandler:)]) {
+        [connection URLSession:session dataTask:dataTask didReceiveResponse:response completionHandler:completionHandler];
+    } else if (completionHandler != NULL) {
+        completionHandler(NSURLSessionResponseAllow);
+    }
+}
+
+- (void)URLSession:(NSURLSession *)session
+          dataTask:(NSURLSessionDataTask *)dataTask
+    didReceiveData:(NSData *)data
+{
+    YMAConnection *connection = [self connectionForTask:dataTask];
+    if ([connection respondsToSelector:@selector(URLSession:dataTask:didReceiveData:)]) {
+        [connection URLSession:session dataTask:dataTask didReceiveData:data];
+    }
+}
+
 
 #pragma mark - Getters and setters
 
@@ -297,8 +394,16 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
         _defaultHeaders =
             @{ YMAHeaderContentType : YMAValueContentTypeDefault, kHeaderAcceptEncoding : kValueAcceptEncoding };
     }
-
     return _defaultHeaders;
+}
+
+- (NSURLSession *)urlSession
+{
+    if (_urlSession == nil) {
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        _urlSession = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:self.requestQueue];
+    }
+    return _urlSession;
 }
 
 @end

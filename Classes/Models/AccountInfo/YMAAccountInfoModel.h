@@ -31,7 +31,8 @@ typedef NS_ENUM(NSInteger, YMAAccountType) {
                         balanceDetails:(YMABalanceDetailsModel *)balanceDetails
                            cardsLinked:(NSArray *)cardsLinked
                     servicesAdditional:(NSArray *)servicesAdditional
-                          yamoneyCards:(NSArray *)yamoneyCards;
+                          yamoneyCards:(NSArray *)yamoneyCards
+                          virtualCards:(NSArray *)virtualCards;
 
 + (YMAAccountStatus)accountStatusByString:(NSString *)accountStatusString;
 
@@ -47,5 +48,6 @@ typedef NS_ENUM(NSInteger, YMAAccountType) {
 @property (nonatomic, strong, readonly) NSArray *cardsLinked;
 @property (nonatomic, strong, readonly) NSArray *servicesAdditional;
 @property (nonatomic, strong, readonly) NSArray *yamoneyCards;
+@property (nonatomic, strong, readonly) NSArray *virtualCards;
 
 @end

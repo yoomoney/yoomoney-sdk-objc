@@ -147,6 +147,7 @@
 /* Begin PBXFileReference section */
 		2DE794A649279376C6AB9585 /* YMAOperationDetailsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAOperationDetailsModel.h; sourceTree = "<group>"; };
 		2DE79556322AA7E70F71D29B /* YMAOperationDetailsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAOperationDetailsModel.m; sourceTree = "<group>"; };
+		399A21CE1D24038500AA8F87 /* YMABaseResponse+Protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "YMABaseResponse+Protected.h"; path = "Classes/Response/YMABaseResponse+Protected.h"; sourceTree = SOURCE_ROOT; };
 		4399F2D6192EDCAC00CB1B49 /* YMAHistoryOperationsResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMAHistoryOperationsResponse.h; path = Classes/Response/AccountInfo/YMAHistoryOperationsResponse.h; sourceTree = SOURCE_ROOT; };
 		4399F2D7192EDCAC00CB1B49 /* YMAHistoryOperationsResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YMAHistoryOperationsResponse.m; path = Classes/Response/AccountInfo/YMAHistoryOperationsResponse.m; sourceTree = SOURCE_ROOT; };
 		4399F2DC192EDCD100CB1B49 /* YMAChangeAvatarRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YMAChangeAvatarRequest.h; path = Classes/Request/AccountInfo/YMAChangeAvatarRequest.h; sourceTree = SOURCE_ROOT; };
@@ -340,6 +341,7 @@
 				606E80061938D7340090354C /* YMABaseProcessResponse.m */,
 				608F758F192B912000F45D7F /* YMABaseResponse.h */,
 				608F7598192B916600F45D7F /* YMABaseResponse.m */,
+				399A21CE1D24038500AA8F87 /* YMABaseResponse+Protected.h */,
 			);
 			name = Response;
 			path = SDK/Response;

@@ -15,6 +15,8 @@ NSString *const YMAP2PPaymentParameterAmount    = @"amount";
 NSString *const YMAP2PPaymentParameterAmountDue = @"amount_due";
 NSString *const YMAP2PPaymentParameterLabel     = @"label";
 
+NSString *const YMAPaymentParameterPatternId    = @"pattern_id";
+
 NSString *const YMAErrorDomainYaMoneyAPI = @"yaMoneyError";
 NSString *const YMAErrorDomainUnknown    = @"technicalError";
 NSString *const YMAErrorDomainOAuth      = @"oAuthError";

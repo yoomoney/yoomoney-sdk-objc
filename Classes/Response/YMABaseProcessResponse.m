@@ -6,18 +6,19 @@
 #import "YMABaseProcessResponse.h"
 #import "YMAConstants.h"
 
-static NSString *const kKeyResponseStatusRefused = @"refused";
-static NSString *const kKeyResponseStatusInProgress = @"in_progress";
+static NSString *const kKeyResponseStatusRefused         = @"refused";
+static NSString *const kKeyResponseStatusInProgress      = @"in_progress";
 static NSString *const kKeyResponseStatusExtAuthRequired = @"ext_auth_required";
-static NSString *const kKeyResponseStatusHoldForPickup = @"hold_for_pickup";
-static NSString *const kKeyResponseStatusSuccess = @"success";
+static NSString *const kKeyResponseStatusHoldForPickup   = @"hold_for_pickup";
+static NSString *const kKeyResponseStatusSuccess         = @"success";
 
-static NSString *const kParameterStatus = @"status";
-static NSString *const kParameterError = @"error";
-static NSString *const kParameterNextRetry = @"next_retry";
+static NSString *const kParameterStatus            = @"status";
+static NSString *const kParameterError             = @"error";
+static NSString *const kParameterNextRetry         = @"next_retry";
 static NSString *const kParameterAccountUnblockUri = @"account_unblock_uri";
 
 @implementation YMABaseProcessResponse
+
 
 #pragma mark - Object Lifecycle
 
@@ -27,46 +28,78 @@ static NSString *const kParameterAccountUnblockUri = @"account_unblock_uri";
 
     if (self != nil) {
         _nextRetry = 0;
+        _status = YMAResponseStatusUnknown;
     }
 
     return self;
 }
 
+
 #pragma mark - Overridden methods
 
 - (BOOL)parseJSONModel:(id)responseModel headers:(NSDictionary *)headers error:(NSError * __autoreleasing *)error
 {
-    NSString *statusKey = responseModel[kParameterStatus];
-    NSString *accountUnblockUri = responseModel[kParameterAccountUnblockUri];
-    _accountUnblockUri = [accountUnblockUri copy];
+    if ([responseModel isKindOfClass:[NSDictionary class]]) {
+        NSString *statusKey = responseModel[kParameterStatus];
+        _status = [self statusFromString:statusKey];
+        NSString *accountUnblockUri = responseModel[kParameterAccountUnblockUri];
+        _accountUnblockUri = [accountUnblockUri copy];
 
-    if ([statusKey isEqualToString:kKeyResponseStatusRefused]) {
-        NSString *errorKey = responseModel[kParameterError];
-        _status = YMAResponseStatusRefused;
-
-        if (!error) return NO;
-
-        NSError *unknownError = [NSError errorWithDomain:YMAErrorDomainUnknown code:0 userInfo:@{ YMAErrorKeyResponse : self }];
-        *error = errorKey ? [NSError errorWithDomain:YMAErrorDomainYaMoneyAPI code:0 userInfo:@{ YMAErrorKey : errorKey, YMAErrorKeyResponse : self }] : unknownError;
-
-        return NO;
+        if (_status == YMAResponseStatusInProgress) {
+            NSString *nextRetryString = responseModel[kParameterNextRetry];
+            _nextRetry = (NSUInteger)[nextRetryString integerValue];
+        }
+        else if (_status == YMAResponseStatusRefused) {
+            NSString *errorCode = responseModel[kParameterError];
+            if (error != NULL) {
+                *error = [self errorWithApiErrorCode:errorCode];
+            }
+        }
     }
-
-    if ([statusKey isEqualToString:kKeyResponseStatusInProgress]) {
-        NSString *nextRetryString = responseModel[kParameterNextRetry];
-        _nextRetry = (NSUInteger)[nextRetryString integerValue];
-        _status = YMAResponseStatusInProgress;
-    }
-    else if ([statusKey isEqualToString:kKeyResponseStatusHoldForPickup])
-        _status = YMAResponseStatusHoldForPickup;
-    else if ([statusKey isEqualToString:kKeyResponseStatusExtAuthRequired])
-        _status = YMAResponseStatusExtAuthRequired;
-    else if ([statusKey isEqualToString:kKeyResponseStatusSuccess])
-        _status = YMAResponseStatusSuccess;
-    else
-        _status = YMAResponseStatusUnknown;
 
     return YES;
+}
+
+
+#pragma mark - Public methods
+
+- (YMAResponseStatus)statusFromString:(NSString *)statusString
+{
+    YMAResponseStatus status = YMAResponseStatusUnknown;
+
+    if ([statusString isEqualToString:kKeyResponseStatusSuccess]) {
+        status = YMAResponseStatusSuccess;
+    }
+    else if ([statusString isEqualToString:kKeyResponseStatusInProgress]) {
+        status = YMAResponseStatusInProgress;
+    }
+    else if ([statusString isEqualToString:kKeyResponseStatusRefused]) {
+        status = YMAResponseStatusRefused;
+    }
+    else if ([statusString isEqualToString:kKeyResponseStatusExtAuthRequired]) {
+        status = YMAResponseStatusExtAuthRequired;
+    }
+    else if ([statusString isEqualToString:kKeyResponseStatusHoldForPickup]) {
+        status = YMAResponseStatusHoldForPickup;
+    }
+
+    return status;
+}
+
+- (NSError *)errorWithApiErrorCode:(NSString *)errorCode
+{
+    NSError *error = nil;
+    if (errorCode != nil) {
+        error = [NSError errorWithDomain:YMAErrorDomainYaMoneyAPI
+                                     code:0
+                                 userInfo:@{YMAErrorKey : errorCode, YMAErrorKeyResponse : self}];
+    }
+    else  {
+        error = [NSError errorWithDomain:YMAErrorDomainUnknown
+                                     code:0
+                                 userInfo:@{YMAErrorKeyResponse : self}];
+    }
+    return error;
 }
 
 @end

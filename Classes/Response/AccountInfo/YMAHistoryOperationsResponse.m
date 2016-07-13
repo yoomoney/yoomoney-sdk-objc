@@ -5,6 +5,7 @@
 
 #import "YMAHistoryOperationsResponse.h"
 #import "YMAConstants.h"
+#import "YMABaseResponse+Protected.h"
 
 static NSString *const kParameterError = @"error";
 static NSString *const kParameterNextRecord = @"next_record";
@@ -14,7 +15,6 @@ static NSString *const kParameterOperationOperationId = @"operation_id";
 static NSString *const kParameterOperationStatus = @"status";
 static NSString *const kParameterOperationDatetime = @"datetime";
 static NSString *const kParameterOperationTitle = @"title";
-static NSString *const kParameterOperationPatternId = @"pattern_id";
 static NSString *const kParameterOperationDirection = @"direction";
 static NSString *const kParameterOperationAmount = @"amount";
 static NSString *const kParameterOperationLabel = @"label";
@@ -31,14 +31,10 @@ static NSString *const kParameterOperationType = @"type";
     NSString *statusString = historyOperationModel[kParameterOperationStatus];
     YMAHistoryOperationStatus status = [YMAHistoryOperationModel historyOperationStatusByString:statusString];
 
-    NSString *dateTimeString = historyOperationModel[kParameterOperationDatetime];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
-    [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/Moscow"]];
-    NSDate *dateTime = [formatter dateFromString:dateTimeString];
+    NSDate *dateTime = [self dateFromIsoTimeStamp:historyOperationModel[kParameterOperationDatetime]];
 
     NSString *title = historyOperationModel[kParameterOperationTitle];
-    NSString *patternId = historyOperationModel[kParameterOperationPatternId];
+    NSString *patternId = historyOperationModel[YMAPaymentParameterPatternId];
 
     NSString *directionString = historyOperationModel[kParameterOperationDirection];
     YMAHistoryOperationDirection
