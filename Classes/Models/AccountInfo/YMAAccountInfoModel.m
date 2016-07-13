@@ -26,6 +26,7 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
                     cardsLinked:(NSArray *)cardsLinked
              servicesAdditional:(NSArray *)servicesAdditional
                    yamoneyCards:(NSArray *)yamoneyCards
+                   virtualCards:(NSArray *)virtualCards
 {
     self = [super init];
 
@@ -40,6 +41,7 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
         _cardsLinked = cardsLinked;
         _servicesAdditional = servicesAdditional;
         _yamoneyCards = yamoneyCards;
+        _virtualCards = virtualCards;
     }
 
     return self;
@@ -55,6 +57,7 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
                            cardsLinked:(NSArray *)cardsLinked
                     servicesAdditional:(NSArray *)servicesAdditional
                           yamoneyCards:(NSArray *)yamoneyCards
+                          virtualCards:(NSArray *)virtualCards
 {
     return [[YMAAccountInfoModel alloc] initWithAccount:account
                                                 balance:balance
@@ -65,7 +68,8 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
                                          balanceDetails:balanceDetails
                                             cardsLinked:cardsLinked
                                      servicesAdditional:servicesAdditional
-                                           yamoneyCards:yamoneyCards];
+                                           yamoneyCards:yamoneyCards
+                                           virtualCards:virtualCards];
 }
 
 #pragma mark - Public methods

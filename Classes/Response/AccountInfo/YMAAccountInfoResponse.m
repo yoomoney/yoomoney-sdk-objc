@@ -29,6 +29,7 @@ static NSString *const kParameterBalanceHold = @"hold";
 
 static NSString *const kParameterYamoneyCards = @"ymoney_cards";
 static NSString *const kParameterCardsLinked = @"cards_linked";
+static NSString *const kParameterVirtualCards = @"virtual_cards";
 static NSString *const kParameterCardsLinkedPanFragment = @"pan_fragment";
 static NSString *const kParameterCardsLinkedType = @"type";
 
@@ -94,24 +95,8 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
                                                                     hold:hold];
     }
     
-    id cardsLinkedModel = responseModel[kParameterCardsLinked];
-    NSMutableArray *cardsLinked = nil;
-    
-    if (cardsLinkedModel != nil) {
-        cardsLinked = [NSMutableArray array];
-        
-        for (id card in cardsLinkedModel) {
-            NSString *panFragment = card[kParameterCardsLinkedPanFragment];
-            NSString *cardTypeString = card[kParameterCardsLinkedType];
-            YMAPaymentCardType cardType = [YMAMoneySourceModel paymentCardTypeByString:cardTypeString];
-            [cardsLinked addObject:[YMAMoneySourceModel moneySourceWithType:YMAMoneySourcePaymentCard
-                                                                   cardType:cardType
-                                                                panFragment:panFragment
-                                                           moneySourceToken:nil]];
-        }
-    }
-    
-
+    NSArray *cardsLinked = [self cardsFromResponse:responseModel[kParameterCardsLinked]];
+    NSArray *virtualCards = [self cardsFromResponse:responseModel[kParameterVirtualCards]];
     
     _accountInfo = [YMAAccountInfoModel accountInfoWithAccount:account
                                                        balance:balance
@@ -122,9 +107,27 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
                                                 balanceDetails:balanceDetails
                                                    cardsLinked:cardsLinked
                                             servicesAdditional:responseModel[kParameterServicesAdditional]
-                                                  yamoneyCards:responseModel[kParameterYamoneyCards]];
+                                                  yamoneyCards:responseModel[kParameterYamoneyCards]
+                                                  virtualCards:virtualCards];
     
     return YES;
+}
+
+- (NSArray *)cardsFromResponse:(id)responseObject
+{
+    NSMutableArray *result = nil;
+    if (responseObject != nil) {
+        for (id card in responseObject) {
+            NSString *panFragment = card[kParameterCardsLinkedPanFragment];
+            NSString *cardTypeString = card[kParameterCardsLinkedType];
+            YMAPaymentCardType cardType = [YMAMoneySourceModel paymentCardTypeByString:cardTypeString];
+            [result addObject:[YMAMoneySourceModel moneySourceWithType:YMAMoneySourcePaymentCard
+                                                                   cardType:cardType
+                                                                panFragment:panFragment
+                                                           moneySourceToken:nil]];
+        }
+    }
+    return [result copy];
 }
 
 @end
