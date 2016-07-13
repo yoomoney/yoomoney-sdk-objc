@@ -79,10 +79,10 @@ extern NSString *const YMAIllegalParamIdCode;
 extern NSString *const YMAIllegalParams;
 
 //API Error code - illegal_param_device_id
-NSString *const YMAIllegalParamDeviceIdCode;
+extern NSString *const YMAIllegalParamDeviceIdCode;
 
 //API Error code - already_exists
-NSString *const YMAAlreadyExistsCode;
+extern NSString *const YMAAlreadyExistsCode;
 
 //API Error code - limit_exceeded
-NSString *const YMALimitExceededCode;
+extern NSString *const YMALimitExceededCode;
