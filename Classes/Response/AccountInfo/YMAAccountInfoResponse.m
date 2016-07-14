@@ -96,7 +96,6 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
     }
     
     NSArray *cardsLinked = [self cardsFromResponse:responseModel[kParameterCardsLinked]];
-    NSArray *virtualCards = [self cardsFromResponse:responseModel[kParameterVirtualCards]];
     
     _accountInfo = [YMAAccountInfoModel accountInfoWithAccount:account
                                                        balance:balance
@@ -108,7 +107,7 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
                                                    cardsLinked:cardsLinked
                                             servicesAdditional:responseModel[kParameterServicesAdditional]
                                                   yamoneyCards:responseModel[kParameterYamoneyCards]
-                                                  virtualCards:virtualCards];
+                                                  virtualCards:responseModel[kParameterVirtualCards]];
     
     return YES;
 }
