@@ -6,6 +6,7 @@
 #import "YMAAccountInfoResponse.h"
 #import "YMAMoneySourceModel.h"
 #import "YMAConstants.h"
+#import "YMAYacardModel.h"
 
 static NSString *const kParameterError = @"error";
 
@@ -95,7 +96,13 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
                                                                     hold:hold];
     }
     
-    NSArray *cardsLinked = [self cardsFromResponse:responseModel[kParameterCardsLinked]];
+    NSArray *cardsLinked = [self linkedCardsFromResponse:responseModel[kParameterCardsLinked]];
+    NSArray *yamoneyCards = [self cardsFromFromResponse:responseModel[kParameterYamoneyCards]
+                                                   kind:YMACardKindPlastic
+                                               emission:YMACardEmissionYacard];
+    NSArray *virtualCards = [self cardsFromFromResponse:responseModel[kParameterVirtualCards]
+                                                   kind:YMACardKindVirtual
+                                               emission:YMACardEmissionYacard];
     
     _accountInfo = [YMAAccountInfoModel accountInfoWithAccount:account
                                                        balance:balance
@@ -106,13 +113,13 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
                                                 balanceDetails:balanceDetails
                                                    cardsLinked:cardsLinked
                                             servicesAdditional:responseModel[kParameterServicesAdditional]
-                                                  yamoneyCards:responseModel[kParameterYamoneyCards]
-                                                  virtualCards:responseModel[kParameterVirtualCards]];
+                                                  yamoneyCards:yamoneyCards
+                                                  virtualCards:virtualCards];
     
     return YES;
 }
 
-- (NSArray *)cardsFromResponse:(id)responseObject
+- (NSArray *)linkedCardsFromResponse:(id)responseObject
 {
     NSMutableArray *result = [NSMutableArray array];
     if ([responseObject isKindOfClass:[NSArray class]]) {
@@ -129,6 +136,25 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
         }
     }
     return result.count > 0 ? result : nil;
+}
+
+- (NSArray<YMACardModel *> *)cardsFromFromResponse:(id)responseObject
+                                              kind:(YMACardKind)kind
+                                          emission:(YMACardEmission)emission
+{
+    NSMutableArray *cards = [NSMutableArray array];
+    if ([responseObject isKindOfClass:[NSArray class]]) {
+        for (NSDictionary *dictionary in responseObject) {
+            if ([dictionary isKindOfClass:[NSDictionary class]]) {
+                YMACardModel *card = [YMACardModel cardByDictionary:dictionary kind:kind emission:emission];
+                if (card != nil) {
+                    [cards addObject:card];
+                }
+            }
+            
+        }
+    }
+    return cards.count > 0 ? [NSArray arrayWithArray:cards] : nil;
 }
 
 @end
