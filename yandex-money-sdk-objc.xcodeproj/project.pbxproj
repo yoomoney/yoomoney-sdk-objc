@@ -55,6 +55,10 @@
 		72B9537C1D3E6AF800F131BB /* YMACardModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 72B953791D3E6AF800F131BB /* YMACardModel.h */; };
 		72B9537D1D3E6AF800F131BB /* YMACardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B9537A1D3E6AF800F131BB /* YMACardModel.m */; };
 		72B9537E1D3E6AF800F131BB /* YMACardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B9537A1D3E6AF800F131BB /* YMACardModel.m */; };
+		72B953821D3E75BB00F131BB /* NSDictionary+YMATools.h in Headers */ = {isa = PBXBuildFile; fileRef = 72B953801D3E75BB00F131BB /* NSDictionary+YMATools.h */; };
+		72B953831D3E75BB00F131BB /* NSDictionary+YMATools.h in Headers */ = {isa = PBXBuildFile; fileRef = 72B953801D3E75BB00F131BB /* NSDictionary+YMATools.h */; };
+		72B953841D3E75BB00F131BB /* NSDictionary+YMATools.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B953811D3E75BB00F131BB /* NSDictionary+YMATools.m */; };
+		72B953851D3E75BB00F131BB /* NSDictionary+YMATools.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B953811D3E75BB00F131BB /* NSDictionary+YMATools.m */; };
 		82C74E3F1C187AC900CF09F1 /* YMAHandlers.h in Headers */ = {isa = PBXBuildFile; fileRef = 82C74E3E1C187AC900CF09F1 /* YMAHandlers.h */; };
 		8BFF20088AE959020E56BE00 /* YMAProcessExternalPaymentResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF225A804D6856B2C6572B /* YMAProcessExternalPaymentResponse.m */; };
 		8BFF205B91D768277A380345 /* YMAExternalPaymentRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF27D40E844ABDA08CD23C /* YMAExternalPaymentRequest.h */; };
@@ -195,6 +199,8 @@
 		60B6B4581965866E0042F682 /* YMABaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = YMABaseRequest.m; path = Classes/Request/YMABaseRequest.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		72B953791D3E6AF800F131BB /* YMACardModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMACardModel.h; sourceTree = "<group>"; };
 		72B9537A1D3E6AF800F131BB /* YMACardModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMACardModel.m; sourceTree = "<group>"; };
+		72B953801D3E75BB00F131BB /* NSDictionary+YMATools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+YMATools.h"; sourceTree = "<group>"; };
+		72B953811D3E75BB00F131BB /* NSDictionary+YMATools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+YMATools.m"; sourceTree = "<group>"; };
 		82C74E3E1C187AC900CF09F1 /* YMAHandlers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAHandlers.h; sourceTree = "<group>"; };
 		8BFF205EC8608008B2A3D5E4 /* YMAAccountInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAAccountInfoModel.h; sourceTree = "<group>"; };
 		8BFF2064E4C8C49AE00740BB /* YMAProcessExternalPaymentRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = YMAProcessExternalPaymentRequest.m; path = Classes/Request/PaymentProcess/ExternalPayment/YMAProcessExternalPaymentRequest.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -310,6 +316,7 @@
 		43C6B1FE18987F67001BA093 /* SDK */ = {
 			isa = PBXGroup;
 			children = (
+				72B9537F1D3E75BB00F131BB /* Categories */,
 				43C6B20A189881F5001BA093 /* Request */,
 				43C6B211189881F5001BA093 /* Response */,
 				8BFF2320FB13E2A1C4722E73 /* Models */,
@@ -373,6 +380,15 @@
 				72B9537A1D3E6AF800F131BB /* YMACardModel.m */,
 			);
 			path = Card;
+			sourceTree = "<group>";
+		};
+		72B9537F1D3E75BB00F131BB /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				72B953801D3E75BB00F131BB /* NSDictionary+YMATools.h */,
+				72B953811D3E75BB00F131BB /* NSDictionary+YMATools.m */,
+			);
+			path = Categories;
 			sourceTree = "<group>";
 		};
 		8BFF21554E206EEE95AF9123 /* AccountInfo */ = {
@@ -564,6 +580,7 @@
 				8BFF21E6FE6BED325824CB11 /* YMAMoneySourceModel.h in Headers */,
 				608F75B1192E582600F45D7F /* YMAProcessPaymentRequest.h in Headers */,
 				8BFF2F02C3E5BFDE49A4067E /* YMAWalletSourceGroupModel.h in Headers */,
+				72B953821D3E75BB00F131BB /* NSDictionary+YMATools.h in Headers */,
 				4399F2DA192EDCAC00CB1B49 /* YMAHistoryOperationsResponse.h in Headers */,
 				608F75A1192E57D100F45D7F /* YMAProcessPaymentResponse.h in Headers */,
 				8BFF2F093124E4C705E0BCF9 /* YMAPaymentInfoModel.h in Headers */,
@@ -608,6 +625,7 @@
 				8BFF26CB0804A80950772D7C /* YMAOperationDetailsRequest.h in Headers */,
 				8BFF25750A38972CF24BCD5D /* YMAOperationDetailsResponse.h in Headers */,
 				2DE7925D16032BD0AB5F8291 /* YMAOperationDetailsModel.h in Headers */,
+				72B953831D3E75BB00F131BB /* NSDictionary+YMATools.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -693,6 +711,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72B953841D3E75BB00F131BB /* NSDictionary+YMATools.m in Sources */,
 				4399F2E3192EDCD100CB1B49 /* YMAHistoryOperationsRequest.m in Sources */,
 				608F75C21934CB5600F45D7F /* YMAIncomingTransferRejectRequest.m in Sources */,
 				608F75251907BC2B00F45D7F /* YMAExternalPaymentSession.m in Sources */,
@@ -747,6 +766,7 @@
 				72B9537E1D3E6AF800F131BB /* YMACardModel.m in Sources */,
 				608F759A192B916600F45D7F /* YMABaseResponse.m in Sources */,
 				8BFF23564159228ED33BAAB9 /* YMAAPISession.m in Sources */,
+				72B953851D3E75BB00F131BB /* NSDictionary+YMATools.m in Sources */,
 				8BFF2E45A71319E84C1B608C /* YMAHostsProvider.m in Sources */,
 				8BFF22965BEA4A20BFFDA36A /* YMAMoneySourcesModel.m in Sources */,
 				8BFF23D548D765F4EC1D1290 /* YMAWalletSourceGroupModel.m in Sources */,
