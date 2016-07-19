@@ -51,6 +51,10 @@
 		608F75C21934CB5600F45D7F /* YMAIncomingTransferRejectRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 608F75BE1934CB5600F45D7F /* YMAIncomingTransferRejectRequest.m */; };
 		60B6B4591965866E0042F682 /* YMABaseRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 60B6B4571965866E0042F682 /* YMABaseRequest.h */; };
 		60B6B45A1965866E0042F682 /* YMABaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60B6B4581965866E0042F682 /* YMABaseRequest.m */; };
+		72B9537B1D3E6AF800F131BB /* YMACardModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 72B953791D3E6AF800F131BB /* YMACardModel.h */; };
+		72B9537C1D3E6AF800F131BB /* YMACardModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 72B953791D3E6AF800F131BB /* YMACardModel.h */; };
+		72B9537D1D3E6AF800F131BB /* YMACardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B9537A1D3E6AF800F131BB /* YMACardModel.m */; };
+		72B9537E1D3E6AF800F131BB /* YMACardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B9537A1D3E6AF800F131BB /* YMACardModel.m */; };
 		82C74E3F1C187AC900CF09F1 /* YMAHandlers.h in Headers */ = {isa = PBXBuildFile; fileRef = 82C74E3E1C187AC900CF09F1 /* YMAHandlers.h */; };
 		8BFF20088AE959020E56BE00 /* YMAProcessExternalPaymentResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFF225A804D6856B2C6572B /* YMAProcessExternalPaymentResponse.m */; };
 		8BFF205B91D768277A380345 /* YMAExternalPaymentRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFF27D40E844ABDA08CD23C /* YMAExternalPaymentRequest.h */; };
@@ -189,6 +193,8 @@
 		608F75BE1934CB5600F45D7F /* YMAIncomingTransferRejectRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = YMAIncomingTransferRejectRequest.m; path = Classes/Request/PaymentProcess/YMAIncomingTransferRejectRequest.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		60B6B4571965866E0042F682 /* YMABaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = YMABaseRequest.h; path = Classes/Request/YMABaseRequest.h; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		60B6B4581965866E0042F682 /* YMABaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = YMABaseRequest.m; path = Classes/Request/YMABaseRequest.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		72B953791D3E6AF800F131BB /* YMACardModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMACardModel.h; sourceTree = "<group>"; };
+		72B9537A1D3E6AF800F131BB /* YMACardModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMACardModel.m; sourceTree = "<group>"; };
 		82C74E3E1C187AC900CF09F1 /* YMAHandlers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAHandlers.h; sourceTree = "<group>"; };
 		8BFF205EC8608008B2A3D5E4 /* YMAAccountInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAAccountInfoModel.h; sourceTree = "<group>"; };
 		8BFF2064E4C8C49AE00740BB /* YMAProcessExternalPaymentRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = YMAProcessExternalPaymentRequest.m; path = Classes/Request/PaymentProcess/ExternalPayment/YMAProcessExternalPaymentRequest.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -360,6 +366,15 @@
 			path = Session;
 			sourceTree = "<group>";
 		};
+		72B953781D3E6AF800F131BB /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				72B953791D3E6AF800F131BB /* YMACardModel.h */,
+				72B9537A1D3E6AF800F131BB /* YMACardModel.m */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
 		8BFF21554E206EEE95AF9123 /* AccountInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -394,6 +409,7 @@
 		8BFF2320FB13E2A1C4722E73 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				72B953781D3E6AF800F131BB /* Card */,
 				8BFF2C3E154D6879D584CD28 /* PaymentProcess */,
 				8BFF21554E206EEE95AF9123 /* AccountInfo */,
 			);
@@ -523,6 +539,7 @@
 			files = (
 				608F75BF1934CB5600F45D7F /* YMAIncomingTransferAcceptRequest.h in Headers */,
 				608F75241907BC2B00F45D7F /* YMAExternalPaymentSession.h in Headers */,
+				72B9537B1D3E6AF800F131BB /* YMACardModel.h in Headers */,
 				608F7591192B912000F45D7F /* YMABaseResponse.h in Headers */,
 				608F751C1907BC2B00F45D7F /* YMAConnection.h in Headers */,
 				608F751E1907BC2B00F45D7F /* YMAConstants.h in Headers */,
@@ -576,6 +593,7 @@
 				8BFF2991EED15B604934A603 /* YMABaseSession.h in Headers */,
 				8BFF2F02A1CE7D4B3A93774A /* YMAAPISession.h in Headers */,
 				8BFF28E0C458F1C779BFD7F4 /* YMAHostsProvider.h in Headers */,
+				72B9537C1D3E6AF800F131BB /* YMACardModel.h in Headers */,
 				8BFF2D1637DBBD163931335B /* YMAMoneySourcesModel.h in Headers */,
 				8BFF24854977176B06F51E68 /* YMAWalletSourceGroupModel.h in Headers */,
 				8BFF284AC046C40FC69E084C /* YMAPaymentInfoModel.h in Headers */,
@@ -696,6 +714,7 @@
 				60B6B45A1965866E0042F682 /* YMABaseRequest.m in Sources */,
 				8BFF247D4DDE9F8AAC66D889 /* YMAAscModel.m in Sources */,
 				606E80081938D7340090354C /* YMABaseProcessResponse.m in Sources */,
+				72B9537D1D3E6AF800F131BB /* YMACardModel.m in Sources */,
 				608F75B0192E582600F45D7F /* YMAPaymentRequest.m in Sources */,
 				8BFF219F8C698239CD821CE4 /* YMAMoneySourceModel.m in Sources */,
 				8BFF224F639B8F8C8903D731 /* YMAMoneySourcesModel.m in Sources */,
@@ -725,6 +744,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BFF2EDDE39420B8098048E0 /* YMABaseSession.m in Sources */,
+				72B9537E1D3E6AF800F131BB /* YMACardModel.m in Sources */,
 				608F759A192B916600F45D7F /* YMABaseResponse.m in Sources */,
 				8BFF23564159228ED33BAAB9 /* YMAAPISession.m in Sources */,
 				8BFF2E45A71319E84C1B608C /* YMAHostsProvider.m in Sources */,

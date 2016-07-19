@@ -29,7 +29,7 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
                    virtualCards:(NSArray *)virtualCards
 {
     self = [super init];
-
+    
     if (self != nil) {
         _account = [account copy];
         _balance = [balance copy];
@@ -43,7 +43,7 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
         _yamoneyCards = yamoneyCards;
         _virtualCards = virtualCards;
     }
-
+    
     return self;
 }
 
@@ -82,7 +82,7 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
         return YMAAccountStatusIdentified;
     else if ([accountStatusString isEqualToString:kKeyAccountStatusNamed])
         return YMAAccountStatusNamed;
-
+    
     return YMAAccountStatusUnknown;
 }
 
@@ -92,7 +92,7 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
         return YMAAccountTypePersonal;
     else if ([accountTypeString isEqualToString:kKeyAccountTypeProfessional])
         return YMAAccountTypeProfessional;
-
+    
     return YMAAccountTypeUnknown;
 }
 
