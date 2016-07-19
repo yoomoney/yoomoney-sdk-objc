@@ -6,7 +6,7 @@
 #import "YMAAccountInfoResponse.h"
 #import "YMAMoneySourceModel.h"
 #import "YMAConstants.h"
-#import "YMAYacardModel.h"
+#import "YMACardModel.h"
 
 static NSString *const kParameterError = @"error";
 
