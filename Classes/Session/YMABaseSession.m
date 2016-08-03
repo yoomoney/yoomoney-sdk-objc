@@ -358,7 +358,7 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
     } else {
         if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
             credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
-            if (credential) {
+            if (credential != nil) {
                 disposition = NSURLSessionAuthChallengeUseCredential;
             }
         }
@@ -414,7 +414,7 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
     } else {
         if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
             credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
-            if (credential) {
+            if (credential != nil) {
                 disposition = NSURLSessionAuthChallengeUseCredential;
             }
         }
