@@ -360,11 +360,7 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
             credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
             if (credential) {
                 disposition = NSURLSessionAuthChallengeUseCredential;
-            } else {
-                disposition = NSURLSessionAuthChallengePerformDefaultHandling;
             }
-        } else {
-            disposition = NSURLSessionAuthChallengePerformDefaultHandling;
         }
     }
 
@@ -413,22 +409,18 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
     NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;
     __block NSURLCredential *credential = nil;
 
-    if (self.taskDidReceiveAuthenticationChallengeHandler) {
+    if (self.taskDidReceiveAuthenticationChallengeHandler != NULL) {
         disposition = self.taskDidReceiveAuthenticationChallengeHandler(session, task, challenge, &credential);
     } else {
         if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
             credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
             if (credential) {
                 disposition = NSURLSessionAuthChallengeUseCredential;
-            } else {
-                disposition = NSURLSessionAuthChallengePerformDefaultHandling;
             }
-        } else {
-            disposition = NSURLSessionAuthChallengePerformDefaultHandling;
         }
     }
 
-    if (completionHandler) {
+    if (completionHandler != NULL) {
         completionHandler(disposition, credential);
     }
 }
