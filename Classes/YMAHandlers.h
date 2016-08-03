@@ -16,3 +16,9 @@ typedef void (^YMAIdHandler)(NSString *instanceId, NSError *error);
 /// Completion block used by several methods of YMAExternalPaymentSession.
 /// @param error - Error information or nil.
 typedef void (^YMAHandler)(NSError *error);
+
+/// Completion block used by handle challenge in NSURLSessionDelegate method
+typedef NSURLSessionAuthChallengeDisposition (^YMASessionDidReceiveAuthenticationChallengeHandler)(NSURLSession *session, NSURLAuthenticationChallenge *challenge, NSURLCredential * __autoreleasing *credential);
+
+/// Completion block used by handle challenge in NSURLSessionTaskDelegate method
+typedef NSURLSessionAuthChallengeDisposition (^YMASessionTaskDidReceiveAuthenticationChallengeHandler)(NSURLSession *session, NSURLSessionTask *task, NSURLAuthenticationChallenge *challenge, NSURLCredential * __autoreleasing *credential);
