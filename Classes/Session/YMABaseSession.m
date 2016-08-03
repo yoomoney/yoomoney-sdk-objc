@@ -29,6 +29,9 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
 @property (nonatomic, strong) NSMutableDictionary<NSNumber *, YMAConnection *> *taskDelegatesByIdentifier;
 @property (nonatomic, strong) NSLock *taskDelegateLock;
 
+@property (nonatomic, copy) YMASessionDidReceiveAuthenticationChallengeHandler sessionDidReceiveAuthenticationChallengeHandler;
+@property (nonatomic, copy) YMASessionTaskDidReceiveAuthenticationChallengeHandler taskDidReceiveAuthenticationChallengeHandler;
+
 @end
 
 @implementation YMABaseSession
@@ -167,6 +170,16 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
         }
     }];
     [self.taskDelegateLock unlock];
+}
+
+- (void)setSessionDidReceiveAuthenticationChallengeHandler:(YMASessionDidReceiveAuthenticationChallengeHandler)handler
+{
+    self.sessionDidReceiveAuthenticationChallengeHandler = handler;
+}
+
+- (void)setTaskDidReceiveAuthenticationChallengeHandler:(YMASessionTaskDidReceiveAuthenticationChallengeHandler)handler
+{
+    self.taskDidReceiveAuthenticationChallengeHandler = handler;
 }
 
 
@@ -331,9 +344,36 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
 }
 
 
+#pragma mark - NSURLSessionDelegate
+
+- (void)URLSession:(NSURLSession *)session
+didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
+ completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * __nullable credential))completionHandler
+{
+    NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+    __block NSURLCredential *credential = nil;
+
+    if (self.sessionDidReceiveAuthenticationChallengeHandler != NULL) {
+        disposition = self.sessionDidReceiveAuthenticationChallengeHandler(session, challenge, &credential);
+    } else {
+        if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+            credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+            if (credential != nil) {
+                disposition = NSURLSessionAuthChallengeUseCredential;
+            }
+        }
+    }
+
+    if (completionHandler != NULL) {
+        completionHandler(disposition, credential);
+    }
+}
+
+
 #pragma mark - NSURLSessionTaskDelegate
 
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
+- (void)URLSession:(NSURLSession *)session
+              task:(NSURLSessionTask *)task
 willPerformHTTPRedirection:(NSHTTPURLResponse *)response
         newRequest:(NSURLRequest *)request
  completionHandler:(void (^)(NSURLRequest * __nullable))completionHandler
@@ -350,7 +390,8 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response
     }
 }
 
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
+- (void)URLSession:(NSURLSession *)session
+              task:(NSURLSessionTask *)task
 didCompleteWithError:(nullable NSError *)error
 {
     YMAConnection *connection = [self connectionForTask:task];
@@ -358,6 +399,30 @@ didCompleteWithError:(nullable NSError *)error
         [connection URLSession:session task:task didCompleteWithError:error];
     }
     [self setConnection:nil forTask:task];
+}
+
+- (void)URLSession:(NSURLSession *)session
+              task:(NSURLSessionTask *)task
+didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
+ completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * __nullable credential))completionHandler
+{
+    NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+    __block NSURLCredential *credential = nil;
+
+    if (self.taskDidReceiveAuthenticationChallengeHandler != NULL) {
+        disposition = self.taskDidReceiveAuthenticationChallengeHandler(session, task, challenge, &credential);
+    } else {
+        if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+            credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+            if (credential != nil) {
+                disposition = NSURLSessionAuthChallengeUseCredential;
+            }
+        }
+    }
+
+    if (completionHandler != NULL) {
+        completionHandler(disposition, credential);
+    }
 }
 
 
