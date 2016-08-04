@@ -172,12 +172,12 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
     [self.taskDelegateLock unlock];
 }
 
-- (void)setSessionDidReceiveAuthenticationChallengeHandler:(YMASessionDidReceiveAuthenticationChallengeHandler)handler
+- (void)setSessionAuthenticationChallengeHandler:(YMASessionDidReceiveAuthenticationChallengeHandler)handler
 {
     self.sessionDidReceiveAuthenticationChallengeHandler = handler;
 }
 
-- (void)setTaskDidReceiveAuthenticationChallengeHandler:(YMASessionTaskDidReceiveAuthenticationChallengeHandler)handler
+- (void)setSessionTaskAuthenticationChallengeHandler:(YMASessionTaskDidReceiveAuthenticationChallengeHandler)handler
 {
     self.taskDidReceiveAuthenticationChallengeHandler = handler;
 }
