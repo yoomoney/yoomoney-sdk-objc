@@ -50,19 +50,9 @@ static NSString *const kParameterAccountUnblockUri = @"account_unblock_uri";
             _nextRetry = (NSUInteger)[nextRetryString integerValue];
         }
         else if (_status == YMAResponseStatusRefused) {
-            NSString *errorKey = responseModel[kParameterError];
-
+            NSString *errorCode = responseModel[kParameterError];
             if (error != NULL) {
-                if (errorKey != nil) {
-                    *error = [NSError errorWithDomain:YMAErrorDomainYaMoneyAPI
-                                                 code:0
-                                             userInfo:@{YMAErrorKey : errorKey, YMAErrorKeyResponse : self}];
-                }
-                else  {
-                    *error = [NSError errorWithDomain:YMAErrorDomainUnknown
-                                                 code:0
-                                             userInfo:@{YMAErrorKeyResponse : self}];
-                }
+                *error = [self errorWithApiErrorCode:errorCode];
             }
         }
     }
@@ -94,6 +84,22 @@ static NSString *const kParameterAccountUnblockUri = @"account_unblock_uri";
     }
 
     return status;
+}
+
+- (NSError *)errorWithApiErrorCode:(NSString *)errorCode
+{
+    NSError *error = nil;
+    if (errorCode != nil) {
+        error = [NSError errorWithDomain:YMAErrorDomainYaMoneyAPI
+                                     code:0
+                                 userInfo:@{YMAErrorKey : errorCode, YMAErrorKeyResponse : self}];
+    }
+    else  {
+        error = [NSError errorWithDomain:YMAErrorDomainUnknown
+                                     code:0
+                                 userInfo:@{YMAErrorKeyResponse : self}];
+    }
+    return error;
 }
 
 @end

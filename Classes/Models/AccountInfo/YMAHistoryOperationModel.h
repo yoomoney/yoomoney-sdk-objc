@@ -61,6 +61,8 @@ typedef NS_ENUM(NSInteger, YMAHistoryOperationType) {
 
 + (YMAHistoryOperationType)historyOperationTypeByString:(NSString *)historyOperationTypeString;
 
++ (NSString *)historyOperationTypeStringByType:(YMAHistoryOperationType)type;
+
 - (NSComparisonResult)compare:(YMAHistoryOperationModel *)otherObject;
 
 - (BOOL)isEqualToHistoryOperation:(YMAHistoryOperationModel *)historyOperation;

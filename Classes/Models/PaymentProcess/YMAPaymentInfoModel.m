@@ -18,6 +18,7 @@
                 recipientAccountType:(YMAAccountType)recipientAccountType
                       protectionCode:(NSString *)protectionCode
                         extActionUri:(NSURL *)extActionUri
+                               title:(NSString *)title
 {
     self = [super init];
 
@@ -30,6 +31,7 @@
         _recipientAccountType = recipientAccountType;
         _protectionCode = [protectionCode copy];
         _extActionUri = extActionUri;
+        _title = [title copy];
     }
 
     return self;
@@ -43,6 +45,7 @@
                        recipientAccountType:(YMAAccountType)recipientAccountType
                              protectionCode:(NSString *)protectionCode
                                extActionUri:(NSURL *)extActionUri
+                                      title:(NSString *)title
 {
     return [[YMAPaymentInfoModel alloc] initWithMoneySources:moneySources
                                                    requestId:requestId
@@ -51,7 +54,8 @@
                                       recipientAccountStatus:recipientAccountStatus
                                         recipientAccountType:recipientAccountType
                                               protectionCode:protectionCode
-                                                extActionUri:extActionUri];
+                                                extActionUri:extActionUri
+                                                       title:title];
 }
 
 @end

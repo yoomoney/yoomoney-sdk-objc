@@ -13,6 +13,7 @@ static NSString *const kParameterRecipientAccountStatus = @"recipient_account_st
 static NSString *const kParameterRecipientAccountType = @"recipient_account_type";
 static NSString *const kParameterProtectionCode = @"protection_code";
 static NSString *const kParameterExtActionUri = @"ext_action_uri";
+static NSString *const kParameterTitle = @"title";
 static NSString *const kParameterMoneySourceWallet = @"wallet";
 //static NSString *const kParameterMoneySourceCard = @"card";
 static NSString *const kParameterMoneySourceCards = @"cards";
@@ -104,6 +105,7 @@ static NSString *const kParameterMoneySourceCscRequired = @"csc_required";
     NSString *protectionCode = responseModel[kParameterProtectionCode];
     NSString *extActionUriString = responseModel[kParameterExtActionUri];
     NSURL *extActionUri = [NSURL URLWithString:extActionUriString];
+    NSString *title = responseModel[kParameterTitle];
 
     id moneySourcesModel = responseModel[kParameterMoneySource];
     YMAMoneySourcesModel *moneySources = [YMAPaymentResponse moneySourcesFromModel:moneySourcesModel];
@@ -115,7 +117,8 @@ static NSString *const kParameterMoneySourceCscRequired = @"csc_required";
                                              recipientAccountStatus:accountStatus
                                                recipientAccountType:accountType
                                                      protectionCode:protectionCode
-                                                       extActionUri:extActionUri];
+                                                       extActionUri:extActionUri
+                                                              title:title];
 
     return result;
 }
