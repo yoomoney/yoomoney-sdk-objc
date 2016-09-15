@@ -233,7 +233,7 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
             completion:(YMAConnectionHandler)block
 {
     NSInteger statusCode = ((NSHTTPURLResponse *)urlResponse).statusCode;
-    
+
 #if defined(DEBUG) || defined(ADHOC)
     NSMutableString *debugString = [NSMutableString stringWithFormat:@"Response URL: %@\nStatus code:%ld\nData: %@",
                                     urlRequest.URL.absoluteString,

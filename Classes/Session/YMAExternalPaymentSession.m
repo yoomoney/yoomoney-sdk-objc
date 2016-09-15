@@ -69,8 +69,7 @@ static NSString *const kValueParameterStatusSuccess = @"success";
                                 }
                             }
 
-                            NSString *errorKey = responseModel[@"error"];
-
+                            NSString *errorKey = responseModel[YMAErrorParameter];
                             if (errorKey == nil)
                                 block(nil, unknownError);
                             else {

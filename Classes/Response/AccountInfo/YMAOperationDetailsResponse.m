@@ -9,7 +9,6 @@
 #import "YMAProcessPaymentResponse.h"
 #import "YMABaseResponse+Protected.h"
 
-static NSString *const kParameterError = @"error";
 
 static NSString *const kParameterAmountDue = @"amount_due";
 static NSString *const kParameterFee = @"fee";
@@ -33,8 +32,7 @@ static NSString *const kParameterDigitalGoods = @"digital_goods";
 
 - (BOOL)parseJSONModel:(id)responseModel headers:(NSDictionary *)headers error:(NSError * __autoreleasing *)error
 {
-    NSString *errorKey = responseModel[kParameterError];
-
+    NSString *errorKey = responseModel[YMAErrorParameter];
     if (errorKey != nil) {
         if (error == nil) return NO;
 

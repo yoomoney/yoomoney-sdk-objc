@@ -65,3 +65,6 @@ extern NSString *const YMAParameterScope;
 
 // Header constant = "Content-Type".
 extern NSString *const YMAHeaderContentType;
+
+// Error parameter.
+extern NSString *const YMAErrorParameter;

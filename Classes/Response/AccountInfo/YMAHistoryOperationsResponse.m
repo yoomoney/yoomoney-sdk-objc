@@ -7,7 +7,6 @@
 #import "YMAConstants.h"
 #import "YMABaseResponse+Protected.h"
 
-static NSString *const kParameterError = @"error";
 static NSString *const kParameterNextRecord = @"next_record";
 static NSString *const kParameterOperations = @"operations";
 
@@ -64,8 +63,7 @@ static NSString *const kParameterOperationType = @"type";
 
 - (BOOL)parseJSONModel:(id)responseModel headers:(NSDictionary *)headers error:(NSError * __autoreleasing *)error
 {
-    NSString *errorKey = responseModel[kParameterError];
-
+    NSString *errorKey = responseModel[YMAErrorParameter];
     if (errorKey != nil) {
         if (error == nil) return NO;
 
