@@ -6,6 +6,13 @@
 //
 
 #import "YMAConnection.h"
+#import <Foundation/NSObjCRuntime.h>
+
+#ifndef NSFoundationVersionNumber_iOS_8_4
+#define iOS_VersionNumber_8_4 1144.17
+#else
+#define iOS_VersionNumber_8_4 NSFoundationVersionNumber_iOS_8_4
+#endif
 
 static NSString *const kRequestMethodPost = @"POST";
 static NSString *const kRequestMethodGet = @"GET";
@@ -13,17 +20,17 @@ static NSString *const kRequestMethodGet = @"GET";
 static NSInteger const kRequestTimeoutIntervalDefault = 60;
 static NSString *const kHeaderContentLength = @"Content-Length";
 
-@interface YMAConnection () <NSURLConnectionDataDelegate>
+@interface YMAConnection ()
 
 @property (nonatomic, strong) NSMutableURLRequest *request;
-
 
 @property (nonatomic, copy) YMAConnectionRedirectHandler redirectHandler;
 @property (nonatomic, copy) YMAConnectionHandler completionHandler;
 
 @property (nonatomic, strong) NSMutableData *responseData;
 @property (nonatomic, strong) NSURLResponse *response;
-@property (nonatomic, strong) NSURLConnection *connection;
+
+@property (nonatomic, strong) NSURLSessionDataTask *task;
 
 @end
 
@@ -94,21 +101,29 @@ static NSString *const kHeaderContentLength = @"Content-Length";
 
 + (NSString *)addPercentEscapesForString:(NSString *)string
 {
+    #if !TARGET_OS_WATCH
+    if (NSFoundationVersionNumber <= iOS_VersionNumber_8_4) {
     return (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
                                                                                  (__bridge CFStringRef)string,
                                                                                  NULL,
                                                                                  (CFStringRef)@";/?:@&=+$,",
                                                                                  kCFStringEncodingUTF8));
+    }
+    #endif
+    return [string stringByAddingPercentEncodingWithAllowedCharacters:[[NSCharacterSet alloc] init]];
 }
 
-- (void)sendAsynchronousWithQueue:(NSOperationQueue *)queue completion:(YMAConnectionHandler)handler
+- (NSURLSessionDataTask *)dataTaskWithQueue:(NSOperationQueue *)queue
+                                    session:(NSURLSession *)session
+                                 completion:(YMAConnectionHandler)completionHandler
 {
-    [self sendAsynchronousWithQueue:queue redirectHandler:NULL completion:handler];
+    return [self dataTaskWithQueue:queue session:session redirectHandler:NULL completion:completionHandler];
 }
 
-- (void)sendAsynchronousWithQueue:(NSOperationQueue *)queue
-                  redirectHandler:(YMAConnectionRedirectHandler)redirectHandler
-                       completion:(YMAConnectionHandler)completionHandler
+- (NSURLSessionDataTask *)dataTaskWithQueue:(NSOperationQueue *)queue
+                                    session:(NSURLSession *)session
+                            redirectHandler:(YMAConnectionRedirectHandler)redirectHandler
+                                 completion:(YMAConnectionHandler)completionHandler
 {
     NSString *value = [NSString stringWithFormat:@"%lu", (unsigned long)self.request.HTTPBody.length];
     [self.request addValue:value forHTTPHeaderField:kHeaderContentLength];
@@ -117,7 +132,7 @@ static NSString *const kHeaderContentLength = @"Content-Length";
     NSMutableString *debugString = [NSMutableString stringWithFormat:@"Request to URL: %@\nHeaders:%@",
                                     self.request.URL.absoluteString,
                                     self.request.allHTTPHeaderFields];
-    
+
     if (self.request.HTTPBody.length > 0) {
         [debugString appendFormat:@"\nHTTP body:%@", [[NSString alloc] initWithData:self.request.HTTPBody
                                                                            encoding:NSUTF8StringEncoding]];
@@ -131,9 +146,9 @@ static NSString *const kHeaderContentLength = @"Content-Length";
     self.response = nil;
     self.responseData = nil;
 
-    self.connection = [[NSURLConnection alloc] initWithRequest:self.request delegate:self startImmediately:NO];
-    [self.connection setDelegateQueue:queue];
-    [self.connection start];
+    self.task = [session dataTaskWithRequest:self.request];
+
+    return self.task;
 }
 
 - (void)addValue:(NSString *)value forHeader:(NSString *)header
@@ -216,46 +231,54 @@ static NSString *const kHeaderContentLength = @"Content-Length";
 
 - (void)cancel
 {
-    [self.connection cancel];
+    [self.task cancel];
 }
 
 
-#pragma mark - NSURLConnectionDataDelegate methods
+#pragma mark - NSURLSessionTaskDelegate
 
-- (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
+willPerformHTTPRedirection:(NSHTTPURLResponse *)response
+        newRequest:(NSURLRequest *)request
+ completionHandler:(void (^)(NSURLRequest * __nullable))completionHandler
 {
     NSURLRequest *resultRequest = request;
     if (self.redirectHandler != NULL) {
         resultRequest = self.redirectHandler(request, response);
         if (resultRequest == nil) {
-            [connection cancel];
+            self.completionHandler = NULL;
+            [task cancel];
         }
     }
-    return resultRequest;
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    self.response = response;
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    [self.responseData appendData:data];
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    if (self.completionHandler != NULL) {
-        self.completionHandler(self.request, self.response, self.responseData, nil);
+    if (completionHandler != NULL) {
+        completionHandler(resultRequest);
     }
 }
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
+didCompleteWithError:(nullable NSError *)error
 {
     if (self.completionHandler != NULL) {
         self.completionHandler(self.request, self.response, self.responseData, error);
     }
+}
+
+
+#pragma mark - NSURLSessionDataDelegate
+
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
+didReceiveResponse:(NSURLResponse *)response
+ completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler
+{
+    self.response = response;
+    if (completionHandler != NULL) {
+        completionHandler(NSURLSessionResponseAllow);
+    }
+}
+
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data
+{
+    [self.responseData appendData:data];
 }
 
 

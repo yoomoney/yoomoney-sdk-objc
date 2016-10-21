@@ -136,6 +136,28 @@ static NSString *const kKeyHistoryOperationTypeIncomingTransferProtected = @"inc
     return YMAHistoryOperationStatusUnknown;
 }
 
++ (NSString *)historyOperationStatusStringByStatus:(YMAHistoryOperationStatus)status
+{
+    NSString *result = @"";
+    switch (status) {
+        case YMAHistoryOperationStatusSuccess:
+            result = kKeyHistoryOperationStatusSuccess;
+            break;
+
+        case YMAHistoryOperationStatusInProgress:
+            result = kKeyHistoryOperationStatusInProgress;
+            break;
+
+        case YMAHistoryOperationStatusRefused:
+            result = kKeyHistoryOperationStatusRefused;
+            break;
+
+        default:
+            break;
+    }
+    return result;
+}
+
 + (YMAHistoryOperationDirection)historyOperationDirectionByString:(NSString *)historyOperationDirectionString
 {
     if ([historyOperationDirectionString isEqualToString:kKeyHistoryOperationDirectionIn])

@@ -55,6 +55,8 @@ typedef NS_ENUM(NSInteger, YMAHistoryOperationType) {
 
 + (YMAHistoryOperationStatus)historyOperationStatusByString:(NSString *)historyOperationStatusString;
 
++ (NSString *)historyOperationStatusStringByStatus:(YMAHistoryOperationStatus)status;
+
 + (YMAHistoryOperationDirection)historyOperationDirectionByString:(NSString *)historyOperationDirectionString;
 
 + (YMAHistoryOperationType)historyOperationTypeByString:(NSString *)historyOperationTypeString;

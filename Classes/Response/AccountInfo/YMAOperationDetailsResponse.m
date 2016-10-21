@@ -7,8 +7,8 @@
 #import "YMAConstants.h"
 #import "YMAHistoryOperationsResponse.h"
 #import "YMAProcessPaymentResponse.h"
+#import "YMABaseResponse+Protected.h"
 
-static NSString *const kParameterError = @"error";
 
 static NSString *const kParameterAmountDue = @"amount_due";
 static NSString *const kParameterFee = @"fee";
@@ -32,8 +32,7 @@ static NSString *const kParameterDigitalGoods = @"digital_goods";
 
 - (BOOL)parseJSONModel:(id)responseModel headers:(NSDictionary *)headers error:(NSError * __autoreleasing *)error
 {
-    NSString *errorKey = responseModel[kParameterError];
-
+    NSString *errorKey = responseModel[YMAErrorParameter];
     if (errorKey != nil) {
         if (error == nil) return NO;
 
@@ -42,9 +41,6 @@ static NSString *const kParameterDigitalGoods = @"digital_goods";
 
         return NO;
     }
-
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"];
 
     YMAHistoryOperationModel *historyOperation = [YMAHistoryOperationsResponse historyOperationByModel:responseModel];
 
@@ -62,10 +58,10 @@ static NSString *const kParameterDigitalGoods = @"digital_goods";
     NSString *protectionCode = responseModel[kParameterProtectionCode];
 
     NSString *expiresString = responseModel[kParameterExpires];
-    NSDate *expires = [formatter dateFromString:expiresString];
+    NSDate *expires = [[self class] dateFromIsoTimeStamp:expiresString];
 
     NSString *answerDatetimeString = responseModel[kParameterAnswerDatetime];
-    NSDate *answerDatetime = [formatter dateFromString:answerDatetimeString];
+    NSDate *answerDatetime = [[self class] dateFromIsoTimeStamp:answerDatetimeString];
 
     NSString *details = responseModel[kParameterDetails];
     BOOL repeatable = [responseModel[kParameterRepeatable] boolValue];

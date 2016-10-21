@@ -103,6 +103,15 @@ typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
  */
 - (void)cancelActiveConnections;
 
+/**
+ *  Set completion block for handle challenge in NSURLSessionDelegate method
+ */
+- (void)setSessionAuthenticationChallengeHandler:(YMASessionDidReceiveAuthenticationChallengeHandler)handler;
+
+/**
+ *  Set completion block used by handle challenge in NSURLSessionTaskDelegate method
+ */
+- (void)setSessionTaskAuthenticationChallengeHandler:(YMASessionTaskDidReceiveAuthenticationChallengeHandler)handler;
 
 /// You can set language for response data (for example: "en" - English, "ru" - Russian). Russian is default language.
 @property (nonatomic, copy) NSString *language;

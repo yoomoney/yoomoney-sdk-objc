@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "YandexMoneySDKObjc"
-  s.version          = "2.1.5"
+  s.version          = "2.1.15"
   s.summary          = "Yandex.Money SDK" 
   s.homepage         = "https://github.com/yandex-money/yandex-money-sdk-objc"
   s.license          = 'MIT'
@@ -11,8 +11,9 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '7.0'
   s.osx.deployment_target = '10.8'
+  s.watchos.deployment_target = '2.0'
   s.requires_arc = true
-
+  
   s.source_files = 'Classes/**/*.{h,m}'
 
 end

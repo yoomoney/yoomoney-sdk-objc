@@ -29,3 +29,5 @@ NSString *const YMAParameterRedirectUri = @"redirect_uri";
 NSString *const YMAParameterScope       = @"scope";
 
 NSString *const YMAHeaderContentType = @"Content-Type";
+
+NSString *const YMAErrorParameter = @"error";

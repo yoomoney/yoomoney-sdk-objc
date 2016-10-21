@@ -174,7 +174,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
                                return;
                            }
 
-                           NSString *errorKey = responseModel[@"error"];
+                           NSString *errorKey = responseModel[YMAErrorParameter];
 
                            if (errorKey == nil)
                                block(nil, unknownError);

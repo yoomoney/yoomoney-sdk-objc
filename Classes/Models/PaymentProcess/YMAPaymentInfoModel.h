@@ -16,7 +16,8 @@
                      recipientAccountStatus:(YMAAccountStatus)recipientAccountStatus
                        recipientAccountType:(YMAAccountType)recipientAccountType
                              protectionCode:(NSString *)protectionCode
-                               extActionUri:(NSURL *)extActionUri;
+                               extActionUri:(NSURL *)extActionUri
+                                      title:(NSString *)title;
 
 @property (nonatomic, copy, readonly) NSString *requestId;
 @property (nonatomic, strong, readonly) YMAMoneySourcesModel *moneySources;
@@ -26,5 +27,6 @@
 @property (nonatomic, assign, readonly) YMAAccountType recipientAccountType;
 @property (nonatomic, copy, readonly) NSString *protectionCode;
 @property (nonatomic, strong, readonly) NSURL *extActionUri;
+@property (nonatomic, copy, readonly) NSString *title;
 
 @end
