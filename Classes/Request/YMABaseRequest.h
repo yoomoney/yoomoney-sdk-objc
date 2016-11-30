@@ -9,20 +9,22 @@
 #import "YMAConstants.h"
 #import "YMABaseSession.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class YMABaseRequest;
 @class YMABaseResponse;
 
 @protocol YMADataPosting<NSObject>
 
 /// Request data
-@property (nonatomic, strong, readonly) NSData *data;
+@property (nonatomic, strong, readonly, nullable) NSData *data;
 
 @end
 
 @protocol YMAParametersPosting<NSObject>
 
 /// Request parameters.
-@property (nonatomic, strong, readonly) NSDictionary *parameters;
+@property (nonatomic, strong, readonly, nullable) NSDictionary *parameters;
 
 @end
 
@@ -30,9 +32,9 @@
 /// @param request - request inherited from abstract class YMABaseRequest.
 /// @param response - response inherited from abstract class YMABaseResponse.
 /// @param error - Error information or nil.
-typedef void (^YMARequestHandler)(YMABaseRequest *request, YMABaseResponse *response, NSError *error);
+typedef void (^YMARequestHandler)( YMABaseRequest * _Nullable request, YMABaseResponse * _Nullable response, NSError * _Nullable error);
 
-typedef BOOL (^YMARedirectHandler)(NSURLRequest *request, NSURLResponse *response);
+typedef BOOL (^YMARedirectHandler)(NSURLRequest * _Nullable request, NSURLResponse * _Nullable response);
 
 ///
 /// Abstract class of request. This class contains common info about the request (requestUrl, parameters).
@@ -40,12 +42,12 @@ typedef BOOL (^YMARedirectHandler)(NSURLRequest *request, NSURLResponse *respons
 @interface YMABaseRequest : NSObject
 
 /// Request url
-@property (nonatomic, strong, readonly) NSURL *requestUrl;
-@property (nonatomic, strong) id context;
+@property (nonatomic, strong, readonly, nonnull) NSURL *requestUrl;
+@property (nonatomic, strong, nullable) id context;
 
 @property (nonatomic, assign, readonly) YMARequestMethod requestMethod;
 /// Used for define custom headers of request.
-@property (nonatomic, strong, readonly) NSDictionary *customHeaders;
+@property (nonatomic, strong, readonly, nullable) NSDictionary *customHeaders;
 
 /// Method is used for parse response data.
 /// @param data - response data.
@@ -53,10 +55,12 @@ typedef BOOL (^YMARedirectHandler)(NSURLRequest *request, NSURLResponse *respons
 /// @param httpStatusCode - response http status ceode.
 /// @param queue - operation queue.
 /// @param block - completion of block is used to get the response.
-- (void)buildResponseWithData:(NSData *)data
-                      headers:(NSDictionary *)headers
+- (void)buildResponseWithData:(NSData * _Nullable)data
+                      headers:(NSDictionary * _Nullable)headers
                httpStatusCode:(YMAConnectHTTPStatusCodes)statusCode
-                        queue:(NSOperationQueue *)queue
-                   completion:(YMARequestHandler)block;
+                        queue:(NSOperationQueue * _Nonnull)queue
+                   completion:(YMARequestHandler _Nullable)block;
 
 @end
+
+NS_ASSUME_NONNULL_END
