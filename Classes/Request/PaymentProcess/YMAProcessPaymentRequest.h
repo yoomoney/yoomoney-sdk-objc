@@ -7,14 +7,18 @@
 #import "YMABaseRequest.h"
 #import "YMAProcessPaymentResponse.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class YMAMoneySourceModel;
 
 @interface YMAProcessPaymentRequest : YMABaseRequest<YMAParametersPosting>
 
 + (instancetype)processPaymentRequestId:(NSString *)requestId
-                            moneySource:(YMAMoneySourceModel *)moneySource
-                                    csc:(NSString *)csc
-                             successUri:(NSString *)successUri
-                                failUri:(NSString *)failUri;
+                            moneySource:(YMAMoneySourceModel *__nullable)moneySource
+                                    csc:(NSString *__nullable)csc
+                             successUri:(NSString *__nullable)successUri
+                                failUri:(NSString *__nullable)failUri;
 
 @end
+
+NS_ASSUME_NONNULL_END

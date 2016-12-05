@@ -6,6 +6,8 @@
 #import "YMAAPISession.h"
 #import "YMAHostsProvider.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 static NSString *const kHttpsScheme = @"https";
 
 static NSString *const kUrlAuthorize = @"oauth/authorize";
@@ -19,14 +21,15 @@ NSString *const YMAValueParameterResponseType = @"code";
 
 @implementation YMAAPISession
 
-- (NSURLRequest *)authorizationRequestWithClientId:(NSString *)clientId additionalParameters:(NSDictionary *)params
+- (NSURLRequest *)authorizationRequestWithClientId:(NSString *)clientId
+                              additionalParameters:(NSDictionary<NSString *, NSString *> *)params
 {
     return [self authorizationRequestWithUrl:kUrlAuthorize clientId:clientId additionalParameters:params];
 }
 
 - (NSURLRequest *)authorizationRequestWithUrl:(NSString *)relativeUrlString
                                      clientId:(NSString *)clientId
-                         additionalParameters:(NSDictionary *)params
+                         additionalParameters:(NSDictionary<NSString *, NSString *> *)params
 {
     NSMutableString *post = [NSMutableString stringWithCapacity:0];
 
@@ -61,7 +64,7 @@ NSString *const YMAValueParameterResponseType = @"code";
 
 - (BOOL)isRequest:(NSURLRequest *)request
     toRedirectUrl:(NSString *)redirectUrl
-authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
+authorizationInfo:(NSMutableDictionary<NSString *, NSString *>  *__nullable __autoreleasing *__nonnull)authInfo
             error:(NSError * __autoreleasing *)error
 {
     NSURL *requestUrl = request.URL;
@@ -106,7 +109,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
 
 - (void)receiveTokenWithCode:(NSString *)code
                     clientId:(NSString *)clientId
-        additionalParameters:(NSDictionary *)params
+        additionalParameters:(NSDictionary<NSString *, NSString *> *)params
                   completion:(YMAIdHandler)block
 {
     [self receiveTokenWithUrl:kUrlToken code:code clientId:clientId additionalParameters:params completion:block];
@@ -115,7 +118,7 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
 - (void)receiveTokenWithUrl:(NSString *)relativeUrlString
                        code:(NSString *)code
                    clientId:(NSString *)clientId
-       additionalParameters:(NSDictionary *)params
+       additionalParameters:(NSDictionary<NSString *, NSString *> *)params
                  completion:(YMAIdHandler)block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
@@ -287,3 +290,5 @@ authorizationInfo:(NSMutableDictionary * __autoreleasing *)authInfo
 }
 
 @end
+
+NS_ASSUME_NONNULL_END
