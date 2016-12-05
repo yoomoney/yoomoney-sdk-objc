@@ -7,6 +7,8 @@
 #import "YMAMoneySourceModel.h"
 #import "YMAHostsProvider.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 static NSString *const kParameterRequestId = @"request_id";
 static NSString *const kParameterMoneySource = @"money_source";
 static NSString *const kParameterCsc = @"csc";
@@ -18,10 +20,10 @@ static NSString *const kUrlProcessPayment = @"api/process-payment";
 @interface YMAProcessPaymentRequest ()
 
 @property (nonatomic, copy) NSString *requestId;
-@property (nonatomic, strong) YMAMoneySourceModel *moneySource;
-@property (nonatomic, copy) NSString *csc;
-@property (nonatomic, copy) NSString *successUri;
-@property (nonatomic, copy) NSString *failUri;
+@property (nonatomic, strong, nullable) YMAMoneySourceModel *moneySource;
+@property (nonatomic, copy, nullable) NSString *csc;
+@property (nonatomic, copy, nullable) NSString *successUri;
+@property (nonatomic, copy, nullable) NSString *failUri;
 
 @end
 
@@ -30,10 +32,10 @@ static NSString *const kUrlProcessPayment = @"api/process-payment";
 #pragma mark - Object Lifecycle
 
 - (instancetype)initWithRequestId:(NSString *)requestId
-                      moneySource:(YMAMoneySourceModel *)moneySource
-                              csc:(NSString *)csc
-                       successUri:(NSString *)successUri
-                          failUri:(NSString *)failUri
+                      moneySource:(YMAMoneySourceModel *__nullable)moneySource
+                              csc:(NSString *__nullable)csc
+                       successUri:(NSString *__nullable)successUri
+                          failUri:(NSString *__nullable)failUri
 {
     self = [super init];
 
@@ -49,10 +51,10 @@ static NSString *const kUrlProcessPayment = @"api/process-payment";
 }
 
 + (instancetype)processPaymentRequestId:(NSString *)requestId
-                            moneySource:(YMAMoneySourceModel *)moneySource
-                                    csc:(NSString *)csc
-                             successUri:(NSString *)successUri
-                                failUri:(NSString *)failUri
+                            moneySource:(YMAMoneySourceModel *__nullable)moneySource
+                                    csc:(NSString *__nullable)csc
+                             successUri:(NSString *__nullable)successUri
+                                failUri:(NSString *__nullable)failUri
 {
     return [[YMAProcessPaymentRequest alloc] initWithRequestId:requestId
                                                    moneySource:moneySource
@@ -70,7 +72,7 @@ static NSString *const kUrlProcessPayment = @"api/process-payment";
     return [NSURL URLWithString:urlString];
 }
 
-- (NSDictionary *)parameters
+- (nullable NSDictionary *)parameters
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
 
@@ -98,10 +100,12 @@ static NSString *const kUrlProcessPayment = @"api/process-payment";
 }
 
 - (NSOperation *)buildResponseOperationWithData:(NSData *)data
-                                        headers:(NSDictionary *)headers
-                                     completion:(YMAResponseHandler)handler
+                                        headers:(NSDictionary *__nullable)headers
+                                     completion:(YMAResponseHandler __nullable)handler
 {
     return [[YMAProcessPaymentResponse alloc] initWithData:data headers:headers completion:handler];
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

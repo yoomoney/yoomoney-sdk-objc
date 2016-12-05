@@ -16,7 +16,7 @@ static NSString *const kUrlAccountInfo = @"api/account-info";
 
 + (instancetype)accountInfoRequest
 {
-    return [[YMAAccountInfoRequest alloc] init];
+    return [[self alloc] init];
 }
 
 #pragma mark - Overridden methods

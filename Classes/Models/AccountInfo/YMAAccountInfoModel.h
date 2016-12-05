@@ -22,6 +22,18 @@ typedef NS_ENUM(NSInteger, YMAAccountType) {
 
 @interface YMAAccountInfoModel : NSObject
 
+- (instancetype)initWithAccount:(NSString *)account
+                        balance:(NSString *)balance
+                       currency:(NSString *)currency
+                  accountStatus:(YMAAccountStatus)accountStatus
+                    accountType:(YMAAccountType)accountType
+                         avatar:(YMAAvatarModel *)avatar
+                 balanceDetails:(YMABalanceDetailsModel *)balanceDetails
+                    cardsLinked:(NSArray *)cardsLinked
+             servicesAdditional:(NSArray *)servicesAdditional
+                   yamoneyCards:(NSArray *)yamoneyCards
+                   virtualCards:(NSArray *)virtualCards;
+
 + (instancetype)accountInfoWithAccount:(NSString *)account
                                balance:(NSString *)balance
                               currency:(NSString *)currency
