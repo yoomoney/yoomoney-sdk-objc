@@ -72,7 +72,7 @@ static NSString *const kUrlProcessPayment = @"api/process-payment";
     return [NSURL URLWithString:urlString];
 }
 
-- (NSDictionary *)parameters
+- (nullable NSDictionary *)parameters
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
 
