@@ -30,13 +30,11 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
                             yamoneyCards:(NSArray *_Nullable)yamoneyCards
                             virtualCards:(NSArray *_Nullable)virtualCards
 {
-    if (account == nil || balance == nil || currency == nil || balanceDetails == nil) {
-        return nil;
-    }
-
     self = [super init];
-
     if (self != nil) {
+        if (account == nil || balance == nil || currency == nil || balanceDetails == nil) {
+            return nil;
+        }
         _account = [account copy];
         _balance = [balance copy];
         _currency = [currency copy];
@@ -49,7 +47,6 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
         _yamoneyCards = [yamoneyCards copy];
         _virtualCards = [virtualCards copy];
     }
-
     return self;
 }
 

@@ -13,16 +13,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (nullable instancetype)initWithWallet:(YMAWalletSourceGroupModel *_Nullable)walletSource cardsSource:(YMACardsSourceGroupModel *_Nullable)cards
 {
-    if (walletSource == nil && cards == nil) {
-        return nil;
-    }
-
     self = [super init];
     if (self != nil) {
+        if (walletSource == nil && cards == nil) {
+            return nil;
+        }
         _wallet = walletSource;
         _cards = cards;
     }
-
     return self;
 }
 
