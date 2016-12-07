@@ -18,9 +18,13 @@ NS_ASSUME_NONNULL_BEGIN
                                   debt:(NSString *_Nullable)debt
                                   hold:(NSString *_Nullable)hold
 {
+    if (total == nil || available == nil) {
+        return nil;
+    }
+
     self = [super init];
     
-    if (self != nil && total != nil && available != nil) {
+    if (self != nil) {
         _total = [total copy];
         _available = [available copy];
         _depositionPending = [depositionPending copy];
