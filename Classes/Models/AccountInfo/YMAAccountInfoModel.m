@@ -5,6 +5,8 @@
 
 #import "YMAAccountInfoModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 static NSString *const kKeyAccountStatusAnonymous = @"anonymous";
 static NSString *const kKeyAccountStatusNamed = @"named";
 static NSString *const kKeyAccountStatusIdentified = @"identified";
@@ -16,21 +18,21 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
 
 #pragma mark - Object Lifecycle
 
-- (instancetype)initWithAccount:(NSString *)account
-                        balance:(NSString *)balance
-                       currency:(NSString *)currency
-                  accountStatus:(YMAAccountStatus)accountStatus
-                    accountType:(YMAAccountType)accountType
-                         avatar:(YMAAvatarModel *)avatar
-                 balanceDetails:(YMABalanceDetailsModel *)balanceDetails
-                    cardsLinked:(NSArray *)cardsLinked
-             servicesAdditional:(NSArray *)servicesAdditional
-                   yamoneyCards:(NSArray *)yamoneyCards
-                   virtualCards:(NSArray *)virtualCards
+- (nullable instancetype)initWithAccount:(NSString *_Nullable)account
+                                 balance:(NSString *_Nullable)balance
+                                currency:(NSString *_Nullable)currency
+                           accountStatus:(YMAAccountStatus)accountStatus
+                             accountType:(YMAAccountType)accountType
+                                  avatar:(YMAAvatarModel *_Nullable)avatar
+                          balanceDetails:(YMABalanceDetailsModel *_Nullable)balanceDetails
+                             cardsLinked:(NSArray *_Nullable)cardsLinked
+                      servicesAdditional:(NSArray *_Nullable)servicesAdditional
+                            yamoneyCards:(NSArray *_Nullable)yamoneyCards
+                            virtualCards:(NSArray *_Nullable)virtualCards
 {
     self = [super init];
-    
-    if (self != nil) {
+
+    if (self != nil && account != nil && balance != nil && currency != nil && balanceDetails != nil) {
         _account = [account copy];
         _balance = [balance copy];
         _currency = [currency copy];
@@ -38,26 +40,26 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
         _accountType = accountType;
         _avatar = avatar;
         _balanceDetails = balanceDetails;
-        _cardsLinked = cardsLinked;
-        _servicesAdditional = servicesAdditional;
-        _yamoneyCards = yamoneyCards;
-        _virtualCards = virtualCards;
+        _cardsLinked = [cardsLinked copy];
+        _servicesAdditional = [servicesAdditional copy];
+        _yamoneyCards = [yamoneyCards copy];
+        _virtualCards = [virtualCards copy];
     }
-    
+
     return self;
 }
 
-+ (instancetype)accountInfoWithAccount:(NSString *)account
-                               balance:(NSString *)balance
-                              currency:(NSString *)currency
-                         accountStatus:(YMAAccountStatus)accountStatus
-                           accountType:(YMAAccountType)accountType
-                                avatar:(YMAAvatarModel *)avatar
-                        balanceDetails:(YMABalanceDetailsModel *)balanceDetails
-                           cardsLinked:(NSArray *)cardsLinked
-                    servicesAdditional:(NSArray *)servicesAdditional
-                          yamoneyCards:(NSArray *)yamoneyCards
-                          virtualCards:(NSArray *)virtualCards
++ (nullable instancetype)accountInfoWithAccount:(NSString *_Nullable)account
+                                        balance:(NSString *_Nullable)balance
+                                       currency:(NSString *_Nullable)currency
+                                  accountStatus:(YMAAccountStatus)accountStatus
+                                    accountType:(YMAAccountType)accountType
+                                         avatar:(YMAAvatarModel *_Nullable)avatar
+                                 balanceDetails:(YMABalanceDetailsModel *_Nullable)balanceDetails
+                                    cardsLinked:(NSArray *_Nullable)cardsLinked
+                             servicesAdditional:(NSArray *_Nullable)servicesAdditional
+                                   yamoneyCards:(NSArray *_Nullable)yamoneyCards
+                                   virtualCards:(NSArray *_Nullable)virtualCards
 {
     return [[YMAAccountInfoModel alloc] initWithAccount:account
                                                 balance:balance
@@ -82,7 +84,7 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
         return YMAAccountStatusIdentified;
     else if ([accountStatusString isEqualToString:kKeyAccountStatusNamed])
         return YMAAccountStatusNamed;
-    
+
     return YMAAccountStatusUnknown;
 }
 
@@ -97,3 +99,5 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

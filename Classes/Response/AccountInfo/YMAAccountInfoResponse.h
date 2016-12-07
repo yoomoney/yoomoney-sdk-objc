@@ -7,8 +7,12 @@
 #import "YMABaseResponse.h"
 #import "YMAAccountInfoModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface YMAAccountInfoResponse : YMABaseResponse
 
-@property (nonatomic, strong, readonly) YMAAccountInfoModel *accountInfo;
+@property (nonatomic, strong, readonly, nullable) YMAAccountInfoModel *accountInfo;
 
 @end
+
+NS_ASSUME_NONNULL_END
