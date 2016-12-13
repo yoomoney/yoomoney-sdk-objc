@@ -21,9 +21,11 @@
 		7231BD4A1C6B73A5003BA475 /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7231BD481C6B73A5003BA475 /* Default-667h@2x.png */; };
 		7231BD4B1C6B73A5003BA475 /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7231BD491C6B73A5003BA475 /* Default-736h@3x.png */; };
 		7231BD4F1C6B781E003BA475 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7231BD4E1C6B781E003BA475 /* Images.xcassets */; };
+		9E49AE0E65401540B019850E /* Pods_YandexMoneySDK_example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6C5B93B170F1312A9CF8F8E /* Pods_YandexMoneySDK_example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0698AD8787F56F65AA552677 /* Pods-YandexMoneySDK-example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YandexMoneySDK-example.release.xcconfig"; path = "Pods/Target Support Files/Pods-YandexMoneySDK-example/Pods-YandexMoneySDK-example.release.xcconfig"; sourceTree = "<group>"; };
 		437BBA7118AC23E100859CC6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		60D4224418A51CBA0018E439 /* YandexMoneySDK-example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YandexMoneySDK-example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		60D4224718A51CBA0018E439 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -43,6 +45,8 @@
 		7231BD481C6B73A5003BA475 /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
 		7231BD491C6B73A5003BA475 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
 		7231BD4E1C6B781E003BA475 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A6C5B93B170F1312A9CF8F8E /* Pods_YandexMoneySDK_example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YandexMoneySDK_example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4B012DFCDABC38BB3BC08D8 /* Pods-YandexMoneySDK-example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YandexMoneySDK-example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YandexMoneySDK-example/Pods-YandexMoneySDK-example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +59,7 @@
 				60D4224818A51CBA0018E439 /* UIKit.framework in Frameworks */,
 				60D4224A18A51CBA0018E439 /* Foundation.framework in Frameworks */,
 				60D4224C18A51CBA0018E439 /* CoreGraphics.framework in Frameworks */,
+				9E49AE0E65401540B019850E /* Pods_YandexMoneySDK_example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +72,7 @@
 				60D4224D18A51CBA0018E439 /* YandexMoneySDK-example */,
 				60D4224618A51CBA0018E439 /* Frameworks */,
 				60D4224518A51CBA0018E439 /* Products */,
+				C509E379C2C2570E37F94E12 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,6 +92,7 @@
 				60D4224718A51CBA0018E439 /* UIKit.framework */,
 				60D4224918A51CBA0018E439 /* Foundation.framework */,
 				60D4224B18A51CBA0018E439 /* CoreGraphics.framework */,
+				A6C5B93B170F1312A9CF8F8E /* Pods_YandexMoneySDK_example.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -118,6 +125,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		C509E379C2C2570E37F94E12 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B4B012DFCDABC38BB3BC08D8 /* Pods-YandexMoneySDK-example.debug.xcconfig */,
+				0698AD8787F56F65AA552677 /* Pods-YandexMoneySDK-example.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -125,9 +141,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 60D4226718A51CBA0018E439 /* Build configuration list for PBXNativeTarget "YandexMoneySDK-example" */;
 			buildPhases = (
+				CDEA13D8E42AA45C8EC29B39 /* [CP] Check Pods Manifest.lock */,
 				60D4224018A51CBA0018E439 /* Sources */,
 				60D4224118A51CBA0018E439 /* Frameworks */,
 				60D4224218A51CBA0018E439 /* Resources */,
+				B1DABB7BD3D026111FAD5BF7 /* [CP] Embed Pods Frameworks */,
+				7F568F34EBB7911E93182B45 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -179,6 +198,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7F568F34EBB7911E93182B45 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YandexMoneySDK-example/Pods-YandexMoneySDK-example-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B1DABB7BD3D026111FAD5BF7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YandexMoneySDK-example/Pods-YandexMoneySDK-example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CDEA13D8E42AA45C8EC29B39 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		60D4224018A51CBA0018E439 /* Sources */ = {
@@ -266,6 +333,7 @@
 		};
 		60D4226818A51CBA0018E439 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4B012DFCDABC38BB3BC08D8 /* Pods-YandexMoneySDK-example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -274,7 +342,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YandexMoneySDK-example/YandexMoneySDK-example-Prefix.pch";
 				INFOPLIST_FILE = "YandexMoneySDK-example/YandexMoneySDK-example-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "ym.${PRODUCT_NAME:rfc1034identifier}";
@@ -287,6 +355,7 @@
 		};
 		60D4226918A51CBA0018E439 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0698AD8787F56F65AA552677 /* Pods-YandexMoneySDK-example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -295,7 +364,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YandexMoneySDK-example/YandexMoneySDK-example-Prefix.pch";
 				INFOPLIST_FILE = "YandexMoneySDK-example/YandexMoneySDK-example-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "ym.${PRODUCT_NAME:rfc1034identifier}";
