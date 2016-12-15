@@ -32,7 +32,7 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
 {
     self = [super init];
     if (self != nil) {
-        if (account == nil || balance == nil || currency == nil || balanceDetails == nil) {
+        if (account == nil || balance == nil || currency == nil) {
             return nil;
         }
         _account = [account copy];

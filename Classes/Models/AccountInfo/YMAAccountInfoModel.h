@@ -58,7 +58,7 @@ typedef NS_ENUM(NSInteger, YMAAccountType) {
 @property (nonatomic, assign, readonly) YMAAccountStatus accountStatus;
 @property (nonatomic, assign, readonly) YMAAccountType accountType;
 @property (nonatomic, strong, readonly, nullable) YMAAvatarModel *avatar;
-@property (nonatomic, strong, readonly) YMABalanceDetailsModel *balanceDetails;
+@property (nonatomic, strong, readonly, nullable) YMABalanceDetailsModel *balanceDetails;
 @property (nonatomic, copy, readonly, nullable) NSArray *cardsLinked;
 @property (nonatomic, copy, readonly, nullable) NSArray *servicesAdditional;
 @property (nonatomic, copy, readonly, nullable) NSArray *yamoneyCards;
