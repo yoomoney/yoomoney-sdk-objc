@@ -209,7 +209,7 @@ authorizationInfo:(NSMutableDictionary<NSString *, NSString *>  *__nullable __au
                                  }];
 }
 
-- (void)performRequest:(YMABaseRequest *)request token:(NSString *)token completion:(YMARequestHandler)block
+- (void)performRequest:(nullable YMABaseRequest *)request token:(nullable NSString *)token completion:(YMARequestHandler)block
 {
     NSError *unknownError = [NSError errorWithDomain:YMAErrorDomainUnknown code:0 userInfo:@{ YMAErrorKeyRequest : request }];
 

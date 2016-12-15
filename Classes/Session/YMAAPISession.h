@@ -50,7 +50,7 @@ authorizationInfo:(NSMutableDictionary<NSString *, NSString *>  *__nullable __au
 
 - (void)revokeToken:(NSString *)token completion:(YMAHandler)block;
 
-- (void)performRequest:(YMABaseRequest *)request token:(NSString *)token completion:(YMARequestHandler)block;
+- (void)performRequest:(nullable YMABaseRequest *)request token:(nullable NSString *)token completion:(YMARequestHandler)block;
 
 @end
 
