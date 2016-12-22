@@ -6,6 +6,8 @@
 #import <Foundation/Foundation.h>
 #import "YMAMoneySourceModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /// Values for YMAMoneySourceType
 typedef NS_ENUM(NSInteger, YMAMoneySourceType) {
     /// Unknown money source
@@ -44,8 +46,8 @@ typedef NS_ENUM(NSInteger, YMAPaymentCardType) {
 /// @param moneySourceToken - Token for repeating payments.
 + (instancetype)moneySourceWithType:(YMAMoneySourceType)type
                            cardType:(YMAPaymentCardType)cardType
-                        panFragment:(NSString *)panFragment
-                   moneySourceToken:(NSString *)moneySourceToken;
+                        panFragment:(NSString *_Nullable)panFragment
+                   moneySourceToken:(NSString *_Nullable)moneySourceToken;
 
 /// Constructor. Returns a YMAMoneySourceModel with the specified money source type,
 /// credit card type, PAN truncation and money source token.
@@ -56,16 +58,18 @@ typedef NS_ENUM(NSInteger, YMAPaymentCardType) {
 /// @param external - Flag, YES if moneySource is external
 + (instancetype)moneySourceWithType:(YMAMoneySourceType)type
                            cardType:(YMAPaymentCardType)cardType
-                        panFragment:(NSString *)panFragment
-                   moneySourceToken:(NSString *)moneySourceToken
+                        panFragment:(NSString *_Nullable)panFragment
+                   moneySourceToken:(NSString *_Nullable)moneySourceToken
                            external:(BOOL)external;
 
 + (YMAPaymentCardType)paymentCardTypeByString:(NSString *)string;
 
 @property (nonatomic, assign, readonly) YMAPaymentCardType cardType;
-@property (nonatomic, copy, readonly) NSString *panFragment;
-@property (nonatomic, copy, readonly) NSString *moneySourceToken;
+@property (nonatomic, copy, readonly, nullable) NSString *panFragment;
+@property (nonatomic, copy, readonly, nullable) NSString *moneySourceToken;
 @property (nonatomic, assign, readonly) YMAMoneySourceType type;
 @property (nonatomic, assign, readonly, getter=isExternal) BOOL external;
 
 @end
+
+NS_ASSUME_NONNULL_END
