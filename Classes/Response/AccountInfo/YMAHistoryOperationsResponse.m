@@ -17,7 +17,7 @@ static NSString *const kParameterOperationTitle = @"title";
 static NSString *const kParameterOperationDirection = @"direction";
 static NSString *const kParameterOperationAmount = @"amount";
 static NSString *const kParameterOperationLabel = @"label";
-static NSString *const kParameterOperationFavourite = @"favourite";
+static NSString *const kParameterOperationFavorite = @"favourite";
 static NSString *const kParameterOperationType = @"type";
 
 @implementation YMAHistoryOperationsResponse
@@ -42,7 +42,7 @@ static NSString *const kParameterOperationType = @"type";
     NSString *amount = [historyOperationModel[kParameterOperationAmount] stringValue];
     NSString *label = historyOperationModel[kParameterOperationLabel];
 
-    BOOL favourite = [historyOperationModel[kParameterOperationFavourite] boolValue];
+    BOOL favorite = [historyOperationModel[kParameterOperationFavorite] boolValue];
 
     NSString *typeString = historyOperationModel[kParameterOperationType];
     YMAHistoryOperationType type = [YMAHistoryOperationModel historyOperationTypeByString:typeString];
@@ -55,7 +55,7 @@ static NSString *const kParameterOperationType = @"type";
                                                            direction:direction
                                                               amount:amount
                                                                label:label
-                                                           favourite:favourite
+                                                            favorite:favorite
                                                                 type:type];
 }
 

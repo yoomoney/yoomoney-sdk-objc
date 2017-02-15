@@ -13,6 +13,6 @@
 
 + (instancetype)operationDetailsWithOperationId:(NSString *)operationId;
 
-+ (instancetype)operationDetailsWithFavouriteId:(NSString *)favouriteId;
++ (instancetype)operationDetailsWithFavoriteId:(NSString *)favoriteId;
 
 @end
