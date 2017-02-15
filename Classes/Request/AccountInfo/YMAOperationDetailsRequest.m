@@ -7,7 +7,7 @@
 #import "YMAHostsProvider.h"
 
 static NSString *const kParameterOperationId = @"operation_id";
-static NSString *const kParameterFavouriteId = @"favourite_id";
+static NSString *const kParameterFavoriteId = @"favourite_id";
 static NSString *const kParameterRequestRepeatInfo = @"request_repeat_info";
 
 static NSString *const kUrlOperationDetails = @"api/operation-details";
@@ -15,7 +15,7 @@ static NSString *const kUrlOperationDetails = @"api/operation-details";
 @interface YMAOperationDetailsRequest ()
 
 @property (nonatomic, copy) NSString *operationId;
-@property (nonatomic, copy) NSString *favouriteId;
+@property (nonatomic, copy) NSString *favoriteId;
 @property (nonatomic, assign) BOOL requestRepeatInfo;
 
 @end
@@ -25,14 +25,14 @@ static NSString *const kUrlOperationDetails = @"api/operation-details";
 #pragma mark - Object Lifecycle
 
 - (instancetype)initWithOperationId:(NSString *)operationId
-                        favouriteId:(NSString *)favouriteId
+                        favoriteId:(NSString *)favoriteId
                   requestRepeatInfo:(BOOL)requestRepeatInfo
 {
     self = [super init];
 
     if (self != nil) {
         _operationId = [operationId copy];
-        _favouriteId = [favouriteId copy];
+        _favoriteId = [favoriteId copy];
         _requestRepeatInfo = requestRepeatInfo;
     }
 
@@ -41,17 +41,17 @@ static NSString *const kUrlOperationDetails = @"api/operation-details";
 
 + (instancetype)operationDetailsWithRepeatInfoByOperationId:(NSString *)operationId
 {
-    return [[self alloc] initWithOperationId:operationId favouriteId:nil requestRepeatInfo:YES];
+    return [[self alloc] initWithOperationId:operationId favoriteId:nil requestRepeatInfo:YES];
 }
 
 + (instancetype)operationDetailsWithOperationId:(NSString *)operationId
 {
-    return [[self alloc] initWithOperationId:operationId favouriteId:nil requestRepeatInfo:NO];
+    return [[self alloc] initWithOperationId:operationId favoriteId:nil requestRepeatInfo:NO];
 }
 
-+ (instancetype)operationDetailsWithFavouriteId:(NSString *)favouriteId
++ (instancetype)operationDetailsWithFavoriteId:(NSString *)favoriteId
 {
-    return [[self alloc] initWithOperationId:nil favouriteId:favouriteId requestRepeatInfo:YES];
+    return [[self alloc] initWithOperationId:nil favoriteId:favoriteId requestRepeatInfo:YES];
 }
 
 #pragma mark - Overridden methods
@@ -70,8 +70,8 @@ static NSString *const kUrlOperationDetails = @"api/operation-details";
     if (self.operationId != nil) {
         dictionary[kParameterOperationId] = self.operationId;
     }
-    if (self.favouriteId != nil) {
-        dictionary[kParameterFavouriteId] = self.favouriteId;
+    if (self.favoriteId != nil) {
+        dictionary[kParameterFavoriteId] = self.favoriteId;
     }
     dictionary[kParameterRequestRepeatInfo] = self.requestRepeatInfo ? @"true" : @"false";
 

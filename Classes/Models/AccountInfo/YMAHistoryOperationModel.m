@@ -5,6 +5,8 @@
 
 #import "YMAHistoryOperationModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 static NSString *const kKeyHistoryOperationStatusSuccess = @"success";
 static NSString *const kKeyHistoryOperationStatusRefused = @"refused";
 static NSString *const kKeyHistoryOperationStatusInProgress = @"in_progress";
@@ -22,15 +24,15 @@ static NSString *const kKeyHistoryOperationTypeIncomingTransferProtected = @"inc
 
 #pragma mark - Object Lifecycle
 
-- (instancetype)initWithOperationId:(NSString *)operationId
+- (instancetype)initWithOperationId:(NSString *_Nullable)operationId
                              status:(YMAHistoryOperationStatus)status
-                           datetime:(NSDate *)datetime
-                              title:(NSString *)title
-                          patternId:(NSString *)patternId
+                           datetime:(NSDate *_Nullable)datetime
+                              title:(NSString *_Nullable)title
+                          patternId:(NSString *_Nullable)patternId
                           direction:(YMAHistoryOperationDirection)direction
-                             amount:(NSString *)amount
-                              label:(NSString *)label
-                          favourite:(BOOL)favourite
+                             amount:(NSString *_Nullable)amount
+                              label:(NSString *_Nullable)label
+                           favorite:(BOOL)favorite
                                type:(YMAHistoryOperationType)type
 {
     self = [super init];
@@ -44,22 +46,22 @@ static NSString *const kKeyHistoryOperationTypeIncomingTransferProtected = @"inc
         _direction = direction;
         _amount = [amount copy];
         _label = [label copy];
-        _isFavourite = favourite;
+        _isFavorite = favorite;
         _type = type;
     }
 
     return self;
 }
 
-+ (instancetype)historyOperationWithOperationId:(NSString *)operationId
++ (instancetype)historyOperationWithOperationId:(NSString *_Nullable)operationId
                                          status:(YMAHistoryOperationStatus)status
-                                       datetime:(NSDate *)datetime
-                                          title:(NSString *)title
-                                      patternId:(NSString *)patternId
+                                       datetime:(NSDate *_Nullable)datetime
+                                          title:(NSString *_Nullable)title
+                                      patternId:(NSString *_Nullable)patternId
                                       direction:(YMAHistoryOperationDirection)direction
-                                         amount:(NSString *)amount
-                                          label:(NSString *)label
-                                      favourite:(BOOL)favourite
+                                         amount:(NSString *_Nullable)amount
+                                          label:(NSString *_Nullable)label
+                                       favorite:(BOOL)favorite
                                            type:(YMAHistoryOperationType)type
 {
     return [[YMAHistoryOperationModel alloc] initWithOperationId:operationId
@@ -70,14 +72,14 @@ static NSString *const kKeyHistoryOperationTypeIncomingTransferProtected = @"inc
                                                        direction:direction
                                                           amount:amount
                                                            label:label
-                                                       favourite:favourite
+                                                        favorite:favorite
                                                             type:type];
 }
 
 
 #pragma mark - NSCopying
 
-- (id)copyWithZone:(NSZone *)zone
+- (id)copyWithZone:(NSZone *_Nullable)zone
 {
     id copy = [[YMAHistoryOperationModel alloc] initWithOperationId:self.operationId
                                                              status:self.status
@@ -87,7 +89,7 @@ static NSString *const kKeyHistoryOperationTypeIncomingTransferProtected = @"inc
                                                           direction:self.direction
                                                              amount:self.amount
                                                               label:self.label
-                                                          favourite:self.isFavourite
+                                                           favorite:self.isFavorite
                                                                type:self.type];
     return copy;
 }
@@ -95,7 +97,7 @@ static NSString *const kKeyHistoryOperationTypeIncomingTransferProtected = @"inc
 
 #pragma mark - Equality
 
-- (BOOL)isEqualToHistoryOperation:(YMAHistoryOperationModel *)historyOperation
+- (BOOL)isEqualToHistoryOperation:(YMAHistoryOperationModel *_Nullable)historyOperation
 {
     if (historyOperation == nil) {
         return NO;
@@ -215,3 +217,5 @@ static NSString *const kKeyHistoryOperationTypeIncomingTransferProtected = @"inc
 }
 
 @end
+
+NS_ASSUME_NONNULL_END
