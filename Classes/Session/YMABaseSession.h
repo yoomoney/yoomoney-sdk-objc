@@ -8,6 +8,8 @@
 #import "YMAConstants.h"
 #import "YMAHandlers.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 // Header constant = "User-Agent".
 extern NSString *const YMAHeaderUserAgent;
 // Method constant = "POST".
@@ -53,11 +55,11 @@ typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
 /// @param url -  request url.
 /// @param block - completion of block is used to get the response.
 - (void)performRequestWithMethod:(YMARequestMethod)requestMethod
-                           token:(NSString *)token
-                      parameters:(NSDictionary *)parameters
-                   customHeaders:(NSDictionary *)customHeaders
+                           token:(NSString * _Nullable)token
+                      parameters:(NSDictionary * _Nullable)parameters
+                   customHeaders:(NSDictionary * _Nullable)customHeaders
                              url:(NSURL *)url
-                      completion:(YMAConnectionHandler)block;
+                      completion:(YMAConnectionHandler _Nullable)block;
 
 /// Send request used token and analyzed HTTP status code of response.
 /// @param requestMethod - request method.
@@ -67,19 +69,19 @@ typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
 /// @param url -  request url.
 /// @param block - completion of block is used to get the response.
 - (void)performAndProcessRequestWithMethod:(YMARequestMethod)requestMethod
-                                     token:(NSString *)token
-                                parameters:(NSDictionary *)parameters
-                             customHeaders:(NSDictionary *)customHeaders
+                                     token:(NSString * _Nullable)token
+                                parameters:(NSDictionary * _Nullable)parameters
+                             customHeaders:(NSDictionary * _Nullable)customHeaders
                                        url:(NSURL *)url
-                                completion:(YMAConnectionHandler)block;
+                                completion:(YMAConnectionHandler _Nullable)block;
 
 - (void)performAndProcessRequestWithMethod:(YMARequestMethod)requestMethod
-                                     token:(NSString *)token
-                                parameters:(NSDictionary *)parameters
-                             customHeaders:(NSDictionary *)customHeaders
+                                     token:(NSString * _Nullable)token
+                                parameters:(NSDictionary * _Nullable)parameters
+                             customHeaders:(NSDictionary * _Nullable)customHeaders
                                        url:(NSURL *)url
-                           redirectHandler:(YMAConnectionRedirectHandler)redirectHandler
-                                completion:(YMAConnectionHandler)block;
+                           redirectHandler:(YMAConnectionRedirectHandler _Nullable)redirectHandler
+                                completion:(YMAConnectionHandler _Nullable)block;
 
 /// Send request used token and analyzed HTTP status code of response.
 /// @param token - an access token is a string representing an authorization issued to the client (see OAuth 2.0)
@@ -87,16 +89,16 @@ typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
 /// @param customHeaders - used for define custom headers of request.
 /// @param url -  request url.
 /// @param block - completion of block is used to get the response.
-- (void)performAndProcessRequestWithToken:(NSString *)token
-                                     data:(NSData *)data
-                            customHeaders:(NSDictionary *)customHeaders
+- (void)performAndProcessRequestWithToken:(NSString * _Nullable)token
+                                     data:(NSData * _Nullable)data
+                            customHeaders:(NSDictionary * _Nullable)customHeaders
                                       url:(NSURL *)url
-                               completion:(YMAConnectionHandler)block;
+                               completion:(YMAConnectionHandler _Nullable)block;
 
 /// Get the header value by name
 /// @param headerName - response header name
 /// @param response -
-- (NSString *)valueOfHeader:(NSString *)headerName forResponse:(NSURLResponse *)response;
+- (NSString * _Nullable)valueOfHeader:(NSString *)headerName forResponse:(NSURLResponse *)response;
 
 /**
  *  Cancel all active network connections
@@ -119,3 +121,5 @@ typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
 @property (nonatomic, strong) NSOperationQueue *responseQueue;
 
 @end
+
+NS_ASSUME_NONNULL_END
