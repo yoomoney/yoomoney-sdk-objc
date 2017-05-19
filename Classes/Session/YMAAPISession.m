@@ -64,47 +64,75 @@ NSString *const YMAValueParameterResponseType = @"code";
 
 - (BOOL)isRequest:(NSURLRequest *)request
     toRedirectUrl:(NSString *)redirectUrl
-authorizationInfo:(NSMutableDictionary<NSString *, NSString *>  *__nullable __autoreleasing *__nonnull)authInfo
-            error:(NSError * __autoreleasing *)error
+authorizationInfo:(NSMutableDictionary<NSString *, NSString *> *__nullable __autoreleasing *__nonnull)authInfo
+            error:(NSError *__autoreleasing *)error
 {
-    NSURL *requestUrl = request.URL;
+    if ([self isRequest:request toRedirectUrl:[NSURL URLWithString:redirectUrl]]) {
 
-    if (requestUrl == nil) {
-        return NO;
-    }
+        if (authInfo) {
+            NSMutableDictionary *authorizationInfo = [self authorizationInfoFromAuthorizationRequest:request];
 
-    NSString *strippedURL         = [self strippedURL:requestUrl];
-    NSString *strippedRedirectURL = [self strippedURL:[NSURL URLWithString:redirectUrl]];
-
-    if ([strippedURL isEqualToString:strippedRedirectURL]) {
-
-        NSString *query = requestUrl.query;
-
-        if (query == nil || query.length == 0) {
-            if (error)
-                *error = [NSError errorWithDomain:YMAErrorDomainUnknown code:0 userInfo:@{ @"requestUrl" : request.URL }];
-        }
-        else if (authInfo != nil) {
-
-            *authInfo = [NSMutableDictionary dictionary];
-
-            NSArray *queryComponents = [query componentsSeparatedByString:@"&"];
-
-            for (NSString *keyValuePair in queryComponents) {
-                NSArray *pairComponents = [keyValuePair componentsSeparatedByString:@"="];
-                if (pairComponents.count > 1) {
-                    NSString *key = pairComponents[0];
-                    NSString *value = pairComponents[1];
-
-                    (*authInfo)[key] = value;
-                }
+            if (authorizationInfo == nil) {
+                if (error)
+                    *error = [NSError errorWithDomain:YMAErrorDomainUnknown code:0 userInfo:@{@"requestUrl": request.URL}];
+            } else {
+                *authInfo = authorizationInfo;
             }
         }
 
         return YES;
-    }
-    else
+    } else
         return NO;
+}
+
+- (BOOL)isRequest:(NSURLRequest *)request
+    toRedirectUrl:(NSURL *)redirectUrl
+{
+
+    NSURL *url = request.URL;
+    if (url == nil) return NO;
+
+    NSString *strippedUrl = [self strippedURL:url];
+    NSString *strippedRedirectUrl = [self strippedURL:redirectUrl];
+
+    return [strippedUrl isEqualToString:strippedRedirectUrl];
+}
+
+- (NSMutableDictionary<NSString *, NSString *> *__nullable)authorizationInfoFromAuthorizationRequest:(NSURLRequest *)request
+{
+    NSString *query = request.URL.query;
+
+    if (query == nil || query.length == 0) {
+        return nil;
+    }
+
+    NSMutableDictionary *authorizationInfo = [NSMutableDictionary dictionary];
+
+    NSArray *queryComponents = [query componentsSeparatedByString:@"&"];
+
+    for (NSString *keyValuePair in queryComponents) {
+        NSArray *pairComponents = [keyValuePair componentsSeparatedByString:@"="];
+        NSString *key, *value;
+        switch (pairComponents.count) {
+        case 1:
+            key = pairComponents[0];
+            value = @"";
+            break;
+        case 2:
+            key = pairComponents[0];
+            value = pairComponents[1];
+        default:
+            break;
+        }
+        if (key != nil) {
+            authorizationInfo[key] = value;
+        }
+    }
+
+    if ([authorizationInfo count] == 0) {
+        return nil;
+    }
+    return authorizationInfo;
 }
 
 - (void)receiveTokenWithCode:(NSString *)code

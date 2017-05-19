@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "YandexMoneySDKObjc"
-  s.version          = "2.2.0"
+  s.version          = "2.2.1"
   s.summary          = "Yandex.Money SDK" 
   s.homepage         = "https://github.com/yandex-money/yandex-money-sdk-objc"
   s.license          = 'MIT'
