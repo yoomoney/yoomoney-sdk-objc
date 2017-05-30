@@ -9,6 +9,10 @@
 
 @interface YMAPaymentRequest : YMABaseRequest<YMAParametersPosting>
 
+NS_ASSUME_NONNULL_BEGIN
+
 + (instancetype)paymentWithPatternId:(NSString *)patternId paymentParameters:(NSDictionary *)paymentParams;
+
+NS_ASSUME_NONNULL_END
 
 @end

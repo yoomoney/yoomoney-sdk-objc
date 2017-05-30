@@ -17,6 +17,16 @@ static NSString *const kParameterError             = @"error";
 static NSString *const kParameterNextRetry         = @"next_retry";
 static NSString *const kParameterAccountUnblockUri = @"account_unblock_uri";
 
+
+@interface YMABaseProcessResponse()
+
+@property (nonatomic, assign) YMAResponseStatus status;
+@property (nonatomic, assign) NSUInteger nextRetry;
+@property (nonatomic, copy) NSString *accountUnblockUri;
+
+@end
+
+
 @implementation YMABaseProcessResponse
 
 
@@ -41,15 +51,15 @@ static NSString *const kParameterAccountUnblockUri = @"account_unblock_uri";
 {
     if ([responseModel isKindOfClass:[NSDictionary class]]) {
         NSString *statusKey = responseModel[kParameterStatus];
-        _status = [self statusFromString:statusKey];
+        self.status = [self statusFromString:statusKey];
         NSString *accountUnblockUri = responseModel[kParameterAccountUnblockUri];
-        _accountUnblockUri = [accountUnblockUri copy];
+        self.accountUnblockUri = [accountUnblockUri copy];
 
-        if (_status == YMAResponseStatusInProgress) {
+        if (self.status == YMAResponseStatusInProgress) {
             NSString *nextRetryString = responseModel[kParameterNextRetry];
-            _nextRetry = (NSUInteger)[nextRetryString integerValue];
+            self.nextRetry = (NSUInteger)[nextRetryString integerValue];
         }
-        else if (_status == YMAResponseStatusRefused) {
+        else if (self.status == YMAResponseStatusRefused) {
             NSString *errorCode = responseModel[kParameterError];
             if (error != NULL) {
                 *error = [self errorWithApiErrorCode:errorCode];

@@ -5,20 +5,24 @@
 
 #import "YMABalanceDetailsModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation YMABalanceDetailsModel
 
 #pragma mark - Object Lifecycle
 
-- (instancetype)initWithTotal:(NSString *)total
-                    available:(NSString *)available
-            depositionPending:(NSString *)depositionPending
-                      blocked:(NSString *)blocked
-                         debt:(NSString *)debt
-                         hold:(NSString *)hold
+- (nullable instancetype)initWithTotal:(NSString *_Nullable)total
+                             available:(NSString *_Nullable)available
+                     depositionPending:(NSString *_Nullable)depositionPending
+                               blocked:(NSString *_Nullable)blocked
+                                  debt:(NSString *_Nullable)debt
+                                  hold:(NSString *_Nullable)hold
 {
     self = [super init];
-    
     if (self != nil) {
+        if (total == nil || available == nil) {
+            return nil;
+        }
         _total = [total copy];
         _available = [available copy];
         _depositionPending = [depositionPending copy];
@@ -26,16 +30,15 @@
         _debt = [debt copy];
         _hold = [hold copy];
     }
-    
     return self;
 }
 
-+ (instancetype)balanceDetailsWithTotal:(NSString *)total
-                              available:(NSString *)available
-                      depositionPending:(NSString *)depositionPending
-                                blocked:(NSString *)blocked
-                                   debt:(NSString *)debt
-                                   hold:(NSString *)hold
++ (nullable instancetype)balanceDetailsWithTotal:(NSString *_Nullable)total
+                                       available:(NSString *_Nullable)available
+                               depositionPending:(NSString *_Nullable)depositionPending
+                                         blocked:(NSString *_Nullable)blocked
+                                            debt:(NSString *_Nullable)debt
+                                            hold:(NSString *_Nullable)hold
 {
     return [[YMABalanceDetailsModel alloc] initWithTotal:total
                                                available:available
@@ -46,3 +49,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

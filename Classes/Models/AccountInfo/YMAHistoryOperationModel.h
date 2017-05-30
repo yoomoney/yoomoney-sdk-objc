@@ -3,7 +3,9 @@
 // Copyright (c) 2014 Yandex.Money. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
+
+NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, YMAHistoryOperationStatus) {
     YMAHistoryOperationStatusUnknown,
@@ -31,26 +33,26 @@ typedef NS_ENUM(NSInteger, YMAHistoryOperationType) {
 
 - (instancetype)init NS_UNAVAILABLE;
 
-- (instancetype)initWithOperationId:(NSString *)operationId
+- (instancetype)initWithOperationId:(NSString *_Nullable)operationId
                              status:(YMAHistoryOperationStatus)status
-                           datetime:(NSDate *)datetime
-                              title:(NSString *)title
-                          patternId:(NSString *)patternId
+                           datetime:(NSDate *_Nullable)datetime
+                              title:(NSString *_Nullable)title
+                          patternId:(NSString *_Nullable)patternId
                           direction:(YMAHistoryOperationDirection)direction
-                             amount:(NSString *)amount
-                              label:(NSString *)label
-                          favourite:(BOOL)favourite
+                             amount:(NSString *_Nullable)amount
+                              label:(NSString *_Nullable)label
+                           favorite:(BOOL)favorite
                                type:(YMAHistoryOperationType)type NS_DESIGNATED_INITIALIZER;
 
-+ (instancetype)historyOperationWithOperationId:(NSString *)operationId
++ (instancetype)historyOperationWithOperationId:(NSString *_Nullable)operationId
                                          status:(YMAHistoryOperationStatus)status
-                                       datetime:(NSDate *)datetime
-                                          title:(NSString *)title
-                                      patternId:(NSString *)patternId
+                                       datetime:(NSDate *_Nullable)datetime
+                                          title:(NSString *_Nullable)title
+                                      patternId:(NSString *_Nullable)patternId
                                       direction:(YMAHistoryOperationDirection)direction
-                                         amount:(NSString *)amount
-                                          label:(NSString *)label
-                                      favourite:(BOOL)favourite
+                                         amount:(NSString *_Nullable)amount
+                                          label:(NSString *_Nullable)label
+                                       favorite:(BOOL)favorite
                                            type:(YMAHistoryOperationType)type;
 
 + (YMAHistoryOperationStatus)historyOperationStatusByString:(NSString *)historyOperationStatusString;
@@ -65,17 +67,19 @@ typedef NS_ENUM(NSInteger, YMAHistoryOperationType) {
 
 - (NSComparisonResult)compare:(YMAHistoryOperationModel *)otherObject;
 
-- (BOOL)isEqualToHistoryOperation:(YMAHistoryOperationModel *)historyOperation;
+- (BOOL)isEqualToHistoryOperation:(YMAHistoryOperationModel *_Nullable)historyOperation;
 
-@property (nonatomic, copy, readonly) NSString *operationId;
+@property (nonatomic, copy, readonly, nullable) NSString *operationId;
 @property (nonatomic, assign, readonly) YMAHistoryOperationStatus status;
-@property (nonatomic, strong, readonly) NSDate *datetime;
-@property (nonatomic, copy, readonly) NSString *title;
-@property (nonatomic, copy, readonly) NSString *patternId;
+@property (nonatomic, strong, readonly, nullable) NSDate *datetime;
+@property (nonatomic, copy, readonly, nullable) NSString *title;
+@property (nonatomic, copy, readonly, nullable) NSString *patternId;
 @property (nonatomic, assign, readonly) YMAHistoryOperationDirection direction;
-@property (nonatomic, copy, readonly) NSString *amount;
-@property (nonatomic, copy, readonly) NSString *label;
-@property (nonatomic, assign, readonly) BOOL isFavourite;
+@property (nonatomic, copy, readonly, nullable) NSString *amount;
+@property (nonatomic, copy, readonly, nullable) NSString *label;
+@property (nonatomic, assign, readonly) BOOL isFavorite;
 @property (nonatomic, assign, readonly) YMAHistoryOperationType type;
 
 @end
+
+NS_ASSUME_NONNULL_END

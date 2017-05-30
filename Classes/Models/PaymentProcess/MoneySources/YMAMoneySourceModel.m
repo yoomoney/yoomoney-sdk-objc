@@ -5,6 +5,8 @@
 
 #import "YMAMoneySourceModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 static NSString *const kPaymentCardTypeVISA = @"VISA";
 static NSString *const kPaymentCardTypeMasterCard = @"MasterCard";
 static NSString *const kPaymentCardTypeAmericanExpress = @"AmericanExpress";
@@ -22,12 +24,11 @@ static NSString *const kExternalKey         = @"external";
 
 - (instancetype)initWithType:(YMAMoneySourceType)type
                     cardType:(YMAPaymentCardType)cardType
-                 panFragment:(NSString *)panFragment
-            moneySourceToken:(NSString *)moneySourceToken
+                 panFragment:(NSString *_Nullable)panFragment
+            moneySourceToken:(NSString *_Nullable)moneySourceToken
                     external:(BOOL)external
 {
     self = [super init];
-
     if (self != nil) {
         _type = type;
         _cardType = cardType;
@@ -41,8 +42,8 @@ static NSString *const kExternalKey         = @"external";
 
 + (instancetype)moneySourceWithType:(YMAMoneySourceType)type
                            cardType:(YMAPaymentCardType)cardType
-                        panFragment:(NSString *)panFragment
-                   moneySourceToken:(NSString *)moneySourceToken
+                        panFragment:(NSString *_Nullable)panFragment
+                   moneySourceToken:(NSString *_Nullable)moneySourceToken
 {
     return [self moneySourceWithType:type
                             cardType:cardType
@@ -53,8 +54,8 @@ static NSString *const kExternalKey         = @"external";
 
 + (instancetype)moneySourceWithType:(YMAMoneySourceType)type
                            cardType:(YMAPaymentCardType)cardType
-                        panFragment:(NSString *)panFragment
-                   moneySourceToken:(NSString *)moneySourceToken
+                        panFragment:(NSString *_Nullable)panFragment
+                   moneySourceToken:(NSString *_Nullable)moneySourceToken
                            external:(BOOL)external
 {
     return [[YMAMoneySourceModel alloc] initWithType:type
@@ -67,19 +68,16 @@ static NSString *const kExternalKey         = @"external";
 
 #pragma mark - NSCoding
 
-- (id)initWithCoder:(NSCoder *)decoder
+- (nullable instancetype)initWithCoder:(NSCoder *)decoder
 {
     self = [super init];
-    if (self == nil) {
-        return nil;
+    if (self != nil) {
+        _type             = (YMAMoneySourceType)[decoder decodeIntegerForKey:kTypeKey];
+        _cardType         = (YMAPaymentCardType)[decoder decodeIntegerForKey:kCardTypeKey];
+        _panFragment      = [decoder decodeObjectForKey:kPanFragmentKey];
+        _moneySourceToken = [decoder decodeObjectForKey:kMoneySourceTokenKey];
+        _external         = [decoder decodeBoolForKey:kExternalKey];
     }
-
-    _type             = (YMAMoneySourceType)[decoder decodeIntegerForKey:kTypeKey];
-    _cardType         = (YMAPaymentCardType)[decoder decodeIntegerForKey:kCardTypeKey];
-    _panFragment      = [decoder decodeObjectForKey:kPanFragmentKey];
-    _moneySourceToken = [decoder decodeObjectForKey:kMoneySourceTokenKey];
-    _external         = [decoder decodeBoolForKey:kExternalKey];
-
     return self;
 }
 
@@ -89,7 +87,7 @@ static NSString *const kExternalKey         = @"external";
     [encoder encodeInteger:(NSInteger)self.cardType forKey:kCardTypeKey];
     [encoder encodeObject:self.panFragment          forKey:kPanFragmentKey];
     [encoder encodeObject:self.moneySourceToken     forKey:kMoneySourceTokenKey];
-    [encoder encodeBool:[self isExternal]           forKey:kExternalKey];
+    [encoder encodeBool:self.isExternal             forKey:kExternalKey];
 }
 
 #pragma mark - Public methods
@@ -112,3 +110,5 @@ static NSString *const kExternalKey         = @"external";
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

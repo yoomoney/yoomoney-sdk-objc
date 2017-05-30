@@ -9,10 +9,14 @@
 
 @interface YMAOperationDetailsRequest : YMABaseRequest<YMAParametersPosting>
 
+NS_ASSUME_NONNULL_BEGIN
+
 + (instancetype)operationDetailsWithRepeatInfoByOperationId:(NSString *)operationId;
 
 + (instancetype)operationDetailsWithOperationId:(NSString *)operationId;
 
-+ (instancetype)operationDetailsWithFavouriteId:(NSString *)favouriteId;
++ (instancetype)operationDetailsWithFavoriteId:(NSString *)favoriteId;
+
+NS_ASSUME_NONNULL_END
 
 @end

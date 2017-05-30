@@ -7,6 +7,8 @@
 #import "YMAAvatarModel.h"
 #import "YMABalanceDetailsModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM(NSInteger, YMAAccountStatus) {
     YMAAccountStatusUnknown,
     YMAAccountStatusAnonymous,
@@ -22,29 +24,29 @@ typedef NS_ENUM(NSInteger, YMAAccountType) {
 
 @interface YMAAccountInfoModel : NSObject
 
-- (instancetype)initWithAccount:(NSString *)account
-                        balance:(NSString *)balance
-                       currency:(NSString *)currency
-                  accountStatus:(YMAAccountStatus)accountStatus
-                    accountType:(YMAAccountType)accountType
-                         avatar:(YMAAvatarModel *)avatar
-                 balanceDetails:(YMABalanceDetailsModel *)balanceDetails
-                    cardsLinked:(NSArray *)cardsLinked
-             servicesAdditional:(NSArray *)servicesAdditional
-                   yamoneyCards:(NSArray *)yamoneyCards
-                   virtualCards:(NSArray *)virtualCards;
+- (nullable instancetype)initWithAccount:(NSString *_Nullable)account
+                                 balance:(NSString *_Nullable)balance
+                                currency:(NSString *_Nullable)currency
+                           accountStatus:(YMAAccountStatus)accountStatus
+                             accountType:(YMAAccountType)accountType
+                                  avatar:(YMAAvatarModel *_Nullable)avatar
+                          balanceDetails:(YMABalanceDetailsModel *_Nullable)balanceDetails
+                             cardsLinked:(NSArray *_Nullable)cardsLinked
+                      servicesAdditional:(NSArray *_Nullable)servicesAdditional
+                            yamoneyCards:(NSArray *_Nullable)yamoneyCards
+                            virtualCards:(NSArray *_Nullable)virtualCards;
 
-+ (instancetype)accountInfoWithAccount:(NSString *)account
-                               balance:(NSString *)balance
-                              currency:(NSString *)currency
-                         accountStatus:(YMAAccountStatus)accountStatus
-                           accountType:(YMAAccountType)accountType
-                                avatar:(YMAAvatarModel *)avatar
-                        balanceDetails:(YMABalanceDetailsModel *)balanceDetails
-                           cardsLinked:(NSArray *)cardsLinked
-                    servicesAdditional:(NSArray *)servicesAdditional
-                          yamoneyCards:(NSArray *)yamoneyCards
-                          virtualCards:(NSArray *)virtualCards;
++ (nullable instancetype)accountInfoWithAccount:(NSString *_Nullable)account
+                                        balance:(NSString *_Nullable)balance
+                                       currency:(NSString *_Nullable)currency
+                                  accountStatus:(YMAAccountStatus)accountStatus
+                                    accountType:(YMAAccountType)accountType
+                                         avatar:(YMAAvatarModel *_Nullable)avatar
+                                 balanceDetails:(YMABalanceDetailsModel *_Nullable)balanceDetails
+                                    cardsLinked:(NSArray *_Nullable)cardsLinked
+                             servicesAdditional:(NSArray *_Nullable)servicesAdditional
+                                   yamoneyCards:(NSArray *_Nullable)yamoneyCards
+                                   virtualCards:(NSArray *_Nullable)virtualCards;
 
 + (YMAAccountStatus)accountStatusByString:(NSString *)accountStatusString;
 
@@ -55,11 +57,13 @@ typedef NS_ENUM(NSInteger, YMAAccountType) {
 @property (nonatomic, copy, readonly) NSString *currency;
 @property (nonatomic, assign, readonly) YMAAccountStatus accountStatus;
 @property (nonatomic, assign, readonly) YMAAccountType accountType;
-@property (nonatomic, strong, readonly) YMAAvatarModel *avatar;
-@property (nonatomic, strong, readonly) YMABalanceDetailsModel *balanceDetails;
-@property (nonatomic, strong, readonly) NSArray *cardsLinked;
-@property (nonatomic, strong, readonly) NSArray *servicesAdditional;
-@property (nonatomic, strong, readonly) NSArray *yamoneyCards;
-@property (nonatomic, strong, readonly) NSArray *virtualCards;
+@property (nonatomic, strong, readonly, nullable) YMAAvatarModel *avatar;
+@property (nonatomic, strong, readonly, nullable) YMABalanceDetailsModel *balanceDetails;
+@property (nonatomic, copy, readonly, nullable) NSArray *cardsLinked;
+@property (nonatomic, copy, readonly, nullable) NSArray *servicesAdditional;
+@property (nonatomic, copy, readonly, nullable) NSArray *yamoneyCards;
+@property (nonatomic, copy, readonly, nullable) NSArray *virtualCards;
 
 @end
+
+NS_ASSUME_NONNULL_END

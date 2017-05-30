@@ -36,6 +36,17 @@ extern NSString *const YMAValueParameterResponseType;
 authorizationInfo:(NSMutableDictionary<NSString *, NSString *>  *__nullable __autoreleasing *__nonnull)authInfo
             error:(NSError * __autoreleasing *)error;
 
+/// This method used, when WebView is redirected to request, for check redirect url.
+/// @param request - redirect request
+/// @param redirectUrl - redirect url passed in the authorization request
+- (BOOL)isRequest:(NSURLRequest *)request
+    toRedirectUrl:(NSURL *)redirectUrl;
+
+/// Parse authorization information from authorization request.
+/// @param request - authorization request
+- (NSMutableDictionary<NSString *, NSString *> *__nullable)authorizationInfoFromAuthorizationRequest:(NSURLRequest *)request;
+
+
 // get authorization token
 - (void)receiveTokenWithCode:(NSString *)code
                     clientId:(NSString *)clientId
@@ -50,7 +61,7 @@ authorizationInfo:(NSMutableDictionary<NSString *, NSString *>  *__nullable __au
 
 - (void)revokeToken:(NSString *)token completion:(YMAHandler)block;
 
-- (void)performRequest:(YMABaseRequest *)request token:(NSString *)token completion:(YMARequestHandler)block;
+- (void)performRequest:(nullable YMABaseRequest *)request token:(nullable NSString *)token completion:(YMARequestHandler)block;
 
 @end
 
