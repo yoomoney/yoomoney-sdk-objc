@@ -52,7 +52,7 @@ typedef BOOL (^YMARedirectHandler)(NSURLRequest * _Nullable request, NSURLRespon
 /// Method is used for parse response data.
 /// @param data - response data.
 /// @param headers - response headers.
-/// @param httpStatusCode - response http status ceode.
+/// @param statusCode - response http status ceode.
 /// @param queue - operation queue.
 /// @param block - completion of block is used to get the response.
 - (void)buildResponseWithData:(NSData * _Nullable)data

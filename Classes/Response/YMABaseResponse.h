@@ -45,7 +45,7 @@ typedef void (^YMAResponseHandler)(YMABaseResponse * _Nullable response, NSError
 /// Constructor. Returns a YMABaseResponse with the specified data and completion of block.
 /// @param data - response data.
 /// @param headers - response headers.
-/// @param httpStatusCode - response htttp status code.
+/// @param statusCode - response htttp status code.
 /// @param block - completion of block is used to get the response.
 - (instancetype)initWithData:(NSData * _Nullable)data
                      headers:(NSDictionary * _Nullable)headers
