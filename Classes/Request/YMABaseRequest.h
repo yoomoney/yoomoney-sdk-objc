@@ -49,15 +49,18 @@ typedef BOOL (^YMARedirectHandler)(NSURLRequest * _Nullable request, NSURLRespon
 /// Used for define custom headers of request.
 @property (nonatomic, strong, readonly, nullable) NSDictionary *customHeaders;
 
-/// Method is used for parse response data.
-/// @param data - response data.
-/// @param headers - response headers.
-/// @param statusCode - response http status ceode.
-/// @param queue - operation queue.
-/// @param block - completion of block is used to get the response.
+/**
+ Method is used for parse response data.
+
+ @param data response data.
+ @param headers response headers.
+ @param httpStatusCode  response http status code.
+ @param queue operation queue.
+ @param block completion of block is used to get the response.
+ */
 - (void)buildResponseWithData:(NSData * _Nullable)data
                       headers:(NSDictionary * _Nullable)headers
-               httpStatusCode:(YMAConnectHTTPStatusCodes)statusCode
+               httpStatusCode:(YMAConnectHTTPStatusCodes)httpStatusCode
                         queue:(NSOperationQueue * _Nonnull)queue
                    completion:(YMARequestHandler _Nullable)block;
 

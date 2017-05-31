@@ -42,14 +42,19 @@ typedef void (^YMAResponseHandler)(YMABaseResponse * _Nullable response, NSError
 
 @property (nonatomic, assign, readonly) YMAConnectHTTPStatusCodes statusCode;
 
-/// Constructor. Returns a YMABaseResponse with the specified data and completion of block.
-/// @param data - response data.
-/// @param headers - response headers.
-/// @param statusCode - response htttp status code.
-/// @param block - completion of block is used to get the response.
+
+/**
+ Constructor. Returns a YMABaseResponse with the specified data and completion of block.
+
+ @param data response data.
+ @param headers response headers.
+ @param httpStatusCode response htttp status code.
+ @param block completion of block is used to get the response.
+ @return YMABaseResponse with the specified data and completion of block.
+ */
 - (instancetype)initWithData:(NSData * _Nullable)data
                      headers:(NSDictionary * _Nullable)headers
-              httpStatusCode:(YMAConnectHTTPStatusCodes)statusCode
+              httpStatusCode:(YMAConnectHTTPStatusCodes)httpStatusCode
                   completion:(YMAResponseHandler _Nullable)block;
 
 - (instancetype)initWithData:(NSData * _Nullable)data

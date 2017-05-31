@@ -12,14 +12,14 @@
 
 - (void)buildResponseWithData:(NSData *)data
                       headers:(NSDictionary *)headers
-               httpStatusCode:(YMAConnectHTTPStatusCodes)statusCode
+               httpStatusCode:(YMAConnectHTTPStatusCodes)httpStatusCode
                         queue:(NSOperationQueue *)queue
                    completion:(YMARequestHandler)block
 {
     NSOperation *operation =
     [self buildResponseOperationWithData:data
                                  headers:headers
-                          httpStatusCode:statusCode
+                          httpStatusCode:httpStatusCode
                               completion:^(YMABaseResponse *response, NSError *error) {
                                   block(self, response, error);
                               }];
