@@ -410,7 +410,7 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
         NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;
         NSURLCredential *credential = nil;
         if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
-            NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+            credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
             if (credential != nil) {
                 disposition = NSURLSessionAuthChallengeUseCredential;
             }
