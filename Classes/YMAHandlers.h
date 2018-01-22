@@ -20,9 +20,16 @@ typedef void (^YMAIdHandler)(NSString *__nullable instanceId, NSError *__nullabl
 typedef void (^YMAHandler)(NSError *__nullable error);
 
 /// Completion block used by handle challenge in NSURLSessionDelegate method
-typedef NSURLSessionAuthChallengeDisposition (^YMASessionDidReceiveAuthenticationChallengeHandler)(NSURLSession *session, NSURLAuthenticationChallenge *challenge, NSURLCredential *__nullable __autoreleasing *__nullable credential);
+typedef void (^YMASessionDidReceiveAuthenticationChallengeHandler)(NSURLSession *session,
+                                                                   NSURLAuthenticationChallenge *challenge,
+                                                                   void (^completion)(NSURLSessionAuthChallengeDisposition disposition,
+                                                                                      NSURLCredential *__nullable credential));
 
 /// Completion block used by handle challenge in NSURLSessionTaskDelegate method
-typedef NSURLSessionAuthChallengeDisposition (^YMASessionTaskDidReceiveAuthenticationChallengeHandler)(NSURLSession *session, NSURLSessionTask *task, NSURLAuthenticationChallenge *challenge, NSURLCredential *__nullable __autoreleasing *__nullable credential);
+typedef void (^YMASessionTaskDidReceiveAuthenticationChallengeHandler)(NSURLSession *session,
+                                                                       NSURLSessionTask *task,
+                                                                       NSURLAuthenticationChallenge *challenge,
+                                                                       void (^completion)(NSURLSessionAuthChallengeDisposition disposition,
+                                                                                          NSURLCredential *__nullable credential));
 
 NS_ASSUME_NONNULL_END
