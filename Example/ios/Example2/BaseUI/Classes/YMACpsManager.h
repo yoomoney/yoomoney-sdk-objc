@@ -8,11 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "YMASecureStorage.h"
-#import "YMABaseSession.h"
-#import "YMAExternalPaymentInfoModel.h"
-#import "YMAAscModel.h"
-#import "YMAMoneySourceModel.h"
-
+#import <YandexMoneySDKObjc/YMABaseSession.h>
+#import <YandexMoneySDKObjc/YMAExternalPaymentInfoModel.h>
+#import <YandexMoneySDKObjc/YMAAscModel.h>
+#import <YandexMoneySDKObjc/YMAMoneySourceModel.h>
 
 /// Address of the page if successful payment authorization by credit card.
 extern NSString *const kSuccessUrl;

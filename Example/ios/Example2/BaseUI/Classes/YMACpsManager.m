@@ -7,10 +7,10 @@
 //
 
 #import "YMACpsManager.h"
-#import "YMAExternalPaymentSession.h"
-#import "YMAProcessExternalPaymentRequest.h"
-#import "YMAExternalPaymentRequest.h"
-#import "YMAExternalPaymentResponse.h"
+#import <YandexMoneySDKObjc/YMAExternalPaymentSession.h>
+#import <YandexMoneySDKObjc/YMAProcessExternalPaymentRequest.h>
+#import <YandexMoneySDKObjc/YMAExternalPaymentRequest.h>
+#import <YandexMoneySDKObjc/YMAExternalPaymentResponse.h>
 
 NSString *const kSuccessUrl = @"yandexmoneyapp://oauth/authorize/success";
 NSString *const kFailUrl = @"yandexmoneyapp://oauth/authorize/fail";
