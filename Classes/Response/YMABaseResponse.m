@@ -20,7 +20,7 @@
 
 - (instancetype)initWithData:(NSData *)data
                      headers:(NSDictionary *)headers
-              httpStatusCode:(YMAConnectHTTPStatusCodes)statusCode
+              httpStatusCode:(YMAConnectHTTPStatusCodes)httpStatusCode
                   completion:(YMAResponseHandler)block
 {
     self = [self init];
@@ -28,7 +28,7 @@
         _data = data;
         _block = [block copy];
         _headers = [headers copy];
-        _statusCode = statusCode;
+        _statusCode = httpStatusCode;
     }
     return self;
 }
