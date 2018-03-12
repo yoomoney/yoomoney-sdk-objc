@@ -4,7 +4,8 @@
 //
 
 #import "YMASecureStorage.h"
-#import "YMAMoneySourceModel.h"
+#import <YandexMoneySDKObjc/YMAMoneySourceModel.h>
+
 
 NSString *const kKeychainItemValueEmpty = @"";
 static NSString *const kKeychainIdInstance = @"instanceKeychainId";

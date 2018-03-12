@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YMAMoneySourceModel.h"
+#import <YandexMoneySDKObjc/YMAMoneySourceModel.h>
 #import "YMABaseCpsViewDelegate.h"
 
 typedef NS_ENUM(NSInteger, YMAPaymentResultState) {

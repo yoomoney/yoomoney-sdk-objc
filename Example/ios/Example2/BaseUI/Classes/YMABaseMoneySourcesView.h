@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YMAMoneySourceModel.h"
-#import "YMAExternalPaymentInfoModel.h"
+#import <YandexMoneySDKObjc/YMAMoneySourceModel.h>
+#import <YandexMoneySDKObjc/YMAExternalPaymentInfoModel.h>
 #import "YMABaseCpsViewDelegate.h"
 
 @protocol YMABaseMoneySourcesViewDelegate <YMABaseCpsViewDelegate>
