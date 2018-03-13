@@ -3,6 +3,8 @@
 
 [![Version](http://cocoapod-badges.herokuapp.com/v/YandexMoneySDKObjc/badge.png)](http://api.yandex.ru/money/)
 [![Platform](http://cocoapod-badges.herokuapp.com/p/YandexMoneySDKObjc/badge.png)](http://api.yandex.ru/money/)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
 
 ## Overview
 This open-source library allows you to work with Yandex.Money API. You will learn more about Yandex.Money API on this [page][EN_API_Main] (also available in [Russian][RU_API_Main]).
@@ -10,9 +12,24 @@ This open-source library allows you to work with Yandex.Money API. You will lear
 
 ## Installation
 
-Objective-C Yandex.Money SDK is available through [CocoaPods](http://cocoapods.org).  For install it, simply add the following line to your Podfile:
+Objective-C Yandex.Money SDK is available through [CocoaPods](http://cocoapods.org) or [Carthage](https://github.com/Carthage/Carthage).
+
+### Cocoapods
+
+For install it, simply add the following line to your Podfile:
 
     pod "YandexMoneySDKObjc"
+
+And run `pod install` command at terminal.
+
+### Carthage
+
+For install it, simply add the following line to your Cartfile:
+
+    github "yandex-money/yandex-money-sdk-objc"
+
+And run `carthage bootstrap` command at terminal
+
 
 ## Usage
 ### App Registration
