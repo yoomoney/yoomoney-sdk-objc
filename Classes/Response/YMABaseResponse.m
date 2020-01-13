@@ -4,6 +4,7 @@
 //
 
 #import "YMABaseResponse.h"
+#import "NSData+HtmlEscapeFixing.h"
 
 @interface YMABaseResponse ()
 
@@ -25,7 +26,7 @@
 {
     self = [self init];
     if (self != nil) {
-        _data = data;
+        _data = [data yma_fixHtmlEscapeWithEncoding:NSUTF8StringEncoding];
         _block = [block copy];
         _headers = [headers copy];
         _statusCode = httpStatusCode;
