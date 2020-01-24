@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		244F7BD4C202AB3AE4FD98E5 /* NSData+HtmlEscapeFixing.h in Headers */ = {isa = PBXBuildFile; fileRef = 244F75374BC0074AFE12D1A7 /* NSData+HtmlEscapeFixing.h */; };
+		244F7BDCA93C4DAB2506CBD4 /* NSData+HtmlEscapeFixing.m in Sources */ = {isa = PBXBuildFile; fileRef = 244F7AE53A393B8536F7F0E5 /* NSData+HtmlEscapeFixing.m */; };
+		244F7CA8D40A30412EAF3418 /* NSData+HtmlEscapeFixing.m in Sources */ = {isa = PBXBuildFile; fileRef = 244F7AE53A393B8536F7F0E5 /* NSData+HtmlEscapeFixing.m */; };
+		244F7FE1B9C0D311631391E9 /* NSData+HtmlEscapeFixing.h in Headers */ = {isa = PBXBuildFile; fileRef = 244F75374BC0074AFE12D1A7 /* NSData+HtmlEscapeFixing.h */; };
 		2DE7925D16032BD0AB5F8291 /* YMAOperationDetailsModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DE794A649279376C6AB9585 /* YMAOperationDetailsModel.h */; };
 		2DE7992C873452AA3FC5DC43 /* YMAOperationDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE79556322AA7E70F71D29B /* YMAOperationDetailsModel.m */; };
 		2DE79A3FE58C4A31226E800F /* YMAOperationDetailsModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DE794A649279376C6AB9585 /* YMAOperationDetailsModel.h */; };
@@ -239,6 +243,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		244F75374BC0074AFE12D1A7 /* NSData+HtmlEscapeFixing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+HtmlEscapeFixing.h"; sourceTree = "<group>"; };
+		244F7AE53A393B8536F7F0E5 /* NSData+HtmlEscapeFixing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+HtmlEscapeFixing.m"; sourceTree = "<group>"; };
 		2DE794A649279376C6AB9585 /* YMAOperationDetailsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAOperationDetailsModel.h; sourceTree = "<group>"; };
 		2DE79556322AA7E70F71D29B /* YMAOperationDetailsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAOperationDetailsModel.m; sourceTree = "<group>"; };
 		399A21CE1D24038500AA8F87 /* YMABaseResponse+Protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "YMABaseResponse+Protected.h"; path = "Classes/Response/YMABaseResponse+Protected.h"; sourceTree = SOURCE_ROOT; };
@@ -492,6 +498,8 @@
 			children = (
 				72B953801D3E75BB00F131BB /* NSDictionary+YMATools.h */,
 				72B953811D3E75BB00F131BB /* NSDictionary+YMATools.m */,
+				244F7AE53A393B8536F7F0E5 /* NSData+HtmlEscapeFixing.m */,
+				244F75374BC0074AFE12D1A7 /* NSData+HtmlEscapeFixing.h */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -701,6 +709,7 @@
 				608F75B71934CB3600F45D7F /* YMAIncomingTransferAcceptResponse.h in Headers */,
 				8BFF2ABB534BF6BBC842441F /* YMAOperationDetailsResponse.h in Headers */,
 				2DE79A3FE58C4A31226E800F /* YMAOperationDetailsModel.h in Headers */,
+				244F7FE1B9C0D311631391E9 /* NSData+HtmlEscapeFixing.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -781,6 +790,7 @@
 				8BFF25750A38972CF24BCD5D /* YMAOperationDetailsResponse.h in Headers */,
 				2DE7925D16032BD0AB5F8291 /* YMAOperationDetailsModel.h in Headers */,
 				72B953831D3E75BB00F131BB /* NSDictionary+YMATools.h in Headers */,
+				244F7BD4C202AB3AE4FD98E5 /* NSData+HtmlEscapeFixing.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -941,6 +951,7 @@
 				8BFF21F7815E685639D053FD /* YMAOperationDetailsResponse.m in Sources */,
 				608F75C01934CB5600F45D7F /* YMAIncomingTransferAcceptRequest.m in Sources */,
 				2DE7992C873452AA3FC5DC43 /* YMAOperationDetailsModel.m in Sources */,
+				244F7CA8D40A30412EAF3418 /* NSData+HtmlEscapeFixing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -968,6 +979,7 @@
 				8BFF25580586CC7D56BE9E30 /* YMAOperationDetailsRequest.m in Sources */,
 				8BFF2FB187B8B50BD366D10E /* YMAOperationDetailsResponse.m in Sources */,
 				2DE79C582CC9E728011BC5E4 /* YMAOperationDetailsModel.m in Sources */,
+				244F7BDCA93C4DAB2506CBD4 /* NSData+HtmlEscapeFixing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
