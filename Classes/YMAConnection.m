@@ -46,7 +46,7 @@ static NSString *const kHeaderContentLength = @"Content-Length";
         NSURL *requestUrl = url;
         NSString *paramString = [YMAConnection bodyStringWithParams:params];
         
-        if ([requestMethod isEqualToString:kRequestMethodGet]) {
+        if ([requestMethod isEqualToString:kRequestMethodGet] && paramString.length > 0) {
             NSString *urlWithQuery = [NSString stringWithFormat:@"%@?%@", [url absoluteString], paramString];
             requestUrl = [NSURL URLWithString:urlWithQuery];
         }
