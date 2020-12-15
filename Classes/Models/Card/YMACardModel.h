@@ -3,7 +3,7 @@
  @version 4.1
  @author Dmitry Shakolo
  @creation_date 18.09.15
- @copyright Copyright (c) 2015 NBCO Yandex.Money LLC. All rights reserved.
+ @copyright Copyright (c) 2020 NBCO YooMoney LLC. All rights reserved.
  @discussion Card model.
  */
 
@@ -25,7 +25,7 @@ typedef NS_ENUM(NSUInteger, YMACardKind) {
 
 typedef NS_ENUM(NSUInteger, YMACardEmission) {
     YMACardEmissionUnknown,
-    YMACardEmissionYacard
+    YMACardEmissionYoocard
 };
 
 NS_ASSUME_NONNULL_BEGIN

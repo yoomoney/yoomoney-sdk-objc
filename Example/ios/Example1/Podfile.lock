@@ -1,11 +1,11 @@
 PODS:
-  - YandexMoneySDKObjc (2.1.6)
+  - YooMoneySDKObjc (2.1.6)
 
 DEPENDENCIES:
-  - YandexMoneySDKObjc (~> 2.1.1)
+  - YooMoneySDKObjc (~> 2.1.1)
 
 SPEC CHECKSUMS:
-  YandexMoneySDKObjc: b3ec51abed48826648afcb8e5f663163a092e277
+  YooMoneySDKObjc: b3ec51abed48826648afcb8e5f663163a092e277
 
 PODFILE CHECKSUM: 5f9c35296e2daad3b1fff9a3c97601c9353c8e2d
 

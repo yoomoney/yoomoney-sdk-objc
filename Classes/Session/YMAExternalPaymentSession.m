@@ -1,6 +1,6 @@
 //
 // Created by Alexander Mertvetsov on 27.01.14.
-// Copyright (c) 2014 Yandex.Money. All rights reserved.
+// Copyright (c) 2020 YooMoney. All rights reserved.
 //
 
 #import "YMAExternalPaymentSession.h"
@@ -73,7 +73,7 @@ static NSString *const kValueParameterStatusSuccess = @"success";
                             if (errorKey == nil)
                                 block(nil, unknownError);
                             else {
-                                block(nil, [NSError errorWithDomain:YMAErrorDomainYaMoneyAPI code:statusCode userInfo:@{YMAErrorKey: errorKey, YMAErrorKeyResponse: response}]);
+                                block(nil, [NSError errorWithDomain:YMAErrorDomainYooMoneyAPI code:statusCode userInfo:@{YMAErrorKey: errorKey, YMAErrorKeyResponse: response}]);
                             }
                         }];
 }

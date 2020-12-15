@@ -1,6 +1,6 @@
 //
 // Created by Alexander Mertvetsov on 22.05.14.
-// Copyright (c) 2014 Yandex.Money. All rights reserved.
+// Copyright (c) 2020 YooMoney. All rights reserved.
 //
 
 #import "YMAAccountInfoModel.h"
@@ -27,7 +27,7 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
                           balanceDetails:(YMABalanceDetailsModel *_Nullable)balanceDetails
                              cardsLinked:(NSArray *_Nullable)cardsLinked
                       servicesAdditional:(NSArray *_Nullable)servicesAdditional
-                            yamoneyCards:(NSArray *_Nullable)yamoneyCards
+                           yooMoneyCards:(NSArray *_Nullable)yooMoneyCards
                             virtualCards:(NSArray *_Nullable)virtualCards
 {
     self = [super init];
@@ -44,7 +44,7 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
         _balanceDetails = balanceDetails;
         _cardsLinked = [cardsLinked copy];
         _servicesAdditional = [servicesAdditional copy];
-        _yamoneyCards = [yamoneyCards copy];
+        _yooMoneyCards = [yooMoneyCards copy];
         _virtualCards = [virtualCards copy];
     }
     return self;
@@ -59,7 +59,7 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
                                  balanceDetails:(YMABalanceDetailsModel *_Nullable)balanceDetails
                                     cardsLinked:(NSArray *_Nullable)cardsLinked
                              servicesAdditional:(NSArray *_Nullable)servicesAdditional
-                                   yamoneyCards:(NSArray *_Nullable)yamoneyCards
+                                  yooMoneyCards:(NSArray *_Nullable)yooMoneyCards
                                    virtualCards:(NSArray *_Nullable)virtualCards
 {
     return [[YMAAccountInfoModel alloc] initWithAccount:account
@@ -71,7 +71,7 @@ static NSString *const kKeyAccountTypeProfessional = @"professional";
                                          balanceDetails:balanceDetails
                                             cardsLinked:cardsLinked
                                      servicesAdditional:servicesAdditional
-                                           yamoneyCards:yamoneyCards
+                                          yooMoneyCards:yooMoneyCards
                                            virtualCards:virtualCards];
 }
 

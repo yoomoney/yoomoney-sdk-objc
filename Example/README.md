@@ -1,9 +1,9 @@
 
-# Objective-C Yandex.Money SDK Example
+# Objective-C YooMoney SDK Example
 
 
 ## Overview
-This example demonstrate you how work with Objective-C Yandex.Money SDK. Full information about Objective-C Yandex.Money SDK you will see on this [page][SDK].
+This example demonstrate you how work with Objective-C YooMoney SDK. Full information about Objective-C YooMoney SDK you will see on this [page][SDK].
 
 
 ## Installation
@@ -18,7 +18,7 @@ To be able to use this example you: the first thing you need to do is to registe
 ### Run example
 
 * Run **pod install** command from the Example directory
-* Open YandexMoneySDK-example.xcworkspace
+* Open YooMoneySDK-example.xcworkspace
 * Replace string `YOU_CLIENT_ID` in the ViewController.m with your unique **client_id**.  
 * Build and run it.  
 
@@ -27,22 +27,17 @@ To be able to use this example you: the first thing you need to do is to registe
 
 ### iOS
 
-![Start](ios/Screenshots/start.PNG?raw=true)              ![Payment](ios/Screenshots/payment.PNG?raw=true) 
+![Start](ios/Screenshots/start.PNG?raw=true)
 <br>
 ![End](ios/Screenshots/success.PNG?raw=true)
 
 
 ## Links
 
-* [Objective-C Yandex.Money SDK][SDK]
-* Yandex.Money API page: [En][EN_API_Main], [Ru](RU_API_Main)
+* [Objective-C YooMoney SDK][SDK]
+* YooMoney API page: [En][EN_API_Main], [Ru][RU_API_Main]
 
-[SDK]:https://github.com/yandex-money/yandex-money-sdk-objc
+[SDK]:https://github.com/yoomoney/yoomoney-sdk-objc
 
-[EN_API_Main]:http://api.yandex.com/money/
-[RU_API_Main]:http://api.yandex.ru/money/
-
-[EN_API_Registration]:http://api.yandex.com/money/doc/dg/tasks/register-client.xml
-[RU_API_Registration]:https://tech.yandex.ru/money/doc/dg/tasks/register-client-docpage/
-
-
+[EN_API_Main]:https://yoomoney.ru/docs/wallet?lang=en
+[RU_API_Main]:https://yoomoney.ru/docs/wallet?lang=ru

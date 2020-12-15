@@ -1,9 +1,9 @@
 //
 //  NSDictionary+YMATools.m
-//  YandexMoney
+//  YooMoney
 //
 //  Created by Александр О. Кургин on 02.04.15.
-//  Copyright (c) 2015 NBCO Yandex.Money LLC. All rights reserved.
+//  Copyright (c) 2020 NBCO YooMoney LLC. All rights reserved.
 //
 
 #import "NSDictionary+YMATools.h"

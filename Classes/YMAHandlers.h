@@ -2,8 +2,8 @@
  @class YMAHandlers
  @version 4.3
  @author Dmitry Shakolo
- @creation_date 09.12.2015
- @copyright Copyright (c) 2015 NBCO Yandex.Money LLC. All rights reserved.
+ @creation_date 09.12.2020
+ @copyright Copyright (c) 2020 NBCO YooMoney LLC. All rights reserved.
  @discussion SDK handlers
  */
 

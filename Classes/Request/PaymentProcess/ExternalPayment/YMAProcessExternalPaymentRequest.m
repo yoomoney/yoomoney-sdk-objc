@@ -1,6 +1,6 @@
 //
 // Created by Alexander Mertvetsov on 28.01.14.
-// Copyright (c) 2014 Yandex.Money. All rights reserved.
+// Copyright (c) 2020 YooMoney. All rights reserved.
 //
 
 #import "YMAProcessExternalPaymentRequest.h"

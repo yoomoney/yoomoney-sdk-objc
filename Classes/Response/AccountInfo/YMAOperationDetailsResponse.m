@@ -1,6 +1,6 @@
 //
 // Created by Alexander Mertvetsov on 23.05.14.
-// Copyright (c) 2014 Yandex.Money. All rights reserved.
+// Copyright (c) 2020 YooMoney. All rights reserved.
 //
 
 #import "YMAOperationDetailsResponse.h"
@@ -37,7 +37,7 @@ static NSString *const kParameterDigitalGoods = @"digital_goods";
         if (error == nil) return NO;
 
         NSError *unknownError = [NSError errorWithDomain:YMAErrorDomainUnknown code:0 userInfo:@{ YMAErrorKeyResponse : self }];
-        *error = errorKey ? [NSError errorWithDomain:YMAErrorDomainYaMoneyAPI code:0 userInfo:@{YMAErrorKey : errorKey, YMAErrorKeyResponse : self }] : unknownError;
+        *error = errorKey ? [NSError errorWithDomain:YMAErrorDomainYooMoneyAPI code:0 userInfo:@{YMAErrorKey : errorKey, YMAErrorKeyResponse : self }] : unknownError;
 
         return NO;
     }

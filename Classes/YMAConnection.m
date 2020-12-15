@@ -2,7 +2,7 @@
 //  YMAConnection.m
 //
 //  Created by Alexander Mertvetsov on 31.10.13.
-//  Copyright (c) 2014 Yandex.Money. All rights reserved.
+//  Copyright (c) 2020 YooMoney. All rights reserved.
 //
 
 #import "YMAConnection.h"

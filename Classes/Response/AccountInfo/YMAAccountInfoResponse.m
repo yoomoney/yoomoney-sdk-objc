@@ -1,6 +1,6 @@
 //
 // Created by Alexander Mertvetsov on 22.05.14.
-// Copyright (c) 2014 Yandex.Money. All rights reserved.
+// Copyright (c) 2020 YooMoney. All rights reserved.
 //
 
 #import "YMAAccountInfoResponse.h"
@@ -27,7 +27,7 @@ static NSString *const kParameterBalanceBlocked = @"blocked";
 static NSString *const kParameterBalanceDebt = @"debt";
 static NSString *const kParameterBalanceHold = @"hold";
 
-static NSString *const kParameterYamoneyCards = @"ymoney_cards";
+static NSString *const kParameterYoomoneyCards = @"ymoney_cards";
 static NSString *const kParameterCardsLinked = @"cards_linked";
 static NSString *const kParameterVirtualCards = @"virtual_cards";
 static NSString *const kParameterCardsLinkedPanFragment = @"pan_fragment";
@@ -48,7 +48,7 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
         if (error == nil) return NO;
         
         NSError *unknownError = [NSError errorWithDomain:YMAErrorDomainUnknown code:0 userInfo:@{ YMAErrorKeyResponse : self }];
-        *error = errorKey ? [NSError errorWithDomain:YMAErrorDomainYaMoneyAPI code:0 userInfo:@{YMAErrorKey : errorKey, YMAErrorKeyResponse : self }] : unknownError;
+        *error = errorKey ? [NSError errorWithDomain:YMAErrorDomainYooMoneyAPI code:0 userInfo:@{YMAErrorKey : errorKey, YMAErrorKeyResponse : self }] : unknownError;
         
         return NO;
     }
@@ -96,12 +96,12 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
     }
     
     NSArray *cardsLinked = [self linkedCardsFromResponse:responseModel[kParameterCardsLinked]];
-    NSArray *yamoneyCards = [self cardsFromFromResponse:responseModel[kParameterYamoneyCards]
-                                                   kind:YMACardKindPlastic
-                                               emission:YMACardEmissionYacard];
+    NSArray *yooMoneyCards = [self cardsFromFromResponse:responseModel[kParameterYoomoneyCards]
+                                                    kind:YMACardKindPlastic
+                                                emission:YMACardEmissionYoocard];
     NSArray *virtualCards = [self cardsFromFromResponse:responseModel[kParameterVirtualCards]
                                                    kind:YMACardKindVirtual
-                                               emission:YMACardEmissionYacard];
+                                               emission:YMACardEmissionYoocard];
     
     _accountInfo = [YMAAccountInfoModel accountInfoWithAccount:account
                                                        balance:balance
@@ -112,7 +112,7 @@ static NSString *const kParameterServicesAdditional = @"services_additional";
                                                 balanceDetails:balanceDetails
                                                    cardsLinked:cardsLinked
                                             servicesAdditional:responseModel[kParameterServicesAdditional]
-                                                  yamoneyCards:yamoneyCards
+                                                 yooMoneyCards:yooMoneyCards
                                                   virtualCards:virtualCards];
     
     return YES;

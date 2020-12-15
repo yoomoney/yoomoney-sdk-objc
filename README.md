@@ -1,24 +1,24 @@
 
-# Objective-C Yandex.Money SDK  
+# Objective-C YooMoney SDK  
 
-[![Version](http://cocoapod-badges.herokuapp.com/v/YandexMoneySDKObjc/badge.png)](http://api.yandex.ru/money/)
-[![Platform](http://cocoapod-badges.herokuapp.com/p/YandexMoneySDKObjc/badge.png)](http://api.yandex.ru/money/)
+[![Version](http://cocoapod-badges.herokuapp.com/v/YooMoneySDKObjc/badge.png)](https://yoomoney.ru/docs/wallet)
+[![Platform](http://cocoapod-badges.herokuapp.com/p/YooMoneySDKObjc/badge.png)](https://yoomoney.ru/docs/wallet)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 
 ## Overview
-This open-source library allows you to work with Yandex.Money API. You will learn more about Yandex.Money API on this [page][EN_API_Main] (also available in [Russian][RU_API_Main]).
+This open-source library allows you to work with YooMoney API. You will learn more about YooMoney API on this [page][EN_API_Main] (also available in [Russian][RU_API_Main]).
 
 
 ## Installation
 
-Objective-C Yandex.Money SDK is available through [CocoaPods](http://cocoapods.org) or [Carthage](https://github.com/Carthage/Carthage).
+Objective-C YooMoney SDK is available through [CocoaPods](http://cocoapods.org) or [Carthage](https://github.com/Carthage/Carthage).
 
 ### Cocoapods
 
 For install it, simply add the following line to your Podfile:
 
-    pod "YandexMoneySDKObjc"
+    pod "YooMoneySDKObjc"
 
 And run `pod install` command at terminal.
 
@@ -26,7 +26,7 @@ And run `pod install` command at terminal.
 
 For install it, simply add the following line to your Cartfile:
 
-    github "yandex-money/yandex-money-sdk-objc"
+    github "yoomoney/yoomoney-sdk-objc"
 
 And run `carthage bootstrap` command at terminal
 
@@ -36,11 +36,11 @@ And run `carthage bootstrap` command at terminal
 To be able to use the library you: the first thing you need to do is to register your application and get your unique **client_id**. To do that please follow the steps described on [this page][EN_API_Registration] (also available in [Russian][RU_API_Registration]).
 
 
-### Payments from the Yandex.Money wallet
+### Payments from the YooMoney wallet
 ##### Authorization
 Before making the first payment, an application must get authorized and recieved access token using the OAuth2 protocol, which makes authorization secure and convenient. (Learn more about it at this API page: [En][EN_API_Authorization], [Ru][RU_API_Authorization])
 
-First of all, you should create authorization request using YMAAPISession class.  Then, you use UIWebView or OS browser to send this authorization request to the Yandex.Money server (Learn more about it at this API page: [En][EN_API_Authorization_request], [Ru][RU_API_Authorization_request]):
+First of all, you should create authorization request using YMAAPISession class.  Then, you use UIWebView or OS browser to send this authorization request to the YooMoney server (Learn more about it at this API page: [En][EN_API_Authorization_request], [Ru][RU_API_Authorization_request]):
 
 
 ```Objective-C
@@ -55,7 +55,7 @@ NSURLRequest *authorizationRequest =  [session authorizationRequestWithClientId:
                                                            additionalParameters:additionalParameters];
 [webView loadRequest:authorizationRequest];
 ```
-For the authorization request, the user is redirected to the Yandex.Money authorization page. The user enters his login and password, reviews the list of requested permissions and payment limits, and either approves or rejects the application's authorization request. The authorization result is returned as an "HTTP 302 Redirect" to your **redirect_uri**.<br>
+For the authorization request, the user is redirected to the YooMoney authorization page. The user enters his login and password, reviews the list of requested permissions and payment limits, and either approves or rejects the application's authorization request. The authorization result is returned as an "HTTP 302 Redirect" to your **redirect_uri**.<br>
 
 You should intercept a request to your **redirect_uri**, cancel the request and extract the verification code from the request query string:
 ```Objective-C
@@ -108,7 +108,7 @@ NSDictionary *additionalParameters = @{
 
 #### Payment
 
-For payments from Yandex.Money wallet use YMAAPISession class. There are two API methods you should call when performing a payment: request-payment and process-payment.
+For payments from YooMoney wallet use YMAAPISession class. There are two API methods you should call when performing a payment: request-payment and process-payment.
 
 To perform a request (call of API method), use `performRequest` method of YMAAPISession class:
 
@@ -204,7 +204,7 @@ For making a payment use YMAPaymentRequest class:
 ### Payments from bank cards without authorization
 #### Registering an instance of the application
 
-Before making the first payment, you need to register a copy of the application in Yandex.Money, that is installed on a device and get an identifier for the instance of the application — **instance_id**. To register an instance, call the instance-id method (Learn more about it at this API page: [En][EN_API_Instance_id], [Ru][RU_API_Instance_id]):
+Before making the first payment, you need to register a copy of the application in YooMoney, that is installed on a device and get an identifier for the instance of the application — **instance_id**. To register an instance, call the instance-id method:
 
 
 ```Objective-C
@@ -244,12 +244,10 @@ To perform a request (call of API method), use `performRequest` method of YMAExt
 
 ```
 
-For more information about scenario of payment, please see API page: [En][EN_API_Payment_bank_card], [Ru][RU_API_Payment_bank_card].
-
 
 #### Request external payment
 
-For creating a payment and checking its parameters (Learn more about it at this API page: [En][EN_API_Request_external_payment], [Ru][RU_API_Request_external_payment]) use YMAExternalPaymentRequest class:
+For creating a payment and checking its parameters use YMAExternalPaymentRequest class:
 
 
 
@@ -274,7 +272,7 @@ YMAExternalPaymentRequest *externalPaymentRequest = [YMAExternalPaymentRequest e
 #### Process external payment
 
 Making a payment. The application calls the method up until the final payment status is known (status=success/refused).
-The recommended retry mode is determined by the "next_retry" response field (by default, 5 seconds). (Learn more about it at this API page: [En][EN_API_Process_external_payment], [Ru][RU_API_Process_external_payment]) <br>
+The recommended retry mode is determined by the "next_retry" response field (by default, 5 seconds).<br>
 For making a payment use YMAExternalPaymentRequest class:
 
 
@@ -314,55 +312,43 @@ YMABaseRequest *processExternalPaymentRequest = [YMAProcessExternalPaymentReques
 
 ### Eshop integration
 
-Every eshop has specific payment parameters. Please feel free to contact us for any details: yamoney_shop@yamoney.ru [Contacts][Kassa_Contacts]
+Every eshop has specific payment parameters. Please feel free to contact us for any details: support@yoomoney.ru [Contacts][Kassa_Contacts]
 
 
 ## Links
 
-* Yandex.Money API page: [En][EN_API_Main], [Ru][RU_API_Main]
-* [example project](https://github.com/yandex-money/yandex-money-sdk-objc/tree/master/Example)
+* YooMoney API page: [En][EN_API_Main], [Ru][RU_API_Main]
+* [example project](https://github.com/yoomoney/yoomoney-sdk-objc/tree/master/Example)
 * [Contacts for eshop integration details][Kassa_Contacts]
 
 ## License
 
-Objective-c Yandex.Money SDK is available under the MIT license. See the LICENSE file for more info.
+Objective-c YooMoney SDK is available under the MIT license. See the LICENSE file for more info.
 
 
 
-[EN_API_Main]:http://api.yandex.com/money/
-[RU_API_Main]:http://api.yandex.ru/money/
+[EN_API_Main]:https://yoomoney.ru/docs/wallet?lang=en
+[RU_API_Main]:https://yoomoney.ru/docs/wallet?lang=ru
 
-[EN_API_Registration]:http://api.yandex.com/money/doc/dg/tasks/register-client.xml
-[RU_API_Registration]:https://tech.yandex.ru/money/doc/dg/tasks/register-client-docpage/
+[EN_API_Registration]:https://yoomoney.ru/docs/wallet/using-api/authorization/register-client?lang=en
+[RU_API_Registration]:https://yoomoney.ru/docs/wallet/using-api/authorization/register-client?lang=ru
 
-[EN_API_Authorization]:http://api.yandex.com/money/doc/dg/concepts/money-oauth-intro.xml
-[RU_API_Authorization]:https://tech.yandex.ru/money/doc/dg/concepts/money-oauth-intro-docpage/
+[EN_API_Authorization]:https://yoomoney.ru/docs/wallet/using-api/authorization/basics?lang=en
+[RU_API_Authorization]:https://yoomoney.ru/docs/wallet/using-api/authorization/basics?lang=ru
 
-[EN_API_Authorization_request]:http://api.yandex.com/money/doc/dg/reference/request-access-token.xml
-[RU_API_Authorization_request]:https://tech.yandex.ru/money/doc/dg/reference/request-access-token-docpage/
+[EN_API_Authorization_request]:https://yoomoney.ru/docs/wallet/using-api/authorization/request-access-token?lang=en
+[RU_API_Authorization_request]:https://yoomoney.ru/docs/wallet/using-api/authorization/request-access-token?lang=ru
 
-[EN_API_Access_token]:http://api.yandex.com/money/doc/dg/reference/obtain-access-token.xml
-[RU_API_Access_token]:https://tech.yandex.ru/money/doc/dg/reference/obtain-access-token-docpage/
+[EN_API_Access_token]:https://yoomoney.ru/docs/wallet/using-api/authorization/obtain-access-token?lang=en
+[RU_API_Access_token]:https://yoomoney.ru/docs/wallet/using-api/authorization/obtain-access-token?lang=ru
 
-[EN_API_Payment_wallet]:http://api.yandex.com/money/doc/dg/reference/process-payments.xml
-[RU_API_Payment_wallet]:https://tech.yandex.ru/money/doc/dg/reference/process-payments-docpage/
+[EN_API_Payment_wallet]:https://yoomoney.ru/docs/wallet/process-payments/basics?lang=en
+[RU_API_Payment_wallet]:https://yoomoney.ru/docs/wallet/process-payments/basics?lang=ru
 
-[EN_API_Request_payment]:http://api.yandex.com/money/doc/dg/reference/request-payment.xml
-[RU_API_Request_payment]:https://tech.yandex.ru/money/doc/dg/reference/request-payment-docpage/
+[EN_API_Request_payment]:https://yoomoney.ru/docs/wallet/process-payments/request-payment?lang=en
+[RU_API_Request_payment]:https://yoomoney.ru/docs/wallet/process-payments/request-payment?lang=ru
 
-[EN_API_Process_payment]:http://api.yandex.com/money/doc/dg/reference/process-payment.xml
-[RU_API_Process_payment]:https://tech.yandex.ru/money/doc/dg/reference/process-payment-docpage/
+[EN_API_Process_payment]:https://yoomoney.ru/docs/wallet/process-payments/process-payment?lang=en
+[RU_API_Process_payment]:https://yoomoney.ru/docs/wallet/process-payments/process-payment?lang=ru
 
-[EN_API_Instance_id]:http://api.yandex.com/money/doc/dg/reference/instance-id.xml
-[RU_API_Instance_id]:http://api.yandex.ru/money/doc/dg/reference/instance-id.xml
-
-[EN_API_Payment_bank_card]:http://api.yandex.com/money/doc/dg/reference/process-external-payments.xml
-[RU_API_Payment_bank_card]:https://tech.yandex.ru/money/doc/dg/reference/process-external-payments-docpage/
-
-[EN_API_Request_external_payment]:http://api.yandex.com/money/doc/dg/reference/request-external-payment.xml
-[RU_API_Request_external_payment]:http://api.yandex.ru/money/doc/dg/reference/request-external-payment.xml 
-
-[EN_API_Process_external_payment]:http://api.yandex.com/money/doc/dg/reference/process-external-payment.xml
-[RU_API_Process_external_payment]:http://api.yandex.ru/money/doc/dg/reference/process-external-payment.xml
-
-[Kassa_Contacts]:https://kassa.yandex.ru/contacts
+[Kassa_Contacts]:https://yookassa.ru/contacts/

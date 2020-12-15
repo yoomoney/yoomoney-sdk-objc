@@ -1,6 +1,6 @@
 //
 // Created by Alexander Mertvetsov on 20.05.14.
-// Copyright (c) 2014 Yandex.Money. All rights reserved.
+// Copyright (c) 2020 YooMoney. All rights reserved.
 //
 
 #import "YMABaseSession.h"
@@ -15,7 +15,7 @@ static NSString *const kHeaderAcceptLanguage = @"Accept-Language";
 static NSString *const kValueAcceptLanguageDefault = @"ru";
 static NSString *const kValueContentTypePNG = @"image/png";
 
-NSString *const YMAValueUserAgentDefault = @"Yandex.Money.SDK/iOS";
+NSString *const YMAValueUserAgentDefault = @"YooMoney.SDK/iOS";
 NSString *const YMAHeaderUserAgent = @"User-Agent";
 NSString *const YMAMethodPost = @"POST";
 NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded;charset=UTF-8";

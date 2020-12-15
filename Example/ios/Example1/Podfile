@@ -2,7 +2,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '9.0'
 
-target "YandexMoneySDK-example" do
-    use_frameworks!
-	pod 'YandexMoneySDKObjc', '~> 2.1.1'
+target "YooMoneySDK-example" do
+  use_frameworks!
+  pod 'YooMoneySDKObjc', '~> 3.0.0'
 end

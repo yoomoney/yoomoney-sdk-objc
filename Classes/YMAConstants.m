@@ -1,9 +1,9 @@
 //
 //  YMAConstants.m
-//  YandexMoneySDK
+//  YooMoneySDK
 //
 //  Created by Alexander Mertvetsov on 29.01.14.
-//  Copyright (c) 2014 Yandex.Money. All rights reserved.
+//  Copyright (c) 2020 YooMoney. All rights reserved.
 //
 
 #import "YMAConstants.h"
@@ -17,7 +17,7 @@ NSString *const YMAP2PPaymentParameterLabel     = @"label";
 
 NSString *const YMAPaymentParameterPatternId    = @"pattern_id";
 
-NSString *const YMAErrorDomainYaMoneyAPI = @"yaMoneyError";
+NSString *const YMAErrorDomainYooMoneyAPI = @"yooMoneyError";
 NSString *const YMAErrorDomainUnknown    = @"technicalError";
 NSString *const YMAErrorDomainOAuth      = @"oAuthError";
 

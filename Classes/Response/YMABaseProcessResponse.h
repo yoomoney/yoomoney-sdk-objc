@@ -1,6 +1,6 @@
 //
 //  Created by Alexander Mertvetsov on 01.11.13.
-//  Copyright (c) 2013 Yandex.Money. All rights reserved.
+//  Copyright (c) 2020 YooMoney. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

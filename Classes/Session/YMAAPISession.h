@@ -1,6 +1,6 @@
 //
 // Created by Alexander Mertvetsov on 20.05.14.
-// Copyright (c) 2014 Yandex.Money. All rights reserved.
+// Copyright (c) 2020 YooMoney. All rights reserved.
 //
 
 #import "YMABaseSession.h"

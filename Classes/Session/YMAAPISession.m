@@ -1,6 +1,6 @@
 //
 // Created by Alexander Mertvetsov on 20.05.14.
-// Copyright (c) 2014 Yandex.Money. All rights reserved.
+// Copyright (c) 2020 YooMoney. All rights reserved.
 //
 
 #import "YMAAPISession.h"
@@ -210,7 +210,7 @@ authorizationInfo:(NSMutableDictionary<NSString *, NSString *> *__nullable __aut
                            if (errorKey == nil)
                                block(nil, unknownError);
                            else
-                               block(nil, [NSError errorWithDomain:YMAErrorDomainYaMoneyAPI
+                               block(nil, [NSError errorWithDomain:YMAErrorDomainYooMoneyAPI
                                                               code:statusCode
                                                           userInfo:@{YMAErrorKey : errorKey, YMAErrorKeyResponse : response}]);
                        }];

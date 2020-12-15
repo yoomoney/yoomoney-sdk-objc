@@ -1,11 +1,11 @@
 //
 // Created by Alexander Mertvetsov on 20.05.14.
-// Copyright (c) 2014 Yandex.Money. All rights reserved.
+// Copyright (c) 2020 YooMoney. All rights reserved.
 //
 
 #import "YMAHostsProvider.h"
 
-static NSString *const kDefaultMoneyUrl = @"money.yandex.ru";
+static NSString *const kDefaultMoneyUrl = @"yoomoney.ru";
 
 @implementation YMAHostsProvider
 

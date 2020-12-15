@@ -1,6 +1,6 @@
 //
 // Created by Alexander Mertvetsov on 22.05.14.
-// Copyright (c) 2014 Yandex.Money. All rights reserved.
+// Copyright (c) 2020 YooMoney. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -33,7 +33,7 @@ typedef NS_ENUM(NSInteger, YMAAccountType) {
                           balanceDetails:(YMABalanceDetailsModel *_Nullable)balanceDetails
                              cardsLinked:(NSArray *_Nullable)cardsLinked
                       servicesAdditional:(NSArray *_Nullable)servicesAdditional
-                            yamoneyCards:(NSArray *_Nullable)yamoneyCards
+                           yooMoneyCards:(NSArray *_Nullable)yooMoneyCards
                             virtualCards:(NSArray *_Nullable)virtualCards;
 
 + (nullable instancetype)accountInfoWithAccount:(NSString *_Nullable)account
@@ -45,7 +45,7 @@ typedef NS_ENUM(NSInteger, YMAAccountType) {
                                  balanceDetails:(YMABalanceDetailsModel *_Nullable)balanceDetails
                                     cardsLinked:(NSArray *_Nullable)cardsLinked
                              servicesAdditional:(NSArray *_Nullable)servicesAdditional
-                                   yamoneyCards:(NSArray *_Nullable)yamoneyCards
+                                  yooMoneyCards:(NSArray *_Nullable)yooMoneyCards
                                    virtualCards:(NSArray *_Nullable)virtualCards;
 
 + (YMAAccountStatus)accountStatusByString:(NSString *)accountStatusString;
@@ -61,7 +61,7 @@ typedef NS_ENUM(NSInteger, YMAAccountType) {
 @property (nonatomic, strong, readonly, nullable) YMABalanceDetailsModel *balanceDetails;
 @property (nonatomic, copy, readonly, nullable) NSArray *cardsLinked;
 @property (nonatomic, copy, readonly, nullable) NSArray *servicesAdditional;
-@property (nonatomic, copy, readonly, nullable) NSArray *yamoneyCards;
+@property (nonatomic, copy, readonly, nullable) NSArray *yooMoneyCards;
 @property (nonatomic, copy, readonly, nullable) NSArray *virtualCards;
 
 @end

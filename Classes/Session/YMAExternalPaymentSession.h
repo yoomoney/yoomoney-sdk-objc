@@ -1,13 +1,13 @@
 //
 // Created by Alexander Mertvetsov on 27.01.14.
-// Copyright (c) 2014 Yandex.Money. All rights reserved.
+// Copyright (c) 2020 YooMoney. All rights reserved.
 //
 
 #import "YMABaseRequest.h"
 #import "YMABaseSession.h"
 
 ///
-/// Session object to access Yandex.Money (for external payments).
+/// Session object to access YooMoney (for external payments).
 ///
 @interface YMAExternalPaymentSession : YMABaseSession
 

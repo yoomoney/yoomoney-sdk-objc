@@ -1,6 +1,6 @@
 //
 //  Created by Alexander Mertvetsov on 01.11.13.
-//  Copyright (c) 2013 Yandex.Money. All rights reserved.
+//  Copyright (c) 2020 YooMoney. All rights reserved.
 //
 
 #import "YMABaseProcessResponse.h"
@@ -100,7 +100,7 @@ static NSString *const kParameterAccountUnblockUri = @"account_unblock_uri";
 {
     NSError *error = nil;
     if (errorCode != nil) {
-        error = [NSError errorWithDomain:YMAErrorDomainYaMoneyAPI
+        error = [NSError errorWithDomain:YMAErrorDomainYooMoneyAPI
                                      code:0
                                  userInfo:@{YMAErrorKey : errorCode, YMAErrorKeyResponse : self}];
     }

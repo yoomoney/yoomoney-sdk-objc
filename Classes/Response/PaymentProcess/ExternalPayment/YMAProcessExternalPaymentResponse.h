@@ -1,6 +1,6 @@
 //
 // Created by Alexander Mertvetsov on 29.01.14.
-// Copyright (c) 2014 Yandex.Money. All rights reserved.
+// Copyright (c) 2020 YooMoney. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -22,7 +22,7 @@
 /// - was set the request parameter requestToken = YES;
 /// - payment completed successfully (status = YMAResponseStatusSuccess).
 @property (nonatomic, strong, readonly) YMAMoneySourceModel *moneySource;
-/// The number of transaction in the system Yandex.Money.
+/// The number of transaction in the system YooMoney.
 /// Present at the success of the payment in the shop.
 @property (nonatomic, copy, readonly) NSString *invoiceId;
 

@@ -1,9 +1,9 @@
 //
 //  YMAConstants.h
-//  YandexMoneySDK
+//  YooMoneySDK
 //
 //  Created by Alexander Mertvetsov on 29.01.14.
-//  Copyright (c) 2014 Yandex.Money. All rights reserved.
+//  Copyright (c) 2020 YooMoney. All rights reserved.
 //
 //
 //
@@ -30,7 +30,7 @@ extern NSString *const YMAP2PPaymentParameterComment;
 // p2p parameter name. Amount to be deducted from a credit card.
 extern NSString *const YMAP2PPaymentParameterAmount;
 
-// p2p parameter name. Amount to be credited to the account of Yandex.Money.
+// p2p parameter name. Amount to be credited to the account of YooMoney.
 extern NSString *const YMAP2PPaymentParameterAmountDue;
 
 // p2p parameter name. Not required.
@@ -40,7 +40,7 @@ extern NSString *const YMAP2PPaymentParameterLabel;
 extern NSString *const YMAPaymentParameterPatternId;
 
 // API error.
-extern NSString *const YMAErrorDomainYaMoneyAPI;
+extern NSString *const YMAErrorDomainYooMoneyAPI;
 
 // Unknown error.
 extern NSString *const YMAErrorDomainUnknown;
