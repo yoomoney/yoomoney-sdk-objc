@@ -8,6 +8,8 @@
 #import "YMAConstants.h"
 #import "YMAHandlers.h"
 
+@protocol YMALogger;
+
 NS_ASSUME_NONNULL_BEGIN
 
 // Header constant = "User-Agent".
@@ -119,6 +121,7 @@ typedef NS_ENUM(NSInteger, YMAConnectHTTPStatusCodes) {
 @property (nonatomic, copy) NSString *language;
 @property (nonatomic, strong) NSOperationQueue *requestQueue;
 @property (nonatomic, strong) NSOperationQueue *responseQueue;
+@property (nonatomic, strong, nullable) id<YMALogger> logger;
 
 @end
 
