@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		244F74E67A4EEA769C86AA60 /* YMALogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 244F7911A128F71B529254F5 /* YMALogger.h */; };
 		244F7BD4C202AB3AE4FD98E5 /* NSData+HtmlEscapeFixing.h in Headers */ = {isa = PBXBuildFile; fileRef = 244F75374BC0074AFE12D1A7 /* NSData+HtmlEscapeFixing.h */; };
 		244F7BDCA93C4DAB2506CBD4 /* NSData+HtmlEscapeFixing.m in Sources */ = {isa = PBXBuildFile; fileRef = 244F7AE53A393B8536F7F0E5 /* NSData+HtmlEscapeFixing.m */; };
 		244F7CA8D40A30412EAF3418 /* NSData+HtmlEscapeFixing.m in Sources */ = {isa = PBXBuildFile; fileRef = 244F7AE53A393B8536F7F0E5 /* NSData+HtmlEscapeFixing.m */; };
@@ -244,6 +245,7 @@
 
 /* Begin PBXFileReference section */
 		244F75374BC0074AFE12D1A7 /* NSData+HtmlEscapeFixing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+HtmlEscapeFixing.h"; sourceTree = "<group>"; };
+		244F7911A128F71B529254F5 /* YMALogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMALogger.h; sourceTree = "<group>"; };
 		244F7AE53A393B8536F7F0E5 /* NSData+HtmlEscapeFixing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+HtmlEscapeFixing.m"; sourceTree = "<group>"; };
 		2DE794A649279376C6AB9585 /* YMAOperationDetailsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAOperationDetailsModel.h; sourceTree = "<group>"; };
 		2DE79556322AA7E70F71D29B /* YMAOperationDetailsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAOperationDetailsModel.m; sourceTree = "<group>"; };
@@ -471,6 +473,7 @@
 				8BFF28A12B37CD1CB6CCF148 /* YMABaseSession.m */,
 				8BFF293904B8F1396C4DC49A /* YMAAPISession.h */,
 				8BFF2B5D4A589E5C180D6B2B /* YMAAPISession.m */,
+				244F7911A128F71B529254F5 /* YMALogger.h */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -710,6 +713,7 @@
 				8BFF2ABB534BF6BBC842441F /* YMAOperationDetailsResponse.h in Headers */,
 				2DE79A3FE58C4A31226E800F /* YMAOperationDetailsModel.h in Headers */,
 				244F7FE1B9C0D311631391E9 /* NSData+HtmlEscapeFixing.h in Headers */,
+				244F74E67A4EEA769C86AA60 /* YMALogger.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -4,6 +4,7 @@
 //
 
 #import "YMABaseSession.h"
+#import "YMALogger.h"
 
 static NSString *const kValueHeaderAuthorizationFormat = @"Bearer %@";
 static NSString *const kHeaderAuthorization = @"Authorization";
@@ -234,18 +235,19 @@ NSString *const YMAValueContentTypeDefault = @"application/x-www-form-urlencoded
 {
     NSInteger statusCode = ((NSHTTPURLResponse *)urlResponse).statusCode;
 
-#if defined(DEBUG) || defined(ADHOC)
-    NSMutableString *debugString = [NSMutableString stringWithFormat:@"Response URL: %@\nStatus code:%ld\nData: %@",
-                                    urlRequest.URL.absoluteString,
-                                    (long)statusCode,
-                                    [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]];
-    
-    if (error != nil) {
-        [debugString appendFormat:@"\nError:%@", error.localizedDescription];
+    if (_logger != nil) {
+        NSString *responseString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+        NSMutableString *debugString = [NSMutableString stringWithFormat:@"Response URL: %@\nStatus code:%ld\nData: %@",
+                                                                         urlRequest.URL.absoluteString,
+                                                                         (long) statusCode,
+                                                                         responseString];
+
+        if (error != nil) {
+            [debugString appendFormat:@"\nError:%@", error.localizedDescription];
+        }
+        [_logger logMessage:debugString];
     }
-    NSLog(@"%@", debugString);
-#endif
-    
+
     NSError *responseError = nil;
     if (error != nil) {
         responseError = error;
