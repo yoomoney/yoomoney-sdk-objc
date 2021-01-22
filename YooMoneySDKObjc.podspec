@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name             = "YooMoneySDKObjc"
-  s.version          = "2.4.0"
+  s.version          = "2.4.1"
   s.summary          = "YooMoney SDK"
   s.homepage         = "https://github.com/yoomoney/yoomoney-sdk-objc/"
   s.license          = 'MIT'
   s.author           = "Yuriy Vyazov"
-  s.source           = { :git => "git@github.com:yoomoney/yoomoney-sdk-objc.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/yoomoney/yoomoney-sdk-objc.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/yoomoneynews'
   s.documentation_url = 'https://yoomoney.ru/docs/wallet'
 
